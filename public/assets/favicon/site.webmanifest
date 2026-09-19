@@ -1,0 +1,29 @@
+{
+    "name": "FEB Digi",
+    "short_name": "FEB Digi",
+    "id": "/",
+    "start_url": "/",
+    "scope": "/",
+    "icons": [
+        { "src": "android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+        { "src": "android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+    ],
+    "theme_color": "#075ff7",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "description": "FEB builds modern websites and web platforms that grow with your business.",
+    "screenshots": [
+        {
+            "src": "/assets/favicon/screenshot-desktop.png",
+            "sizes": "1899x844",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/assets/favicon/screenshot-mobile.png",
+            "sizes": "413x796",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ]
+}

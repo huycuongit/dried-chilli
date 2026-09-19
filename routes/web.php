@@ -1,0 +1,86 @@
+<?php
+
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ServiceController;
+
+use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\ServiceContractController;
+
+// Clear cache artisan
+Route::get('reset-systems-cache', function () {
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    return "<h1>All Config Cache Clear Successfully.</h1>";
+});
+
+// Model Contacts
+Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
+
+
+Route::post('/submit-login', [AuthController::class, 'submitLogin'])->name('auth.submitLogin');
+Route::get('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
+
+// Careers
+// Ckfinder connects  
+Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
+    ->name('ckfinder_connector');
+
+Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
+    ->name('ckfinder_browser');
+
+//news
+// 404
+Route::get('/he-thong-dang-bao-tri', function () {
+    abort(404);
+})->name('link.404');
+
+//Site map
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
+// Private contract links are token-protected and intentionally excluded from search.
+Route::get('/contract/{token}', [ServiceContractController::class, 'show'])
+    ->where('token', '[A-Za-z0-9]{64}')
+    ->name('contracts.show');
+Route::post('/contract/{token}/sign', [ServiceContractController::class, 'sign'])
+    ->where('token', '[A-Za-z0-9]{64}')
+    ->middleware('throttle:10,1')
+    ->name('contracts.sign');
+
+// Redirect old language URLs to the English-only public website.
+Route::get('/{language}/{path?}', function ($language, $path = null) {
+    return redirect('/' . ltrim($path ?? '', '/') . (request()->getQueryString() ? '?' . request()->getQueryString() : ''), 301);
+})->where(['language' => 'en|vi', 'path' => '.*']);
+
+Route::redirect('/home', '/', 301);
+Route::get('/dich-vu/{slug}', fn ($slug) => redirect("/services/{$slug}", 301))->name('service.detail');
+Route::redirect('/dashboard', '/', 301)->name('page.index');
+
+Route::middleware('set.locale')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+    Route::get('/projects/{slug}', [ProjectController::class, 'show'])->name('projects.show');
+    Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+    Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
+    Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+    Route::view('/contact-us', 'contact')->name('contact.page');
+    Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+    Route::get('/{pagePath}/{slug?}', [\App\Http\Controllers\LocalizedPageController::class, 'show'])
+        ->where('pagePath', '(?!admin$)[a-z0-9]+(?:-[a-z0-9]+)*')->name('localized.page');
+});
+
+Route::middleware(['authUser'])->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+});
+
+// Keep this fallback last.
+Route::get('/{slug}', fn () => redirect('/', 301))->name('page.slug');

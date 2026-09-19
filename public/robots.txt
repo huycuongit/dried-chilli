@@ -1,0 +1,9 @@
+User-agent: *
+Disallow:
+
+User-agent: Googlebot
+Disallow:
+
+Allow: /assets/favicon/favicon.ico
+
+Sitemap: https://febdigi.com/sitemap.xml

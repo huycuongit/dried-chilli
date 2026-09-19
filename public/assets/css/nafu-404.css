@@ -1,0 +1,67 @@
+.nafu-error-page{
+    color:#111;
+    background:#f7f5f0;
+    font-family:Manrope,Arial,sans-serif;
+}
+.nafu-error{
+    min-height:calc(100vh - 92px);
+    padding:110px 24px 125px;
+    display:grid;
+    place-items:center;
+}
+.nafu-error__content{
+    width:min(760px,100%);
+    text-align:center;
+}
+.nafu-error__code{
+    margin:0;
+    color:#111;
+    font-family:Sora,Arial,sans-serif;
+    font-size:clamp(150px,24vw,330px);
+    font-weight:500;
+    line-height:.78;
+    letter-spacing:-.09em;
+}
+.nafu-error h1{
+    margin:55px 0 0;
+    font-family:Sora,Arial,sans-serif;
+    font-size:clamp(34px,4vw,56px);
+    font-weight:500;
+    line-height:1.1;
+    letter-spacing:-.045em;
+}
+.nafu-error__description{
+    max-width:540px;
+    margin:20px auto 0;
+    color:#5e625b;
+    font-size:17px;
+    line-height:1.65;
+}
+.nafu-error__action{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+}
+.nafu-error__action .btn-block{
+    min-width:255px;
+}
+@media(max-width:767px){
+    .nafu-error{
+        min-height:650px;
+        padding:90px 20px 100px;
+    }
+    .nafu-error__code{
+        font-size:clamp(120px,43vw,200px);
+        line-height:.82;
+    }
+    .nafu-error h1{
+        margin-top:38px;
+        font-size:34px;
+    }
+    .nafu-error__description{
+        font-size:15px;
+    }
+    .nafu-error__action .btn-block{
+        width:100%;
+    }
+}
