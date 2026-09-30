@@ -55,45 +55,6 @@
         </div>
     </section>
 
-    <!-- Featured Categories -->
-    <section class="spice-categories reveal">
-        <div class="container">
-            <div class="section-header">
-                <h2>Explore by Category</h2>
-                <a href="/collections" class="view-all">View all categories &rarr;</a>
-            </div>
-            <div class="category-grid">
-                <a href="/collection/dried-chillies" class="category-card">
-                    <div class="cat-img-box">
-                        <img src="{{ asset('images/cat_chillies.jpg') }}" alt="Dried Chillies">
-                    </div>
-                    <div class="cat-info">
-                        <h3>Dried Chillies</h3>
-                        <span>12 Products</span>
-                    </div>
-                </a>
-                <a href="/collection/powders" class="category-card">
-                    <div class="cat-img-box">
-                        <img src="{{ asset('images/cat_powders.jpg') }}" alt="Spice Powders">
-                    </div>
-                    <div class="cat-info">
-                        <h3>Spice Powders</h3>
-                        <span>24 Products</span>
-                    </div>
-                </a>
-                <a href="/collection/blends" class="category-card">
-                    <div class="cat-img-box">
-                        <img src="{{ asset('images/cat_blends.jpg') }}" alt="Curry & Blends">
-                    </div>
-                    <div class="cat-info">
-                        <h3>Curry & Blends</h3>
-                        <span>8 Products</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- Trending Products -->
     <section class="trending-products reveal">
         <div class="container">
@@ -147,21 +108,6 @@
                         <a href="/product/whole-ghost" class="product-title">Dried Whole Ghost Peppers</a>
                         <div class="product-price">
                             <span class="price-current">$18.50</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <a href="/product/cinnamon" class="product-img-wrapper">
-                        <img src="{{ asset('images/product_hero.png') }}" alt="Ceylon Cinnamon">
-                        <div class="quick-add">Quick Add</div>
-                    </a>
-                    <div class="product-details">
-                        <div class="product-vendor">DRIED CHILI</div>
-                        <a href="/product/cinnamon" class="product-title">Ceylon Cinnamon Sticks</a>
-                        <div class="product-price">
-                            <span class="price-current">$14.00</span>
                         </div>
                     </div>
                 </div>
@@ -444,102 +390,6 @@
             transform: none;
         }
     }
-
-    /* Categories */
-    .spice-categories {
-        padding: 6rem 0;
-    }
-
-    .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-bottom: 3rem;
-    }
-
-    .section-header.center {
-        text-align: center;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .section-header h2 {
-        font-family: var(--font-heading);
-        font-size: 2.5rem;
-        color: var(--spice-primary);
-        margin: 0;
-    }
-
-    .section-header p {
-        color: var(--spice-text);
-        opacity: 0.7;
-        margin: 0.5rem 0 0 0;
-    }
-
-    .view-all {
-        color: var(--spice-text);
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 700;
-        font-size: 0.9rem;
-        border-bottom: 1px solid var(--spice-primary);
-        padding-bottom: 2px;
-        transition: color 0.3s;
-    }
-
-    .view-all:hover {
-        color: var(--spice-primary);
-    }
-
-    .category-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-    }
-
-    .category-card {
-        text-decoration: none;
-        color: var(--spice-text);
-        group: hover;
-    }
-
-    .cat-img-box {
-        position: relative;
-        padding-top: 100%;
-        overflow: hidden;
-        border-radius: 4px;
-        margin-bottom: 1.5rem;
-    }
-
-    .cat-img-box img {
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        object-fit: cover;
-        transition: transform 0.7s ease;
-    }
-
-    .category-card:hover .cat-img-box img {
-        transform: scale(1.05);
-    }
-
-    .cat-info h3 {
-        font-family: var(--font-heading);
-        font-size: 1.5rem;
-        margin: 0 0 0.25rem 0;
-        transition: color 0.3s;
-    }
-
-    .category-card:hover .cat-info h3 {
-        color: var(--spice-primary);
-    }
-
-    .cat-info span {
-        font-size: 0.9rem;
-        opacity: 0.6;
-    }
-
     /* Trending Products Fishwife Style */
     .trending-products {
         padding: 5rem 0;
@@ -707,7 +557,7 @@
 
 
     @media (max-width: 900px) {
-        .props-grid, .category-grid, .story-grid { grid-template-columns: 1fr; }
+        .props-grid, .story-grid { grid-template-columns: 1fr; }
         .product-carousel { grid-template-columns: repeat(2, 1fr); }
         .hero-title { font-size: 3rem; }
         .slide-split { grid-template-columns: 1fr; text-align: center; gap: 2rem; padding: 3rem 1rem; }
