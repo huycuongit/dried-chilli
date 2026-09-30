@@ -119,11 +119,17 @@
         justify-content: space-between;
     }
 
-        .header-left, .header-nav, .header-right {
+    .header-left, .header-nav, .header-right {
         display: flex;
         align-items: center;
         gap: 2.5rem;
+    }
+    .header-left, .header-right {
         flex: 1;
+    }
+    .header-nav {
+        flex: auto;
+        gap: 3.5rem;
     }
     .header-nav {
         justify-content: center;
