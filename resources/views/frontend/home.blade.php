@@ -17,126 +17,40 @@
         </div>
     </div>
 
-    <!-- Hero Slider -->
-    <section class="spice-hero-slider">
-        <div class="slider-container" id="heroSlider">
-            <!-- Slide 1 -->
-            <div class="slide active">
-                <div class="slide-split container">
-                    <div class="hero-content">
-                        <span class="hero-subtitle">THE ORIGINAL FLAVOR</span>
-                        <h1 class="hero-title">SHRIMPLY<br>SPICY</h1>
-                        <p class="hero-desc">The ultimate umami bomb. Handcrafted with real shrimp and our signature spice blend.</p>
-                        <div class="hero-actions">
-                            <a href="/shop" class="btn-primary">Shop Now</a>
-                        </div>
-                    </div>
-                    <div class="hero-stage" aria-hidden="true">
-                        <div class="hero-burst"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.png') }}" alt="Dried Chili Product">
-                        <span class="hero-sticker sticker-1">Chef-made</span>
-                        <span class="hero-sticker sticker-2"><span>150,000+</span> jars sold</span>
-                        <span class="hero-sticker sticker-3">Now in Stores</span>
-                    </div>
+        <!-- Zhen Hero Section -->
+    <section class="zhen-hero">
+        <div class="zhen-hero-content container">
+            <div class="zhen-text-side">
+                <div class="zhen-badge">
+                    <span class="fire-icon">🔥</span> Bold Flavors, Infinite Spice
+                </div>
+                <h1 class="zhen-title">Simply<br><span class="highlight-yellow">Asian</span>, Truly<br>Exceptional</h1>
+                <p class="zhen-desc">Discover the vibrant streets of Asia through our signature bowls and authentic street-food favorites.</p>
+                <div class="zhen-actions">
+                    <a href="/shop" class="btn-primary-zhen">Get Started &rarr;</a>
+                    <a href="/about" class="btn-outline-zhen">Our Features</a>
                 </div>
             </div>
-            
-            <!-- Slide 2 -->
-            <div class="slide">
-                <div class="slide-split reverse container">
-                    <div class="hero-stage" aria-hidden="true">
-                        <div class="hero-burst burst-yellow"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.png') }}" alt="Dried Chili Product">
-                        <span class="hero-sticker sticker-1">New Recipe</span>
-                        <span class="hero-sticker sticker-2"><span>Extra</span> Crunchy</span>
-                        <span class="hero-sticker sticker-3">100% Organic</span>
-                    </div>
-                    <div class="hero-content">
-                        <span class="hero-subtitle">NEW ARRIVAL</span>
-                        <h1 class="hero-title">EXTRA<br>GARLIC CRUNCH</h1>
-                        <p class="hero-desc">Take your meals to the next level with our new extra garlicky, extra crunchy chilli paste.</p>
-                        <div class="hero-actions">
-                            <a href="/shop" class="btn-primary">Discover</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="slide">
-                <div class="slide-split container">
-                    <div class="hero-content">
-                        <span class="hero-subtitle">LIMITED EDITION</span>
-                        <h1 class="hero-title">FIRE<br>ROASTED</h1>
-                        <p class="hero-desc">Experience the deep, smoky flavor of chillies roasted over an open flame.</p>
-                        <div class="hero-actions">
-                            <a href="/shop" class="btn-primary">Shop Limited</a>
-                        </div>
-                    </div>
-                    <div class="hero-stage" aria-hidden="true">
-                        <div class="hero-burst burst-orange"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.png') }}" alt="Dried Chili Product">
-                        <span class="hero-sticker sticker-1">Smoky</span>
-                        <span class="hero-sticker sticker-2"><span>Award</span> Winning</span>
-                        <span class="hero-sticker sticker-3">Hot!</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="slide">
-                <div class="slide-split reverse container">
-                    <div class="hero-stage" aria-hidden="true">
-                        <div class="hero-burst burst-red"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.png') }}" alt="Dried Chili Product">
-                        <span class="hero-sticker sticker-1">Plant Based</span>
-                        <span class="hero-sticker sticker-2"><span>No</span> MSG</span>
-                        <span class="hero-sticker sticker-3">Pure Spice</span>
-                    </div>
-                    <div class="hero-content">
-                        <span class="hero-subtitle">VEGAN FRIENDLY</span>
-                        <h1 class="hero-title">PURE<br>PLANT POWER</h1>
-                        <p class="hero-desc">All the umami, none of the seafood. Our vegan alternative packs the same punch.</p>
-                        <div class="hero-actions">
-                            <a href="/shop" class="btn-primary">Try Vegan</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="zhen-image-side">
+                <img src="{{ asset('images/hero_bento_box.jpg') }}" alt="Asian Bento Box" class="zhen-hero-img">
             </div>
         </div>
-        <div class="slider-controls">
-            <div class="slider-dots">
-                <span class="dot active" onclick="goToSlide(0)"></span>
-                <span class="dot" onclick="goToSlide(1)"></span>
-                <span class="dot" onclick="goToSlide(2)"></span>
-                <span class="dot" onclick="goToSlide(3)"></span>
-            </div>
-        </div>
-    </section>
 
-    <!-- Value Props -->
-    <section class="value-props">
-        <div class="container props-grid">
-            <div class="prop-item">
-                <div class="prop-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <h3>100% Authentic</h3>
-                <p>Pure ingredients with no artificial additives</p>
+        <div class="zhen-features container">
+            <div class="zhen-feature-card">
+                <div class="feature-icon">🌿</div>
+                <h3>Farm to Table Organic</h3>
+                <p>We source our ingredients daily from local sustainable farms.</p>
             </div>
-            <div class="prop-item">
-                <div class="prop-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/></svg>
-                </div>
-                <h3>Sourced Globally</h3>
-                <p>Direct from the world's best spice farms</p>
+            <div class="zhen-feature-card">
+                <div class="feature-icon">👨‍🍳</div>
+                <h3>Master Chefs</h3>
+                <p>Our dishes are prepared by expert chefs trained in traditional Asian techniques.</p>
             </div>
-            <div class="prop-item">
-                <div class="prop-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                </div>
-                <h3>Fast Delivery</h3>
-                <p>Freshness delivered to your doorstep</p>
+            <div class="zhen-feature-card">
+                <div class="feature-icon">⏱️</div>
+                <h3>Always Fresh</h3>
+                <p>No pre-cooked meals. Every dish is prepared fresh the moment you order.</p>
             </div>
         </div>
     </section>
@@ -336,262 +250,179 @@
         100% { transform: translateX(-50%); }
     }
 
-    /* Hero Slider */
-    .spice-hero-slider {
-        position: relative;
-        background-color: #EFE4D3; /* Soft earthy background */
-        overflow: hidden;
-        min-height: 550px;
-        display: flex;
-        align-items: center;
-    }
-
-    .slider-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
-
-    .slide {
+    
+    /* Zhen Hero Styles */
+    .spice-header {
         position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.8s ease-in-out, visibility 0.8s;
-        display: flex;
-        align-items: center;
+        top: 0; left: 0; right: 0;
+        background: transparent !important;
+        border-bottom: none !important;
+        z-index: 100;
     }
-
-    .slide.active {
-        opacity: 1;
-        visibility: visible;
+    .spice-marquee {
+        display: none; /* Hide marquee to make header flush top */
+    }
+    .zhen-hero {
+        background-color: #3B2A20; 
+        background: linear-gradient(135deg, #3B2A20 0%, #2A1D15 100%);
+        min-height: 100vh;
+        padding-top: 120px; 
+        padding-bottom: 4rem;
+        color: #F6F1EA;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
     }
-
-    .slide-split {
+    .zhen-hero-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        align-items: center;
         gap: 4rem;
-        height: 100%;
-        padding: 4rem 2rem;
+        align-items: center;
+        flex: 1;
     }
-
-    .hero-content {
-        color: var(--spice-text);
-        animation: slideUp 0.8s ease-out forwards;
+    .zhen-badge {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 99px;
+        font-family: var(--font-body, sans-serif);
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        color: #D7CBBC;
     }
-
-    @keyframes slideUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--spice-primary);
-        font-weight: 700;
-        display: block;
-        margin-bottom: 1rem;
-        border: 2px solid var(--spice-primary);
-        display: inline-block;
-        padding: 0.25rem 0.75rem;
-        border-radius: 999px;
-    }
-
-    .hero-title {
-        font-family: var(--font-heading);
-        font-size: clamp(3.5rem, 6vw, 5rem);
-        line-height: 1;
+    .zhen-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(3rem, 5vw, 5.5rem);
+        line-height: 1.1;
         margin: 0 0 1.5rem 0;
-        color: var(--spice-text);
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
+        color: #F6F1EA;
+        font-weight: 700;
     }
-
-    .hero-desc {
-        font-size: 1.2rem;
+    .zhen-title .highlight-yellow {
+        color: #E0A83A;
+    }
+    .zhen-desc {
+        font-size: 1.1rem;
         line-height: 1.6;
-        margin: 0 0 2.5rem 0;
-        opacity: 0.9;
-        max-width: 550px;
+        color: #D7CBBC;
+        max-width: 450px;
+        margin-bottom: 2.5rem;
     }
-
-    .hero-actions {
+    .zhen-actions {
         display: flex;
         gap: 1rem;
     }
-
-    .hero-stage {
+    .btn-primary-zhen {
+        background-color: #E0A83A;
+        color: #3B2A20;
+        border: none;
+        padding: 1rem 2rem;
+        font-weight: 600;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s;
+    }
+    .btn-primary-zhen:hover {
+        background-color: #DB7B52;
+        color: #F6F1EA;
+        transform: translateY(-2px);
+    }
+    .btn-outline-zhen {
+        background-color: rgba(255,255,255,0.1);
+        color: #F6F1EA;
+        border: none;
+        padding: 1rem 2rem;
+        font-weight: 600;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s;
+    }
+    .btn-outline-zhen:hover {
+        background-color: rgba(255,255,255,0.2);
+        transform: translateY(-2px);
+    }
+    .zhen-image-side {
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
-        height: 100%;
-        min-height: 400px;
     }
-
-    /* High-contrast Flat Hero Burst (Graza/Fishwife style) */
-    .hero-burst {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 120%;
-        padding-top: 120%;
-        border-radius: 50%;
-        z-index: 1;
-        background: repeating-conic-gradient(var(--spice-secondary) 0 12deg, transparent 12deg 24deg);
-        opacity: 1;
-        animation: spinBurst 40s linear infinite;
-        mask-image: radial-gradient(circle, black 30%, transparent 70%);
-        -webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%);
+    .zhen-hero-img {
+        max-width: 120%;
+        height: auto;
+        border-radius: 20px;
+        transform: rotate(5deg) scale(1.1);
+        box-shadow: 20px 20px 60px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease;
     }
-
-    .burst-yellow { background: repeating-conic-gradient(#E8A33D 0 12deg, transparent 12deg 24deg); }
-    .burst-orange { background: repeating-conic-gradient(#C1440E 0 12deg, transparent 12deg 24deg); }
-    .burst-red { background: repeating-conic-gradient(#A8320A 0 12deg, transparent 12deg 24deg); }
-
-    @keyframes spinBurst {
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    .zhen-hero-img:hover {
+        transform: rotate(2deg) scale(1.15);
     }
-
-    .hero-can {
-        position: relative;
-        z-index: 5;
-        height: 450px;
-        width: 300px;
-        object-fit: contain;
-        animation: floatImg 6s ease-in-out infinite alternate;
-        filter: drop-shadow(10px 10px 0px rgba(43,29,20,1)); /* Hard retro shadow */
-    }
-
-    @keyframes floatImg {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-20px); }
-    }
-
-    /* Flat Retro Stickers */
-    .hero-sticker {
-        position: absolute;
-        z-index: 10;
-        font-family: var(--font-heading);
-        font-weight: 700;
-        color: var(--spice-bg);
-        background: var(--spice-text);
-        border: 2px solid var(--spice-text);
-        box-shadow: 4px 4px 0px rgba(43,29,20,1);
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        font-size: 1.15rem;
-        white-space: nowrap;
-        animation: floatSticker 5s ease-in-out infinite alternate;
-    }
-
-    .hero-sticker span {
-        color: var(--spice-text);
-        background: var(--spice-secondary);
-        padding: 0.2rem 0.5rem;
-        border-radius: 4px;
-        margin-right: 0.25rem;
-        font-family: var(--font-body);
-        font-weight: 700;
-        font-size: 1rem;
-    }
-
-    .sticker-1 {
-        top: 15%;
-        left: -5%;
-        transform: rotate(-5deg);
-        animation-delay: 0s;
-    }
-
-    .sticker-2 {
-        bottom: 20%;
-        left: -10%;
-        transform: rotate(3deg);
-        animation-delay: 1.5s;
-    }
-
-    .sticker-3 {
-        top: 45%;
-        right: -15%;
-        transform: rotate(6deg);
-        animation-delay: 0.7s;
-    }
-
-    @keyframes floatSticker {
-        0% { transform: translateY(0) rotate(var(--rotation, -5deg)); }
-        100% { transform: translateY(-15px) rotate(var(--rotation, 5deg)); }
-    }
-
-    .slider-controls {
-        position: absolute;
-        bottom: 2rem;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        z-index: 10;
-    }
-
-    .slider-dots {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: rgba(43,29,20,0.3);
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-    .dot.active {
-        background-color: var(--spice-primary);
-        transform: scale(1.2);
-    }
-
-    /* Value Props */
-    .value-props {
-        background-color: var(--spice-primary);
-        color: white;
-        padding: 3rem 0;
-    }
-
-    .props-grid {
+    .zhen-features {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
+        margin-top: 4rem;
+    }
+    .zhen-feature-card {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        padding: 2rem;
         text-align: center;
+        transition: background 0.3s ease;
     }
-
-    .prop-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .zhen-feature-card:hover {
+        background: rgba(255,255,255,0.1);
     }
-
-    .prop-icon {
-        color: var(--spice-secondary);
+    .feature-icon {
+        font-size: 1.5rem;
+        color: #E0A83A;
         margin-bottom: 1rem;
+        display: inline-flex;
+        width: 48px; height: 48px;
+        background: rgba(224, 168, 58, 0.2);
+        border-radius: 12px;
+        align-items: center;
+        justify-content: center;
     }
-
-    .prop-item h3 {
-        font-family: var(--font-heading);
-        font-size: 1.25rem;
-        margin: 0 0 0.5rem 0;
+    .zhen-feature-card h3 {
+        color: #F6F1EA;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
     }
-
-    .prop-item p {
-        font-size: 0.95rem;
+    .zhen-feature-card p {
+        color: #D7CBBC;
+        font-size: 0.9rem;
+        line-height: 1.5;
         margin: 0;
-        opacity: 0.8;
+    }
+    
+    @media (max-width: 992px) {
+        .zhen-hero-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .zhen-actions {
+            justify-content: center;
+        }
+        .zhen-features {
+            grid-template-columns: 1fr;
+        }
+        .zhen-hero-img {
+            max-width: 90%;
+            transform: none;
+        }
+        .zhen-hero-img:hover {
+            transform: none;
+        }
     }
 
     /* Categories */
