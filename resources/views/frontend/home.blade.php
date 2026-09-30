@@ -422,8 +422,6 @@
     .trending-products {
         padding: 5rem 0;
         background-color: var(--spice-bg-alt);
-        border-top: 2px solid var(--spice-text);
-        border-bottom: 2px solid var(--spice-text);
     }
 
     .product-carousel {
