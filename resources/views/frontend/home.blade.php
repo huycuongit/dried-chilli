@@ -7,15 +7,6 @@
 
 @section('full-content')
 <main class="spice-main">
-    <!-- Marquee Sale Banner -->
-    <div class="spice-marquee">
-        <div class="marquee-track">
-            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦ </span>
-            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦ </span>
-            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦ </span>
-            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦ </span>
-        </div>
-    </div>
 
         <!-- Zhen Hero Section -->
     <section class="zhen-hero">
@@ -114,6 +105,16 @@
             </div>
         </div>
     </section>
+
+    <!-- Marquee Sale Banner -->
+    <div class="spice-marquee">
+        <div class="marquee-track">
+            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦ </span>
+            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦ </span>
+            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦ </span>
+            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦ </span>
+        </div>
+    </div>
     
     <!-- Image with Text -->
     <section class="spice-story reveal">
@@ -225,9 +226,7 @@
         border-bottom: none !important;
         z-index: 100;
     }
-    .spice-marquee {
-        display: none; /* Hide marquee to make header flush top */
-    }
+    
     .zhen-hero {
         background-color: #3B2A20; 
         background: linear-gradient(135deg, #3B2A20 0%, #2A1D15 100%);
