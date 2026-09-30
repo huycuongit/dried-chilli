@@ -118,62 +118,67 @@
     
     <!-- Image with Text -->
     <section class="spice-story reveal">
-        <div class="story-grid">
-            <div class="story-image">
-                <img src="{{ asset('images/story_spices.jpg') }}" alt="Spices on market">
-            </div>
-            <div class="story-content">
-                <span class="subheading">OUR STORY</span>
-                <h2>Passionate About Flavor</h2>
-                <p>We believe that every dish tells a story, and the spices you use are its vocabulary. Our journey began in the vibrant spice markets of Asia, bringing authentic, sun-dried chillies and hand-ground spices to home chefs who demand the best.</p>
-                <a href="/about" class="btn-primary">Learn More</a>
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-image">
+                    <img src="{{ asset('images/story_spices.jpg') }}" alt="Spices on market">
+                </div>
+                <div class="story-content">
+                    <span class="subheading">OUR STORY</span>
+                    <h2>Passionate About Flavor</h2>
+                    <p>We believe that every dish tells a story, and the spices you use are its vocabulary. Our journey began in the vibrant spice markets of Asia, bringing authentic, sun-dried chillies and hand-ground spices to home chefs who demand the best.</p>
+                    <a href="/about" class="btn-primary">Learn More</a>
+                </div>
             </div>
         </div>
     </section>
 </main>
 
 <style>
-    /* Buttons - Graza/Fishwife Style */
+    /* Buttons - Elegant Style */
     .btn-primary {
         display: inline-block;
         background-color: var(--spice-primary);
-        color: var(--spice-bg);
+        color: #FDFBF7;
         padding: 1rem 2.5rem;
         font-family: var(--font-body);
-        font-weight: 700;
+        font-size: 0.95rem;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 1.5px;
         text-decoration: none;
-        border: 2px solid var(--spice-text);
-        border-radius: 8px;
-        box-shadow: 4px 4px 0px var(--spice-text);
-        transition: transform 0.1s, box-shadow 0.1s;
+        border: none;
+        border-radius: 99px;
+        box-shadow: 0 10px 20px rgba(219, 123, 82, 0.3);
+        transition: all 0.3s ease;
     }
 
     .btn-primary:hover {
-        transform: translate(2px, 2px);
-        box-shadow: 2px 2px 0px var(--spice-text);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(219, 123, 82, 0.4);
+        background-color: #C66A45;
     }
 
     .btn-outline {
         display: inline-block;
-        background-color: var(--spice-bg);
+        background-color: transparent;
         color: var(--spice-text);
         padding: 1rem 2.5rem;
         font-family: var(--font-body);
-        font-weight: 700;
+        font-size: 0.95rem;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 1.5px;
         text-decoration: none;
         border: 2px solid var(--spice-text);
-        border-radius: 8px;
-        box-shadow: 4px 4px 0px var(--spice-text);
-        transition: transform 0.1s, box-shadow 0.1s;
+        border-radius: 99px;
+        transition: all 0.3s ease;
     }
 
     .btn-outline:hover {
-        transform: translate(2px, 2px);
-        box-shadow: 2px 2px 0px var(--spice-text);
+        background-color: var(--spice-text);
+        color: #FDFBF7;
+        transform: translateY(-3px);
     }
 
     /* Marquee */
@@ -569,48 +574,59 @@
 
     /* Spice Story */
     .spice-story {
-        padding: 0;
+        padding: 6rem 0;
+        background-color: var(--spice-bg);
     }
 
-    /* Spice Story Warby Parker Grid */
     .story-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        border-bottom: 2px solid var(--spice-text);
+        gap: 5rem;
+        align-items: center;
     }
 
     .story-image img {
         width: 100%;
-        height: 100%;
+        height: auto;
+        aspect-ratio: 4/5;
         object-fit: cover;
-        min-height: 500px;
-        border-right: 2px solid var(--spice-text);
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
     }
 
     .story-content {
-        padding: 6rem 4rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        background-color: var(--spice-bg);
-        color: var(--spice-text);
+        padding-right: 2rem;
+    }
+
+    .story-content .subheading {
+        color: var(--spice-primary);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        display: block;
     }
 
     .story-content h2 {
-        font-family: var(--font-heading);
-        font-size: 3rem;
+        font-family: 'Playfair Display', serif;
+        font-size: 3.5rem;
+        color: #3B2A20;
         margin: 0 0 1.5rem 0;
+        line-height: 1.1;
+        font-weight: 500;
     }
 
     .story-content p {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         line-height: 1.8;
+        color: #5C4B41;
         margin: 0 0 2.5rem 0;
-        opacity: 0.9;
     }
-
-
 
     @media (max-width: 900px) {
         .props-grid, .story-grid { grid-template-columns: 1fr; }
