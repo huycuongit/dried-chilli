@@ -1,19 +1,17 @@
 <header class="spice-header">
     <div class="header-container">
-        <!-- Left Navigation -->
+        <!-- Left Logo -->
         <div class="header-left">
-            <a href="/sale" class="nav-link sale-link {{ request()->is('sale') ? 'active' : '' }}">SALE</a>
-            <a href="/about-us" class="nav-link {{ request()->is('about-us') ? 'active' : '' }}">ABOUT US</a>
-            <a href="/shop" class="nav-link {{ request()->is('shop') ? 'active' : '' }}">SHOP</a>
+            <a class="brand-logo" href="{{ page_route('home') }}">
+                <img src="{{ asset('images/jojo_logo.png') }}" alt="Dried Chili Logo" class="logo-img">
+            </a>
         </div>
-        
-        <!-- Center Logo (Home) -->
-        <a class="brand-logo" href="{{ page_route('home') }}">
-            <img src="{{ asset('images/jojo_logo.png') }}" alt="Dried Chili Logo" class="logo-img">
-        </a>
         
         <!-- Right Navigation & Cart -->
         <div class="header-right">
+            <a href="/sale" class="nav-link sale-link {{ request()->is('sale') ? 'active' : '' }}">SALE</a>
+            <a href="/about-us" class="nav-link {{ request()->is('about-us') ? 'active' : '' }}">ABOUT US</a>
+            <a href="/shop" class="nav-link {{ request()->is('shop') ? 'active' : '' }}">SHOP</a>
             <a href="{{ route('page.legacy') }}" class="nav-link {{ request()->routeIs('page.legacy') ? 'active' : '' }}">OUR LEGACY</a>
             
             <a href="/cart" class="cart-btn {{ request()->is('cart') ? 'active' : '' }}" style="text-decoration: none;">
@@ -131,6 +129,7 @@
 
     .brand-logo {
         flex: 0 0 auto;
+        justify-content: flex-start;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -211,7 +210,7 @@
     }
 
     @media (max-width: 900px) {
-        .header-left { display: none; }
+        .nav-link { display: none; }
         .logo-img { height: 50px; }
     }
 </style>
