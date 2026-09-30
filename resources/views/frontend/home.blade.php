@@ -58,9 +58,9 @@
     <!-- Trending Products -->
     <section class="trending-products reveal">
         <div class="container">
-            <div class="section-header center">
+            <div class="section-header">
                 <h2>Trending Spices</h2>
-                <p>Our customers' current favorites for the season</p>
+                <a href="/shop" class="view-all">View all products &rarr;</a>
             </div>
             
             <div class="product-carousel">
