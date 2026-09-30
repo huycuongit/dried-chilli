@@ -59,8 +59,8 @@
     <section class="trending-products reveal">
         <div class="container">
             <div class="section-header">
-                <h2>Trending Spices</h2>
-                <a href="/shop" class="view-all">View all products &rarr;</a>
+                <h2 class="serif-title">Trending Spices</h2>
+                <a href="/shop" class="view-all">View all &rarr;</a>
             </div>
             
             <div class="product-carousel">
@@ -390,6 +390,35 @@
             transform: none;
         }
     }
+
+    /* Section Header */
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 2.5rem;
+        border-bottom: none;
+    }
+    
+    .serif-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: #3B2A20;
+        margin: 0;
+        font-weight: 500;
+    }
+
+    .view-all {
+        color: #7A6558;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+    }
+
+    .view-all:hover {
+        color: #3B2A20;
+    }
+
     /* Trending Products Fishwife Style */
     .trending-products {
         padding: 5rem 0;
