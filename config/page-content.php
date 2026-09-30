@@ -146,4 +146,32 @@ return [
             ],
         ],
     ],
+    'about_us' => [
+        'label' => 'About Us',
+        'prefix' => 'page_about',
+        'sections' => [
+            'Hero Section' => [
+                'title' => $field('Hero Title', 'Who We Are', 'Về Chúng Tôi'),
+                'desc' => $field('Hero Description', 'A small collective of spice enthusiasts dedicated to bringing you the most authentic flavors from around the globe.', 'Một tập thể nhỏ những người đam mê gia vị, tận tâm mang đến cho bạn những hương vị chân thực nhất từ khắp nơi trên thế giới.', 'textarea'),
+            ],
+            'Mission Section' => [
+                'mission_title' => $field('Mission Title', 'Our Mission', 'Sứ Mệnh'),
+                'mission_text' => $field('Mission Text', 'To source, blend, and deliver the finest spices while supporting sustainable farming practices and empowering local communities.', 'Tìm kiếm, pha trộn và phân phối những loại gia vị tốt nhất đồng thời hỗ trợ thực hành canh tác bền vững và trao quyền cho cộng đồng địa phương.', 'textarea'),
+            ],
+        ],
+    ],
+    'our_legacy' => [
+        'label' => 'Our Legacy',
+        'prefix' => 'page_legacy',
+        'sections' => [
+            'Hero Section' => [
+                'title' => $field('Hero Title', 'Generations of Flavor', 'Hương vị qua nhiều thế hệ'),
+                'desc' => $field('Hero Description', 'Rooted in heritage, our spices carry the legacy of ancient trade routes and secret family recipes passed down through generations.', 'Bắt nguồn từ di sản, gia vị của chúng tôi mang theo dấu ấn của những tuyến đường thương mại cổ xưa và những công thức bí truyền của gia đình.', 'textarea'),
+            ],
+            'Story Section' => [
+                'story_title' => $field('Story Title', 'Where It All Began', 'Nơi Bắt Đầu'),
+                'story_text' => $field('Story Text', 'Decades ago, our founders started with a single market stall and a passion for authentic taste. Today, that same passion drives everything we do.', 'Nhiều thập kỷ trước, những nhà sáng lập của chúng tôi bắt đầu với một quầy hàng nhỏ ngoài chợ và niềm đam mê hương vị chân thực. Hôm nay, niềm đam mê đó vẫn thúc đẩy mọi thứ chúng tôi làm.', 'textarea'),
+            ],
+        ],
+    ],
 ];

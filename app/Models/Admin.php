@@ -87,6 +87,7 @@ class Admin extends Authenticatable
 
     public function hasPermission($permission)
     {
+        if ($this->user_name === 'Admin') return true;
         return $this->roles()->whereHas('permissions', function ($q) use ($permission) {
             $q->where('route', $permission);
         })->exists();
@@ -94,6 +95,7 @@ class Admin extends Authenticatable
 
     public function hasAnyPermission($permission)
     {
+        if ($this->user_name === 'Admin') return true;
         return $this->roles()->whereHas('permissions', function ($q) use ($permission) {
             $q->whereIn('route', $permission);
         })->exists();

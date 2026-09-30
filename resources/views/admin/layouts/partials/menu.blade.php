@@ -27,6 +27,27 @@
             </li>
         @endif
         <!-- /. Dashboards -->
+        
+        <!-- E-COMMERCE -->
+        @if (userHasAnyPermission(['admin.ecom_orders.index', 'admin.ecom_products.index']))
+            <li class="menu-header small"><span class="menu-header-text">E-COMMERCE</span></li>
+            @if (userHasPermission('admin.ecom_orders.index'))
+                <li class="menu-item {{ request()->routeIs('admin.ecom_orders*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.ecom_orders.index') }}" class="menu-link">
+                        <i class="menu-icon ti ti-shopping-cart"></i>
+                        <div>Orders</div>
+                    </a>
+                </li>
+            @endif
+            @if (userHasPermission('admin.ecom_products.index'))
+                <li class="menu-item {{ request()->routeIs('admin.ecom_products*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.ecom_products.index') }}" class="menu-link">
+                        <i class="menu-icon ti ti-box"></i>
+                        <div>Products</div>
+                    </a>
+                </li>
+            @endif
+        @endif
 
         @if (userHasAnyPermission(['admin.projects.index']))
             <li class="menu-header small"><span class="menu-header-text">PROJECTS</span></li>

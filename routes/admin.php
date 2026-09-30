@@ -111,6 +111,15 @@ Route::group(['middleware' => 'authadmin'], function () {
                 Route::post('/consoles', 'runConsoles')->name('run');
                 Route::put('/update', 'update')->name('update');
             });
+
+            // Ecommerce CMS Routes
+            Route::get('ecom-products/datatables', [\App\Http\Controllers\Admin\EcomProductController::class, 'datatables'])->name('admin.ecom_products.datatables');
+            Route::resource('ecom-products', \App\Http\Controllers\Admin\EcomProductController::class)->names('admin.ecom_products');
+            Route::get('ecom-orders/datatables', [\App\Http\Controllers\Admin\EcomOrderController::class, 'datatables'])->name('admin.ecom_orders.datatables');
+            Route::resource('ecom-orders', \App\Http\Controllers\Admin\EcomOrderController::class)->names('admin.ecom_orders');
+            Route::resource('ecom-inventory', \App\Http\Controllers\Admin\EcomInventoryController::class)->names('admin.ecom_inventory');
+            Route::resource('ecom-legal', \App\Http\Controllers\Admin\EcomLegalController::class)->names('admin.ecom_legal');
+
         });
     });
 });

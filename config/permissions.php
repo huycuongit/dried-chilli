@@ -23,6 +23,28 @@ return [
         'order' => 2,
     ],
 
+    'ecom_products' => [
+        'module_name' => 'E-Commerce Products',
+        'routes' => [
+            'index' => ['method_name' => 'View list', 'route' => 'admin.ecom_products.index'],
+            'create' => ['method_name' => 'Create', 'route' => 'admin.ecom_products.create'],
+            'edit' => ['method_name' => 'Edit', 'route' => 'admin.ecom_products.edit'],
+            'destroy' => ['method_name' => 'Delete', 'route' => 'admin.ecom_products.destroy'],
+        ],
+        'order' => 10,
+    ],
+
+    'ecom_orders' => [
+        'module_name' => 'E-Commerce Orders',
+        'routes' => [
+            'index' => ['method_name' => 'View list', 'route' => 'admin.ecom_orders.index'],
+            'create' => ['method_name' => 'Create', 'route' => 'admin.ecom_orders.create'],
+            'edit' => ['method_name' => 'Edit', 'route' => 'admin.ecom_orders.edit'],
+            'destroy' => ['method_name' => 'Delete', 'route' => 'admin.ecom_orders.destroy'],
+        ],
+        'order' => 11,
+    ],
+
     'services' => [
         'module_name' => 'Services',
         'routes' => [

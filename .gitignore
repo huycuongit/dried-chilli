@@ -16,3 +16,13 @@ yarn-error.log
 .env
 /public/userfiles
 /public/sitemap.xml
+
+
+#docs
+docs-private/
+
+
+#bmad
+_bmad/
+_bmad-output/
+.agent/

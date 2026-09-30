@@ -93,7 +93,7 @@ class CheckPermissions
 
         $permission = $this->getMappedPermission($resource, $action);
 
-        $admin = Auth::user();
+        $admin = Auth::guard('admin')->user();
 
         if (!$admin || !$admin->hasPermission($permission)) {
             abort(403, 'Unauthorized action.');

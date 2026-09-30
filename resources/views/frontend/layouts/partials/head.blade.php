@@ -2,11 +2,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="application-name" content="Nafu Home Care">
-    <meta property="og:site_name" content="Nafu Home Care">
+    <meta name="application-name" content="Dried chili">
+    <meta property="og:site_name" content="Dried chili">
     @if (renderData($systemSettings, 'google_site_verification', ''))
         <meta name="google-site-verification" content="{{ renderData($systemSettings, 'google_site_verification', '') }}">
     @endif
+    <meta name="view-transition" content="same-origin" />
     @yield('meta')
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}?v=20260829">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}?v=20260829">

@@ -1,457 +1,596 @@
 @extends('frontend.layouts.master')
 
-@php
-    $locale = app()->getLocale();
-    $nafuCopy = [
-        'contact_eyebrow' => $homeContent('popup_contact_eyebrow'), 'contact_title' => $homeContent('popup_contact_title'),
-        'contact_description' => $homeContent('popup_contact_description'),
-        'contact_full_name_label' => $homeContent('popup_contact_full_name_label'), 'contact_form_email_label' => $homeContent('popup_contact_form_email_label'),
-        'contact_phone_label' => $homeContent('popup_contact_phone_label'), 'contact_project_label' => $homeContent('popup_contact_project_label'),
-        'contact_project_option_1' => $homeContent('popup_contact_project_option_1'), 'contact_budget_label' => $homeContent('popup_contact_budget_label'),
-        'contact_budget_option_1' => $homeContent('popup_contact_budget_option_1'), 'contact_budget_option_2' => $homeContent('popup_contact_budget_option_2'),
-        'contact_budget_option_3' => $homeContent('popup_contact_budget_option_3'), 'contact_budget_option_4' => $homeContent('popup_contact_budget_option_4'),
-        'contact_budget_option_5' => $homeContent('popup_contact_budget_option_5'), 'contact_budget_option_6' => $homeContent('popup_contact_budget_option_6'),
-        'contact_message_label' => $homeContent('popup_contact_message_label'), 'contact_submit' => $homeContent('popup_contact_submit'),
-        'contact_success_title' => $homeContent('popup_contact_success_title'),
-        'contact_success_description' => $homeContent('popup_contact_success_description'),
-        'contact_success_close' => $homeContent('popup_contact_success_close'), 'seo_keywords' => $homeContent('popup_seo_keywords'),
-    ];
-    $homeSetting = fn (string $key, mixed $default = '') => $nafuCopy[$key] ?? $default;
-@endphp
 @section('meta')
-    <meta name="description" content="Nafu Home Care — reliable home repairs, maintenance and improvements.">
-    <meta name="keywords" content="{{ strip_tags($homeSetting('seo_keywords')) }}">
-    <title>{{ $homeContent('home_text_1') }}</title>
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Nafu Home Care | Expert care for your home">
-    <meta property="og:description" content="Reliable home repairs, maintenance and improvements.">
-    <meta property="og:url" content="{{ page_route('home') }}">
-    <link rel="canonical" href="{{ page_route('home') }}">
+    <meta name="description" content="Jojo Little Kitchen - Shrimply Spicy Chilli Paste">
+    <title>JOJO | Shrimply Spicy</title>
 @endsection
-
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/feb-home.css') }}?v=20260901-13">
-    <link rel="stylesheet" href="{{ asset($homeContent('home_image_13')) }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/feb-hero.css') }}?v=20260918-3">
-    <link rel="stylesheet" href="{{ asset('assets/css/nafu-home.css') }}?v=20260918-10">
-    <link rel="stylesheet" href="{{ asset('assets/css/nafu-blog.css') }}?v=20260918-2">
-    <link rel="stylesheet" href="{{ asset('assets/css/nafu-testimonials.css') }}?v=20260918-2">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap">
-@endpush
 
 @section('full-content')
-    <main id="top">
-        <section class="hero shell" aria-labelledby="hero-title">
-            <div class="hero-copy">
-                <h1 id="hero-title">{{ $homeContent('home_text_2') }}<br>{{ $homeContent('home_text_3') }}</h1>
-                <p>{{ $homeContent('home_text_4') }}</p>
-                <form class="hero-email" id="hero-email-form"><label class="hero-sr-only" for="hero-email">{{ $homeContent('home_text_5') }}</label><input id="hero-email" type="email" placeholder="Enter your email" autocomplete="email" required><button type="submit">{{ $homeContent('home_text_6') }}</button></form>
-                <div class="hero-support">
-                    <img src="{{ asset($homeContent('home_image_14')) }}" width="90" height="90" alt="" decoding="async">
-                    <div><span>{{ $homeContent('home_text_7') }}</span><a href="tel:+61481818836">{{ $homeContent('home_text_8') }}</a></div>
+<main class="yumyum-main">
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        FREE SHIPPING ON ORDERS OVER $50 🔥
+    </div>
+
+    <!-- Hero Section -->
+    <section class="yy-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-eyebrow">TWO MOVES, ZERO EFFORT</div>
+                <h1 class="hero-title">SHRIMPLY<br><span class="highlight-red">SPICY</span></h1>
+                <p class="hero-desc">The ultimate umami bomb for your meals. Packed with real shrimp, garlic, and secret spices.</p>
+                
+                <div class="hero-ctas">
+                    <a href="/shop" class="yy-btn btn-red">GET YOURS NOW <span class="price-tag">$10</span></a>
+                    <a href="/stockists" class="yy-btn btn-outline">FIND IN STORES</a>
                 </div>
             </div>
+            
             <div class="hero-visual">
-                <img class="hero-photo" src="{{ asset($homeContent('home_image_15')) }}" width="800" height="900" alt="Nafu Home Care handyman at work" decoding="async" fetchpriority="high">
-                <div class="hero-review"><strong><span aria-hidden="true">{{ $homeContent('home_text_9') }}</span>{{ $homeContent('home_text_10') }}</strong><span class="hero-stars" aria-label="Rated 4.9 out of 5">{{ $homeContent('home_text_11') }}</span><span>{{ $homeContent('home_text_12') }}</span></div>
-            </div>
-        </section>
-
-        @include('frontend.layouts.partials.nafu-home-sections')
-    </main>
-    <div class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" hidden>
-        <button class="contact-modal__backdrop" type="button" data-contact-close aria-label="Close contact form"></button>
-        <div class="contact-modal__panel">
-            <button class="contact-modal__close" type="button" data-contact-close aria-label="Close">×</button>
-            <div class="contact-modal__form-view">
-                <span class="contact-modal__eyebrow">{!! $homeSetting('contact_eyebrow') !!}</span>
-                <h2 id="contact-modal-title">{!! $homeSetting('contact_title') !!}</h2>
-                <p class="contact-modal__intro">{!! $homeSetting('contact_description') !!}</p>
-
-                <form id="contact-form" action="{{ route('contact.store', [], false) }}" method="POST" novalidate
-                    data-sending-text="{{ strip_tags($homeSetting('contact_sending', 'Sending…')) }}"
-                    data-error-text="{{ strip_tags($homeSetting('contact_error', 'Unable to send your request right now. Please try again.')) }}">
-                @csrf
-                <input type="hidden" name="source" value="nafu-home-care-enquiry">
-                <div class="contact-form__grid">
-                    <label for="contact-full-name"><span>{!! $homeSetting('contact_full_name_label') !!}</span><input id="contact-full-name" name="full_name" type="text" autocomplete="name" required></label>
-                    <label for="contact-email"><span>{!! $homeSetting('contact_form_email_label') !!}</span><input id="contact-email" name="email" type="email" autocomplete="email"></label>
-                    <label class="contact-phone-field" for="contact-phone"><span>{!! $homeSetting('contact_phone_label') !!}</span>
-                        <span class="contact-phone-control">
-                            <select id="contact-phone-country" name="phone_country" aria-label="Country calling code">
-                                <option value="+84">🇻🇳 Vietnam +84</option>
-                                <option value="+1">🇺🇸 United States +1</option>
-                                <option value="+1">🇨🇦 Canada +1</option>
-                                <option value="+44">🇬🇧 United Kingdom +44</option>
-                                <option value="+61" selected>🇦🇺 Australia +61</option>
-                                <option value="+64">🇳🇿 New Zealand +64</option>
-                                <option value="+65">🇸🇬 Singapore +65</option>
-                                <option value="+66">🇹🇭 Thailand +66</option>
-                                <option value="+60">🇲🇾 Malaysia +60</option>
-                                <option value="+62">🇮🇩 Indonesia +62</option>
-                                <option value="+63">🇵🇭 Philippines +63</option>
-                                <option value="+855">🇰🇭 Cambodia +855</option>
-                                <option value="+856">🇱🇦 Laos +856</option>
-                                <option value="+95">🇲🇲 Myanmar +95</option>
-                                <option value="+86">🇨🇳 China +86</option>
-                                <option value="+852">🇭🇰 Hong Kong +852</option>
-                                <option value="+886">🇹🇼 Taiwan +886</option>
-                                <option value="+81">🇯🇵 Japan +81</option>
-                                <option value="+82">🇰🇷 South Korea +82</option>
-                                <option value="+91">🇮🇳 India +91</option>
-                                <option value="+971">🇦🇪 UAE +971</option>
-                                <option value="+49">🇩🇪 Germany +49</option>
-                                <option value="+33">🇫🇷 France +33</option>
-                                <option value="+31">🇳🇱 Netherlands +31</option>
-                                <option value="+34">🇪🇸 Spain +34</option>
-                                <option value="+39">🇮🇹 Italy +39</option>
-                                <option value="+7">🇷🇺 Russia +7</option>
-                                <option value="+55">🇧🇷 Brazil +55</option>
-                                <option value="+52">🇲🇽 Mexico +52</option>
-                                <option value="+27">🇿🇦 South Africa +27</option>
-                            </select>
-                            <input id="contact-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="481 234 567">
-                        </span>
-                    </label>
-
-                    <label for="contact-project-type"><span>{!! $homeSetting('contact_project_label') !!}</span>
-                        <select id="contact-project-type" name="project_type" required>
-                            <option value="">{!! $homeSetting('contact_project_option_1') !!}</option>
-                @foreach(config('nafu-services') as $slug => $service)
-                                <option value="{{ $slug }}">{{ $service['name'] }}</option>
-                            @endforeach
-                            <option value="other">Other</option>
-                        </select>
-                    </label>
-                    <label for="contact-budget"><span>{!! $homeSetting('contact_budget_label') !!}</span>
-                        <select id="contact-budget" name="budget">
-                            <option value="">{!! $homeSetting('contact_budget_option_1') !!}</option>
-                            <option value="under-1000">{!! $homeSetting('contact_budget_option_2') !!}</option>
-                            <option value="1000-3000">{!! $homeSetting('contact_budget_option_3') !!}</option>
-                            <option value="3000-5000">{!! $homeSetting('contact_budget_option_4') !!}</option>
-                            <option value="over-5000">{!! $homeSetting('contact_budget_option_5') !!}</option>
-                            <option value="discuss">{!! $homeSetting('contact_budget_option_6') !!}</option>
-                        </select>
-                    </label>
-                    <label class="contact-form__message" for="contact-message"><span>{!! $homeSetting('contact_message_label') !!}</span><textarea id="contact-message" name="message" rows="4" required></textarea></label>
+                <div class="product-badge tilted-badge yellow-badge">CHEF-MADE</div>
+                <div class="product-badge tilted-badge red-badge right-badge">EXTRA LEVEL 4 🔥</div>
+                <div class="hero-image-container">
+                    <!-- Rotating sunburst background -->
+                    <div class="sunburst"></div>
+                    <img src="{{ asset('images/shrimp_chilli.png') }}" alt="Jojo Little Kitchen Shrimp Chilli" class="hero-product-img">
                 </div>
-                    <p class="contact-form__status" role="status" aria-live="polite"></p>
-                    <button class="contact-form__submit" type="submit"><i></i><span>{!! $homeSetting('contact_submit') !!}</span></button>
-                </form>
-            </div>
-            <div class="contact-modal__success" role="status" aria-live="polite" tabindex="-1" hidden>
-                <span class="contact-success__icon" aria-hidden="true"><i></i></span>
-                <span class="contact-modal__eyebrow">NAFU HOME CARE</span>
-                <h2>{!! $homeSetting('contact_success_title', 'Request sent successfully!') !!}</h2>
-                <p>{!! $homeSetting('contact_success_description', 'Thank you for reaching out. Nafu Home Care will get back to you shortly.') !!}</p>
-                <button class="contact-success__button" type="button" data-contact-close>{!! $homeSetting('contact_success_close', 'Done') !!}</button>
             </div>
         </div>
+    </section>
+
+    <!-- Infinite Marquee -->
+    <div class="infinite-marquee">
+        <div class="marquee-track">
+            <span>NOW IN STORES ✦ UNDER 20 MINUTES ✦ SHAKE IT ON EVERYTHING ✦ </span>
+            <span>NOW IN STORES ✦ UNDER 20 MINUTES ✦ SHAKE IT ON EVERYTHING ✦ </span>
+        </div>
     </div>
-    <script>
-        (() => {
-            const modal = document.querySelector('#contact-modal');
-            const form = document.querySelector('#contact-form');
-            const status = form?.querySelector('.contact-form__status');
-            const submit = form?.querySelector('.contact-form__submit');
-            const formView = modal?.querySelector('.contact-modal__form-view');
-            const successView = modal?.querySelector('.contact-modal__success');
 
-            let lastFocused = null;
-            if (!modal || !form || !status || !submit || !formView || !successView) return;
-            const submitLabel = submit.querySelector('span');
-            const submitText = submitLabel?.textContent || '';
-            const getField = (name) => Array.from(form.elements).find((element) => element.name === name);
-            const clearFieldError = (name) => {
-                const field = getField(name);
-                if (!field) return;
+    <!-- Divider Pattern -->
+    <div class="pattern-divider"></div>
 
-                field.removeAttribute('aria-invalid');
-                form.querySelector('[data-error-for="' + name + '"]')?.remove();
+    <!-- Products Section -->
+    <section class="yy-products container">
+        <div class="section-header center">
+            <h2>FOUR JARS. <span class="highlight-gold">EVERY CRAVING COVERED.</span></h2>
+        </div>
+        
+        <div class="product-grid-yy">
+            <!-- Product 1 -->
+            <div class="yy-card card-red">
+                <div class="card-badge">BEST SELLER</div>
+                <div class="card-img-box">
+                    <img src="{{ asset('images/shrimp_chilli.png') }}" alt="Shrimply Spicy">
+                </div>
+                <div class="card-info">
+                    <h3>SHRIMPLY SPICY</h3>
+                    <p>The original umami bomb.</p>
+                    <div class="card-action">
+                        <span class="card-price">$10</span>
+                        <button class="yy-btn btn-red btn-small">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
 
-                const wrapper = field.closest('label');
-                if (wrapper && !wrapper.querySelector('.contact-field-error')) {
-                    wrapper.classList.remove('has-error');
-                }
-            };
+            <!-- Product 2 (Placeholder variants to match style) -->
+            <div class="yy-card card-blue">
+                <div class="card-img-box">
+                    <img src="{{ asset('images/shrimp_chilli.png') }}" alt="Extra Spicy" style="filter: hue-rotate(220deg);">
+                </div>
+                <div class="card-info">
+                    <h3>EXTRA SPICY</h3>
+                    <p>For the brave souls.</p>
+                    <div class="card-action">
+                        <span class="card-price">$10</span>
+                        <button class="yy-btn btn-blue btn-small">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
 
-            const clearFieldErrors = () => {
-                form.querySelectorAll('.contact-field-error').forEach((error) => error.remove());
-                form.querySelectorAll('[aria-invalid="true"]').forEach((field) => field.removeAttribute('aria-invalid'));
-                form.querySelectorAll('.has-error').forEach((wrapper) => wrapper.classList.remove('has-error'));
-            };
+            <!-- Product 3 -->
+            <div class="yy-card card-green">
+                <div class="card-img-box">
+                    <img src="{{ asset('images/shrimp_chilli.png') }}" alt="Garlic Crunch" style="filter: hue-rotate(90deg);">
+                </div>
+                <div class="card-info">
+                    <h3>GARLIC CRUNCH</h3>
+                    <p>Crispy, garlicky perfection.</p>
+                    <div class="card-action">
+                        <span class="card-price">$12</span>
+                        <button class="yy-btn btn-green btn-small">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="yy-card card-gold">
+                <div class="card-badge">NEW</div>
+                <div class="card-img-box">
+                    <img src="{{ asset('images/shrimp_chilli.png') }}" alt="Vegan Umami" style="filter: grayscale(0.5) sepia(1) hue-rotate(10deg) saturate(3);">
+                </div>
+                <div class="card-info">
+                    <h3>VEGAN MUSHROOM</h3>
+                    <p>Plant-based umami punch.</p>
+                    <div class="card-action">
+                        <span class="card-price">$12</span>
+                        <button class="yy-btn btn-gold btn-small">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            const showFieldErrors = (errors) => {
-                let firstInvalid = null;
+    <!-- Split Feature Section -->
+    <section class="yy-split-section">
+        <div class="split-left">
+            <h2 class="split-title">WHY JOJO?</h2>
+            <div class="step-item">
+                <div class="step-number">01</div>
+                <div>
+                    <h3>REAL INGREDIENTS</h3>
+                    <p>No preservatives, no artificial colors. Just dried chilli, shallot, garlic, oil, salt, and seasoning.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">02</div>
+                <div>
+                    <h3>HANDCRAFTED</h3>
+                    <p>Made in small batches to guarantee the perfect crunch and flavor balance.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">03</div>
+                <div>
+                    <h3>VERSATILE</h3>
+                    <p>Use it on noodles, rice, eggs, or as a dipping sauce. It elevates everything.</p>
+                </div>
+            </div>
+        </div>
+        <div class="split-divider">
+            <div class="vs-badge">VS</div>
+        </div>
+        <div class="split-right">
+            <img src="{{ asset('images/shrimp_chilli.png') }}" alt="Jojo Chilli" class="split-img">
+        </div>
+    </section>
+</main>
 
-                Object.entries(errors).forEach(([name, messages]) => {
-                    const field = getField(name);
-                    if (!field) return;
+<style>
+    .announcement-bar {
+        background-color: var(--yy-red);
+        color: white;
+        text-align: center;
+        padding: 0.5rem;
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        letter-spacing: 1px;
+        border-bottom: 2px solid var(--yy-black);
+    }
 
-                    const wrapper = field.closest('label');
-                    if (!wrapper) return;
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
 
-                    field.setAttribute('aria-invalid', 'true');
-                    wrapper.classList.add('has-error');
+    /* Brutalist Buttons */
+    .yy-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        border-radius: 9999px;
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        text-decoration: none;
+        border: 2px solid var(--yy-black);
+        box-shadow: 4px 4px 0px var(--yy-black);
+        cursor: pointer;
+        transition: all 0.15s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-                    const error = document.createElement('small');
-                    error.className = 'contact-field-error';
-                    error.dataset.errorFor = name;
-                    error.textContent = Array.isArray(messages) ? messages[0] : messages;
-                    wrapper.appendChild(error);
-                    firstInvalid ??= field;
-                });
+    .yy-btn:active {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0px var(--yy-black);
+    }
 
-                firstInvalid?.focus();
-            };
+    .btn-small {
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+    }
 
-            form.querySelectorAll('input, select, textarea').forEach((field) => {
-                ['input', 'change'].forEach((eventName) => {
-                    field.addEventListener(eventName, () => clearFieldError(field.name));
-                });
-            });
+    .btn-red { background-color: var(--yy-red); color: white; }
+    .btn-red:hover { background-color: #C0291F; }
 
-            const openModal = (event) => {
-                event?.preventDefault();
-                lastFocused = document.activeElement;
-                formView.hidden = false;
-                successView.hidden = true;
-                modal.hidden = false;
-                document.body.classList.add('contact-modal-open');
-                requestAnimationFrame(() => modal.classList.add('is-open'));
-                modal.querySelector('input:not([type="hidden"])')?.focus();
-            };
-            const closeModal = () => {
-                modal.classList.remove('is-open');
-                document.body.classList.remove('contact-modal-open');
-                setTimeout(() => {
-                    modal.hidden = true;
-                    formView.hidden = false;
-                    successView.hidden = true;
-                }, 220);
-                lastFocused?.focus();
-            };
-            if (window.location.hash === '#contact-modal') {
-                openModal();
-                const service = new URLSearchParams(window.location.search).get('service');
-                const type = document.querySelector('#contact-project-type');
-                if (service && type && Array.from(type.options).some(option => option.value === service)) type.value = service;
-            }
+    .btn-outline { background-color: var(--yy-bg); color: var(--yy-black); }
+    .btn-outline:hover { background-color: white; }
 
-            document.querySelector('#hero-email-form')?.addEventListener('submit', (event) => {
-                openModal(event);
-                const emailField = getField('email');
-                if (emailField) {
-                    emailField.value = document.querySelector('#hero-email').value.trim();
-                    clearFieldError('email');
-                }
-            });
+    .btn-blue { background-color: #1E5B94; color: white; }
+    .btn-green { background-color: #2E6B27; color: white; }
+    .btn-gold { background-color: #D99B00; color: white; }
 
-            document.addEventListener('click', (event) => {
-                if (event.target.closest('.js-open-contact')) openModal(event);
-            });
-            document.addEventListener('keydown', (event) => {
-                if (event.target.closest('.js-open-contact[role="button"]') && ['Enter', ' '].includes(event.key)) openModal(event);
-            });
-            modal.querySelectorAll('[data-contact-close]').forEach((button) => button.addEventListener('click', closeModal));
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && !modal.hidden) closeModal();
-            });
+    .price-tag {
+        background: var(--yy-gold);
+        color: var(--yy-black);
+        padding: 0.1rem 0.5rem;
+        border-radius: 999px;
+        margin-left: 0.75rem;
+        border: 2px solid var(--yy-black);
+    }
 
-            form.addEventListener('submit', async (event) => {
-                event.preventDefault();
-                clearFieldErrors();
-                status.className = 'contact-form__status';
-                status.textContent = '';
-                submit.disabled = true;
-                submit.classList.add('is-loading');
-                if (submitLabel) submitLabel.textContent = form.dataset.sendingText || 'Sending…';
+    /* Hero Section */
+    .yy-hero {
+        padding: 6rem 2rem;
+        border-bottom: 2px solid var(--yy-black);
+        overflow: hidden;
+    }
 
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: new FormData(form),
-                        credentials: 'same-origin',
-                        headers: {
-                            Accept: 'application/json',
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '',
-                            'X-FEB-Language': document.documentElement.lang
-                        }
-                    });
-                    const payload = await response.json();
+    .hero-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
 
-                    if (!response.ok) {
-                        if (payload.errors) {
-                            showFieldErrors(payload.errors);
+    .hero-eyebrow {
+        font-weight: 800;
+        letter-spacing: 2px;
+        color: var(--yy-red);
+        margin-bottom: 1rem;
+    }
 
-                            return;
-                        }
+    .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(4rem, 8vw, 8rem);
+        line-height: 0.9;
+        margin: 0 0 2rem 0;
+        text-transform: uppercase;
+        color: var(--yy-black);
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+    }
 
-                        throw new Error(payload.message || 'Unable to send your request.');
-                    }
+    .highlight-red {
+        color: var(--yy-red);
+        display: block;
+    }
+    
+    .highlight-gold {
+        color: var(--yy-gold);
+    }
 
-                    form.reset();
-                    formView.hidden = true;
-                    successView.hidden = false;
-                    successView.focus();
-                } catch (error) {
-                    console.error(error);
-                    status.classList.add('is-error');
-                    status.textContent = form.dataset.errorText || 'Unable to send your request right now. Please try again.';
-                } finally {
-                    submit.disabled = false;
-                    submit.classList.remove('is-loading');
-                    if (submitLabel) submitLabel.textContent = submitText;
-                }
-            });
-        })();
-        (() => {
-            const floating = document.querySelector('.floating-contact');
-            const toggle = floating?.querySelector('.floating-contact__toggle');
-            const hero = document.querySelector('.hero');
-            if (!floating || !toggle || !hero) return;
+    .hero-desc {
+        font-size: 1.25rem;
+        font-weight: 600;
+        max-width: 500px;
+        margin-bottom: 3rem;
+        line-height: 1.5;
+    }
 
-            let ticking = false;
-            const updateVisibility = () => {
-                const showAfter = hero.offsetTop + hero.offsetHeight - 40;
-                floating.classList.toggle('is-visible', window.scrollY >= showAfter);
-                if (window.scrollY < showAfter) {
-                    floating.classList.remove('is-expanded');
-                    toggle.setAttribute('aria-expanded', 'false');
-                }
-                ticking = false;
-            };
-            const requestUpdate = () => {
-                if (ticking) return;
-                ticking = true;
-                requestAnimationFrame(updateVisibility);
-            };
+    .hero-ctas {
+        display: flex;
+        gap: 1.5rem;
+    }
 
-            toggle.addEventListener('click', () => {
-                const expanded = floating.classList.toggle('is-expanded');
-                toggle.setAttribute('aria-expanded', String(expanded));
-            });
-            floating.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-                floating.classList.remove('is-expanded');
-                toggle.setAttribute('aria-expanded', 'false');
-            }));
-            document.addEventListener('click', (event) => {
-                if (floating.contains(event.target)) return;
-                floating.classList.remove('is-expanded');
-                toggle.setAttribute('aria-expanded', 'false');
-            });
-            document.addEventListener('keydown', (event) => {
-                if (event.key !== 'Escape') return;
-                floating.classList.remove('is-expanded');
-                toggle.setAttribute('aria-expanded', 'false');
-            });
-            window.addEventListener('scroll', requestUpdate, { passive: true });
-            updateVisibility();
-        })();
-        (() => {
-            const rotator = document.querySelector('.word-rotator');
-            const words = [...document.querySelectorAll('.word-rotator .word-set span')];
-            if (!rotator || !words.length) return;
+    .hero-visual {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
 
-            let frame = 0;
+    .hero-image-container {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        aspect-ratio: 1;
+    }
 
-            const updateActiveWord = () => {
-                const rotatorRect = rotator.getBoundingClientRect();
-                const centerY = rotatorRect.top + rotatorRect.height / 2;
-                let activeWord = null;
-                let shortestDistance = Infinity;
+    .sunburst {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120%;
+        height: 120%;
+        background: repeating-conic-gradient(
+            var(--yy-gold) 0 10deg,
+            var(--yy-bg) 10deg 20deg
+        );
+        border-radius: 50%;
+        z-index: -1;
+        animation: spin 40s linear infinite;
+        opacity: 0.6;
+        mask-image: radial-gradient(circle, black 40%, transparent 70%);
+        -webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%);
+    }
 
-                words.forEach((word) => {
-                    const rect = word.getBoundingClientRect();
-                    const distance = Math.abs(rect.top + rect.height / 2 - centerY);
-                    if (distance < shortestDistance) {
-                        shortestDistance = distance;
-                        activeWord = word;
-                    }
-                });
+    @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
 
-                words.forEach((word) => word.classList.toggle('is-active', word === activeWord));
-                frame = requestAnimationFrame(updateActiveWord);
-            };
+    .hero-product-img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        z-index: 2;
+        filter: drop-shadow(10px 15px 15px rgba(0,0,0,0.4));
+        transform: rotate(5deg);
+        transition: transform 0.5s;
+    }
+    
+    .hero-product-img:hover {
+        transform: rotate(0deg) scale(1.05);
+    }
 
-            if (!('IntersectionObserver' in window)) return;
+    .tilted-badge {
+        position: absolute;
+        z-index: 10;
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        padding: 0.5rem 1.5rem;
+        border: 2px solid var(--yy-black);
+        border-radius: 9999px;
+        box-shadow: 3px 3px 0px var(--yy-black);
+    }
 
-            new IntersectionObserver(([entry]) => {
-                if (entry.isIntersecting && !frame) {
-                    frame = requestAnimationFrame(updateActiveWord);
-                } else if (!entry.isIntersecting && frame) {
-                    cancelAnimationFrame(frame);
-                    frame = 0;
-                }
-            }, { rootMargin: '120px 0px' }).observe(rotator);
-        })();
-        (() => {
-            const process = document.querySelector('.process');
-            const steps = [...document.querySelectorAll('.process-step')];
-            if (!process || !steps.length || !('IntersectionObserver' in window)) return;
+    .yellow-badge {
+        background: var(--yy-gold);
+        color: var(--yy-black);
+        top: 10%;
+        left: 0;
+        transform: rotate(-10deg);
+    }
 
-            process.classList.add('process-reveal-ready');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (!entry.isIntersecting) return;
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                });
-            }, { threshold: 0.18, rootMargin: '0px 0px -4% 0px' });
+    .red-badge {
+        background: var(--yy-red);
+        color: white;
+        bottom: 10%;
+        right: 0;
+        transform: rotate(8deg);
+    }
 
-            steps.forEach((step, index) => {
-                step.style.setProperty('--reveal-delay', `${Math.min(index * 70, 210)}ms`);
-                observer.observe(step);
-            });
-        })();
-        (() => {
-            const wall = document.querySelector('.work-wall');
-            const cursor = wall?.querySelector('.project-cursor');
-            if (!wall || !cursor || !window.matchMedia('(pointer: fine)').matches) return;
+    /* Infinite Marquee */
+    .infinite-marquee {
+        background-color: var(--yy-black);
+        color: white;
+        font-family: var(--font-display);
+        font-size: 2rem;
+        padding: 1rem 0;
+        overflow: hidden;
+        white-space: nowrap;
+        border-bottom: 2px solid var(--yy-black);
+    }
 
-            let currentX = 0;
-            let currentY = 0;
-            let targetX = 0;
-            let targetY = 0;
-            let frame = 0;
-            let active = false;
+    .marquee-track {
+        display: inline-block;
+        animation: marquee 15s linear infinite;
+    }
 
-            const draw = () => {
-                currentX += (targetX - currentX) * .2;
-                currentY += (targetY - currentY) * .2;
-                cursor.style.setProperty('--cursor-x', `${currentX}px`);
-                cursor.style.setProperty('--cursor-y', `${currentY}px`);
-                frame = active && (Math.abs(targetX - currentX) > .1 || Math.abs(targetY - currentY) > .1)
-                    ? requestAnimationFrame(draw)
-                    : 0;
-            };
-            const setTarget = (event, immediate = false) => {
-                const rect = wall.getBoundingClientRect();
-                targetX = event.clientX - rect.left;
-                targetY = event.clientY - rect.top;
-                if (immediate) {
-                    currentX = targetX;
-                    currentY = targetY;
-                }
-                if (!frame) frame = requestAnimationFrame(draw);
-            };
+    .marquee-track span {
+        margin-right: 1rem;
+    }
 
-            const updateHoveredProject = (event, immediate = false) => {
-                const projectLink = event.target.closest('.work-reel-set > a');
-                active = Boolean(projectLink);
-                cursor.classList.toggle('is-visible', active);
-                if (active) setTarget(event, immediate);
-            };
+    /* Products Section */
+    .yy-products {
+        padding: 6rem 2rem;
+    }
 
-            wall.addEventListener('pointerenter', (event) => updateHoveredProject(event, true));
-            wall.addEventListener('pointermove', (event) => updateHoveredProject(event));
-            wall.addEventListener('pointerleave', () => {
-                active = false;
-                cursor.classList.remove('is-visible');
-            });
-        })();
-    </script>
-    <script src="{{ asset($homeContent('home_image_16')) }}?v=20260918-10" defer></script>
+    .section-header.center {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+        font-family: var(--font-display);
+        font-size: 4rem;
+        margin: 0;
+        letter-spacing: 1px;
+    }
+
+    .product-grid-yy {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .yy-card {
+        border: 2px solid var(--yy-black);
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 6px 6px 0px var(--yy-black);
+        transition: transform 0.2s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .yy-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 8px 8px 0px var(--yy-black);
+    }
+
+    .card-red { background-color: #F9E4DE; }
+    .card-blue { background-color: #DCEAF4; }
+    .card-green { background-color: #DCEDD9; }
+    .card-gold { background-color: #F7EECD; }
+
+    .card-badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: var(--yy-gold);
+        color: var(--yy-black);
+        font-family: var(--font-display);
+        padding: 0.25rem 0.75rem;
+        border: 2px solid var(--yy-black);
+        border-radius: 999px;
+        z-index: 2;
+        transform: rotate(-3deg);
+    }
+
+    .card-img-box {
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        border-bottom: 2px solid var(--yy-black);
+        background: rgba(255,255,255,0.3);
+    }
+
+    .card-img-box img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.2));
+        transition: transform 0.3s;
+    }
+
+    .yy-card:hover .card-img-box img {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    .card-info {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-info h3 {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        margin: 0 0 0.5rem 0;
+        line-height: 1;
+    }
+
+    .card-info p {
+        font-weight: 600;
+        margin: 0 0 1.5rem 0;
+    }
+
+    .card-action {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-price {
+        font-family: var(--font-display);
+        font-size: 2rem;
+    }
+
+    /* Split Section */
+    .yy-split-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 2px solid var(--yy-black);
+        border-bottom: 2px solid var(--yy-black);
+        position: relative;
+    }
+
+    .split-left {
+        background-color: var(--yy-red);
+        color: white;
+        padding: 6rem 4rem;
+    }
+
+    .split-title {
+        font-family: var(--font-display);
+        font-size: 4rem;
+        margin-top: 0;
+        margin-bottom: 3rem;
+    }
+
+    .step-item {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .step-number {
+        font-family: var(--font-display);
+        font-size: 3rem;
+        color: var(--yy-gold);
+        text-shadow: 2px 2px 0px var(--yy-black);
+        line-height: 1;
+    }
+
+    .step-item h3 {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .step-item p {
+        font-weight: 600;
+        margin: 0;
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+
+    .split-right {
+        background-color: #DCEAF4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4rem;
+    }
+
+    .split-img {
+        max-width: 80%;
+        height: auto;
+        filter: drop-shadow(15px 15px 0px rgba(0,0,0,0.1));
+    }
+
+    .split-divider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        background-color: var(--yy-black);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .vs-badge {
+        background-color: var(--yy-gold);
+        color: var(--yy-black);
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid var(--yy-black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 2.5rem;
+        transform: translateX(-1px);
+        box-shadow: 4px 4px 0px var(--yy-black);
+    }
+
+    @media (max-width: 900px) {
+        .hero-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 2rem;
+        }
+        .hero-desc { margin: 0 auto 3rem auto; }
+        .hero-ctas { justify-content: center; }
+        .hero-title { font-size: 4rem; }
+        .yy-split-section { grid-template-columns: 1fr; }
+        .split-divider {
+            width: 100%;
+            height: 2px;
+            top: auto;
+            bottom: auto;
+            left: 0;
+            right: 0;
+        }
+        .vs-badge { transform: translateY(-50%); }
+    }
+</style>
 @endsection
-

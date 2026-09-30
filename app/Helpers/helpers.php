@@ -19,14 +19,16 @@ if (!function_exists('checkAuth')) {
 if (!function_exists('userHasPermission')) {
     function userHasPermission($permission)
     {
-        return Auth::user() && Auth::user()->hasPermission($permission);
+        $user = Auth::guard('admin')->user() ?: Auth::user();
+        return $user && $user->hasPermission($permission);
     }
 }
 
 if (!function_exists('userHasAnyPermission')) {
     function userHasAnyPermission($permissions)
     {
-        return Auth::user() && Auth::user()->hasAnyPermission($permissions);
+        $user = Auth::guard('admin')->user() ?: Auth::user();
+        return $user && $user->hasAnyPermission($permissions);
     }
 }
 

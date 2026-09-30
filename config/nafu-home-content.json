@@ -1,1022 +1,1058 @@
 {
-  "home": {
-    "home_text_1": {
-      "value": "Nafu Home Care | Expert care for your home",
-      "label": "Nafu Home Care | Expert care for your home"
+    "home": {
+        "home_text_1": {
+            "value": "Nafu Home Care | Expert care for your home",
+            "label": "Nafu Home Care | Expert care for your home"
+        },
+        "home_text_2": {
+            "value": "HOME DESERVES",
+            "label": "HOME DESERVES"
+        },
+        "home_text_3": {
+            "value": "EXPERT CARE",
+            "label": "EXPERT CARE"
+        },
+        "home_text_4": {
+            "value": "Melbourne-based repairs, painting, flooring and maintenance for projects of every size. We specialise in apartments close to the CBD, with dependable service from start to finish.",
+            "label": "Melbourne-based repairs, painting, flooring and maintenance for projects of every size. We specialise in apartments close to the CBD, with dependable service from start to finish."
+        },
+        "home_text_5": {
+            "value": "Email address",
+            "label": "Email address"
+        },
+        "home_text_6": {
+            "value": "SUBMIT NOW",
+            "label": "SUBMIT NOW"
+        },
+        "home_text_7": {
+            "value": "Need a hand with your Melbourne home?",
+            "label": "Need a hand with your Melbourne home?"
+        },
+        "home_text_8": {
+            "value": "0481 818 836",
+            "label": "0481 818 836"
+        },
+        "home_text_9": {
+            "value": "\u273f",
+            "label": "\u273f"
+        },
+        "home_text_10": {
+            "value": " Google reviews",
+            "label": "Google reviews"
+        },
+        "home_text_11": {
+            "value": "\u2605\u2605\u2605\u2605\u2605",
+            "label": "\u2605\u2605\u2605\u2605\u2605"
+        },
+        "home_text_12": {
+            "value": "4.9 \/ 5 \u00b7 76 reviews",
+            "label": "4.9 \/ 5 \u00b7 76 reviews"
+        },
+        "home_image_13": {
+            "value": "assets\/nafu\/mrfix-home2.css",
+            "label": "Image path"
+        },
+        "home_image_14": {
+            "value": "assets\/nafu\/support-avatar.png",
+            "label": "Image path"
+        },
+        "home_image_15": {
+            "value": "assets\/nafu\/hero-handyman.avif",
+            "label": "Image path"
+        },
+        "home_image_16": {
+            "value": "assets\/nafu\/nafu-home.js",
+            "label": "Image path"
+        }
     },
-    "home_text_2": {
-      "value": "HOME DESERVES",
-      "label": "HOME DESERVES"
+    "nafu-home-sections": {
+        "nafu_home_sections_text_1": {
+            "value": "About us",
+            "label": "About us"
+        },
+        "nafu_home_sections_text_2": {
+            "value": "Melbourne locals. A better tradie experience.",
+            "label": "Melbourne locals. A better tradie experience."
+        },
+        "nafu_home_sections_text_3": {
+            "value": "Our small Melbourne team cares for apartments around the CBD. With backgrounds in corporate work and hospitality, we bring a service-first approach to the trades: clear communication, punctual visits and an agreed price before work begins.",
+            "label": "Our small Melbourne team cares for apartments around the CBD. With backgrounds in corporate work and hospitality, we bring a service-first approach to the trades: clear communication, punctual visits and an agreed price before work begins."
+        },
+        "nafu_home_sections_text_4": {
+            "value": "88% of our customers choose us again.",
+            "label": "88% of our customers choose us again."
+        },
+        "nafu_home_sections_text_5": {
+            "value": "More about us",
+            "label": "More about us"
+        },
+        "nafu_home_sections_text_6": {
+            "value": "Recently completed works",
+            "label": "Recently completed works"
+        },
+        "nafu_home_sections_text_7": {
+            "value": "View details",
+            "label": "View details"
+        },
+        "nafu_home_sections_text_8": {
+            "value": "View details",
+            "label": "View details"
+        },
+        "nafu_home_sections_text_9": {
+            "value": "View all projects",
+            "label": "View all projects"
+        },
+        "nafu_home_sections_text_10": {
+            "value": "Reliable, Renos, Repairs",
+            "label": "Reliable, Renos, Repairs"
+        },
+        "nafu_home_sections_text_11": {
+            "value": "Home repairs in Melbourne, made simple",
+            "label": "Home repairs in Melbourne, made simple"
+        },
+        "nafu_home_sections_text_12": {
+            "value": "0481 818 836",
+            "label": "0481 818 836"
+        },
+        "nafu_home_sections_text_13": {
+            "value": "Request a free quote now!",
+            "label": "Request a free quote now!"
+        },
+        "nafu_home_sections_text_14": {
+            "value": "Same-day service available",
+            "label": "Same-day service available"
+        },
+        "nafu_home_sections_text_15": {
+            "value": "\u00a0Trusted handyman professionals",
+            "label": "Trusted handyman professionals"
+        },
+        "nafu_home_sections_text_16": {
+            "value": "Honest prices",
+            "label": "Honest prices"
+        },
+        "nafu_home_sections_text_17": {
+            "value": "\u00a0100% Satisfaction guaranteed",
+            "label": "100% Satisfaction guaranteed"
+        },
+        "nafu_home_sections_text_18": {
+            "value": "Making homes better",
+            "label": "Making homes better"
+        },
+        "nafu_home_sections_text_19": {
+            "value": "From fixes to full renovations",
+            "label": "From fixes to full renovations"
+        },
+        "nafu_home_sections_text_20": {
+            "value": "Same-day service available",
+            "label": "Same-day service available"
+        },
+        "nafu_home_sections_text_21": {
+            "value": "\u00a0Trusted handyman professionals",
+            "label": "Trusted handyman professionals"
+        },
+        "nafu_home_sections_text_22": {
+            "value": "Honest prices",
+            "label": "Honest prices"
+        },
+        "nafu_home_sections_text_23": {
+            "value": "\u00a0100% Satisfaction guaranteed",
+            "label": "100% Satisfaction guaranteed"
+        },
+        "nafu_home_sections_text_24": {
+            "value": "Making homes better",
+            "label": "Making homes better"
+        },
+        "nafu_home_sections_text_25": {
+            "value": "From fixes to full renovations",
+            "label": "From fixes to full renovations"
+        },
+        "nafu_home_sections_text_26": {
+            "value": "Why choose Nafu",
+            "label": "Why choose Nafu"
+        },
+        "nafu_home_sections_text_27": {
+            "value": "Reliable property care, from small fixes to big projects",
+            "label": "Reliable property care, from small fixes to big projects"
+        },
+        "nafu_home_sections_text_28": {
+            "value": "We make property maintenance simple. With experienced trades, clear communication and a focus on quality, Nafu helps Melbourne homeowners and property managers get the job done without the hassle.",
+            "label": "We make property maintenance simple. With experienced trades, clear communication and a focus on quality, Nafu helps Melbourne homeowners and property managers get the job done without the hassle."
+        },
+        "nafu_home_sections_text_29": {
+            "value": "One point of contact for all your property needs",
+            "label": "One point of contact for all your property needs"
+        },
+        "nafu_home_sections_text_30": {
+            "value": "Experienced and qualified local trades",
+            "label": "Experienced and qualified local trades"
+        },
+        "nafu_home_sections_text_31": {
+            "value": "Clear quotes and dependable workmanship",
+            "label": "Clear quotes and dependable workmanship"
+        },
+        "nafu_home_sections_text_32": {
+            "value": "On-time service and minimal disruption",
+            "label": "On-time service and minimal disruption"
+        },
+        "nafu_home_sections_text_33": {
+            "value": "Residential, rental and commercial properties",
+            "label": "Residential, rental and commercial properties"
+        },
+        "nafu_home_sections_text_34": {
+            "value": "Talk to our team ",
+            "label": "Talk to our team"
+        },
+        "nafu_home_sections_text_35": {
+            "value": "\u2192",
+            "label": "\u2192"
+        },
+        "nafu_home_sections_text_36": {
+            "value": "For homeowners",
+            "label": "For homeowners"
+        },
+        "nafu_home_sections_text_37": {
+            "value": "For homeowners",
+            "label": "For homeowners"
+        },
+        "nafu_home_sections_text_38": {
+            "value": "From small repairs to home improvements, we help you keep your home safe, functional and looking its best.",
+            "label": "From small repairs to home improvements, we help you keep your home safe, functional and looking its best."
+        },
+        "nafu_home_sections_text_39": {
+            "value": "Get a free quote",
+            "label": "Get a free quote"
+        },
+        "nafu_home_sections_text_40": {
+            "value": "General repairs &amp; maintenance",
+            "label": "General repairs & maintenance"
+        },
+        "nafu_home_sections_text_41": {
+            "value": "Painting, flooring, carpentry",
+            "label": "Painting, flooring, carpentry"
+        },
+        "nafu_home_sections_text_42": {
+            "value": "Kitchen, bathroom &amp; living upgrades",
+            "label": "Kitchen, bathroom & living upgrades"
+        },
+        "nafu_home_sections_text_43": {
+            "value": "Reliable, clean and professional",
+            "label": "Reliable, clean and professional"
+        },
+        "nafu_home_sections_text_44": {
+            "value": "No hidden fees",
+            "label": "No hidden fees"
+        },
+        "nafu_home_sections_text_45": {
+            "value": "For property managers",
+            "label": "For property managers"
+        },
+        "nafu_home_sections_text_46": {
+            "value": "For property managers",
+            "label": "For property managers"
+        },
+        "nafu_home_sections_text_47": {
+            "value": "Keep your properties well-maintained with a trusted team. We work efficiently, communicate clearly and help you minimise vacancy time.",
+            "label": "Keep your properties well-maintained with a trusted team. We work efficiently, communicate clearly and help you minimise vacancy time."
+        },
+        "nafu_home_sections_text_48": {
+            "value": "Work with us",
+            "label": "Work with us"
+        },
+        "nafu_home_sections_text_49": {
+            "value": "Responsive and reliable service",
+            "label": "Responsive and reliable service"
+        },
+        "nafu_home_sections_text_50": {
+            "value": "Routine maintenance &amp; urgent repairs",
+            "label": "Routine maintenance & urgent repairs"
+        },
+        "nafu_home_sections_text_51": {
+            "value": "Make-good works at end of lease",
+            "label": "Make-good works at end of lease"
+        },
+        "nafu_home_sections_text_52": {
+            "value": "Detailed updates and reporting",
+            "label": "Detailed updates and reporting"
+        },
+        "nafu_home_sections_text_53": {
+            "value": "Trusted by Melbourne property managers",
+            "label": "Trusted by Melbourne property managers"
+        },
+        "nafu_home_sections_text_54": {
+            "value": "Associated with",
+            "label": "Associated with"
+        },
+        "nafu_home_sections_text_55": {
+            "value": "Join our mailing list &amp; get exclusive offers",
+            "label": "Join our mailing list & get exclusive offers"
+        },
+        "nafu_home_sections_text_56": {
+            "value": "Thank you! Your submission has been received!",
+            "label": "Thank you! Your submission has been received!"
+        },
+        "nafu_home_sections_text_57": {
+            "value": "Oops! Something went wrong while submitting the form.",
+            "label": "Oops! Something went wrong while submitting the form."
+        },
+        "nafu_home_sections_image_58": {
+            "value": "assets\/nafu\/67ee7fac64a065125f1e5174_c98af9e8f3c3cd36c97b453bd131f3a3_single-image-02.avif",
+            "label": "Image path"
+        },
+        "nafu_home_sections_image_59": {
+            "value": "assets\/nafu\/67ee7faa51cc7312f8341081_7abc69a7401579eaeeff88c9f9b9bb53_single-image-03.png",
+            "label": "Image path"
+        },
+        "nafu_home_sections_image_60": {
+            "value": "assets\/nafu\/683ae87fcb9ea083f2cefef5_email -white.svg",
+            "label": "Image path"
+        },
+        "nafu_home_sections_image_61": {
+            "value": "assets\/nafu\/683ae87f774ed8e134537a42_phone-call -white.svg",
+            "label": "Image path"
+        },
+        "nafu_home_sections_image_62": {
+            "value": "assets\/nafu\/67ef6a36839fca685b93dfbe_66ef398ea4b08e3097fa3e50c3683e64_single-image-04.png",
+            "label": "Image path"
+        },
+        "nafu_home_sections_image_63": {
+            "value": "assets\/nafu\/67ef6a361858aa5d3ae40c91_4f976330b42a653f1677245a89e88032_single-image-05.png",
+            "label": "Image path"
+        },
+        "nafu_home_sections_image_64": {
+            "value": "assets\/nafu\/683995d214338209f9d5e446_footer-client (2).svg",
+            "label": "Image path"
+        },
+        "nafu_home_sections_image_65": {
+            "value": "assets\/nafu\/683995d694f98209394381b5_footer-client (3).svg",
+            "label": "Image path"
+        },
+        "nafu_home_sections_image_66": {
+            "value": "assets\/nafu\/683995d2cd40ea35bc32d216_footer-client (4).svg",
+            "label": "Image path"
+        },
+        "nafu_home_sections_image_67": {
+            "value": "assets\/nafu\/683995d614fee9710d877c7f_footer-client (1).svg",
+            "label": "Image path"
+        },
+        "nafu_home_sections_image_68": {
+            "value": "assets\/nafu\/683a88de78bfb92194f9b472_email-phishing-hook.avif",
+            "label": "Image path"
+        }
     },
-    "home_text_3": {
-      "value": "EXPERT CARE",
-      "label": "EXPERT CARE"
+    "nafu-testimonials": {
+        "nafu_testimonials_text_1": {
+            "value": "Clients are saying",
+            "label": "Clients are saying"
+        },
+        "nafu_testimonials_text_3": {
+            "value": "Some of our partners ",
+            "label": "Some of our partners"
+        },
+        "reviews_field_6": {
+            "value": "Michael Tan",
+            "label": "Michael Tan"
+        },
+        "reviews_field_7": {
+            "value": "MT",
+            "label": "MT"
+        },
+        "reviews_field_8": {
+            "value": "Apartment renovation",
+            "label": "Apartment renovation"
+        },
+        "reviews_field_9": {
+            "value": "Michael praised Calvin, Hao and the team for excellent renovation work. He highlighted their punctuality, courteous service, fair pricing and completion on schedule.",
+            "label": "Michael praised Calvin, Hao and the team for excellent renovation work. He highlighted their punctuality, courteous service, fair pricing and completion on schedule."
+        },
+        "reviews_field_10": {
+            "value": "Christine Teh",
+            "label": "Christine Teh"
+        },
+        "reviews_field_11": {
+            "value": "CT",
+            "label": "CT"
+        },
+        "reviews_field_12": {
+            "value": "Painting & flooring",
+            "label": "Painting & flooring"
+        },
+        "reviews_field_13": {
+            "value": "Christine appreciated the quick turnaround and attention to detail on her floorboards, appliance installation and repainting. She found Calvin easy to communicate with and was pleased with how tidy her home was afterwards.",
+            "label": "Christine appreciated the quick turnaround and attention to detail on her floorboards, appliance installation and repainting. She found Calvin easy to communicate with and was pleased with how tidy her home was afterwards."
+        },
+        "reviews_field_14": {
+            "value": "Amy Leslie",
+            "label": "Amy Leslie"
+        },
+        "reviews_field_15": {
+            "value": "AL",
+            "label": "AL"
+        },
+        "reviews_field_16": {
+            "value": "Hybrid flooring",
+            "label": "Hybrid flooring"
+        },
+        "reviews_field_17": {
+            "value": "Amy was pleased with the replacement of her carpet with hybrid timber flooring. She valued the competitive quote, reliable arrival times, efficient installation and careful material planning.",
+            "label": "Amy was pleased with the replacement of her carpet with hybrid timber flooring. She valued the competitive quote, reliable arrival times, efficient installation and careful material planning."
+        },
+        "reviews_field_18": {
+            "value": "L\u2019Occitane",
+            "label": "L\u2019Occitane"
+        },
+        "reviews_field_19": {
+            "value": "partner-loccitane.jpg",
+            "label": "partner-loccitane.jpg"
+        },
+        "reviews_field_20": {
+            "value": "https:\/\/au.loccitane.com\/",
+            "label": "https:\/\/au.loccitane.com\/"
+        },
+        "reviews_field_21": {
+            "value": "The George on Collins",
+            "label": "The George on Collins"
+        },
+        "reviews_field_22": {
+            "value": "partner-george.png",
+            "label": "partner-george.png"
+        },
+        "reviews_field_23": {
+            "value": "https:\/\/www.thegeorgeoncollins.com.au\/",
+            "label": "https:\/\/www.thegeorgeoncollins.com.au\/"
+        },
+        "reviews_field_24": {
+            "value": "CorePlus",
+            "label": "CorePlus"
+        },
+        "reviews_field_25": {
+            "value": "partner-coreplus.jpg",
+            "label": "partner-coreplus.jpg"
+        },
+        "reviews_field_26": {
+            "value": "https:\/\/www.core-plus.com\/au",
+            "label": "https:\/\/www.core-plus.com\/au"
+        },
+        "reviews_field_27": {
+            "value": "Hecho en Mexico",
+            "label": "Hecho en Mexico"
+        },
+        "reviews_field_28": {
+            "value": "partner-hecho.png",
+            "label": "partner-hecho.png"
+        },
+        "reviews_field_29": {
+            "value": "https:\/\/hechoenmexico.com.au\/",
+            "label": "https:\/\/hechoenmexico.com.au\/"
+        },
+        "reviews_field_30": {
+            "value": "Nexus Early Learning",
+            "label": "Nexus Early Learning"
+        },
+        "reviews_field_31": {
+            "value": "partner-nexus.png",
+            "label": "partner-nexus.png"
+        },
+        "reviews_field_32": {
+            "value": "https:\/\/www.nexusearlylearning.com.au\/",
+            "label": "https:\/\/www.nexusearlylearning.com.au\/"
+        }
     },
-    "home_text_4": {
-      "value": "Melbourne-based repairs, painting, flooring and maintenance for projects of every size. We specialise in apartments close to the CBD, with dependable service from start to finish.",
-      "label": "Melbourne-based repairs, painting, flooring and maintenance for projects of every size. We specialise in apartments close to the CBD, with dependable service from start to finish."
+    "Contact popup": {
+        "popup_contact_eyebrow": {
+            "label": "contact eyebrow",
+            "value": "NAFU HOME CARE"
+        },
+        "popup_contact_title": {
+            "label": "contact title",
+            "value": "How can we help your home?"
+        },
+        "popup_contact_description": {
+            "label": "contact description",
+            "value": "Tell us what needs a little care. Our team will get back to you."
+        },
+        "popup_contact_full_name_label": {
+            "label": "contact full name label",
+            "value": "Full name"
+        },
+        "popup_contact_form_email_label": {
+            "label": "contact form email label",
+            "value": "Email address"
+        },
+        "popup_contact_phone_label": {
+            "label": "contact phone label",
+            "value": "Phone number"
+        },
+        "popup_contact_project_label": {
+            "label": "contact project label",
+            "value": "Service needed"
+        },
+        "popup_contact_project_option_1": {
+            "label": "contact project option 1",
+            "value": "Choose a service"
+        },
+        "popup_contact_budget_label": {
+            "label": "contact budget label",
+            "value": "Budget"
+        },
+        "popup_contact_budget_option_1": {
+            "label": "contact budget option 1",
+            "value": "Select your budget"
+        },
+        "popup_contact_budget_option_2": {
+            "label": "contact budget option 2",
+            "value": "Under $1,000"
+        },
+        "popup_contact_budget_option_3": {
+            "label": "contact budget option 3",
+            "value": "$1,000\u2013$3,000"
+        },
+        "popup_contact_budget_option_4": {
+            "label": "contact budget option 4",
+            "value": "$3,000\u2013$5,000"
+        },
+        "popup_contact_budget_option_5": {
+            "label": "contact budget option 5",
+            "value": "Over $5,000"
+        },
+        "popup_contact_budget_option_6": {
+            "label": "contact budget option 6",
+            "value": "Let\u2019s discuss"
+        },
+        "popup_contact_message_label": {
+            "label": "contact message label",
+            "value": "Tell us what you need"
+        },
+        "popup_contact_submit": {
+            "label": "contact submit",
+            "value": "Send request"
+        },
+        "popup_contact_success_title": {
+            "label": "contact success title",
+            "value": "Request sent successfully!"
+        },
+        "popup_contact_success_description": {
+            "label": "contact success description",
+            "value": "Thank you! Nafu Home Care will get back to you shortly."
+        },
+        "popup_contact_success_close": {
+            "label": "contact success close",
+            "value": "Done"
+        },
+        "popup_seo_keywords": {
+            "label": "seo keywords",
+            "value": "Nafu Home Care, handyman, home repairs, maintenance"
+        }
     },
-    "home_text_5": {
-      "value": "Email address",
-      "label": "Email address"
+    "Services": {
+        "page_services_text_1": {
+            "value": "Our services | Nafu Home Care",
+            "label": "Our services | Nafu Home Care"
+        },
+        "page_services_text_2": {
+            "value": "Handyman services to every space",
+            "label": "Handyman services to every space"
+        },
+        "page_services_text_3": {
+            "value": "Services",
+            "label": "Services"
+        },
+        "page_services_text_4": {
+            "value": "Apartment repairs, painting, flooring and maintenance. Your local Melbourne team for a home that feels its best.",
+            "label": "Apartment repairs, painting, flooring and maintenance. Your local Melbourne team for a home that feels its best."
+        },
+        "page_services_text_5": {
+            "value": "View details",
+            "label": "View details"
+        },
+        "page_services_text_6": {
+            "value": "A Melbourne team that answers your calls, arrives as agreed and confirms the price before work begins. Tell us what your apartment needs.",
+            "label": "A Melbourne team that answers your calls, arrives as agreed and confirms the price before work begins. Tell us what your apartment needs."
+        },
+        "page_services_text_7": {
+            "value": "Contact us",
+            "label": "Contact us"
+        },
+        "page_services_text_8": {
+            "value": "0481 818 836",
+            "label": "0481 818 836"
+        },
+        "page_services_text_9": {
+            "value": "Your home needs us",
+            "label": "Your home needs us"
+        },
+        "page_services_text_10": {
+            "value": "Reliable \/ Renos \/ Repairs \/ Apartment care \/ Melbourne locals \/ Clear communication \/",
+            "label": "Reliable \/ Renos \/ Repairs \/ Apartment care \/ Melbourne locals \/ Clear communication \/"
+        },
+        "page_services_seo_11": {
+            "value": "Apartment repairs, painting, flooring, end of lease make good and property maintenance in Melbourne. Explore Nafu Home Care services.",
+            "label": "SEO: Apartment repairs, painting, flooring, end of lease make good and property maintenance in Melbourne. Explore Nafu Home Care services."
+        },
+        "page_services_seo_12": {
+            "value": "Our services | Nafu Home Care",
+            "label": "SEO: Our services | Nafu Home Care"
+        },
+        "page_services_image_13": {
+            "value": "assets\/nafu\/blog-handyman.gif",
+            "label": "Image path: assets\/nafu\/blog-handyman.gif"
+        },
+        "page_services_image_14": {
+            "value": "assets\/nafu\/services-circle.png",
+            "label": "Image path: assets\/nafu\/services-circle.png"
+        },
+        "page_services_image_15": {
+            "value": "assets\/nafu\/services-cta.avif",
+            "label": "Image path: assets\/nafu\/services-cta.avif"
+        }
     },
-    "home_text_6": {
-      "value": "SUBMIT NOW",
-      "label": "SUBMIT NOW"
+    "Service Details": {
+        "page_service_details_text_1": {
+            "value": "Service details",
+            "label": "Service page label"
+        },
+        "page_service_details_text_4": {
+            "value": "Any questions? Let\u2019s talk",
+            "label": "Contact banner heading"
+        },
+        "page_service_details_text_5": {
+            "value": "Contact us",
+            "label": "Contact button label"
+        },
+        "page_service_details_image_6": {
+            "value": "assets\/nafu\/blog-handyman.gif",
+            "label": "Shared hero illustration"
+        }
     },
-    "home_text_7": {
-      "value": "Need a hand with your Melbourne home?",
-      "label": "Need a hand with your Melbourne home?"
+    "Projects": {
+        "page_projects_text_1": {
+            "value": "Completed property projects | Nafu Home Care",
+            "label": "Completed property projects | Nafu Home Care"
+        },
+        "page_projects_text_2": {
+            "value": "Our work ",
+            "label": "Our work"
+        },
+        "page_projects_text_3": {
+            "value": "Property care with a passion for precision",
+            "label": "Property care with a passion for precision"
+        },
+        "page_projects_text_4": {
+            "value": "Projects",
+            "label": "Projects"
+        },
+        "page_projects_text_5": {
+            "value": "Explore practical upgrades and dependable maintenance delivered for Melbourne homeowners, renters and property managers.",
+            "label": "Explore practical upgrades and dependable maintenance delivered for Melbourne homeowners, renters and property managers."
+        },
+        "page_projects_text_6": {
+            "value": "Five ways we help",
+            "label": "Five ways we help"
+        },
+        "page_projects_text_7": {
+            "value": "Completed work across every Nafu service",
+            "label": "Completed work across every Nafu service"
+        },
+        "page_projects_text_8": {
+            "value": "View details",
+            "label": "View details"
+        },
+        "page_projects_text_13": {
+            "value": "Projects are being prepared.",
+            "label": "Projects are being prepared."
+        },
+        "page_projects_text_14": {
+            "value": "Add projects in Admin and publish them to show them here.",
+            "label": "Add projects in Admin and publish them to show them here."
+        },
+        "page_projects_text_17": {
+            "value": "Need something similar?",
+            "label": "Need something similar?"
+        },
+        "page_projects_text_18": {
+            "value": "Tell us what your property needs.",
+            "label": "Tell us what your property needs."
+        },
+        "page_projects_text_19": {
+            "value": "Start a conversation ",
+            "label": "Start a conversation"
+        },
+        "page_projects_seo_20": {
+            "value": "Explore Nafu Home Care projects across apartment repairs, painting, flooring, end-of-lease make-good and property maintenance in Melbourne.",
+            "label": "SEO: Explore Nafu Home Care projects across apartment repairs, painting, flooring, end-of-lease make-good and property maintenance in Melbourne."
+        },
+        "page_projects_seo_21": {
+            "value": "Completed property projects | Nafu Home Care",
+            "label": "SEO: Completed property projects | Nafu Home Care"
+        },
+        "page_projects_seo_22": {
+            "value": "Reliable apartment repairs, painting, flooring and property maintenance completed across Melbourne.",
+            "label": "SEO: Reliable apartment repairs, painting, flooring and property maintenance completed across Melbourne."
+        },
+        "page_projects_image_23": {
+            "value": "assets\/nafu\/blog-handyman.gif",
+            "label": "Image path: assets\/nafu\/blog-handyman.gif"
+        }
     },
-    "home_text_8": {
-      "value": "0481 818 836",
-      "label": "0481 818 836"
+    "Project Details": {
+        "page_project_details_text_3": {
+            "value": "\u2190 All projects",
+            "label": "\u2190 All projects"
+        },
+        "page_project_details_text_5": {
+            "value": "Project detail",
+            "label": "Project detail"
+        },
+        "page_project_details_text_6": {
+            "value": "Details about the project",
+            "label": "Details about the project"
+        },
+        "page_project_details_text_8": {
+            "value": "Project information",
+            "label": "Project information"
+        },
+        "page_project_details_text_9": {
+            "value": "Category",
+            "label": "Category"
+        },
+        "page_project_details_text_11": {
+            "value": "Client",
+            "label": "Client"
+        },
+        "page_project_details_text_13": {
+            "value": "Completed",
+            "label": "Completed"
+        },
+        "page_project_details_text_16": {
+            "value": "Project link",
+            "label": "Project link"
+        },
+        "page_project_details_text_17": {
+            "value": "Visit project \u2197",
+            "label": "Visit project \u2197"
+        },
+        "page_project_details_text_18": {
+            "value": "Features of our project",
+            "label": "Features of our project"
+        },
+        "page_project_details_text_21": {
+            "value": "The work was planned around the needs of the property, with practical decisions made at every stage. Our team coordinated the job, kept the client updated and completed the space with a clean, durable finish.",
+            "label": "The work was planned around the needs of the property, with practical decisions made at every stage. Our team coordinated the job, kept the client updated and completed the space with a clean, durable finish."
+        },
+        "page_project_details_text_22": {
+            "value": "More work",
+            "label": "More work"
+        },
+        "page_project_details_text_23": {
+            "value": "Explore other projects",
+            "label": "Explore other projects"
+        },
+        "page_project_details_text_26": {
+            "value": "Have a project in mind?",
+            "label": "Have a project in mind?"
+        },
+        "page_project_details_text_27": {
+            "value": "Let\u2019s make your property work better.",
+            "label": "Let\u2019s make your property work better."
+        },
+        "page_project_details_text_28": {
+            "value": "Talk to our team ",
+            "label": "Talk to our team"
+        },
+        "page_project_details_image_29": {
+            "value": "assets\/nafu\/blog-handyman.gif",
+            "label": "Image path: assets\/nafu\/682ade1088e04d40f8534321_project-0 (1).avif"
+        },
+        "page_project_details_image_30": {
+            "value": "assets\/nafu\/682aef9310703914675fd085_project-img (4).avif",
+            "label": "Image path: assets\/nafu\/682aef9310703914675fd085_project-img (4).avif"
+        },
+        "page_project_details_image_31": {
+            "value": "assets\/nafu\/682aefe6a46d07cc1744fa9d_project-img (3).avif",
+            "label": "Image path: assets\/nafu\/682aefe6a46d07cc1744fa9d_project-img (3).avif"
+        },
+        "page_project_details_image_32": {
+            "value": "assets\/nafu\/682ade1088e04d40f8534321_project-0 (1).avif",
+            "label": "Image path: assets\/nafu\/682ade1088e04d40f8534321_project-0 (1).avif"
+        },
+        "page_project_details_image_33": {
+            "value": "assets\/nafu\/682aef9310703914675fd085_project-img (4).avif",
+            "label": "Image path: assets\/nafu\/682aef9310703914675fd085_project-img (4).avif"
+        }
     },
-    "home_text_9": {
-      "value": "✿",
-      "label": "✿"
+    "News": {
+        "page_news_image_4": {
+            "value": "assets\/nafu\/blog-handyman.gif",
+            "label": "Image path: assets\/nafu\/blog-handyman.gif"
+        },
+        "page_news_image_5": {
+            "value": "assets\/nafu\/682ad431addb8bf5a550e766_blog (2).avif",
+            "label": "Image path: assets\/nafu\/682ad431addb8bf5a550e766_blog (2).avif"
+        },
+        "news_heading": {
+            "value": "Reliable handyman for every home project",
+            "label": "Page heading"
+        },
+        "news_description": {
+            "value": "Practical ideas for apartment repairs, painting, flooring and maintenance from your local Melbourne team.",
+            "label": "Page description"
+        },
+        "news_title": {
+            "value": "Our blog",
+            "label": "Page title"
+        },
+        "news_details_button": {
+            "value": "View details",
+            "label": "View details button"
+        },
+        "news_empty_heading": {
+            "value": "Fresh ideas are on their way",
+            "label": "Empty state heading"
+        },
+        "news_empty_description": {
+            "value": "Need a hand with your home? Our Melbourne team is here to help.",
+            "label": "Empty state description"
+        }
     },
-    "home_text_10": {
-      "value": " Google reviews",
-      "label": "Google reviews"
+    "News Details": {
+        "page_news_details_text_4": {
+            "value": "Blog details",
+            "label": "Blog details"
+        },
+        "page_news_details_text_6": {
+            "value": "We are preparing this article. Contact the Nafu team for help with your home project.",
+            "label": "We are preparing this article. Contact the Nafu team for help with your home project."
+        },
+        "page_news_details_text_7": {
+            "value": "' !!}",
+            "label": "' !!}"
+        },
+        "page_news_details_text_8": {
+            "value": "\u2190 All articles",
+            "label": "\u2190 All articles"
+        },
+        "page_news_details_image_9": {
+            "value": "assets\/nafu\/blog-detail-landscaping.avif",
+            "label": "Image path: assets\/nafu\/blog-detail-landscaping.avif"
+        },
+        "page_news_details_image_10": {
+            "value": "assets\/nafu\/blog-detail-landscaping.avif",
+            "label": "Image path: assets\/nafu\/blog-detail-landscaping.avif"
+        },
+        "page_news_details_image_11": {
+            "value": "assets\/nafu\/blog-handyman.gif",
+            "label": "Image path: assets\/nafu\/blog-handyman.gif"
+        },
+        "page_news_details_image_12": {
+            "value": "assets\/nafu\/blog-detail-secondary.avif",
+            "label": "Image path: assets\/nafu\/blog-detail-secondary.avif"
+        }
     },
-    "home_text_11": {
-      "value": "★★★★★",
-      "label": "★★★★★"
+    "Contact": {
+        "page_contact_text_1": {
+            "value": "Contact Nafu Home Care | Melbourne",
+            "label": "Contact Nafu Home Care | Melbourne"
+        },
+        "page_contact_text_2": {
+            "value": "Get in touch ",
+            "label": "Get in touch"
+        },
+        "page_contact_text_3": {
+            "value": "Let\u2019s take care of your property",
+            "label": "Let\u2019s take care of your property"
+        },
+        "page_contact_text_4": {
+            "value": "Tell us what needs attention. Whether it\u2019s a small repair, a renovation or ongoing property maintenance, our Melbourne team is ready to help.",
+            "label": "Tell us what needs attention. Whether it\u2019s a small repair, a renovation or ongoing property maintenance, our Melbourne team is ready to help."
+        },
+        "page_contact_text_5": {
+            "value": "Contact Nafu",
+            "label": "Contact Nafu"
+        },
+        "page_contact_text_6": {
+            "value": "Our contact information",
+            "label": "Our contact information"
+        },
+        "page_contact_text_7": {
+            "value": "Our address",
+            "label": "Our address"
+        },
+        "page_contact_text_8": {
+            "value": "265 Exhibition St,",
+            "label": "265 Exhibition St,"
+        },
+        "page_contact_text_9": {
+            "value": "Melbourne VIC 3000",
+            "label": "Melbourne VIC 3000"
+        },
+        "page_contact_text_10": {
+            "value": "Contact details",
+            "label": "Contact details"
+        },
+        "page_contact_text_11": {
+            "value": "0481 818 836",
+            "label": "0481 818 836"
+        },
+        "page_contact_text_12": {
+            "value": "Opening hours",
+            "label": "Opening hours"
+        },
+        "page_contact_text_13": {
+            "value": "Monday \u2013 Saturday: 8:00 am \u2013 6:00 pm",
+            "label": "Monday \u2013 Saturday: 8:00 am \u2013 6:00 pm"
+        },
+        "page_contact_text_14": {
+            "value": "Sunday: By appointment",
+            "label": "Sunday: By appointment"
+        },
+        "page_contact_text_15": {
+            "value": "Tell us about the job",
+            "label": "Tell us about the job"
+        },
+        "page_contact_text_16": {
+            "value": "How can we help?",
+            "label": "How can we help?"
+        },
+        "page_contact_text_17": {
+            "value": "Share a few details and our team will be in touch.",
+            "label": "Share a few details and our team will be in touch."
+        },
+        "page_contact_text_19": {
+            "value": "Please check the highlighted fields and try again.",
+            "label": "Please check the highlighted fields and try again."
+        },
+        "page_contact_text_20": {
+            "value": "Name",
+            "label": "Name"
+        },
+        "page_contact_text_21": {
+            "value": "Email address",
+            "label": "Email address"
+        },
+        "page_contact_text_22": {
+            "value": "Phone",
+            "label": "Phone"
+        },
+        "page_contact_text_23": {
+            "value": "Service needed",
+            "label": "Service needed"
+        },
+        "page_contact_text_24": {
+            "value": "Choose a service",
+            "label": "Choose a service"
+        },
+        "page_contact_text_25": {
+            "value": "Other",
+            "label": "Other"
+        },
+        "page_contact_text_26": {
+            "value": "Your message",
+            "label": "Your message"
+        },
+        "page_contact_text_27": {
+            "value": "Send enquiry ",
+            "label": "Send enquiry"
+        },
+        "page_contact_text_28": {
+            "value": "Ready when you are",
+            "label": "Ready when you are"
+        },
+        "page_contact_text_29": {
+            "value": "Don\u2019t let repairs pile up.",
+            "label": "Don\u2019t let repairs pile up."
+        },
+        "page_contact_text_30": {
+            "value": "Talk to a reliable Melbourne property care team today.",
+            "label": "Talk to a reliable Melbourne property care team today."
+        },
+        "page_contact_text_31": {
+            "value": "Call 0481 818 836 ",
+            "label": "Call 0481 818 836"
+        },
+        "page_contact_seo_32": {
+            "value": "Talk to Nafu Home Care about apartment repairs, painting, flooring, maintenance and property care across Melbourne.",
+            "label": "SEO: Talk to Nafu Home Care about apartment repairs, painting, flooring, maintenance and property care across Melbourne."
+        },
+        "page_contact_seo_33": {
+            "value": "Contact Nafu Home Care",
+            "label": "SEO: Contact Nafu Home Care"
+        },
+        "page_contact_seo_34": {
+            "value": "Tell our Melbourne property care team what you need and we\u2019ll get back to you.",
+            "label": "SEO: Tell our Melbourne property care team what you need and we\u2019ll get back to you."
+        },
+        "page_contact_placeholder_35": {
+            "value": "Enter your name",
+            "label": "Placeholder: Enter your name"
+        },
+        "page_contact_placeholder_36": {
+            "value": "Enter your email",
+            "label": "Placeholder: Enter your email"
+        },
+        "page_contact_placeholder_37": {
+            "value": "481 818 836",
+            "label": "Placeholder: 481 818 836"
+        },
+        "page_contact_placeholder_38": {
+            "value": "Tell us what needs attention",
+            "label": "Placeholder: Tell us what needs attention"
+        }
     },
-    "home_text_12": {
-      "value": "4.9 / 5 · 76 reviews",
-      "label": "4.9 / 5 · 76 reviews"
+    "404": {
+        "page_404_text_1": {
+            "value": "Page not found | NAFU Services",
+            "label": "Page not found | NAFU Services"
+        },
+        "page_404_text_2": {
+            "value": "Page not found",
+            "label": "Page not found"
+        },
+        "page_404_text_3": {
+            "value": "It looks like the page you\u2019re looking for doesn\u2019t exist or has been moved.",
+            "label": "It looks like the page you\u2019re looking for doesn\u2019t exist or has been moved."
+        },
+        "page_404_text_4": {
+            "value": "Go back to the homepage",
+            "label": "Go back to the homepage"
+        },
+        "page_404_seo_5": {
+            "value": "The page you\u2019re looking for doesn\u2019t exist or has been moved. Return to the NAFU Services homepage.",
+            "label": "SEO: The page you\u2019re looking for doesn\u2019t exist or has been moved. Return to the NAFU Services homepage."
+        }
     },
-    "home_image_13": {
-      "value": "assets/nafu/mrfix-home2.css",
-      "label": "Image path"
+    "About Us": {
+        "page_about_title": {
+            "value": "Who We Are",
+            "label": "Hero Title"
+        },
+        "page_about_desc": {
+            "value": "A small collective of spice enthusiasts dedicated to bringing you the most authentic flavors from around the globe.",
+            "label": "Hero Description"
+        },
+        "page_about_mission_title": {
+            "value": "Our Mission",
+            "label": "Mission Title"
+        },
+        "page_about_mission_text": {
+            "value": "To source, blend, and deliver the finest spices while supporting sustainable farming practices and empowering local communities.",
+            "label": "Mission Text"
+        }
     },
-    "home_image_14": {
-      "value": "assets/nafu/support-avatar.png",
-      "label": "Image path"
-    },
-    "home_image_15": {
-      "value": "assets/nafu/hero-handyman.avif",
-      "label": "Image path"
-    },
-    "home_image_16": {
-      "value": "assets/nafu/nafu-home.js",
-      "label": "Image path"
+    "Our Legacy": {
+        "page_legacy_title": {
+            "value": "Generations of Flavor",
+            "label": "Hero Title"
+        },
+        "page_legacy_desc": {
+            "value": "Rooted in heritage, our spices carry the legacy of ancient trade routes and secret family recipes passed down through generations.",
+            "label": "Hero Description"
+        },
+        "page_legacy_story_title": {
+            "value": "Where It All Began",
+            "label": "Story Title"
+        },
+        "page_legacy_story_text": {
+            "value": "Decades ago, our founders started with a single market stall and a passion for authentic taste. Today, that same passion drives everything we do.",
+            "label": "Story Text"
+        }
     }
-  },
-  "nafu-home-sections": {
-    "nafu_home_sections_text_1": {
-      "value": "About us",
-      "label": "About us"
-    },
-    "nafu_home_sections_text_2": {
-      "value": "Melbourne locals. A better tradie experience.",
-      "label": "Melbourne locals. A better tradie experience."
-    },
-    "nafu_home_sections_text_3": {
-      "value": "Our small Melbourne team cares for apartments around the CBD. With backgrounds in corporate work and hospitality, we bring a service-first approach to the trades: clear communication, punctual visits and an agreed price before work begins.",
-      "label": "Our small Melbourne team cares for apartments around the CBD. With backgrounds in corporate work and hospitality, we bring a service-first approach to the trades: clear communication, punctual visits and an agreed price before work begins."
-    },
-    "nafu_home_sections_text_4": {
-      "value": "88% of our customers choose us again.",
-      "label": "88% of our customers choose us again."
-    },
-    "nafu_home_sections_text_5": {
-      "value": "More about us",
-      "label": "More about us"
-    },
-    "nafu_home_sections_text_6": {
-      "value": "Recently completed works",
-      "label": "Recently completed works"
-    },
-    "nafu_home_sections_text_7": {
-      "value": "View details",
-      "label": "View details"
-    },
-    "nafu_home_sections_text_8": {
-      "value": "View details",
-      "label": "View details"
-    },
-    "nafu_home_sections_text_9": {
-      "value": "View all projects",
-      "label": "View all projects"
-    },
-    "nafu_home_sections_text_10": {
-      "value": "Reliable, Renos, Repairs",
-      "label": "Reliable, Renos, Repairs"
-    },
-    "nafu_home_sections_text_11": {
-      "value": "Home repairs in Melbourne, made simple",
-      "label": "Home repairs in Melbourne, made simple"
-    },
-    "nafu_home_sections_text_12": {
-      "value": "0481 818 836",
-      "label": "0481 818 836"
-    },
-    "nafu_home_sections_text_13": {
-      "value": "Request a free quote now!",
-      "label": "Request a free quote now!"
-    },
-    "nafu_home_sections_text_14": {
-      "value": "Same-day service available",
-      "label": "Same-day service available"
-    },
-    "nafu_home_sections_text_15": {
-      "value": " Trusted handyman professionals",
-      "label": "Trusted handyman professionals"
-    },
-    "nafu_home_sections_text_16": {
-      "value": "Honest prices",
-      "label": "Honest prices"
-    },
-    "nafu_home_sections_text_17": {
-      "value": " 100% Satisfaction guaranteed",
-      "label": "100% Satisfaction guaranteed"
-    },
-    "nafu_home_sections_text_18": {
-      "value": "Making homes better",
-      "label": "Making homes better"
-    },
-    "nafu_home_sections_text_19": {
-      "value": "From fixes to full renovations",
-      "label": "From fixes to full renovations"
-    },
-    "nafu_home_sections_text_20": {
-      "value": "Same-day service available",
-      "label": "Same-day service available"
-    },
-    "nafu_home_sections_text_21": {
-      "value": " Trusted handyman professionals",
-      "label": "Trusted handyman professionals"
-    },
-    "nafu_home_sections_text_22": {
-      "value": "Honest prices",
-      "label": "Honest prices"
-    },
-    "nafu_home_sections_text_23": {
-      "value": " 100% Satisfaction guaranteed",
-      "label": "100% Satisfaction guaranteed"
-    },
-    "nafu_home_sections_text_24": {
-      "value": "Making homes better",
-      "label": "Making homes better"
-    },
-    "nafu_home_sections_text_25": {
-      "value": "From fixes to full renovations",
-      "label": "From fixes to full renovations"
-    },
-    "nafu_home_sections_text_26": {
-      "value": "Why choose Nafu",
-      "label": "Why choose Nafu"
-    },
-    "nafu_home_sections_text_27": {
-      "value": "Reliable property care, from small fixes to big projects",
-      "label": "Reliable property care, from small fixes to big projects"
-    },
-    "nafu_home_sections_text_28": {
-      "value": "We make property maintenance simple. With experienced trades, clear communication and a focus on quality, Nafu helps Melbourne homeowners and property managers get the job done without the hassle.",
-      "label": "We make property maintenance simple. With experienced trades, clear communication and a focus on quality, Nafu helps Melbourne homeowners and property managers get the job done without the hassle."
-    },
-    "nafu_home_sections_text_29": {
-      "value": "One point of contact for all your property needs",
-      "label": "One point of contact for all your property needs"
-    },
-    "nafu_home_sections_text_30": {
-      "value": "Experienced and qualified local trades",
-      "label": "Experienced and qualified local trades"
-    },
-    "nafu_home_sections_text_31": {
-      "value": "Clear quotes and dependable workmanship",
-      "label": "Clear quotes and dependable workmanship"
-    },
-    "nafu_home_sections_text_32": {
-      "value": "On-time service and minimal disruption",
-      "label": "On-time service and minimal disruption"
-    },
-    "nafu_home_sections_text_33": {
-      "value": "Residential, rental and commercial properties",
-      "label": "Residential, rental and commercial properties"
-    },
-    "nafu_home_sections_text_34": {
-      "value": "Talk to our team ",
-      "label": "Talk to our team"
-    },
-    "nafu_home_sections_text_35": {
-      "value": "→",
-      "label": "→"
-    },
-    "nafu_home_sections_text_36": {
-      "value": "For homeowners",
-      "label": "For homeowners"
-    },
-    "nafu_home_sections_text_37": {
-      "value": "For homeowners",
-      "label": "For homeowners"
-    },
-    "nafu_home_sections_text_38": {
-      "value": "From small repairs to home improvements, we help you keep your home safe, functional and looking its best.",
-      "label": "From small repairs to home improvements, we help you keep your home safe, functional and looking its best."
-    },
-    "nafu_home_sections_text_39": {
-      "value": "Get a free quote",
-      "label": "Get a free quote"
-    },
-    "nafu_home_sections_text_40": {
-      "value": "General repairs &amp; maintenance",
-      "label": "General repairs & maintenance"
-    },
-    "nafu_home_sections_text_41": {
-      "value": "Painting, flooring, carpentry",
-      "label": "Painting, flooring, carpentry"
-    },
-    "nafu_home_sections_text_42": {
-      "value": "Kitchen, bathroom &amp; living upgrades",
-      "label": "Kitchen, bathroom & living upgrades"
-    },
-    "nafu_home_sections_text_43": {
-      "value": "Reliable, clean and professional",
-      "label": "Reliable, clean and professional"
-    },
-    "nafu_home_sections_text_44": {
-      "value": "No hidden fees",
-      "label": "No hidden fees"
-    },
-    "nafu_home_sections_text_45": {
-      "value": "For property managers",
-      "label": "For property managers"
-    },
-    "nafu_home_sections_text_46": {
-      "value": "For property managers",
-      "label": "For property managers"
-    },
-    "nafu_home_sections_text_47": {
-      "value": "Keep your properties well-maintained with a trusted team. We work efficiently, communicate clearly and help you minimise vacancy time.",
-      "label": "Keep your properties well-maintained with a trusted team. We work efficiently, communicate clearly and help you minimise vacancy time."
-    },
-    "nafu_home_sections_text_48": {
-      "value": "Work with us",
-      "label": "Work with us"
-    },
-    "nafu_home_sections_text_49": {
-      "value": "Responsive and reliable service",
-      "label": "Responsive and reliable service"
-    },
-    "nafu_home_sections_text_50": {
-      "value": "Routine maintenance &amp; urgent repairs",
-      "label": "Routine maintenance & urgent repairs"
-    },
-    "nafu_home_sections_text_51": {
-      "value": "Make-good works at end of lease",
-      "label": "Make-good works at end of lease"
-    },
-    "nafu_home_sections_text_52": {
-      "value": "Detailed updates and reporting",
-      "label": "Detailed updates and reporting"
-    },
-    "nafu_home_sections_text_53": {
-      "value": "Trusted by Melbourne property managers",
-      "label": "Trusted by Melbourne property managers"
-    },
-    "nafu_home_sections_text_54": {
-      "value": "Associated with",
-      "label": "Associated with"
-    },
-    "nafu_home_sections_text_55": {
-      "value": "Join our mailing list &amp; get exclusive offers",
-      "label": "Join our mailing list & get exclusive offers"
-    },
-    "nafu_home_sections_text_56": {
-      "value": "Thank you! Your submission has been received!",
-      "label": "Thank you! Your submission has been received!"
-    },
-    "nafu_home_sections_text_57": {
-      "value": "Oops! Something went wrong while submitting the form.",
-      "label": "Oops! Something went wrong while submitting the form."
-    },
-    "nafu_home_sections_image_58": {
-      "value": "assets/nafu/67ee7fac64a065125f1e5174_c98af9e8f3c3cd36c97b453bd131f3a3_single-image-02.avif",
-      "label": "Image path"
-    },
-    "nafu_home_sections_image_59": {
-      "value": "assets/nafu/67ee7faa51cc7312f8341081_7abc69a7401579eaeeff88c9f9b9bb53_single-image-03.png",
-      "label": "Image path"
-    },
-    "nafu_home_sections_image_60": {
-      "value": "assets/nafu/683ae87fcb9ea083f2cefef5_email -white.svg",
-      "label": "Image path"
-    },
-    "nafu_home_sections_image_61": {
-      "value": "assets/nafu/683ae87f774ed8e134537a42_phone-call -white.svg",
-      "label": "Image path"
-    },
-    "nafu_home_sections_image_62": {
-      "value": "assets/nafu/67ef6a36839fca685b93dfbe_66ef398ea4b08e3097fa3e50c3683e64_single-image-04.png",
-      "label": "Image path"
-    },
-    "nafu_home_sections_image_63": {
-      "value": "assets/nafu/67ef6a361858aa5d3ae40c91_4f976330b42a653f1677245a89e88032_single-image-05.png",
-      "label": "Image path"
-    },
-    "nafu_home_sections_image_64": {
-      "value": "assets/nafu/683995d214338209f9d5e446_footer-client (2).svg",
-      "label": "Image path"
-    },
-    "nafu_home_sections_image_65": {
-      "value": "assets/nafu/683995d694f98209394381b5_footer-client (3).svg",
-      "label": "Image path"
-    },
-    "nafu_home_sections_image_66": {
-      "value": "assets/nafu/683995d2cd40ea35bc32d216_footer-client (4).svg",
-      "label": "Image path"
-    },
-    "nafu_home_sections_image_67": {
-      "value": "assets/nafu/683995d614fee9710d877c7f_footer-client (1).svg",
-      "label": "Image path"
-    },
-    "nafu_home_sections_image_68": {
-      "value": "assets/nafu/683a88de78bfb92194f9b472_email-phishing-hook.avif",
-      "label": "Image path"
-    }
-  },
-  "nafu-testimonials": {
-    "nafu_testimonials_text_1": {
-      "value": "Clients are saying",
-      "label": "Clients are saying"
-    },
-    "nafu_testimonials_text_3": {
-      "value": "Some of our partners ",
-      "label": "Some of our partners"
-    },
-    "reviews_field_6": {
-      "value": "Michael Tan",
-      "label": "Michael Tan"
-    },
-    "reviews_field_7": {
-      "value": "MT",
-      "label": "MT"
-    },
-    "reviews_field_8": {
-      "value": "Apartment renovation",
-      "label": "Apartment renovation"
-    },
-    "reviews_field_9": {
-      "value": "Michael praised Calvin, Hao and the team for excellent renovation work. He highlighted their punctuality, courteous service, fair pricing and completion on schedule.",
-      "label": "Michael praised Calvin, Hao and the team for excellent renovation work. He highlighted their punctuality, courteous service, fair pricing and completion on schedule."
-    },
-    "reviews_field_10": {
-      "value": "Christine Teh",
-      "label": "Christine Teh"
-    },
-    "reviews_field_11": {
-      "value": "CT",
-      "label": "CT"
-    },
-    "reviews_field_12": {
-      "value": "Painting & flooring",
-      "label": "Painting & flooring"
-    },
-    "reviews_field_13": {
-      "value": "Christine appreciated the quick turnaround and attention to detail on her floorboards, appliance installation and repainting. She found Calvin easy to communicate with and was pleased with how tidy her home was afterwards.",
-      "label": "Christine appreciated the quick turnaround and attention to detail on her floorboards, appliance installation and repainting. She found Calvin easy to communicate with and was pleased with how tidy her home was afterwards."
-    },
-    "reviews_field_14": {
-      "value": "Amy Leslie",
-      "label": "Amy Leslie"
-    },
-    "reviews_field_15": {
-      "value": "AL",
-      "label": "AL"
-    },
-    "reviews_field_16": {
-      "value": "Hybrid flooring",
-      "label": "Hybrid flooring"
-    },
-    "reviews_field_17": {
-      "value": "Amy was pleased with the replacement of her carpet with hybrid timber flooring. She valued the competitive quote, reliable arrival times, efficient installation and careful material planning.",
-      "label": "Amy was pleased with the replacement of her carpet with hybrid timber flooring. She valued the competitive quote, reliable arrival times, efficient installation and careful material planning."
-    },
-    "reviews_field_18": {
-      "value": "L’Occitane",
-      "label": "L’Occitane"
-    },
-    "reviews_field_19": {
-      "value": "partner-loccitane.jpg",
-      "label": "partner-loccitane.jpg"
-    },
-    "reviews_field_20": {
-      "value": "https://au.loccitane.com/",
-      "label": "https://au.loccitane.com/"
-    },
-    "reviews_field_21": {
-      "value": "The George on Collins",
-      "label": "The George on Collins"
-    },
-    "reviews_field_22": {
-      "value": "partner-george.png",
-      "label": "partner-george.png"
-    },
-    "reviews_field_23": {
-      "value": "https://www.thegeorgeoncollins.com.au/",
-      "label": "https://www.thegeorgeoncollins.com.au/"
-    },
-    "reviews_field_24": {
-      "value": "CorePlus",
-      "label": "CorePlus"
-    },
-    "reviews_field_25": {
-      "value": "partner-coreplus.jpg",
-      "label": "partner-coreplus.jpg"
-    },
-    "reviews_field_26": {
-      "value": "https://www.core-plus.com/au",
-      "label": "https://www.core-plus.com/au"
-    },
-    "reviews_field_27": {
-      "value": "Hecho en Mexico",
-      "label": "Hecho en Mexico"
-    },
-    "reviews_field_28": {
-      "value": "partner-hecho.png",
-      "label": "partner-hecho.png"
-    },
-    "reviews_field_29": {
-      "value": "https://hechoenmexico.com.au/",
-      "label": "https://hechoenmexico.com.au/"
-    },
-    "reviews_field_30": {
-      "value": "Nexus Early Learning",
-      "label": "Nexus Early Learning"
-    },
-    "reviews_field_31": {
-      "value": "partner-nexus.png",
-      "label": "partner-nexus.png"
-    },
-    "reviews_field_32": {
-      "value": "https://www.nexusearlylearning.com.au/",
-      "label": "https://www.nexusearlylearning.com.au/"
-    }
-  },
-  "Contact popup": {
-    "popup_contact_eyebrow": {
-      "label": "contact eyebrow",
-      "value": "NAFU HOME CARE"
-    },
-    "popup_contact_title": {
-      "label": "contact title",
-      "value": "How can we help your home?"
-    },
-    "popup_contact_description": {
-      "label": "contact description",
-      "value": "Tell us what needs a little care. Our team will get back to you."
-    },
-    "popup_contact_full_name_label": {
-      "label": "contact full name label",
-      "value": "Full name"
-    },
-    "popup_contact_form_email_label": {
-      "label": "contact form email label",
-      "value": "Email address"
-    },
-    "popup_contact_phone_label": {
-      "label": "contact phone label",
-      "value": "Phone number"
-    },
-    "popup_contact_project_label": {
-      "label": "contact project label",
-      "value": "Service needed"
-    },
-    "popup_contact_project_option_1": {
-      "label": "contact project option 1",
-      "value": "Choose a service"
-    },
-    "popup_contact_budget_label": {
-      "label": "contact budget label",
-      "value": "Budget"
-    },
-    "popup_contact_budget_option_1": {
-      "label": "contact budget option 1",
-      "value": "Select your budget"
-    },
-    "popup_contact_budget_option_2": {
-      "label": "contact budget option 2",
-      "value": "Under $1,000"
-    },
-    "popup_contact_budget_option_3": {
-      "label": "contact budget option 3",
-      "value": "$1,000–$3,000"
-    },
-    "popup_contact_budget_option_4": {
-      "label": "contact budget option 4",
-      "value": "$3,000–$5,000"
-    },
-    "popup_contact_budget_option_5": {
-      "label": "contact budget option 5",
-      "value": "Over $5,000"
-    },
-    "popup_contact_budget_option_6": {
-      "label": "contact budget option 6",
-      "value": "Let’s discuss"
-    },
-    "popup_contact_message_label": {
-      "label": "contact message label",
-      "value": "Tell us what you need"
-    },
-    "popup_contact_submit": {
-      "label": "contact submit",
-      "value": "Send request"
-    },
-    "popup_contact_success_title": {
-      "label": "contact success title",
-      "value": "Request sent successfully!"
-    },
-    "popup_contact_success_description": {
-      "label": "contact success description",
-      "value": "Thank you! Nafu Home Care will get back to you shortly."
-    },
-    "popup_contact_success_close": {
-      "label": "contact success close",
-      "value": "Done"
-    },
-    "popup_seo_keywords": {
-      "label": "seo keywords",
-      "value": "Nafu Home Care, handyman, home repairs, maintenance"
-    }
-  },
-  "Services": {
-    "page_services_text_1": {
-      "value": "Our services | Nafu Home Care",
-      "label": "Our services | Nafu Home Care"
-    },
-    "page_services_text_2": {
-      "value": "Handyman services to every space",
-      "label": "Handyman services to every space"
-    },
-    "page_services_text_3": {
-      "value": "Services",
-      "label": "Services"
-    },
-    "page_services_text_4": {
-      "value": "Apartment repairs, painting, flooring and maintenance. Your local Melbourne team for a home that feels its best.",
-      "label": "Apartment repairs, painting, flooring and maintenance. Your local Melbourne team for a home that feels its best."
-    },
-    "page_services_text_5": {
-      "value": "View details",
-      "label": "View details"
-    },
-    "page_services_text_6": {
-      "value": "A Melbourne team that answers your calls, arrives as agreed and confirms the price before work begins. Tell us what your apartment needs.",
-      "label": "A Melbourne team that answers your calls, arrives as agreed and confirms the price before work begins. Tell us what your apartment needs."
-    },
-    "page_services_text_7": {
-      "value": "Contact us",
-      "label": "Contact us"
-    },
-    "page_services_text_8": {
-      "value": "0481 818 836",
-      "label": "0481 818 836"
-    },
-    "page_services_text_9": {
-      "value": "Your home needs us",
-      "label": "Your home needs us"
-    },
-    "page_services_text_10": {
-      "value": "Reliable / Renos / Repairs / Apartment care / Melbourne locals / Clear communication /",
-      "label": "Reliable / Renos / Repairs / Apartment care / Melbourne locals / Clear communication /"
-    },
-    "page_services_seo_11": {
-      "value": "Apartment repairs, painting, flooring, end of lease make good and property maintenance in Melbourne. Explore Nafu Home Care services.",
-      "label": "SEO: Apartment repairs, painting, flooring, end of lease make good and property maintenance in Melbourne. Explore Nafu Home Care services."
-    },
-    "page_services_seo_12": {
-      "value": "Our services | Nafu Home Care",
-      "label": "SEO: Our services | Nafu Home Care"
-    },
-    "page_services_image_13": {
-      "value": "assets/nafu/blog-handyman.gif",
-      "label": "Image path: assets/nafu/blog-handyman.gif"
-    },
-    "page_services_image_14": {
-      "value": "assets/nafu/services-circle.png",
-      "label": "Image path: assets/nafu/services-circle.png"
-    },
-    "page_services_image_15": {
-      "value": "assets/nafu/services-cta.avif",
-      "label": "Image path: assets/nafu/services-cta.avif"
-    }
-  },
-  "Service Details": {
-    "page_service_details_text_1": {
-      "value": "Service details",
-      "label": "Service page label"
-    },
-    "page_service_details_text_4": {
-      "value": "Any questions? Let’s talk",
-      "label": "Contact banner heading"
-    },
-    "page_service_details_text_5": {
-      "value": "Contact us",
-      "label": "Contact button label"
-    },
-    "page_service_details_image_6": {
-      "value": "assets/nafu/blog-handyman.gif",
-      "label": "Shared hero illustration"
-    }
-  },
-  "Projects": {
-    "page_projects_text_1": {
-      "value": "Completed property projects | Nafu Home Care",
-      "label": "Completed property projects | Nafu Home Care"
-    },
-    "page_projects_text_2": {
-      "value": "Our work ",
-      "label": "Our work"
-    },
-    "page_projects_text_3": {
-      "value": "Property care with a passion for precision",
-      "label": "Property care with a passion for precision"
-    },
-    "page_projects_text_4": {
-      "value": "Projects",
-      "label": "Projects"
-    },
-    "page_projects_text_5": {
-      "value": "Explore practical upgrades and dependable maintenance delivered for Melbourne homeowners, renters and property managers.",
-      "label": "Explore practical upgrades and dependable maintenance delivered for Melbourne homeowners, renters and property managers."
-    },
-    "page_projects_text_6": {
-      "value": "Five ways we help",
-      "label": "Five ways we help"
-    },
-    "page_projects_text_7": {
-      "value": "Completed work across every Nafu service",
-      "label": "Completed work across every Nafu service"
-    },
-    "page_projects_text_8": {
-      "value": "View details",
-      "label": "View details"
-    },
-    "page_projects_text_13": {
-      "value": "Projects are being prepared.",
-      "label": "Projects are being prepared."
-    },
-    "page_projects_text_14": {
-      "value": "Add projects in Admin and publish them to show them here.",
-      "label": "Add projects in Admin and publish them to show them here."
-    },
-    "page_projects_text_17": {
-      "value": "Need something similar?",
-      "label": "Need something similar?"
-    },
-    "page_projects_text_18": {
-      "value": "Tell us what your property needs.",
-      "label": "Tell us what your property needs."
-    },
-    "page_projects_text_19": {
-      "value": "Start a conversation ",
-      "label": "Start a conversation"
-    },
-    "page_projects_seo_20": {
-      "value": "Explore Nafu Home Care projects across apartment repairs, painting, flooring, end-of-lease make-good and property maintenance in Melbourne.",
-      "label": "SEO: Explore Nafu Home Care projects across apartment repairs, painting, flooring, end-of-lease make-good and property maintenance in Melbourne."
-    },
-    "page_projects_seo_21": {
-      "value": "Completed property projects | Nafu Home Care",
-      "label": "SEO: Completed property projects | Nafu Home Care"
-    },
-    "page_projects_seo_22": {
-      "value": "Reliable apartment repairs, painting, flooring and property maintenance completed across Melbourne.",
-      "label": "SEO: Reliable apartment repairs, painting, flooring and property maintenance completed across Melbourne."
-    },
-    "page_projects_image_23": {
-      "value": "assets/nafu/blog-handyman.gif",
-      "label": "Image path: assets/nafu/blog-handyman.gif"
-    }
-  },
-  "Project Details": {
-    "page_project_details_text_3": {
-      "value": "← All projects",
-      "label": "← All projects"
-    },
-    "page_project_details_text_5": {
-      "value": "Project detail",
-      "label": "Project detail"
-    },
-    "page_project_details_text_6": {
-      "value": "Details about the project",
-      "label": "Details about the project"
-    },
-    "page_project_details_text_8": {
-      "value": "Project information",
-      "label": "Project information"
-    },
-    "page_project_details_text_9": {
-      "value": "Category",
-      "label": "Category"
-    },
-    "page_project_details_text_11": {
-      "value": "Client",
-      "label": "Client"
-    },
-    "page_project_details_text_13": {
-      "value": "Completed",
-      "label": "Completed"
-    },
-    "page_project_details_text_16": {
-      "value": "Project link",
-      "label": "Project link"
-    },
-    "page_project_details_text_17": {
-      "value": "Visit project ↗",
-      "label": "Visit project ↗"
-    },
-    "page_project_details_text_18": {
-      "value": "Features of our project",
-      "label": "Features of our project"
-    },
-    "page_project_details_text_21": {
-      "value": "The work was planned around the needs of the property, with practical decisions made at every stage. Our team coordinated the job, kept the client updated and completed the space with a clean, durable finish.",
-      "label": "The work was planned around the needs of the property, with practical decisions made at every stage. Our team coordinated the job, kept the client updated and completed the space with a clean, durable finish."
-    },
-    "page_project_details_text_22": {
-      "value": "More work",
-      "label": "More work"
-    },
-    "page_project_details_text_23": {
-      "value": "Explore other projects",
-      "label": "Explore other projects"
-    },
-    "page_project_details_text_26": {
-      "value": "Have a project in mind?",
-      "label": "Have a project in mind?"
-    },
-    "page_project_details_text_27": {
-      "value": "Let’s make your property work better.",
-      "label": "Let’s make your property work better."
-    },
-    "page_project_details_text_28": {
-      "value": "Talk to our team ",
-      "label": "Talk to our team"
-    },
-    "page_project_details_image_29": {
-      "value": "assets/nafu/blog-handyman.gif",
-      "label": "Image path: assets/nafu/682ade1088e04d40f8534321_project-0 (1).avif"
-    },
-    "page_project_details_image_30": {
-      "value": "assets/nafu/682aef9310703914675fd085_project-img (4).avif",
-      "label": "Image path: assets/nafu/682aef9310703914675fd085_project-img (4).avif"
-    },
-    "page_project_details_image_31": {
-      "value": "assets/nafu/682aefe6a46d07cc1744fa9d_project-img (3).avif",
-      "label": "Image path: assets/nafu/682aefe6a46d07cc1744fa9d_project-img (3).avif"
-    },
-    "page_project_details_image_32": {
-      "value": "assets/nafu/682ade1088e04d40f8534321_project-0 (1).avif",
-      "label": "Image path: assets/nafu/682ade1088e04d40f8534321_project-0 (1).avif"
-    },
-    "page_project_details_image_33": {
-      "value": "assets/nafu/682aef9310703914675fd085_project-img (4).avif",
-      "label": "Image path: assets/nafu/682aef9310703914675fd085_project-img (4).avif"
-    }
-  },
-  "News": {
-    "page_news_image_4": {
-      "value": "assets/nafu/blog-handyman.gif",
-      "label": "Image path: assets/nafu/blog-handyman.gif"
-    },
-    "page_news_image_5": {
-      "value": "assets/nafu/682ad431addb8bf5a550e766_blog (2).avif",
-      "label": "Image path: assets/nafu/682ad431addb8bf5a550e766_blog (2).avif"
-    },
-    "news_heading": {
-      "value": "Reliable handyman for every home project",
-      "label": "Page heading"
-    },
-    "news_description": {
-      "value": "Practical ideas for apartment repairs, painting, flooring and maintenance from your local Melbourne team.",
-      "label": "Page description"
-    },
-    "news_title": {
-      "value": "Our blog",
-      "label": "Page title"
-    },
-    "news_details_button": {
-      "value": "View details",
-      "label": "View details button"
-    },
-    "news_empty_heading": {
-      "value": "Fresh ideas are on their way",
-      "label": "Empty state heading"
-    },
-    "news_empty_description": {
-      "value": "Need a hand with your home? Our Melbourne team is here to help.",
-      "label": "Empty state description"
-    }
-  },
-  "News Details": {
-    "page_news_details_text_4": {
-      "value": "Blog details",
-      "label": "Blog details"
-    },
-    "page_news_details_text_6": {
-      "value": "We are preparing this article. Contact the Nafu team for help with your home project.",
-      "label": "We are preparing this article. Contact the Nafu team for help with your home project."
-    },
-    "page_news_details_text_7": {
-      "value": "' !!}",
-      "label": "' !!}"
-    },
-    "page_news_details_text_8": {
-      "value": "← All articles",
-      "label": "← All articles"
-    },
-    "page_news_details_image_9": {
-      "value": "assets/nafu/blog-detail-landscaping.avif",
-      "label": "Image path: assets/nafu/blog-detail-landscaping.avif"
-    },
-    "page_news_details_image_10": {
-      "value": "assets/nafu/blog-detail-landscaping.avif",
-      "label": "Image path: assets/nafu/blog-detail-landscaping.avif"
-    },
-    "page_news_details_image_11": {
-      "value": "assets/nafu/blog-handyman.gif",
-      "label": "Image path: assets/nafu/blog-handyman.gif"
-    },
-    "page_news_details_image_12": {
-      "value": "assets/nafu/blog-detail-secondary.avif",
-      "label": "Image path: assets/nafu/blog-detail-secondary.avif"
-    }
-  },
-  "Contact": {
-    "page_contact_text_1": {
-      "value": "Contact Nafu Home Care | Melbourne",
-      "label": "Contact Nafu Home Care | Melbourne"
-    },
-    "page_contact_text_2": {
-      "value": "Get in touch ",
-      "label": "Get in touch"
-    },
-    "page_contact_text_3": {
-      "value": "Let’s take care of your property",
-      "label": "Let’s take care of your property"
-    },
-    "page_contact_text_4": {
-      "value": "Tell us what needs attention. Whether it’s a small repair, a renovation or ongoing property maintenance, our Melbourne team is ready to help.",
-      "label": "Tell us what needs attention. Whether it’s a small repair, a renovation or ongoing property maintenance, our Melbourne team is ready to help."
-    },
-    "page_contact_text_5": {
-      "value": "Contact Nafu",
-      "label": "Contact Nafu"
-    },
-    "page_contact_text_6": {
-      "value": "Our contact information",
-      "label": "Our contact information"
-    },
-    "page_contact_text_7": {
-      "value": "Our address",
-      "label": "Our address"
-    },
-    "page_contact_text_8": {
-      "value": "265 Exhibition St,",
-      "label": "265 Exhibition St,"
-    },
-    "page_contact_text_9": {
-      "value": "Melbourne VIC 3000",
-      "label": "Melbourne VIC 3000"
-    },
-    "page_contact_text_10": {
-      "value": "Contact details",
-      "label": "Contact details"
-    },
-    "page_contact_text_11": {
-      "value": "0481 818 836",
-      "label": "0481 818 836"
-    },
-    "page_contact_text_12": {
-      "value": "Opening hours",
-      "label": "Opening hours"
-    },
-    "page_contact_text_13": {
-      "value": "Monday – Saturday: 8:00 am – 6:00 pm",
-      "label": "Monday – Saturday: 8:00 am – 6:00 pm"
-    },
-    "page_contact_text_14": {
-      "value": "Sunday: By appointment",
-      "label": "Sunday: By appointment"
-    },
-    "page_contact_text_15": {
-      "value": "Tell us about the job",
-      "label": "Tell us about the job"
-    },
-    "page_contact_text_16": {
-      "value": "How can we help?",
-      "label": "How can we help?"
-    },
-    "page_contact_text_17": {
-      "value": "Share a few details and our team will be in touch.",
-      "label": "Share a few details and our team will be in touch."
-    },
-    "page_contact_text_19": {
-      "value": "Please check the highlighted fields and try again.",
-      "label": "Please check the highlighted fields and try again."
-    },
-    "page_contact_text_20": {
-      "value": "Name",
-      "label": "Name"
-    },
-    "page_contact_text_21": {
-      "value": "Email address",
-      "label": "Email address"
-    },
-    "page_contact_text_22": {
-      "value": "Phone",
-      "label": "Phone"
-    },
-    "page_contact_text_23": {
-      "value": "Service needed",
-      "label": "Service needed"
-    },
-    "page_contact_text_24": {
-      "value": "Choose a service",
-      "label": "Choose a service"
-    },
-    "page_contact_text_25": {
-      "value": "Other",
-      "label": "Other"
-    },
-    "page_contact_text_26": {
-      "value": "Your message",
-      "label": "Your message"
-    },
-    "page_contact_text_27": {
-      "value": "Send enquiry ",
-      "label": "Send enquiry"
-    },
-    "page_contact_text_28": {
-      "value": "Ready when you are",
-      "label": "Ready when you are"
-    },
-    "page_contact_text_29": {
-      "value": "Don’t let repairs pile up.",
-      "label": "Don’t let repairs pile up."
-    },
-    "page_contact_text_30": {
-      "value": "Talk to a reliable Melbourne property care team today.",
-      "label": "Talk to a reliable Melbourne property care team today."
-    },
-    "page_contact_text_31": {
-      "value": "Call 0481 818 836 ",
-      "label": "Call 0481 818 836"
-    },
-    "page_contact_seo_32": {
-      "value": "Talk to Nafu Home Care about apartment repairs, painting, flooring, maintenance and property care across Melbourne.",
-      "label": "SEO: Talk to Nafu Home Care about apartment repairs, painting, flooring, maintenance and property care across Melbourne."
-    },
-    "page_contact_seo_33": {
-      "value": "Contact Nafu Home Care",
-      "label": "SEO: Contact Nafu Home Care"
-    },
-    "page_contact_seo_34": {
-      "value": "Tell our Melbourne property care team what you need and we’ll get back to you.",
-      "label": "SEO: Tell our Melbourne property care team what you need and we’ll get back to you."
-    },
-    "page_contact_placeholder_35": {
-      "value": "Enter your name",
-      "label": "Placeholder: Enter your name"
-    },
-    "page_contact_placeholder_36": {
-      "value": "Enter your email",
-      "label": "Placeholder: Enter your email"
-    },
-    "page_contact_placeholder_37": {
-      "value": "481 818 836",
-      "label": "Placeholder: 481 818 836"
-    },
-    "page_contact_placeholder_38": {
-      "value": "Tell us what needs attention",
-      "label": "Placeholder: Tell us what needs attention"
-    }
-  },
-  "404": {
-    "page_404_text_1": {
-      "value": "Page not found | NAFU Services",
-      "label": "Page not found | NAFU Services"
-    },
-    "page_404_text_2": {
-      "value": "Page not found",
-      "label": "Page not found"
-    },
-    "page_404_text_3": {
-      "value": "It looks like the page you’re looking for doesn’t exist or has been moved.",
-      "label": "It looks like the page you’re looking for doesn’t exist or has been moved."
-    },
-    "page_404_text_4": {
-      "value": "Go back to the homepage",
-      "label": "Go back to the homepage"
-    },
-    "page_404_seo_5": {
-      "value": "The page you’re looking for doesn’t exist or has been moved. Return to the NAFU Services homepage.",
-      "label": "SEO: The page you’re looking for doesn’t exist or has been moved. Return to the NAFU Services homepage."
-    }
-  }
 }

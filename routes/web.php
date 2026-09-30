@@ -74,6 +74,12 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
     Route::view('/contact-us', 'contact')->name('contact.page');
     Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+    Route::get('/shop', [HomeController::class, 'shop'])->name('page.shop');
+    Route::get('/shop/{slug}', [HomeController::class, 'productDetail'])->name('page.product');
+    Route::get('/sale', [HomeController::class, 'sale'])->name('page.sale');
+    Route::view('/cart', 'frontend.cart')->name('page.cart');
+    Route::get('/about-us', [HomeController::class, 'about'])->name('page.about');
+    Route::get('/our-legacy', [HomeController::class, 'legacy'])->name('page.legacy');
     Route::get('/{pagePath}/{slug?}', [\App\Http\Controllers\LocalizedPageController::class, 'show'])
         ->where('pagePath', '(?!admin$)[a-z0-9]+(?:-[a-z0-9]+)*')->name('localized.page');
 });
@@ -84,3 +90,19 @@ Route::middleware(['authUser'])->group(function () {
 
 // Keep this fallback last.
 Route::get('/{slug}', fn () => redirect('/', 301))->name('page.slug');
+
+use App\Http\Controllers\AccountController;
+Route::middleware('auth')->group(function () {
+    Route::get('/account/dashboard', [AccountController::class, 'dashboard'])->name('account.dashboard');
+    Route::get('/account/addresses', [AccountController::class, 'addresses'])->name('account.addresses');
+    Route::get('/account/orders', [AccountController::class, 'orders'])->name('account.orders');
+    Route::get('/account/orders/{id}', [AccountController::class, 'orderDetail'])->name('account.order_detail');
+});
+
+// Routes moved to locale group
+
+use App\Http\Controllers\LegalController;
+Route::get('/faq', [LegalController::class, 'faq'])->name('page.faq');
+Route::get('/shipping-refunds', [LegalController::class, 'shipping'])->name('page.shipping');
+Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('page.privacy');
+Route::get('/terms-of-service', [LegalController::class, 'terms'])->name('page.terms');
