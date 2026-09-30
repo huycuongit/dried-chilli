@@ -1,22 +1,21 @@
 <header class="spice-header">
     <div class="header-container">
-        <!-- Left Logo (Home) -->
-        <div class="header-left brand-logo-wrapper">
-            <a class="brand-logo" href="{{ page_route('home') }}">
-                <img src="{{ asset('images/jojo_logo.png') }}" alt="Dried Chili Logo" class="logo-img">
-            </a>
-        </div>
-        
-        <!-- Center Navigation -->
-        <div class="header-nav">
+        <!-- Left Navigation -->
+        <div class="header-left">
             <a href="/sale" class="nav-link sale-link {{ request()->is('sale') ? 'active' : '' }}">SALE</a>
             <a href="/about-us" class="nav-link {{ request()->is('about-us') ? 'active' : '' }}">ABOUT US</a>
             <a href="/shop" class="nav-link {{ request()->is('shop') ? 'active' : '' }}">SHOP</a>
-            <a href="{{ route('page.legacy') }}" class="nav-link {{ request()->routeIs('page.legacy') ? 'active' : '' }}">OUR LEGACY</a>
         </div>
+        
+        <!-- Center Logo (Home) -->
+        <a class="brand-logo" href="{{ page_route('home') }}">
+            <img src="{{ asset('images/jojo_logo.png') }}" alt="Dried Chili Logo" class="logo-img">
+        </a>
         
         <!-- Right Navigation & Cart -->
         <div class="header-right">
+            <a href="{{ route('page.legacy') }}" class="nav-link {{ request()->routeIs('page.legacy') ? 'active' : '' }}">OUR LEGACY</a>
+            
             <a href="/cart" class="cart-btn {{ request()->is('cart') ? 'active' : '' }}" style="text-decoration: none;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                 <span class="cart-text">CART</span>
@@ -119,17 +118,11 @@
         justify-content: space-between;
     }
 
-        .header-left, .header-nav, .header-right {
+    .header-left, .header-right {
         display: flex;
         align-items: center;
         gap: 2.5rem;
         flex: 1;
-    }
-    .header-nav {
-        justify-content: center;
-    }
-    .header-left {
-        justify-content: flex-start;
     }
     
     .header-right {
@@ -218,7 +211,7 @@
     }
 
     @media (max-width: 900px) {
-        .header-nav { display: none; }
+        .header-left { display: none; }
         .logo-img { height: 50px; }
     }
 </style>

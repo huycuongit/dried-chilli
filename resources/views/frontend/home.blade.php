@@ -374,15 +374,15 @@
         align-items: center;
     }
     .zhen-hero-img {
-        max-width: 120%;
+        max-width: 90%;
         height: auto;
         border-radius: 20px;
-        transform: rotate(5deg) scale(1.1);
+        transform: rotate(2deg) scale(0.9);
         box-shadow: 20px 20px 60px rgba(0,0,0,0.5);
         transition: transform 0.3s ease;
     }
     .zhen-hero-img:hover {
-        transform: rotate(2deg) scale(1.15);
+        transform: rotate(0deg) scale(0.95);
     }
     .zhen-features {
         display: grid;
