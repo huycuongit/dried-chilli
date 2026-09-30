@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="zhen-image-side">
-                <img src="{{ asset('images/hero_bento_box.jpg') }}" alt="Asian Bento Box" class="zhen-hero-img">
+                <img src="{{ asset('images/product_khong_nen.png') }}" alt="Asian Bento Box" class="zhen-hero-img">
             </div>
         </div>
 
@@ -251,6 +251,26 @@
     }
 
     
+
+    /* Header color overrides for home page dark background */
+    .spice-header .nav-link,
+    .spice-header .cart-btn,
+    .spice-header .cart-text {
+        color: #F6F1EA !important;
+    }
+    .spice-header .nav-link:hover,
+    .spice-header .nav-link.active,
+    .spice-header .cart-btn:hover,
+    .spice-header .cart-btn:hover .cart-text {
+        color: #E0A83A !important;
+    }
+    .spice-header .nav-link::after {
+        background-color: #E0A83A !important;
+    }
+    .spice-header {
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    }
+
     /* Zhen Hero Styles */
     .spice-header {
         position: absolute;
