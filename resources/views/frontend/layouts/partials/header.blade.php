@@ -27,7 +27,7 @@
 </header>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
     /* Native View Transitions API */
     @view-transition { navigation: auto; }
