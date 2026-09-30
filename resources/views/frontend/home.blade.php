@@ -452,8 +452,8 @@
         display: block;
         padding-top: 100%;
         overflow: hidden;
-        background: white;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
+        background: #FDFBF7;
+        border-bottom: none;
     }
 
     .product-details {
@@ -467,40 +467,56 @@
 
     .product-title {
         display: block;
-        font-family: var(--font-heading);
-        font-size: 1.25rem;
-        color: var(--spice-text);
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        color: #3B2A20;
+        font-weight: 600;
         text-decoration: none;
         margin-bottom: 0.5rem;
+        line-height: 1.3;
     }
 
     .quick-add {
-        background: var(--spice-primary);
-        color: var(--spice-bg);
+        position: absolute;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        opacity: 0;
+        background: #3B2A20;
+        color: #F6F1EA;
         text-align: center;
-        padding: 1rem 0;
-        font-weight: 700;
+        padding: 0.8rem 0;
+        width: 80%;
+        border-radius: 99px;
+        font-weight: 600;
+        font-size: 0.85rem;
         text-transform: uppercase;
-        border-top: 1px solid rgba(0,0,0,0.05);
+        letter-spacing: 1px;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: all 0.3s ease;
+        z-index: 10;
     }
 
+    .product-card:hover .quick-add {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
     .quick-add:hover {
-        background: var(--spice-accent);
+        background: var(--spice-primary);
     }
 
     .product-badge {
         position: absolute;
         top: 1.5rem;
         left: 1.5rem;
-        padding: 0.25rem 0.75rem;
+        padding: 0.3rem 0.8rem;
         color: white;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 1.5px;
         z-index: 2;
+        border-radius: 99px;
     }
 
     .product-badge.sale { background-color: var(--spice-accent); }
@@ -508,7 +524,7 @@
 
     .product-img-wrapper img {
         position: absolute;
-        top: 10%; left: 10%; width: 80%; height: 80%;
+        top: 15%; left: 15%; width: 70%; height: 70%;
         object-fit: contain;
         transition: transform 0.5s ease;
     }
@@ -519,9 +535,10 @@
 
     .product-vendor {
         font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--spice-primary);
         text-transform: uppercase;
-        letter-spacing: 1px;
-        opacity: 0.6;
+        letter-spacing: 1.5px;
         margin-bottom: 0.5rem;
     }
 
