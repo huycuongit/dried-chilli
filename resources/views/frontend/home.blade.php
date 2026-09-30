@@ -206,20 +206,35 @@
 
 
 
-    /* Zhen Hero Styles */
+
+    /* Header color overrides for home page dark background */
+    .spice-header .nav-link,
+    .spice-header .cart-btn,
+    .spice-header .cart-text {
+        color: #D7CBBC !important;
+    }
+    .spice-header .nav-link:hover,
+    .spice-header .nav-link.active,
+    .spice-header .cart-btn:hover,
+    .spice-header .cart-btn:hover .cart-text {
+        color: #DB7B52 !important;
+    }
+    .spice-header .nav-link::after {
+        background-color: #DB7B52 !important;
+    }
     .spice-header {
         position: absolute;
         top: 0; left: 0; right: 0;
         background: transparent !important;
-        border-bottom: none !important;
         z-index: 100;
     }
     .zhen-hero {
-        background-color: var(--spice-bg); 
+        background-color: #3B2A20; 
+        background: linear-gradient(135deg, #3B2A20 0%, #2A1D15 100%);
         min-height: 100vh;
         padding-top: 140px; 
         padding-bottom: 4rem;
-        color: #3B2A20;
+        color: #D7CBBC;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -236,14 +251,14 @@
     .zhen-badge {
         display: inline-flex;
         align-items: center;
-        background: rgba(59, 42, 32, 0.05);
-        border: 1px solid rgba(59, 42, 32, 0.1);
+        background: rgba(215, 203, 188, 0.1);
+        border: 1px solid rgba(215, 203, 188, 0.2);
         padding: 0.5rem 1rem;
         border-radius: 99px;
         font-family: var(--font-body, sans-serif);
         font-size: 0.9rem;
         margin-bottom: 2rem;
-        color: #5C4B41;
+        color: #D7CBBC;
         font-weight: 500;
     }
     .zhen-title {
@@ -251,16 +266,17 @@
         font-size: clamp(3rem, 5vw, 5.5rem);
         line-height: 1.1;
         margin: 0 0 1.5rem 0;
-        color: #2D2C3D;
+        color: #D7CBBC;
         font-weight: 500;
     }
     .zhen-title .highlight-yellow {
-        color: var(--spice-primary);
+        color: #DB7B52;
     }
     .zhen-desc {
         font-size: 1.15rem;
         line-height: 1.6;
-        color: #5C4B41;
+        color: #D7CBBC;
+        opacity: 0.9;
         max-width: 450px;
         margin-bottom: 2.5rem;
     }
@@ -269,7 +285,7 @@
         gap: 1rem;
     }
     .btn-primary-zhen {
-        background-color: #2D2C3D;
+        background-color: #DB7B52;
         color: #FDFBF7;
         border: none;
         padding: 1rem 2.5rem;
@@ -278,18 +294,17 @@
         text-decoration: none;
         display: inline-block;
         transition: all 0.3s;
-        box-shadow: 0 10px 20px rgba(45, 44, 61, 0.2);
+        box-shadow: 0 10px 20px rgba(219, 123, 82, 0.3);
     }
     .btn-primary-zhen:hover {
-        background-color: var(--spice-primary);
-        color: #FDFBF7;
+        background-color: #C66A45;
         transform: translateY(-3px);
-        box-shadow: 0 15px 25px rgba(219, 123, 82, 0.3);
+        box-shadow: 0 15px 25px rgba(219, 123, 82, 0.4);
     }
     .btn-outline-zhen {
         background-color: transparent;
-        color: #2D2C3D;
-        border: 2px solid #2D2C3D;
+        color: #D7CBBC;
+        border: 2px solid #D7CBBC;
         padding: 1rem 2.5rem;
         font-weight: 600;
         border-radius: 99px;
@@ -298,8 +313,8 @@
         transition: all 0.3s;
     }
     .btn-outline-zhen:hover {
-        background-color: #2D2C3D;
-        color: #FDFBF7;
+        background-color: #D7CBBC;
+        color: #3B2A20;
         transform: translateY(-3px);
     }
     .zhen-image-side {
@@ -313,7 +328,7 @@
         height: auto;
         border-radius: 20px;
         transform: rotate(2deg) scale(0.9);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         transition: transform 0.3s ease;
     }
     .zhen-hero-img:hover {
@@ -326,39 +341,38 @@
         margin-top: 4rem;
     }
     .zhen-feature-card {
-        background: rgba(255,255,255,0.6);
-        border: 1px solid rgba(0,0,0,0.05);
+        background: rgba(215, 203, 188, 0.05);
+        border: 1px solid rgba(215, 203, 188, 0.15);
         border-radius: 16px;
         padding: 2rem;
         text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        transition: transform 0.3s ease, background 0.3s ease;
     }
     .zhen-feature-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-        background: rgba(255,255,255,0.9);
+        background: rgba(215, 203, 188, 0.1);
     }
     .feature-icon {
         font-size: 1.5rem;
-        color: var(--spice-primary);
+        color: #DB7B52;
         margin-bottom: 1rem;
         display: inline-flex;
         width: 48px; height: 48px;
-        background: rgba(219, 123, 82, 0.1);
+        background: rgba(219, 123, 82, 0.15);
         border-radius: 12px;
         align-items: center;
         justify-content: center;
     }
     .zhen-feature-card h3 {
-        color: #3B2A20;
+        color: #D7CBBC;
         font-size: 1.2rem;
         margin-bottom: 0.5rem;
         font-weight: 600;
         font-family: 'Playfair Display', serif;
     }
     .zhen-feature-card p {
-        color: #5C4B41;
+        color: #D7CBBC;
+        opacity: 0.8;
         font-size: 0.95rem;
         line-height: 1.5;
         margin: 0;
