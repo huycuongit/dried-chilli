@@ -8,44 +8,40 @@
 @section('full-content')
 <main class="spice-main">
 
-    <!-- Redesigned Hero Section -->
+        <!-- Zhen Hero Section -->
     <section class="zhen-hero">
         <div class="zhen-hero-content container">
             <div class="zhen-text-side">
-                <h1 class="zhen-title">Serving You The<br>Purest Flavors</h1>
-                <p class="zhen-desc">Spice Up Your Food And Life With The<br>Magic Of Our Handpicked Goodness</p>
+                <div class="zhen-badge">
+                    <span class="fire-icon">🔥</span> Bold Flavors, Infinite Spice
+                </div>
+                <h1 class="zhen-title">Simply<br><span class="highlight-yellow">Asian</span>, Truly<br>Exceptional</h1>
+                <p class="zhen-desc">Discover the vibrant streets of Asia through our signature bowls and authentic street-food favorites.</p>
                 <div class="zhen-actions">
-                    <a href="/shop" class="btn-primary-dark">Shop Now <span class="icon-circle">&gt;</span></a>
+                    <a href="/shop" class="btn-primary-zhen">Get Started &rarr;</a>
+                    <a href="/about" class="btn-outline-zhen">Our Features</a>
                 </div>
             </div>
             <div class="zhen-image-side">
-                <img src="{{ asset('images/product_khong_nen.png') }}" alt="Spices" class="zhen-hero-img">
+                <img src="{{ asset('images/product_khong_nen.png') }}" alt="Asian Bento Box" class="zhen-hero-img">
             </div>
         </div>
 
-        <div class="container zhen-features-container">
-            <div class="zhen-features">
-                <div class="zhen-feature-card feature-card-custom">
-                    <div class="feature-icon-wrapper" style="background: #F1CA7B;">
-                        <img src="{{ asset('images/product_hero.png') }}" class="circle-img" alt="Ground Spice">
-                    </div>
-                    <h3 class="feature-title">Ground Spice</h3>
-                    <p class="feature-desc">Get fully ground & powdered spices ready to be added to any dish on the go</p>
-                </div>
-                <div class="zhen-feature-card feature-card-custom">
-                    <div class="feature-icon-wrapper" style="background: #C66A45;">
-                        <img src="{{ asset('images/product_khong_nen.png') }}" class="circle-img" alt="Whole Spices">
-                    </div>
-                    <h3 class="feature-title">Whole Spices</h3>
-                    <p class="feature-desc">Find a wide variety of fresh whole spices that add dynamic & delicious flavors</p>
-                </div>
-                <div class="zhen-feature-card feature-card-custom">
-                    <div class="feature-icon-wrapper" style="background: #3B8C6E;">
-                        <img src="{{ asset('images/product_hero.png') }}" class="circle-img" alt="Best Sellers">
-                    </div>
-                    <h3 class="feature-title">Best Sellers</h3>
-                    <p class="feature-desc">Explore our collection of specialty spices & herbs that are expertly crafted overseas</p>
-                </div>
+        <div class="zhen-features container">
+            <div class="zhen-feature-card">
+                <div class="feature-icon">🌿</div>
+                <h3>Farm to Table Organic</h3>
+                <p>We source our ingredients daily from local sustainable farms.</p>
+            </div>
+            <div class="zhen-feature-card">
+                <div class="feature-icon">👨‍🍳</div>
+                <h3>Master Chefs</h3>
+                <p>Our dishes are prepared by expert chefs trained in traditional Asian techniques.</p>
+            </div>
+            <div class="zhen-feature-card">
+                <div class="feature-icon">⏱️</div>
+                <h3>Always Fresh</h3>
+                <p>No pre-cooked meals. Every dish is prepared fresh the moment you order.</p>
             </div>
         </div>
     </section>
@@ -218,12 +214,11 @@
         border-bottom: none !important;
         z-index: 100;
     }
-    
     .zhen-hero {
         background-color: var(--spice-bg); 
         min-height: 100vh;
-        padding-top: 160px; 
-        padding-bottom: 0;
+        padding-top: 140px; 
+        padding-bottom: 4rem;
         color: #3B2A20;
         position: relative;
         display: flex;
@@ -237,16 +232,30 @@
         gap: 4rem;
         align-items: center;
         flex: 1;
-        margin-bottom: 4rem;
+    }
+    .zhen-badge {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(59, 42, 32, 0.05);
+        border: 1px solid rgba(59, 42, 32, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 99px;
+        font-family: var(--font-body, sans-serif);
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        color: #5C4B41;
+        font-weight: 500;
     }
     .zhen-title {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(3.5rem, 6vw, 4.8rem);
+        font-size: clamp(3rem, 5vw, 5.5rem);
         line-height: 1.1;
         margin: 0 0 1.5rem 0;
         color: #2D2C3D;
         font-weight: 500;
-        letter-spacing: -1px;
+    }
+    .zhen-title .highlight-yellow {
+        color: var(--spice-primary);
     }
     .zhen-desc {
         font-size: 1.15rem;
@@ -254,39 +263,45 @@
         color: #5C4B41;
         max-width: 450px;
         margin-bottom: 2.5rem;
-        font-weight: 500;
     }
     .zhen-actions {
         display: flex;
         gap: 1rem;
     }
-    
-    .btn-primary-dark {
+    .btn-primary-zhen {
         background-color: #2D2C3D;
-        color: white;
-        border-radius: 99px;
-        padding: 10px 14px 10px 32px;
-        display: inline-flex;
-        align-items: center;
-        gap: 16px;
-        text-decoration: none;
+        color: #FDFBF7;
+        border: none;
+        padding: 1rem 2.5rem;
         font-weight: 600;
-        font-size: 0.95rem;
-        font-family: var(--font-body);
-        box-shadow: 0 15px 30px rgba(45, 44, 61, 0.2);
-        transition: transform 0.3s ease;
+        border-radius: 99px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s;
+        box-shadow: 0 10px 20px rgba(45, 44, 61, 0.2);
     }
-    .btn-primary-dark:hover {
+    .btn-primary-zhen:hover {
+        background-color: var(--spice-primary);
+        color: #FDFBF7;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(219, 123, 82, 0.3);
+    }
+    .btn-outline-zhen {
+        background-color: transparent;
+        color: #2D2C3D;
+        border: 2px solid #2D2C3D;
+        padding: 1rem 2.5rem;
+        font-weight: 600;
+        border-radius: 99px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s;
+    }
+    .btn-outline-zhen:hover {
+        background-color: #2D2C3D;
+        color: #FDFBF7;
         transform: translateY(-3px);
     }
-    .icon-circle {
-        background-color: #DB7B52; 
-        width: 32px; height: 32px;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        color: white; font-weight: bold;
-    }
-
     .zhen-image-side {
         position: relative;
         display: flex;
@@ -294,72 +309,59 @@
         align-items: center;
     }
     .zhen-hero-img {
-        max-width: 120%;
-        width: 110%;
-        margin-right: -10%;
+        max-width: 90%;
         height: auto;
-        transform: translateY(-10px);
-        filter: drop-shadow(0 30px 50px rgba(0,0,0,0.15));
+        border-radius: 20px;
+        transform: rotate(2deg) scale(0.9);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         transition: transform 0.3s ease;
     }
     .zhen-hero-img:hover {
-        transform: translateY(-15px);
-    }
-    
-    .zhen-features-container {
-        margin-top: 6rem;
+        transform: rotate(0deg) scale(0.95);
     }
     .zhen-features {
-        background-color: #262432;
-        border-radius: 30px 30px 0 0;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 3rem;
-        padding: 6rem 3rem 4rem 3rem;
-        position: relative;
+        gap: 2rem;
+        margin-top: 4rem;
     }
-    .feature-card-custom {
+    .zhen-feature-card {
+        background: rgba(255,255,255,0.6);
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: 16px;
+        padding: 2rem;
         text-align: center;
-        color: white;
-        position: relative;
-        background: transparent !important;
-        border: none !important;
-        padding: 0 !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
     }
-    .feature-card-custom:hover {
-        background: transparent !important;
+    .zhen-feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        background: rgba(255,255,255,0.9);
     }
-    .feature-icon-wrapper {
-        position: absolute;
-        top: -11.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 140px; height: 140px;
-        border-radius: 50%;
-        padding: 10px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-    }
-    .circle-img {
-        width: 100%; height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-        background-color: white;
-    }
-
-    .feature-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.6rem;
-        font-weight: 500;
+    .feature-icon {
+        font-size: 1.5rem;
+        color: var(--spice-primary);
         margin-bottom: 1rem;
-        color: #FDFBF7 !important;
-        margin-top: 0;
+        display: inline-flex;
+        width: 48px; height: 48px;
+        background: rgba(219, 123, 82, 0.1);
+        border-radius: 12px;
+        align-items: center;
+        justify-content: center;
     }
-    .feature-desc {
-        font-size: 0.95rem !important;
-        color: #A3A1B3 !important;
-        line-height: 1.6 !important;
-        max-width: 250px;
-        margin: 0 auto !important;
+    .zhen-feature-card h3 {
+        color: #3B2A20;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-family: 'Playfair Display', serif;
+    }
+    .zhen-feature-card p {
+        color: #5C4B41;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin: 0;
     }
     
     @media (max-width: 992px) {
