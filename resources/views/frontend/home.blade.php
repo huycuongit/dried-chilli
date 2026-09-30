@@ -390,7 +390,15 @@
         }
     }
 
+
+    .container {
+        max-width: 1230px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
     /* Section Header */
+
     .section-header {
         display: flex;
         justify-content: space-between;
