@@ -14,7 +14,7 @@ class EcomLegalController extends Controller
      */
     public function index()
     {
-        //
+        return redirect()->route('admin.systems.pages')->with('success', 'Bạn có thể quản lý Privacy Policy và Terms of Service ở tab tương ứng trong phần Pages này.');
     }
 
     /**

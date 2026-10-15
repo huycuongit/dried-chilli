@@ -2,7 +2,7 @@
 
 @push('css')
 <style>
-    .contract-item{border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:14px;background:#fafbfc}.contract-item-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr auto;gap:12px;align-items:end}@media(max-width:900px){.contract-item-grid{grid-template-columns:1fr 1fr}.contract-item-grid>*:first-child{grid-column:1/-1}}.contract-total{font-size:1.15rem;font-weight:700}.contract-locked{padding:12px 16px;border-radius:10px;background:#e8f7ee;color:#167443}
+    .contract-item{border:1px solid #e5e7eb;border-radius:20px;padding:18px;margin-bottom:14px;background:#fafbfc}.contract-item-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr auto;gap:12px;align-items:end}@media(max-width:900px){.contract-item-grid{grid-template-columns:1fr 1fr}.contract-item-grid>*:first-child{grid-column:1/-1}}.contract-total{font-size:1.15rem;font-weight:700}.contract-locked{padding:12px 16px;border-radius:20px;background:#e8f7ee;color:#167443}
 </style>
 @endpush
 

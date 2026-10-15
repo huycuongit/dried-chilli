@@ -13,6 +13,7 @@ class CartItem extends Model
         'cart_id',
         'product_id',
         'variant_id',
+        'bundle_id',
         'quantity',
         'price',
     ];
@@ -30,5 +31,10 @@ class CartItem extends Model
     public function variant()
     {
         return $this->belongsTo(ProductVariant::class, 'variant_id');
+    }
+
+    public function bundle()
+    {
+        return $this->belongsTo(Bundle::class, 'bundle_id');
     }
 }

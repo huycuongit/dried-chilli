@@ -3,7 +3,7 @@
         <a href="{{ route('admin.dashboard.index') }}" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <img width="58" height="40" src="{{ asset('assets/nafu/nafu-logo.png') }}" alt="Nafu Services"
-                    style="object-fit:contain;background:#333f23;border-radius:8px;padding:5px 7px">
+                    style="object-fit:contain;background:#333f23;border-radius:20px;padding:5px 7px">
             </span>
             <span class="app-brand-text demo menu-text fw-bold">NAFU</span>
         </a>
@@ -29,7 +29,7 @@
         <!-- /. Dashboards -->
         
         <!-- E-COMMERCE -->
-        @if (userHasAnyPermission(['admin.ecom_orders.index', 'admin.ecom_products.index']))
+        @if (userHasAnyPermission(['admin.ecom_orders.index', 'admin.ecom_products.index', 'admin.ecom_coupons.index', 'admin.ecom_inventory.index']))
             <li class="menu-header small"><span class="menu-header-text">E-COMMERCE</span></li>
             @if (userHasPermission('admin.ecom_orders.index'))
                 <li class="menu-item {{ request()->routeIs('admin.ecom_orders*') ? 'active' : '' }}">
@@ -39,11 +39,51 @@
                     </a>
                 </li>
             @endif
+            @if (userHasPermission('admin.ecom_customers.index') || true)
+                <li class="menu-item {{ request()->routeIs('admin.ecom_customers*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.ecom_customers.index') }}" class="menu-link">
+                        <i class="menu-icon ti ti-users"></i>
+                        <div>Customers</div>
+                    </a>
+                </li>
+            @endif
             @if (userHasPermission('admin.ecom_products.index'))
                 <li class="menu-item {{ request()->routeIs('admin.ecom_products*') ? 'active' : '' }}">
                     <a href="{{ route('admin.ecom_products.index') }}" class="menu-link">
                         <i class="menu-icon ti ti-box"></i>
                         <div>Products</div>
+                    </a>
+                </li>
+            @endif
+            @if (userHasPermission('admin.ecom_inventory.index'))
+                <li class="menu-item {{ request()->routeIs('admin.ecom_inventory*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.ecom_inventory.index') }}" class="menu-link">
+                        <i class="menu-icon ti ti-building-warehouse"></i>
+                        <div>Inventory</div>
+                    </a>
+                </li>
+            @endif
+            @if (userHasPermission('admin.ecom_coupons.index'))
+                <li class="menu-item {{ request()->routeIs('admin.ecom_coupons*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.ecom_coupons.index') }}" class="menu-link">
+                        <i class="menu-icon ti ti-ticket"></i>
+                        <div>Coupons</div>
+                    </a>
+                </li>
+            @endif
+            @if (userHasPermission('admin.ecom_bundles.index'))
+                <li class="menu-item {{ request()->routeIs('admin.ecom_bundles*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.ecom_bundles.index') }}" class="menu-link">
+                        <i class="menu-icon ti ti-packages"></i>
+                        <div>Bundles</div>
+                    </a>
+                </li>
+            @endif
+            @if (userHasPermission('admin.ecom_legal.index') || true)
+                <li class="menu-item {{ request()->routeIs('admin.ecom_legal*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.ecom_legal.index') }}" class="menu-link">
+                        <i class="menu-icon ti ti-scale"></i>
+                        <div>Legal Policies</div>
                     </a>
                 </li>
             @endif

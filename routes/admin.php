@@ -102,6 +102,8 @@ Route::group(['middleware' => 'authadmin'], function () {
                 Route::redirect('/homepage', '/admin/nafu-project/systems/pages');
                 Route::get('/pages', [\App\Http\Controllers\Admin\HomepageController::class, 'index'])->name('pages');
                 Route::put('/pages', [\App\Http\Controllers\Admin\HomepageController::class, 'update'])->name('pages.save');
+                Route::match(['post', 'put'], '/pages/add-section', [\App\Http\Controllers\Admin\HomepageController::class, 'addSection'])->name('pages.add_section');
+                Route::match(['post', 'put'], '/pages/delete-section', [\App\Http\Controllers\Admin\HomepageController::class, 'deleteSection'])->name('pages.delete_section');
                 Route::get('/apis', 'apis')->name('apis');
                 Route::get('/socials', 'socials')->name('socials');
                 Route::get('/config-shareholders', 'configshareholders')->name('config-shareholders');
@@ -117,8 +119,20 @@ Route::group(['middleware' => 'authadmin'], function () {
             Route::resource('ecom-products', \App\Http\Controllers\Admin\EcomProductController::class)->names('admin.ecom_products');
             Route::get('ecom-orders/datatables', [\App\Http\Controllers\Admin\EcomOrderController::class, 'datatables'])->name('admin.ecom_orders.datatables');
             Route::resource('ecom-orders', \App\Http\Controllers\Admin\EcomOrderController::class)->names('admin.ecom_orders');
+            
+            Route::get('ecom-customers/datatables', [\App\Http\Controllers\Admin\EcomCustomerController::class, 'datatables'])->name('admin.ecom_customers.datatables');
+            Route::resource('ecom-customers', \App\Http\Controllers\Admin\EcomCustomerController::class)->names('admin.ecom_customers')->only(['index', 'show']);
+            
+            Route::get('ecom-inventory/datatables', [\App\Http\Controllers\Admin\EcomInventoryController::class, 'datatables'])->name('admin.ecom_inventory.datatables');
             Route::resource('ecom-inventory', \App\Http\Controllers\Admin\EcomInventoryController::class)->names('admin.ecom_inventory');
+            
+            Route::get('ecom-bundles/datatables', [\App\Http\Controllers\Admin\EcomBundleController::class, 'datatables'])->name('admin.ecom_bundles.datatables');
+            Route::resource('ecom-bundles', \App\Http\Controllers\Admin\EcomBundleController::class)->names('admin.ecom_bundles');
+            
             Route::resource('ecom-legal', \App\Http\Controllers\Admin\EcomLegalController::class)->names('admin.ecom_legal');
+            
+            Route::get('ecom-coupons/datatables', [\App\Http\Controllers\Admin\EcomCouponController::class, 'datatables'])->name('admin.ecom_coupons.datatables');
+            Route::resource('ecom-coupons', \App\Http\Controllers\Admin\EcomCouponController::class)->names('admin.ecom_coupons');
 
         });
     });

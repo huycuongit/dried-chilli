@@ -4,7 +4,7 @@
     <style>
         .page-tabs { overflow-x: auto; overflow-y: hidden; flex-wrap: nowrap; scrollbar-width: thin; }
         .page-tabs .nav-link { white-space: nowrap; }
-        .page-section { border: 1px solid var(--bs-border-color); border-radius: .75rem; overflow: hidden; }
+        .page-section { border: 1px solid var(--bs-border-color); border-radius: 20px; overflow: hidden; }
         .page-section + .page-section { margin-top: 1rem; }
         .page-section summary { padding: 1rem 1.25rem; cursor: pointer; font-weight: 600; background: rgba(var(--bs-primary-rgb), .04); }
         .page-section__body { padding: 1.25rem; }

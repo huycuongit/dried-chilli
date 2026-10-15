@@ -1,7 +1,7 @@
 <!doctype html>
 
 <html lang="en" class="light-style layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
-    data-assets-path="assets/admin/assets" data-template="vertical-menu-template" data-style="light">
+    data-assets-path="{{ asset('assets/admin') }}/" data-template="vertical-menu-template" data-style="light">
 
 <head>
     <meta charset="utf-8" />
@@ -74,7 +74,7 @@
         <a href="index.html" class="app-brand auth-cover-brand">
             <span class="app-brand-logo demo">
                 <img width="78" height="52" src="{{ asset('assets/nafu/nafu-logo.png') }}"
-                    alt="Nafu Services" style="object-fit:contain;background:#333f23;border-radius:10px;padding:6px 10px">
+                    alt="Nafu Services" style="object-fit:contain;background:#333f23;border-radius:20px;padding:6px 10px">
 
                 {{-- <svg width="32" height="22" viewBox="0 0 32 22" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -353,7 +353,7 @@
         }
 
         function initPasswordToggle() {
-            const toggler = document.querySelectorAll('.form-password-toggle i')
+            const toggler = document.querySelectorAll('.form-password-toggle .input-group-text')
             if (typeof toggler !== 'undefined' && toggler !== null) {
                 toggler.forEach(el => {
                     el.addEventListener('click', e => {

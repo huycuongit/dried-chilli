@@ -179,7 +179,7 @@
         align-items: center;
         justify-content: center;
         padding: 1rem 2rem;
-        border-radius: 9999px;
+        border-radius: 20px;
         font-family: var(--font-display);
         font-size: 1.5rem;
         text-decoration: none;
@@ -215,7 +215,7 @@
         background: var(--yy-gold);
         color: var(--yy-black);
         padding: 0.1rem 0.5rem;
-        border-radius: 999px;
+        border-radius: 20px;
         margin-left: 0.75rem;
         border: 2px solid var(--yy-black);
     }
@@ -299,7 +299,7 @@
             var(--yy-gold) 0 10deg,
             var(--yy-bg) 10deg 20deg
         );
-        border-radius: 50%;
+        border-radius: 20px;
         z-index: -1;
         animation: spin 40s linear infinite;
         opacity: 0.6;
@@ -330,7 +330,7 @@
         font-size: 1.5rem;
         padding: 0.5rem 1.5rem;
         border: 2px solid var(--yy-black);
-        border-radius: 9999px;
+        border-radius: 20px;
         box-shadow: 3px 3px 0px var(--yy-black);
     }
 
@@ -396,7 +396,7 @@
 
     .yy-card {
         border: 2px solid var(--yy-black);
-        border-radius: 16px;
+        border-radius: 20px;
         overflow: hidden;
         position: relative;
         box-shadow: 6px 6px 0px var(--yy-black);
@@ -424,7 +424,7 @@
         font-family: var(--font-display);
         padding: 0.25rem 0.75rem;
         border: 2px solid var(--yy-black);
-        border-radius: 999px;
+        border-radius: 20px;
         z-index: 2;
         transform: rotate(-3deg);
     }
@@ -561,7 +561,7 @@
         color: var(--yy-black);
         width: 80px;
         height: 80px;
-        border-radius: 50%;
+        border-radius: 20px;
         border: 2px solid var(--yy-black);
         display: flex;
         align-items: center;

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
@@ -29,6 +30,8 @@ Route::post('contact', [ContactController::class, 'store'])->name('contact.store
 
 Route::post('/submit-login', [AuthController::class, 'submitLogin'])->name('auth.submitLogin');
 Route::get('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/submit-register', [AuthController::class, 'submitRegister'])->name('auth.submitRegister');
+Route::get('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
 
 // Careers
 // Ckfinder connects  
@@ -72,14 +75,18 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
     Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-    Route::view('/contact-us', 'contact')->name('contact.page');
+    Route::view('/contact', 'contact')->name('contact.page');
     Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
     Route::get('/shop', [HomeController::class, 'shop'])->name('page.shop');
     Route::get('/shop/{slug}', [HomeController::class, 'productDetail'])->name('page.product');
-    Route::get('/sale', [HomeController::class, 'sale'])->name('page.sale');
+    Route::get('/sale', [SaleController::class, 'index'])->name('page.sale');
     Route::view('/cart', 'frontend.cart')->name('page.cart');
     Route::get('/about-us', [HomeController::class, 'about'])->name('page.about');
     Route::get('/our-legacy', [HomeController::class, 'legacy'])->name('page.legacy');
+    Route::get('/faq', [\App\Http\Controllers\LegalController::class, 'faq'])->name('page.faq');
+    Route::get('/shipping-refunds', [\App\Http\Controllers\LegalController::class, 'shipping'])->name('page.shipping');
+    Route::get('/privacy-policy', [\App\Http\Controllers\LegalController::class, 'privacy'])->name('page.privacy');
+    Route::get('/terms-of-service', [\App\Http\Controllers\LegalController::class, 'terms'])->name('page.terms');
     Route::get('/{pagePath}/{slug?}', [\App\Http\Controllers\LocalizedPageController::class, 'show'])
         ->where('pagePath', '(?!admin$)[a-z0-9]+(?:-[a-z0-9]+)*')->name('localized.page');
 });
@@ -88,8 +95,6 @@ Route::middleware(['authUser'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 
-// Keep this fallback last.
-Route::get('/{slug}', fn () => redirect('/', 301))->name('page.slug');
 
 use App\Http\Controllers\AccountController;
 Route::middleware('auth')->group(function () {
@@ -102,7 +107,6 @@ Route::middleware('auth')->group(function () {
 // Routes moved to locale group
 
 use App\Http\Controllers\LegalController;
-Route::get('/faq', [LegalController::class, 'faq'])->name('page.faq');
-Route::get('/shipping-refunds', [LegalController::class, 'shipping'])->name('page.shipping');
-Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('page.privacy');
-Route::get('/terms-of-service', [LegalController::class, 'terms'])->name('page.terms');
+
+// Keep this fallback last.
+Route::get('/{slug}', fn () => redirect('/', 301))->name('page.slug');

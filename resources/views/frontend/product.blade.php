@@ -43,36 +43,65 @@
                 <p>{{ $product->description }}</p>
             </div>
 
+            <div class="product-stock" style="margin-bottom: 1.25rem;">
+                @if($product->inventory && $product->inventory->quantity > 0)
+                    <span class="stock-badge in-stock">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        In Stock
+                    </span>
+                @else
+                    <span class="stock-badge out-of-stock">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+                        Out of stock
+                    </span>
+                @endif
+            </div>
+
             <div class="cart-action-group">
                 <div class="quantity-selector">
-                    <button type="button" class="qty-btn minus">-</button>
-                    <input type="number" value="1" min="1" max="10" class="qty-input" id="detail-qty">
-                    <button type="button" class="qty-btn plus">+</button>
+                    <button type="button" class="qty-btn minus" aria-label="Decrease quantity">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <input type="number" value="1" min="1" max="{{ max(1, min(10, $product->inventory->quantity ?? 1)) }}" class="qty-input" id="detail-qty" aria-label="Quantity">
+                    <button type="button" class="qty-btn plus" aria-label="Increase quantity">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
                 </div>
                 <button class="add-to-cart-btn large-btn" 
                     data-product-id="{{ $product->id }}" 
                     data-name="{{ $product->name }}" 
-                    data-price="{{ $product->sale_price ?? $product->price }}">
-                    ADD TO CART
+                    data-price="{{ $product->sale_price ?? $product->price }}"
+                    @if(!$product->inventory || $product->inventory->quantity <= 0) disabled style="opacity: 0.5; cursor: not-allowed; pointer-events: none;" @endif>
+                    <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    {{ (!$product->inventory || $product->inventory->quantity <= 0) ? 'OUT OF STOCK' : 'ADD TO CART' }}
                 </button>
             </div>
 
             <!-- Accordions -->
             <div class="product-accordion">
                 <details class="accordion-item" open>
-                    <summary class="accordion-header">INGREDIENTS</summary>
+                    <summary class="accordion-header">
+                        <span>INGREDIENTS</span>
+                        <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                    </summary>
                     <div class="accordion-content">
                         <p>100% Natural, non-GMO spices. No artificial colors or preservatives. Made in a facility that also processes peanuts.</p>
                     </div>
                 </details>
                 <details class="accordion-item">
-                    <summary class="accordion-header">HOW TO USE</summary>
+                    <summary class="accordion-header">
+                        <span>HOW TO USE</span>
+                        <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                    </summary>
                     <div class="accordion-content">
                         <p>Sprinkle generously on meat, poultry, or vegetables before cooking. Can also be used as a finishing salt.</p>
                     </div>
                 </details>
                 <details class="accordion-item">
-                    <summary class="accordion-header">SHIPPING & RETURNS</summary>
+                    <summary class="accordion-header">
+                        <span>SHIPPING & RETURNS</span>
+                        <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                    </summary>
                     <div class="accordion-content">
                         <p>Free standard shipping on orders over $50. Returns accepted within 30 days of purchase for unopened items.</p>
                     </div>
@@ -87,21 +116,35 @@
         <h2 class="section-heading">YOU MIGHT ALSO LIKE</h2>
         <div class="yum-grid">
             @foreach($relatedProducts as $related)
-            <div class="product-card" style="border: 3px solid var(--spice-text); border-radius: 12px; overflow: hidden; background: white; box-shadow: 6px 6px 0px var(--spice-text); display: flex; flex-direction: column; transition: transform 0.2s;">
-                <a href="{{ route('page.product', $related->slug) }}" class="product-img-wrapper" style="padding: 2rem; display: flex; justify-content: center; border-bottom: 3px solid var(--spice-text); background-color: #F8F3EA;">
-                    <img src="{{ asset('images/product_hero.png') }}" alt="{{ $related->name }}" style="max-height: 200px; object-fit: contain;">
+            <div class="product-card">
+                <a href="{{ route('page.product', $related->slug) }}" class="product-img-wrapper">
+                    <img src="{{ asset('images/product_hero.png') }}" alt="{{ $related->name }}">
                 </a>
-                <div class="product-details" style="padding: 1.5rem; display: flex; flex-direction: column; flex: 1;">
-                    <a href="{{ route('page.product', $related->slug) }}" class="product-title" style="font-family: var(--font-heading); font-size: 1.5rem; text-decoration: none; color: var(--spice-text); margin-bottom: 0.5rem;">{{ $related->name }}</a>
-                    <div class="product-price" style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">
+                <div class="product-details">
+                    <div class="product-vendor">{{ $related->category->name ?? 'Dried Chili' }}</div>
+                    <a href="{{ route('page.product', $related->slug) }}" class="product-card-title">{{ $related->name }}</a>
+                    <div class="product-price">
                         @if($related->sale_price)
-                            <span class="price-current" style="color: var(--spice-text);">${{ number_format($related->sale_price, 2) }}</span>
-                            <span class="price-compare" style="color: #999; text-decoration: line-through; font-size: 1rem;">${{ number_format($related->price, 2) }}</span>
+                            <span class="price-current">${{ number_format($related->sale_price, 2) }}</span>
+                            <span class="price-compare">${{ number_format($related->price, 2) }}</span>
                         @else
-                            ${{ number_format($related->price, 2) }}
+                            <span class="price-current">${{ number_format($related->price, 2) }}</span>
                         @endif
                     </div>
-                    <button class="add-to-cart-btn" style="background: var(--spice-primary); color: white; border: 2px solid var(--spice-text); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 800; cursor: pointer; text-transform: uppercase;" data-product-id="{{ $related->id }}" data-name="{{ $related->name }}" data-price="{{ $related->sale_price ?? $related->price }}">Add to Cart</button>
+                    <div class="product-stock">
+                        @if($related->inventory && $related->inventory->quantity > 0)
+                            <span class="stock-badge in-stock">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                                In Stock
+                            </span>
+                        @else
+                            <span class="stock-badge out-of-stock">Out of stock</span>
+                        @endif
+                    </div>
+                    <button class="add-to-cart-btn" data-product-id="{{ $related->id }}" data-name="{{ $related->name }}" data-price="{{ $related->sale_price ?? $related->price }}">
+                        <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        Add to Cart
+                    </button>
                 </div>
             </div>
             @endforeach
@@ -111,13 +154,13 @@
 </main>
 
 <style>
-.detail-bg { background: #FFF9F0; min-height: 100vh; padding-bottom: 4rem; }
+.detail-bg { background: var(--spice-bg-alt); min-height: 100vh; padding-bottom: 5rem; }
 
 /* Detail Layout */
 .detail-container { 
     max-width: 1200px; 
     margin: 0 auto;
-    padding: 3rem 1rem 0 1rem; 
+    padding: 3.5rem 1.5rem 0 1.5rem; 
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -128,140 +171,215 @@
 .product-gallery {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 .main-image {
-    border: 4px solid var(--spice-text);
-    border-radius: 12px;
-    background: white;
-    padding: 2rem;
+    border: 1px solid rgba(40, 18, 11, 0.08);
+    border-radius: 20px;
+    background: #FFFFFF;
+    padding: 2.5rem;
     position: relative;
-    box-shadow: 8px 8px 0px var(--spice-text);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 500px;
+    overflow: hidden;
+    isolation: isolate;
+    transition: box-shadow 0.3s ease;
+}
+.main-image:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
 }
 .main-image img {
     max-width: 100%;
     max-height: 400px;
     object-fit: contain;
+    transition: transform 0.4s ease;
 }
+.main-image:hover img {
+    transform: scale(1.04);
+}
+
+/* Corner Ribbon Badge */
 .product-badge {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
-    padding: 0.4rem 0.8rem;
+    top: 24px;
+    left: -38px;
+    width: 155px;
+    text-align: center;
+    padding: 0.4rem 0;
+    color: #FFFFFF;
     font-size: 0.75rem;
     font-weight: 800;
-    color: white;
     text-transform: uppercase;
-    border-radius: 20px;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
     z-index: 10;
-    letter-spacing: 0.5px;
+    transform: rotate(-45deg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+    pointer-events: none;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25);
 }
-.product-badge.sale { background: var(--spice-primary); }
-.product-badge.best-seller { background: var(--spice-text); }
+.product-badge.sale { 
+    background: linear-gradient(135deg, var(--spice-accent) 0%, var(--spice-primary) 100%);
+    color: #FFFFFF;
+}
+.product-badge.best-seller { 
+    background: linear-gradient(135deg, #FFB300 0%, #FF8F00 100%);
+    color: #28120B;
+    text-shadow: none;
+    box-shadow: 0 4px 10px rgba(255, 179, 0, 0.3);
+}
+
+/* Product Stock Clean Badge */
+.product-stock {
+    margin-bottom: 1.25rem;
+}
+.product-stock .stock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+.product-stock .stock-badge.in-stock {
+    color: #2E7D32; /* Chữ màu xanh lá */
+    font-weight: 600;
+}
+.product-stock .stock-badge.out-of-stock {
+    color: #C73B1B;
+    font-weight: 600;
+}
 
 .thumbnail-list {
     display: flex;
     gap: 1rem;
 }
 .thumb-item {
-    border: 3px solid var(--spice-text);
-    border-radius: 8px;
-    background: white;
+    border: 1.5px solid rgba(40, 18, 11, 0.12);
+    border-radius: 20px;
+    background: #FFFFFF;
     width: 80px;
     height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all 0.2s;
-    opacity: 0.6;
+    transition: all 0.25s ease;
+    opacity: 0.7;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 .thumb-item img {
     max-width: 80%;
     max-height: 80%;
+    object-fit: contain;
 }
 .thumb-item.active, .thumb-item:hover {
     opacity: 1;
-    box-shadow: 4px 4px 0px var(--spice-text);
+    border-color: var(--spice-primary);
+    box-shadow: 0 6px 16px rgba(228, 93, 62, 0.25);
     transform: translateY(-2px);
 }
 
 /* Right: Product Info */
 .product-vendor {
-    font-size: 0.9rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #666;
+    color: #9C8F85;
     margin-bottom: 0.5rem;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
 }
 .product-title {
     font-family: var(--font-heading);
-    font-size: 3rem;
-    color: var(--spice-text);
+    font-size: clamp(48px, 4.2vw, 64px);
+    font-weight: 800;
+    color: var(--spice-bg-dark);
     margin: 0 0 1rem 0;
     line-height: 1.1;
     text-transform: uppercase;
+    letter-spacing: -0.5px;
 }
 .product-price {
-    font-family: var(--font-heading);
-    font-size: 2rem;
+    font-family: var(--font-body);
+    font-size: 24px;
     font-weight: 800;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 1rem;
 }
-.price-current { color: var(--spice-text); }
-.price-compare { color: #999; text-decoration: line-through; font-size: 1.5rem; }
+.price-current { color: var(--spice-bg-dark); font-size: 24px; font-weight: 800; }
+.price-compare { color: #9C8F85; text-decoration: line-through; font-size: 16px; font-weight: 400; }
 
 .product-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 2.5rem;
-    color: #444;
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    color: #4A3B32;
+    text-align: justify;
+    text-justify: inter-word;
+}
+.product-description p {
+    margin: 0;
+    line-height: inherit;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 /* Cart Actions */
 .cart-action-group {
     display: flex;
     gap: 1rem;
-    margin-bottom: 3rem;
-    border-bottom: 3px solid var(--spice-text);
-    padding-bottom: 3rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(40, 18, 11, 0.1);
+    padding-bottom: 2.5rem;
 }
 .quantity-selector {
     display: flex;
-    border: 3px solid var(--spice-text);
-    border-radius: 30px;
-    background: white;
+    align-items: center;
+    border: 1.5px solid rgba(40, 18, 11, 0.15);
+    border-radius: 20px;
+    background: #FFFFFF;
     overflow: hidden;
-    height: 60px;
-    box-shadow: 4px 4px 0px var(--spice-text);
+    height: 56px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.2s;
+}
+.quantity-selector:focus-within {
+    border-color: var(--spice-primary);
 }
 .qty-btn {
-    background: none;
+    background: transparent;
     border: none;
-    width: 50px;
-    font-size: 1.5rem;
-    font-weight: bold;
+    width: 48px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--spice-bg-dark);
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
-.qty-btn:hover { background: #f0f0f0; }
+.qty-btn:hover { 
+    background: rgba(228, 93, 62, 0.08); 
+    color: var(--spice-primary);
+}
 .qty-input {
-    width: 60px;
+    width: 50px;
+    height: 100%;
     text-align: center;
     border: none;
-    border-left: 2px solid var(--spice-text);
-    border-right: 2px solid var(--spice-text);
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.15rem;
+    font-weight: 700;
     font-family: var(--font-body);
+    color: var(--spice-bg-dark);
+    background: transparent;
     -moz-appearance: textfield;
 }
 .qty-input::-webkit-outer-spin-button,
@@ -273,26 +391,36 @@
 .large-btn {
     flex: 1;
     background: var(--spice-primary);
-    color: white;
-    border: 3px solid var(--spice-text);
-    border-radius: 30px;
-    font-weight: 800;
-    font-size: 1.1rem;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.05rem;
     text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
-    box-shadow: 6px 6px 0px var(--spice-text);
-    transition: all 0.1s;
-    height: 60px;
-    display: flex;
+    box-shadow: 0 10px 24px rgba(228, 93, 62, 0.35);
+    transition: all 0.25s ease;
+    height: 56px;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
+    gap: 0.65rem;
 }
 .large-btn:hover {
-    background: #e33b3b;
+    background: var(--spice-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(199, 59, 27, 0.4);
 }
 .large-btn:active {
-    transform: translate(3px, 3px);
-    box-shadow: 3px 3px 0px var(--spice-text);
+    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(199, 59, 27, 0.3);
+}
+.large-btn .btn-icon {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2px;
 }
 
 /* Accordions */
@@ -302,43 +430,73 @@
     gap: 1rem;
 }
 .accordion-item {
-    border: 3px solid var(--spice-text);
-    border-radius: 8px;
-    background: white;
+    border: 1px solid rgba(40, 18, 11, 0.08);
+    border-radius: 20px;
+    background: #FFFFFF;
     overflow: hidden;
-    box-shadow: 4px 4px 0px var(--spice-text);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.accordion-item[open] {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border-color: rgba(40, 18, 11, 0.12);
 }
 .accordion-header {
-    padding: 1rem 1.5rem;
-    font-weight: 800;
-    font-size: 1.1rem;
+    padding: 1.15rem 1.5rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
     cursor: pointer;
     user-select: none;
     text-transform: uppercase;
-    background: var(--spice-bg);
+    letter-spacing: 0.5px;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    color: var(--spice-bg-dark);
+    transition: color 0.2s;
+}
+.accordion-header:hover {
+    color: var(--spice-primary);
 }
 .accordion-header::-webkit-details-marker { display: none; }
-.accordion-header::after {
-    content: '+';
-    float: right;
-    font-size: 1.5rem;
-    line-height: 1;
+.accordion-chevron {
+    transition: transform 0.3s ease;
+    color: var(--spice-bg-dark);
 }
-details[open] .accordion-header::after { content: '-'; }
+details[open] .accordion-chevron {
+    transform: rotate(180deg);
+    color: var(--spice-primary);
+}
 .accordion-content {
-    padding: 1.5rem;
-    border-top: 3px solid var(--spice-text);
-    line-height: 1.5;
+    padding: 1.25rem 1.5rem 1.5rem;
+    border-top: 1px solid rgba(40, 18, 11, 0.06);
+    line-height: 1.65;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: #4A3B32;
+    text-align: justify;
+    text-justify: inter-word;
+}
+.accordion-content p {
+    margin: 0;
+    line-height: inherit;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 /* Related Products */
 .related-container { margin-top: 5rem; }
 .section-heading {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: clamp(30px, 3vw, 40px);
+    font-weight: 800;
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 3rem;
+    color: var(--spice-bg-dark);
 }
 
 .yum-grid {
@@ -347,15 +505,143 @@ details[open] .accordion-header::after { content: '-'; }
     gap: 2rem;
 }
 
+/* Related Product Cards */
+.related-container .product-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: 1px solid rgba(40, 18, 11, 0.08);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.related-container .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+.related-container .product-img-wrapper {
+    position: relative;
+    display: block;
+    padding-top: 100%;
+    overflow: hidden;
+    background: transparent;
+}
+.related-container .product-img-wrapper img {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+.related-container .product-card:hover .product-img-wrapper img {
+    transform: scale(1.08);
+}
+.related-container .product-details {
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.related-container .product-vendor {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #9C8F85;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.related-container .product-card-title {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--spice-bg-dark);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    font-weight: 600;
+    transition: color 0.2s;
+    flex-grow: 1;
+}
+.related-container .product-card-title:hover {
+    color: var(--spice-primary);
+}
+.related-container .product-price {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 0.5rem;
+    color: var(--spice-bg-dark);
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+.related-container .product-stock {
+    margin: 0.25rem 0 0.75rem;
+}
+.related-container .product-stock .stock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.related-container .product-stock .stock-badge.in-stock {
+    color: #2E7D32; /* Green */
+    font-weight: 600;
+}
+.related-container .product-stock .stock-badge.out-of-stock {
+    color: #C73B1B;
+    font-weight: 600;
+}
+.related-container .add-to-cart-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--spice-bg-dark);
+    color: white;
+    border: none;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.related-container .add-to-cart-btn:hover {
+    background: var(--spice-primary);
+}
+.related-container .add-to-cart-btn .btn-icon {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2px;
+}
+
 @media (max-width: 1024px) {
     .yum-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 900px) {
-    .detail-container { grid-template-columns: 1fr; gap: 2rem; }
-    .main-image { min-height: 350px; }
-    .product-title { font-size: 2.5rem; }
+    .detail-container { grid-template-columns: 1fr; gap: 2.5rem; }
+    .main-image { min-height: 380px; }
     .yum-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .product-title {
+        font-size: clamp(34px, 7vw, 42px) !important;
+    }
+    .section-heading {
+        font-size: clamp(26px, 5vw, 32px) !important;
+    }
 }
 </style>
 

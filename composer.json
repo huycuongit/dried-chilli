@@ -23,6 +23,7 @@
         "phpoffice/phpspreadsheet": "^1.29",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-sitemap": "^6.4",
+        "srmklive/paypal": "^3.0",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {

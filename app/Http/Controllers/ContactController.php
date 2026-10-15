@@ -24,11 +24,11 @@ class ContactController extends Controller
 
         if ($request->expectsJson()) {
             return response()->json([
-                'message' => 'Thank you! Nafu Home Care will be in touch shortly.',
+                'message' => 'Thank you! Dried Chili will be in touch shortly.',
                 'id' => $contact->id,
             ], 201);
         }
 
-        return back()->with('success', 'Thank you! Nafu Home Care will be in touch shortly.');
+        return back()->with('success', 'Thank you! Dried Chili will be in touch shortly.');
     }
 }

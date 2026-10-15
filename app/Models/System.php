@@ -70,6 +70,10 @@ class System extends Model
         'home_mission',
         'company_introduce',
 
+        'sale_page_banner',
+        'sale_page_title',
+        'sale_page_active_big_sale',
+
         'google_type',
         'google_project_id',
         'google_client_email',

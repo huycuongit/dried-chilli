@@ -7,7 +7,7 @@
         .contact-person strong, .contact-person small { display: block; }
         .contact-person small { margin-top: 3px; color: #8b8d97; }
         .contact-message-preview { display: block; max-width: 330px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .contact-detail-message { padding: 14px; white-space: pre-wrap; background: #f7f7f9; border-radius: 8px; }
+        .contact-detail-message { padding: 14px; white-space: pre-wrap; background: #f7f7f9; border-radius: 20px; }
         .contact-status { min-width: 132px; }
     </style>
 @endpush

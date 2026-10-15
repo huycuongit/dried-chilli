@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-    <style>.service-thumb{width:104px;height:68px;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb}.dt-action-buttons{margin-top:1.5em!important}</style>
+    <style>.service-thumb{width:104px;height:68px;object-fit:cover;border-radius:20px;border:1px solid #e5e7eb}.dt-action-buttons{margin-top:1.5em!important}</style>
 @endpush
 
 @section('content')

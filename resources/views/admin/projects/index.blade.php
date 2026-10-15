@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <style>
-        .project-thumb { width: 104px; height: 68px; object-fit: cover; border-radius: 7px; border: 1px solid #e5e7eb; }
+        .project-thumb { width: 104px; height: 68px; object-fit: cover; border-radius: 20px; border: 1px solid #e5e7eb; }
         .dt-action-buttons { margin-top: 1.5em !important; }
         .project-url { display: inline-block; max-width: 430px; overflow: hidden; text-overflow: ellipsis; vertical-align: middle; }
     </style>

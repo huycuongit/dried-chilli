@@ -158,7 +158,7 @@
         justify-content: center;
         width: 40px;
         height: 40px;
-        border-radius: 50%;
+        border-radius: 20px;
         background-color: rgba(43, 29, 20, 0.05);
         color: var(--spice-text);
         transition: all 0.3s;

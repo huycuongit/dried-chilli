@@ -33,20 +33,20 @@
             "label": "0481 818 836"
         },
         "home_text_9": {
-            "value": "\u273f",
-            "label": "\u273f"
+            "value": "✿",
+            "label": "✿"
         },
         "home_text_10": {
             "value": " Google reviews",
             "label": "Google reviews"
         },
         "home_text_11": {
-            "value": "\u2605\u2605\u2605\u2605\u2605",
-            "label": "\u2605\u2605\u2605\u2605\u2605"
+            "value": "★★★★★",
+            "label": "★★★★★"
         },
         "home_text_12": {
-            "value": "4.9 \/ 5 \u00b7 76 reviews",
-            "label": "4.9 \/ 5 \u00b7 76 reviews"
+            "value": "4.9 \/ 5 · 76 reviews",
+            "label": "4.9 \/ 5 · 76 reviews"
         },
         "home_image_13": {
             "value": "assets\/nafu\/mrfix-home2.css",
@@ -123,7 +123,7 @@
             "label": "Same-day service available"
         },
         "nafu_home_sections_text_15": {
-            "value": "\u00a0Trusted handyman professionals",
+            "value": " Trusted handyman professionals",
             "label": "Trusted handyman professionals"
         },
         "nafu_home_sections_text_16": {
@@ -131,7 +131,7 @@
             "label": "Honest prices"
         },
         "nafu_home_sections_text_17": {
-            "value": "\u00a0100% Satisfaction guaranteed",
+            "value": " 100% Satisfaction guaranteed",
             "label": "100% Satisfaction guaranteed"
         },
         "nafu_home_sections_text_18": {
@@ -147,7 +147,7 @@
             "label": "Same-day service available"
         },
         "nafu_home_sections_text_21": {
-            "value": "\u00a0Trusted handyman professionals",
+            "value": " Trusted handyman professionals",
             "label": "Trusted handyman professionals"
         },
         "nafu_home_sections_text_22": {
@@ -155,7 +155,7 @@
             "label": "Honest prices"
         },
         "nafu_home_sections_text_23": {
-            "value": "\u00a0100% Satisfaction guaranteed",
+            "value": " 100% Satisfaction guaranteed",
             "label": "100% Satisfaction guaranteed"
         },
         "nafu_home_sections_text_24": {
@@ -203,8 +203,8 @@
             "label": "Talk to our team"
         },
         "nafu_home_sections_text_35": {
-            "value": "\u2192",
-            "label": "\u2192"
+            "value": "→",
+            "label": "→"
         },
         "nafu_home_sections_text_36": {
             "value": "For homeowners",
@@ -397,8 +397,8 @@
             "label": "Amy was pleased with the replacement of her carpet with hybrid timber flooring. She valued the competitive quote, reliable arrival times, efficient installation and careful material planning."
         },
         "reviews_field_18": {
-            "value": "L\u2019Occitane",
-            "label": "L\u2019Occitane"
+            "value": "L’Occitane",
+            "label": "L’Occitane"
         },
         "reviews_field_19": {
             "value": "partner-loccitane.jpg",
@@ -504,11 +504,11 @@
         },
         "popup_contact_budget_option_3": {
             "label": "contact budget option 3",
-            "value": "$1,000\u2013$3,000"
+            "value": "$1,000–$3,000"
         },
         "popup_contact_budget_option_4": {
             "label": "contact budget option 4",
-            "value": "$3,000\u2013$5,000"
+            "value": "$3,000–$5,000"
         },
         "popup_contact_budget_option_5": {
             "label": "contact budget option 5",
@@ -516,7 +516,7 @@
         },
         "popup_contact_budget_option_6": {
             "label": "contact budget option 6",
-            "value": "Let\u2019s discuss"
+            "value": "Let’s discuss"
         },
         "popup_contact_message_label": {
             "label": "contact message label",
@@ -611,7 +611,7 @@
             "label": "Service page label"
         },
         "page_service_details_text_4": {
-            "value": "Any questions? Let\u2019s talk",
+            "value": "Any questions? Let’s talk",
             "label": "Contact banner heading"
         },
         "page_service_details_text_5": {
@@ -695,8 +695,8 @@
     },
     "Project Details": {
         "page_project_details_text_3": {
-            "value": "\u2190 All projects",
-            "label": "\u2190 All projects"
+            "value": "← All projects",
+            "label": "← All projects"
         },
         "page_project_details_text_5": {
             "value": "Project detail",
@@ -727,8 +727,8 @@
             "label": "Project link"
         },
         "page_project_details_text_17": {
-            "value": "Visit project \u2197",
-            "label": "Visit project \u2197"
+            "value": "Visit project ↗",
+            "label": "Visit project ↗"
         },
         "page_project_details_text_18": {
             "value": "Features of our project",
@@ -751,8 +751,8 @@
             "label": "Have a project in mind?"
         },
         "page_project_details_text_27": {
-            "value": "Let\u2019s make your property work better.",
-            "label": "Let\u2019s make your property work better."
+            "value": "Let’s make your property work better.",
+            "label": "Let’s make your property work better."
         },
         "page_project_details_text_28": {
             "value": "Talk to our team ",
@@ -827,8 +827,8 @@
             "label": "' !!}"
         },
         "page_news_details_text_8": {
-            "value": "\u2190 All articles",
-            "label": "\u2190 All articles"
+            "value": "← All articles",
+            "label": "← All articles"
         },
         "page_news_details_image_9": {
             "value": "assets\/nafu\/blog-detail-landscaping.avif",
@@ -857,12 +857,12 @@
             "label": "Get in touch"
         },
         "page_contact_text_3": {
-            "value": "Let\u2019s take care of your property",
-            "label": "Let\u2019s take care of your property"
+            "value": "Let’s take care of your property",
+            "label": "Let’s take care of your property"
         },
         "page_contact_text_4": {
-            "value": "Tell us what needs attention. Whether it\u2019s a small repair, a renovation or ongoing property maintenance, our Melbourne team is ready to help.",
-            "label": "Tell us what needs attention. Whether it\u2019s a small repair, a renovation or ongoing property maintenance, our Melbourne team is ready to help."
+            "value": "Tell us what needs attention. Whether it’s a small repair, a renovation or ongoing property maintenance, our Melbourne team is ready to help.",
+            "label": "Tell us what needs attention. Whether it’s a small repair, a renovation or ongoing property maintenance, our Melbourne team is ready to help."
         },
         "page_contact_text_5": {
             "value": "Contact Nafu",
@@ -897,8 +897,8 @@
             "label": "Opening hours"
         },
         "page_contact_text_13": {
-            "value": "Monday \u2013 Saturday: 8:00 am \u2013 6:00 pm",
-            "label": "Monday \u2013 Saturday: 8:00 am \u2013 6:00 pm"
+            "value": "Monday – Saturday: 8:00 am – 6:00 pm",
+            "label": "Monday – Saturday: 8:00 am – 6:00 pm"
         },
         "page_contact_text_14": {
             "value": "Sunday: By appointment",
@@ -957,8 +957,8 @@
             "label": "Ready when you are"
         },
         "page_contact_text_29": {
-            "value": "Don\u2019t let repairs pile up.",
-            "label": "Don\u2019t let repairs pile up."
+            "value": "Don’t let repairs pile up.",
+            "label": "Don’t let repairs pile up."
         },
         "page_contact_text_30": {
             "value": "Talk to a reliable Melbourne property care team today.",
@@ -977,8 +977,8 @@
             "label": "SEO: Contact Nafu Home Care"
         },
         "page_contact_seo_34": {
-            "value": "Tell our Melbourne property care team what you need and we\u2019ll get back to you.",
-            "label": "SEO: Tell our Melbourne property care team what you need and we\u2019ll get back to you."
+            "value": "Tell our Melbourne property care team what you need and we’ll get back to you.",
+            "label": "SEO: Tell our Melbourne property care team what you need and we’ll get back to you."
         },
         "page_contact_placeholder_35": {
             "value": "Enter your name",
@@ -1007,52 +1007,283 @@
             "label": "Page not found"
         },
         "page_404_text_3": {
-            "value": "It looks like the page you\u2019re looking for doesn\u2019t exist or has been moved.",
-            "label": "It looks like the page you\u2019re looking for doesn\u2019t exist or has been moved."
+            "value": "It looks like the page you’re looking for doesn’t exist or has been moved.",
+            "label": "It looks like the page you’re looking for doesn’t exist or has been moved."
         },
         "page_404_text_4": {
             "value": "Go back to the homepage",
             "label": "Go back to the homepage"
         },
         "page_404_seo_5": {
-            "value": "The page you\u2019re looking for doesn\u2019t exist or has been moved. Return to the NAFU Services homepage.",
-            "label": "SEO: The page you\u2019re looking for doesn\u2019t exist or has been moved. Return to the NAFU Services homepage."
+            "value": "The page you’re looking for doesn’t exist or has been moved. Return to the NAFU Services homepage.",
+            "label": "SEO: The page you’re looking for doesn’t exist or has been moved. Return to the NAFU Services homepage."
         }
     },
-    "About Us": {
+    "About Us - Hero": {
         "page_about_title": {
-            "value": "Who We Are",
-            "label": "Hero Title"
+            "value": "WHY DRIED CHILI?",
+            "label": "[Hero] Title"
         },
         "page_about_desc": {
-            "value": "A small collective of spice enthusiasts dedicated to bringing you the most authentic flavors from around the globe.",
-            "label": "Hero Description"
+            "value": "Because life is too short for boring food and bland spices.",
+            "label": "[Hero] Description"
         },
-        "page_about_mission_title": {
-            "value": "Our Mission",
-            "label": "Mission Title"
+        "page_about_hero_align": {
+            "value": "left",
+            "label": "Text Alignment",
+            "type": "select",
+            "options": {
+                "left": "Align Left",
+                "center": "Align Center",
+                "right": "Align Right"
+            }
         },
-        "page_about_mission_text": {
-            "value": "To source, blend, and deliver the finest spices while supporting sustainable farming practices and empowering local communities.",
-            "label": "Mission Text"
+        "page_about_image_banner": {
+            "value": "",
+            "label": "[Hero] Image Banner (Optional)",
+            "type": "image"
+        },
+        "page_about_color_banner": {
+            "value": "#2d3326",
+            "label": "[Hero] Fallback Background Color",
+            "type": "color"
         }
     },
-    "Our Legacy": {
+    "About Us - Section 1": {
+        "page_about_sec1_active": {
+            "value": "1",
+            "label": "[Section 1] Status",
+            "type": "select",
+            "options": {
+                "1": "Show Section",
+                "0": "Hide Section"
+            }
+        },
+        "page_about_sec1_layout": {
+            "value": "normal",
+            "label": "[Section 1] Image Position",
+            "type": "select",
+            "options": {
+                "normal": "Image Left, Text Right",
+                "reverse": "Text Left, Image Right",
+                "full-text": "Full Text (Centered)"
+            }
+        },
+        "page_about_sec1_image": {
+            "value": "",
+            "label": "[Section 1] Image"
+        },
+        "page_about_sec1_title": {
+            "value": "FRESHNESS IS OUR OBSESSION",
+            "label": "[Section 1] Title"
+        },
+        "page_about_sec1_text": {
+            "value": "Did you know that most spices on grocery store shelves are years old? By the time they reach your kitchen, their essential oils have vanished, leaving behind nothing but colorful dust. We source directly from quality farmers in small, frequent batches. This means our chilies are sun-dried, ground, and packed within weeks of harvest—not years. You will smell, taste, and feel the difference immediately.",
+            "label": "Text",
+            "type": "editor"
+        }
+    },
+    "About Us - Section 2": {
+        "page_about_sec2_active": {
+            "value": "1",
+            "label": "[Section 2] Status",
+            "type": "select",
+            "options": {
+                "1": "Show Section",
+                "0": "Hide Section"
+            }
+        },
+        "page_about_sec2_layout": {
+            "value": "reverse",
+            "label": "[Section 2] Image Position",
+            "type": "select",
+            "options": {
+                "normal": "Image Left, Text Right",
+                "reverse": "Text Left, Image Right",
+                "full-text": "Full Text (Centered)"
+            }
+        },
+        "page_about_sec2_image": {
+            "value": "",
+            "label": "[Section 2] Image"
+        },
+        "page_about_sec2_title": {
+            "value": "SMALL BATCH ROASTING",
+            "label": "[Section 2] Title"
+        },
+        "page_about_sec2_text": {
+            "value": "We treat our spices like specialty coffee. Instead of mass-processing tons of chilies at once, we carefully dry and grind in extremely small batches.\n\nThis artisanal approach allows us to carefully monitor the temperature, ensuring we extract the deep, complex flavor notes without burning the delicate oils. The result? A richer, more vibrant heat profile in every jar.",
+            "label": "Text",
+            "type": "editor"
+        }
+    },
+    "Our Legacy - Hero": {
+        "page_legacy_image_banner": {
+            "value": "",
+            "label": "Legacy Banner Image (Optional)",
+            "type": "image"
+        },
+        "page_legacy_color_banner": {
+            "value": "#2d3326",
+            "label": "Fallback Background Color",
+            "type": "color"
+        },
         "page_legacy_title": {
             "value": "Generations of Flavor",
             "label": "Hero Title"
         },
         "page_legacy_desc": {
             "value": "Rooted in heritage, our spices carry the legacy of ancient trade routes and secret family recipes passed down through generations.",
-            "label": "Hero Description"
+            "label": "Hero Description",
+            "type": "editor"
         },
+        "page_legacy_hero_align": {
+            "value": "center",
+            "label": "Hero Text Alignment",
+            "type": "select",
+            "options": {
+                "left": "Align Left",
+                "center": "Align Center",
+                "right": "Align Right"
+            }
+        }
+    },
+    "Our Legacy - Story": {
         "page_legacy_story_title": {
             "value": "Where It All Began",
             "label": "Story Title"
         },
         "page_legacy_story_text": {
             "value": "Decades ago, our founders started with a single market stall and a passion for authentic taste. Today, that same passion drives everything we do.",
-            "label": "Story Text"
+            "label": "Story Text",
+            "type": "editor"
+        },
+        "page_legacy_story_align": {
+            "value": "center",
+            "label": "Story Text Alignment",
+            "type": "select",
+            "options": {
+                "left": "Align Left",
+                "center": "Align Center",
+                "right": "Align Right"
+            }
+        }
+    },
+    "Sale": {
+        "sale_page_active_big_sale": {
+            "value": "0",
+            "label": "Enable Big Sale Section (1 for Yes, 0 for No)"
+        },
+        "sale_page_title": {
+            "value": "SUPER HOT DEALS",
+            "label": "Big Sale Title"
+        },
+        "sale_image_banner": {
+            "value": "",
+            "label": "Big Sale Banner (Image)"
+        }
+    },
+    "Privacy Policy - Hero": {
+        "page_privacy_title": {
+            "value": "PRIVACY POLICY",
+            "label": "[Hero] Title"
+        },
+        "page_privacy_desc": {
+            "value": "Updated recently",
+            "label": "[Hero] Description"
+        },
+        "page_privacy_hero_align": {
+            "value": "center",
+            "label": "Text Alignment",
+            "type": "select",
+            "options": {
+                "left": "Align Left",
+                "center": "Align Center",
+                "right": "Align Right"
+            }
+        },
+        "page_privacy_image_banner": {
+            "value": "",
+            "label": "[Hero] Image Banner (Optional)",
+            "type": "image"
+        },
+        "page_privacy_color_banner": {
+            "value": "#2d3326",
+            "label": "[Hero] Fallback Background Color",
+            "type": "color"
+        }
+    },
+    "Terms of Service - Hero": {
+        "page_terms_title": {
+            "value": "TERMS OF SERVICE",
+            "label": "[Hero] Title"
+        },
+        "page_terms_desc": {
+            "value": "Updated recently",
+            "label": "[Hero] Description"
+        },
+        "page_terms_hero_align": {
+            "value": "center",
+            "label": "Text Alignment",
+            "type": "select",
+            "options": {
+                "left": "Align Left",
+                "center": "Align Center",
+                "right": "Align Right"
+            }
+        },
+        "page_terms_image_banner": {
+            "value": "",
+            "label": "[Hero] Image Banner (Optional)",
+            "type": "image"
+        },
+        "page_terms_color_banner": {
+            "value": "#2d3326",
+            "label": "[Hero] Fallback Background Color",
+            "type": "color"
+        }
+    },
+    "Privacy Policy - Section 2": {
+        "page_privacy_policy_sec2_active": {
+            "value": "1",
+            "label": "[Section 2] Status",
+            "type": "select",
+            "options": {
+                "1": "Show Section",
+                "0": "Hide Section"
+            }
+        },
+        "page_privacy_policy_sec2_type": {
+            "value": "text-image",
+            "label": "[Section 2] Section Type",
+            "type": "select",
+            "options": {
+                "text-image": "Text & Image",
+                "card": "Feature Cards"
+            }
+        },
+        "page_privacy_policy_sec2_layout": {
+            "value": "normal",
+            "label": "[Section 2] Image Position",
+            "type": "select",
+            "options": {
+                "normal": "Image Left, Text Right",
+                "reverse": "Image Right, Text Left",
+                "full-text": "Full Text (Centered)"
+            }
+        },
+        "page_privacy_policy_sec2_image": {
+            "value": "",
+            "label": "[Section 2] Image"
+        },
+        "page_privacy_policy_sec2_title": {
+            "value": "New Section 2",
+            "label": "[Section 2] Title"
+        },
+        "page_privacy_policy_sec2_text": {
+            "value": "New section content...",
+            "label": "[Section 2] Text",
+            "type": "editor"
         }
     }
 }

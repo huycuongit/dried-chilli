@@ -10,9 +10,15 @@
         @include('admin.layouts.partials.messages')
 
         <div class="card">
-            <div class="card-header border-bottom">
+            <div class="card-header border-bottom d-flex justify-content-between align-items-center">
                 <h5 class="card-title mb-0">E-Commerce Products</h5>
-                <div class="row pt-4">
+                <a href="{{ route('admin.ecom_products.create') }}" class="btn btn-primary">
+                    <i class="ti ti-plus me-1"></i> Add Product
+                </a>
+            </div>
+            
+            <div class="card-body mt-4">
+                <div class="row">
                     <div class="col-md-5 col-lg-4 mb-4 mb-md-0">
                         <input class="form-control" type="text" id="keyword" placeholder="Search by product name">
                     </div>
@@ -27,7 +33,10 @@
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Sale Price</th>
+                            <th>Qty</th>
                             <th>Best Seller</th>
+                            <th>Is Sale</th>
+                            <th>Limited Sale</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -57,7 +66,10 @@
                     { data: 'name', name: 'name' },
                     { data: 'price', name: 'price' },
                     { data: 'sale_price', name: 'sale_price' },
+                    { data: 'quantity', name: 'quantity' },
                     { data: 'is_best_seller', name: 'is_best_seller' },
+                    { data: 'is_sale', name: 'is_sale' },
+                    { data: 'is_limited_sale', name: 'is_limited_sale' },
                     { data: 'action', orderable: false, searchable: false }
                 ],
                 paging: true,

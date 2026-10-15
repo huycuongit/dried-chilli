@@ -38,10 +38,10 @@
 .faq-header h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 4rem); margin: 0; text-transform: uppercase; }
 .faq-header p { font-size: 1.25rem; font-weight: bold; max-width: 600px; margin: 1rem auto; }
 .faq-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; margin-top: 4rem; }
-.faq-img { width: 100%; border: 4px solid var(--spice-text); box-shadow: 8px 8px 0px var(--spice-text); border-radius: 12px; position: sticky; top: 2rem; }
-.faq-card { background: white; border: 2px solid var(--spice-text); border-radius: 8px; margin-bottom: 1rem; box-shadow: 4px 4px 0px var(--spice-text); padding: 1.5rem; }
+.faq-img { width: 100%; border: 4px solid var(--spice-text); box-shadow: 8px 8px 0px var(--spice-text); border-radius: 20px; position: sticky; top: 2rem; }
+.faq-card { background: white; border: 2px solid var(--spice-text); border-radius: 20px; margin-bottom: 1rem; box-shadow: 4px 4px 0px var(--spice-text); padding: 1.5rem; }
 .faq-card h3 { font-family: var(--font-heading); font-size: 1.5rem; margin: 0 0 1rem 0; color: var(--spice-primary); }
-.faq-card p { margin: 0; line-height: 1.6; }
+.faq-card p { margin: 0; line-height: 1.6; text-align: justify; text-justify: inter-word; }
 
 @media (max-width: 900px) {
     .faq-grid { grid-template-columns: 1fr; }

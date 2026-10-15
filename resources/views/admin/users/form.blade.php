@@ -33,7 +33,7 @@
             background-color: #007bff;
             color: #fff;
             padding: 8px 12px;
-            border-radius: 4px;
+            border-radius: 20px;
             display: inline-block;
             transition: background-color 0.3s;
         }

@@ -14,8 +14,16 @@ Route::prefix('cart')->group(function () {
     Route::delete('/remove', [CartController::class, 'remove']);
 });
 
+
+use App\Http\Controllers\Api\CouponController;
+Route::prefix('coupon')->group(function () {
+    Route::post('/apply', [CouponController::class, 'apply']);
+    Route::post('/remove', [CouponController::class, 'remove']);
+});
 use App\Http\Controllers\Api\CheckoutController;
 Route::post('checkout', [CheckoutController::class, 'process']);
+Route::get('checkout/paypal/success', [CheckoutController::class, 'paypalSuccess'])->name('api.checkout.paypal.success');
+Route::get('checkout/paypal/cancel', [CheckoutController::class, 'paypalCancel'])->name('api.checkout.paypal.cancel');
 
 use App\Http\Controllers\Api\OrderController;
 Route::get('orders', [OrderController::class, 'index']);

@@ -15,7 +15,15 @@ class AuthController extends Controller
         if (Auth::guard('web')->check()) {
             return redirect()->route('page.index');
         }
-        return view('frontend.pages.login');
+        return view('frontend.auth.login');
+    }
+
+    public function register(Request $request)
+    {
+        if (Auth::guard('web')->check()) {
+            return redirect()->route('page.index');
+        }
+        return view('frontend.auth.register');
     }
 
     public function logout()
@@ -48,5 +56,28 @@ class AuthController extends Controller
         }
 
         return response()->json(['message' => 'Sai email hoặc mật khẩu'], 401);
+    }
+
+    public function submitRegister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:customers',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $customer = \App\Models\Customer::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+        ]);
+
+        Auth::guard('web')->login($customer);
+
+        log_activity($customer, 'register', 'Khách đăng ký', [
+            'guard' => 'Web',
+        ]);
+
+        return response()->json(['message' => 'Đăng ký thành công', 'redirect' => route('page.index')]);
     }
 }

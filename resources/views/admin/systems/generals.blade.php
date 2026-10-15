@@ -36,18 +36,12 @@
                             'company_footer_watermark' => ['Footer background text', 'Nafu'],
                             'google_site_verification' => ['Google Search Console verification code', ''],
                         ] as $key => [$label, $default])
-                            <div class="col-md-6">
-                                <label class="form-label" for="{{ $key }}">{{ $label }}</label>
-                                @if ($key === 'company_logo')
-                                    @include('admin.layouts.partials.image-upload', [
-                                        'valueName' => $key, 'imageValue' => old($key, $data[$key]['content'] ?? $default),
-                                        'uploadId' => $key,
-                                    ])
-                                @else
-                                <input class="form-control" id="{{ $key }}" name="{{ $key }}"
-                                    value="{{ old($key, $data[$key]['content'] ?? $default) }}">
-                                @endif
-                            </div>
+                            @include('admin.layouts.partials.smart-field', [
+                                'key' => $key, 
+                                'field' => ['label' => $label], 
+                                'value' => old($key, $data[$key]['content'] ?? $default), 
+                                'inputName' => $key
+                            ])
                         @endforeach
                     </div>
                 </div>

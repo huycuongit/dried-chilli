@@ -85,7 +85,7 @@
 
         .btn-default {
             background: #4e45b8;
-            border-radius: 50px;
+            border-radius: 20px;
             font-size: 18px;
             font-weight: 600;
             color: #fff;
