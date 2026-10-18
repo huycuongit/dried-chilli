@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApplyCouponRequest;
+use App\Mail\VoucherDiscountMail;
 use App\Services\CouponService;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Exception;
+use Throwable;
 
 class CouponController extends Controller
 {
@@ -79,6 +82,40 @@ class CouponController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Coupon removed successfully.'
+        ]);
+    }
+
+    /**
+     * Claim an exclusive 15% discount voucher and send it via email.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function claimVoucher(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|max:255',
+        ]);
+
+        $email = $request->email;
+        $coupon = $this->couponService->generateVoucherForEmail($email, 15.0);
+
+        $mailSent = true;
+        try {
+            Mail::to($email)->send(new VoucherDiscountMail($coupon));
+        } catch (Throwable $e) {
+            report($e);
+            $mailSent = false;
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => $mailSent 
+                ? 'Mã giảm giá 15% đã được gửi thành công đến email của bạn!' 
+                : 'Mã giảm giá 15% của bạn đã được tạo thành công!',
+            'code' => $coupon->code,
+            'discount' => 15,
+            'mail_sent' => $mailSent,
         ]);
     }
 }

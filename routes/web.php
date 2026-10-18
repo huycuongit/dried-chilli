@@ -87,21 +87,19 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/shipping-refunds', [\App\Http\Controllers\LegalController::class, 'shipping'])->name('page.shipping');
     Route::get('/privacy-policy', [\App\Http\Controllers\LegalController::class, 'privacy'])->name('page.privacy');
     Route::get('/terms-of-service', [\App\Http\Controllers\LegalController::class, 'terms'])->name('page.terms');
+    Route::middleware('auth:web')->group(function () {
+        Route::get('/account/dashboard', [\App\Http\Controllers\AccountController::class, 'dashboard'])->name('account.dashboard');
+        Route::get('/account/addresses', [\App\Http\Controllers\AccountController::class, 'addresses'])->name('account.addresses');
+        Route::get('/account/orders', [\App\Http\Controllers\AccountController::class, 'orders'])->name('account.orders');
+        Route::get('/account/orders/{id}', [\App\Http\Controllers\AccountController::class, 'orderDetail'])->name('account.order_detail');
+    });
+
     Route::get('/{pagePath}/{slug?}', [\App\Http\Controllers\LocalizedPageController::class, 'show'])
         ->where('pagePath', '(?!admin$)[a-z0-9]+(?:-[a-z0-9]+)*')->name('localized.page');
 });
 
-Route::middleware(['authUser'])->group(function () {
+Route::middleware(['auth:web'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-});
-
-
-use App\Http\Controllers\AccountController;
-Route::middleware('auth')->group(function () {
-    Route::get('/account/dashboard', [AccountController::class, 'dashboard'])->name('account.dashboard');
-    Route::get('/account/addresses', [AccountController::class, 'addresses'])->name('account.addresses');
-    Route::get('/account/orders', [AccountController::class, 'orders'])->name('account.orders');
-    Route::get('/account/orders/{id}', [AccountController::class, 'orderDetail'])->name('account.order_detail');
 });
 
 // Routes moved to locale group

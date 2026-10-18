@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Drawer toggling functions
     window.openCartDrawer = function() {
+        // On mobile phones (<= 768px), do not open drawer to avoid blocking viewport
+        if (window.innerWidth <= 768) {
+            return;
+        }
         const drawer = document.getElementById('cart-drawer');
         const overlay = document.getElementById('cart-drawer-overlay');
         if(drawer) drawer.classList.add('active');
@@ -26,16 +30,24 @@ document.addEventListener('DOMContentLoaded', function() {
         if(overlay) overlay.classList.remove('active');
     };
 
+    // Differentiate Cart Behavior: PC opens dropdown drawer, Mobile navigates directly to /cart
     const cartBtnHeader = document.querySelector('.cart-btn');
     if (cartBtnHeader) {
         cartBtnHeader.addEventListener('click', function(e) {
-            if (window.location.pathname !== '/cart' && window.location.pathname !== '/checkout') {
+            if (window.innerWidth <= 768) {
+                // Mobile: Navigate directly to /cart page
+                window.location.href = '/cart';
+            } else {
+                // Desktop PC: Open/Toggle the Cart Dropdown Drawer
                 e.preventDefault();
+                e.stopPropagation();
                 const drawer = document.getElementById('cart-drawer');
-                if (drawer && drawer.classList.contains('active')) {
-                    closeCartDrawer();
-                } else {
-                    openCartDrawer();
+                if (drawer) {
+                    if (drawer.classList.contains('active')) {
+                        closeCartDrawer();
+                    } else {
+                        drawer.classList.add('active');
+                    }
                 }
             }
         });
@@ -186,6 +198,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 window._lastClickedBtn = this;
                 const productId = this.getAttribute('data-product-id');
                 if (productId) {
+                    const originalHtml = this.innerHTML;
+                    this.innerHTML = `<span>Added ✓</span>`;
+                    this.style.backgroundColor = 'var(--spice-primary)';
+                    setTimeout(() => {
+                        this.innerHTML = originalHtml;
+                        this.style.backgroundColor = '';
+                    }, 1200);
                     addToCart(productId, 1);
                 }
             });

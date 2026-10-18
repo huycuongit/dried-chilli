@@ -324,12 +324,18 @@
     color: #4A3B32;
     text-align: justify;
     text-justify: inter-word;
+    text-align-last: left;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 .product-description p {
     margin: 0;
     line-height: inherit;
     text-align: justify;
     text-justify: inter-word;
+    text-align-last: left;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 /* Cart Actions */
@@ -479,12 +485,18 @@ details[open] .accordion-chevron {
     color: #4A3B32;
     text-align: justify;
     text-justify: inter-word;
+    text-align-last: left;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 .accordion-content p {
     margin: 0;
     line-height: inherit;
     text-align: justify;
     text-justify: inter-word;
+    text-align-last: left;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 /* Related Products */
@@ -630,18 +642,48 @@ details[open] .accordion-chevron {
 }
 
 @media (max-width: 900px) {
-    .detail-container { grid-template-columns: 1fr; gap: 2.5rem; }
-    .main-image { min-height: 380px; }
-    .yum-grid { grid-template-columns: 1fr; }
+    .detail-container { grid-template-columns: 1fr; gap: 1.5rem; padding: 0 1rem; }
+    .main-image { min-height: 280px; height: 280px; }
+    .yum-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
 }
 
 @media (max-width: 768px) {
     .product-title {
-        font-size: clamp(34px, 7vw, 42px) !important;
+        font-size: 24px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.5rem !important;
+    }
+    .product-price {
+        font-size: 22px !important;
+        margin-bottom: 0.75rem !important;
+    }
+    .product-description {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1rem !important;
+    }
+    .cart-action-group {
+        display: flex;
+        gap: 0.5rem;
+    }
+    .quantity-selector {
+        width: 100px;
+        height: 46px;
+    }
+    .add-to-cart-btn.large-btn {
+        flex: 1;
+        height: 46px;
+        padding: 0 1rem;
+        font-size: 14px;
     }
     .section-heading {
-        font-size: clamp(26px, 5vw, 32px) !important;
+        font-size: 22px !important;
     }
+}
+
+@media (max-width: 480px) {
+    .main-image { min-height: 240px; height: 240px; }
+    .yum-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
 }
 </style>
 

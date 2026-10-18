@@ -3,6 +3,57 @@
     <title>Shop All | Dried Chili</title>
 @endsection
 @section('full-content')
+@php
+    $queryParams = request()->query();
+    
+    // In Stock toggle URL
+    $inStockParams = $queryParams;
+    if (request('in_stock')) {
+        unset($inStockParams['in_stock']);
+    } else {
+        $inStockParams['in_stock'] = 1;
+    }
+    unset($inStockParams['page']);
+    $inStockUrl = route('page.shop', $inStockParams);
+
+    // Best Seller toggle URL
+    $bestSellerParams = $queryParams;
+    if (request('best_seller')) {
+        unset($bestSellerParams['best_seller']);
+    } else {
+        $bestSellerParams['best_seller'] = 1;
+    }
+    unset($bestSellerParams['page']);
+    $bestSellerUrl = route('page.shop', $bestSellerParams);
+
+    // On Sale toggle URL
+    $onSaleParams = $queryParams;
+    if (request('on_sale')) {
+        unset($onSaleParams['on_sale']);
+    } else {
+        $onSaleParams['on_sale'] = 1;
+    }
+    unset($onSaleParams['page']);
+    $onSaleUrl = route('page.shop', $onSaleParams);
+
+    // Active filters count
+    $activeFilterCount = 0;
+    if (request('in_stock')) $activeFilterCount++;
+    if (request('best_seller')) $activeFilterCount++;
+    if (request('on_sale')) $activeFilterCount++;
+    if (request('min_price') || request('max_price')) $activeFilterCount++;
+    if (request('sort') && request('sort') !== 'featured') $activeFilterCount++;
+
+    $currentSort = $sort ?? 'featured';
+    $sortLabels = [
+        'featured' => 'Featured',
+        'price_asc' => 'Price: Low to High',
+        'price_desc' => 'Price: High to Low',
+        'name_asc' => 'Name: A to Z',
+        'name_desc' => 'Name: Z to A',
+    ];
+    $currentSortLabel = $sortLabels[$currentSort] ?? 'Featured';
+@endphp
 <main class="page-content shop-bg">
     <!-- Shop Header -->
     <header class="shop-header">
@@ -97,6 +148,92 @@
             </div>
         </aside>
 
+        <!-- Mobile Filter Bar (Visible only on <= 768px) -->
+        <div class="mobile-filter-bar">
+            <!-- Search & Filter Trigger Row -->
+            <div class="mobile-filter-top-row">
+                <form class="mobile-search-form" action="{{ route('page.shop') }}" method="GET">
+                    @if(request('sort')) <input type="hidden" name="sort" value="{{ request('sort') }}"> @endif
+                    @if(request('min_price')) <input type="hidden" name="min_price" value="{{ request('min_price') }}"> @endif
+                    @if(request('max_price')) <input type="hidden" name="max_price" value="{{ request('max_price') }}"> @endif
+                    @if(request('in_stock')) <input type="hidden" name="in_stock" value="{{ request('in_stock') }}"> @endif
+                    @if(request('best_seller')) <input type="hidden" name="best_seller" value="{{ request('best_seller') }}"> @endif
+                    @if(request('on_sale')) <input type="hidden" name="on_sale" value="{{ request('on_sale') }}"> @endif
+                    
+                    <div class="mobile-search-input-wrap">
+                        <svg class="mobile-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                        <input type="text" name="search" placeholder="Search products..." value="{{ request('search') }}" class="mobile-search-input">
+                        @if(request('search'))
+                            @php
+                                $clearSearch = $queryParams;
+                                unset($clearSearch['search'], $clearSearch['page']);
+                            @endphp
+                            <a href="{{ route('page.shop', $clearSearch) }}" class="mobile-search-clear" aria-label="Clear search">✕</a>
+                        @endif
+                    </div>
+                </form>
+                
+                <button type="button" class="mobile-filter-trigger {{ $activeFilterCount > 0 ? 'has-active' : '' }}" id="mobileFilterOpenBtn" aria-label="Open filter and sort drawer">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                    <span>Filters</span>
+                    @if($activeFilterCount > 0)
+                        <span class="mobile-filter-badge">{{ $activeFilterCount }}</span>
+                    @endif
+                </button>
+            </div>
+
+            <!-- Horizontal Scrollable Quick Chips -->
+            <div class="mobile-quick-chips">
+                <button type="button" class="mobile-chip filter-drawer-chip {{ $activeFilterCount > 0 ? 'active' : '' }}" id="mobileChipOpenDrawer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>
+                    <span>{{ $currentSortLabel }}</span>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+
+                <a href="{{ $inStockUrl }}" class="mobile-chip {{ request('in_stock') ? 'active' : '' }}">
+                    @if(request('in_stock'))
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    @endif
+                    In Stock
+                </a>
+
+                <a href="{{ $bestSellerUrl }}" class="mobile-chip {{ request('best_seller') ? 'active' : '' }}">
+                    @if(request('best_seller'))
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    @else
+                        <span class="chip-emoji">🔥</span>
+                    @endif
+                    Best Sellers
+                </a>
+
+                <a href="{{ $onSaleUrl }}" class="mobile-chip {{ request('on_sale') ? 'active' : '' }}">
+                    @if(request('on_sale'))
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    @else
+                        <span class="chip-emoji">🏷️</span>
+                    @endif
+                    On Sale
+                </a>
+
+                @if(request('min_price') || request('max_price'))
+                    @php
+                        $clearPrice = $queryParams;
+                        unset($clearPrice['min_price'], $clearPrice['max_price'], $clearPrice['page']);
+                    @endphp
+                    <a href="{{ route('page.shop', $clearPrice) }}" class="mobile-chip active-dismiss" title="Remove price filter">
+                        ${{ request('min_price', 0) }} - ${{ request('max_price', 'Any') }}
+                        <span class="chip-remove">✕</span>
+                    </a>
+                @endif
+
+                @if($activeFilterCount > 0 || request('search'))
+                    <a href="{{ route('page.shop') }}" class="mobile-chip clear-all-chip">
+                        Reset All ✕
+                    </a>
+                @endif
+            </div>
+        </div>
+
         <!-- Product Grid -->
         <section class="shop-grid">
             @forelse($products as $product)
@@ -172,6 +309,131 @@
             </div>
         @endif
         
+    </div>
+
+    <!-- Mobile Filter Bottom Sheet Drawer (Visible only <= 768px when opened) -->
+    <div id="mobileFilterDrawer" class="mobile-filter-drawer" aria-hidden="true">
+        <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop"></div>
+        <div class="mobile-drawer-sheet">
+            <div class="drawer-handle-bar">
+                <span class="drawer-handle"></span>
+            </div>
+            
+            <div class="drawer-header">
+                <div class="drawer-title-box">
+                    <h3 class="drawer-title">Filter & Sort</h3>
+                    @if($activeFilterCount > 0)
+                        <span class="drawer-badge-count">{{ $activeFilterCount }} active</span>
+                    @endif
+                </div>
+                <div class="drawer-actions">
+                    @if($activeFilterCount > 0 || request('search'))
+                        <a href="{{ route('page.shop') }}" class="drawer-clear-text">Reset All</a>
+                    @endif
+                    <button type="button" class="drawer-close-btn" id="mobileDrawerCloseBtn" aria-label="Close drawer">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <form id="mobileDrawerFilterForm" action="{{ route('page.shop') }}" method="GET" class="drawer-body-form">
+                @if(request('search'))
+                    <input type="hidden" name="search" value="{{ request('search') }}">
+                @endif
+
+                <!-- Sort By -->
+                <div class="drawer-group">
+                    <h4 class="drawer-group-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>
+                        Sort By
+                    </h4>
+                    <div class="drawer-sort-grid">
+                        <label class="drawer-sort-pill {{ ($sort ?? 'featured') == 'featured' ? 'selected' : '' }}">
+                            <input type="radio" name="sort" value="featured" {{ ($sort ?? 'featured') == 'featured' ? 'checked' : '' }}>
+                            <span>Featured</span>
+                        </label>
+                        <label class="drawer-sort-pill {{ ($sort ?? '') == 'price_asc' ? 'selected' : '' }}">
+                            <input type="radio" name="sort" value="price_asc" {{ ($sort ?? '') == 'price_asc' ? 'checked' : '' }}>
+                            <span>Price: Low to High</span>
+                        </label>
+                        <label class="drawer-sort-pill {{ ($sort ?? '') == 'price_desc' ? 'selected' : '' }}">
+                            <input type="radio" name="sort" value="price_desc" {{ ($sort ?? '') == 'price_desc' ? 'checked' : '' }}>
+                            <span>Price: High to Low</span>
+                        </label>
+                        <label class="drawer-sort-pill {{ ($sort ?? '') == 'name_asc' ? 'selected' : '' }}">
+                            <input type="radio" name="sort" value="name_asc" {{ ($sort ?? '') == 'name_asc' ? 'checked' : '' }}>
+                            <span>Name: A to Z</span>
+                        </label>
+                        <label class="drawer-sort-pill {{ ($sort ?? '') == 'name_desc' ? 'selected' : '' }}">
+                            <input type="radio" name="sort" value="name_desc" {{ ($sort ?? '') == 'name_desc' ? 'checked' : '' }}>
+                            <span>Name: Z to A</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Range -->
+                <div class="drawer-group">
+                    <h4 class="drawer-group-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        Price Range
+                    </h4>
+                    <div class="drawer-price-row">
+                        <div class="drawer-price-box">
+                            <span class="price-unit">$</span>
+                            <input type="number" name="min_price" id="drawerMinPrice" placeholder="Min" value="{{ request('min_price') }}" min="0" step="1" class="drawer-price-input">
+                        </div>
+                        <span class="price-dash">—</span>
+                        <div class="drawer-price-box">
+                            <span class="price-unit">$</span>
+                            <input type="number" name="max_price" id="drawerMaxPrice" placeholder="Max" value="{{ request('max_price') }}" min="0" step="1" class="drawer-price-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Filters -->
+                <div class="drawer-group">
+                    <h4 class="drawer-group-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Availability & Specials
+                    </h4>
+                    <div class="drawer-check-list">
+                        <label class="drawer-check-item {{ request('in_stock') == '1' ? 'checked' : '' }}">
+                            <input type="checkbox" name="in_stock" value="1" {{ request('in_stock') == '1' ? 'checked' : '' }}>
+                            <span class="check-box-indicator"></span>
+                            <div class="check-text-wrap">
+                                <span class="check-title">In Stock Only</span>
+                                <span class="check-desc">Ready to ship right away</span>
+                            </div>
+                        </label>
+                        <label class="drawer-check-item {{ request('best_seller') == '1' ? 'checked' : '' }}">
+                            <input type="checkbox" name="best_seller" value="1" {{ request('best_seller') == '1' ? 'checked' : '' }}>
+                            <span class="check-box-indicator"></span>
+                            <div class="check-text-wrap">
+                                <span class="check-title">Best Sellers 🔥</span>
+                                <span class="check-desc">Our most popular artisanal items</span>
+                            </div>
+                        </label>
+                        <label class="drawer-check-item {{ request('on_sale') == '1' ? 'checked' : '' }}">
+                            <input type="checkbox" name="on_sale" value="1" {{ request('on_sale') == '1' ? 'checked' : '' }}>
+                            <span class="check-box-indicator"></span>
+                            <div class="check-text-wrap">
+                                <span class="check-title">On Sale 🏷️</span>
+                                <span class="check-desc">Discounted chili oils and flakes</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Sticky Footer -->
+                <div class="drawer-footer">
+                    <button type="button" class="drawer-reset-btn" id="drawerResetAllFields">Clear</button>
+                    <button type="submit" class="drawer-apply-btn">
+                        <span>Apply Filters</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </main>
 
@@ -689,33 +951,592 @@
     box-shadow: none;
 }
 
+/* Desktop vs Mobile Display for Filters */
+.mobile-filter-bar {
+    display: none;
+}
+.mobile-filter-drawer {
+    display: none;
+}
+
 @media (max-width: 1024px) {
     .shop-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
-    .shop-header h1 {
-        font-size: clamp(34px, 7vw, 42px) !important;
+    .shop-header {
+        height: auto !important;
+        min-height: 260px !important;
+        padding: 3.5rem 1.25rem 2.5rem 1.25rem !important;
     }
-    .shop-container { grid-template-columns: 1fr; padding: 0 1.5rem; }
-    .shop-filters { position: relative; top: 0; margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .filter-group { margin-bottom: 0; }
-    .filter-list { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .filter-list li { margin-bottom: 0; }
+    .shop-header h1 {
+        font-size: 28px !important;
+        margin-top: 0.5rem !important;
+    }
+    .shop-header p {
+        font-size: 0.92rem !important;
+        margin-top: 0.5rem !important;
+    }
+    .shop-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0 1rem 6rem 1rem;
+        gap: 1.25rem;
+        margin-top: 1.25rem;
+    }
+    /* Hide desktop filter sidebar on mobile */
+    .shop-filters {
+        display: none !important;
+    }
+    /* Show mobile filter bar on mobile */
+    .mobile-filter-bar {
+        display: flex !important;
+        flex-direction: column;
+        gap: 0.65rem;
+        width: 100%;
+        margin-bottom: 0.25rem;
+    }
+    .mobile-filter-top-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+    }
+    .mobile-search-form {
+        flex: 1;
+        min-width: 0;
+    }
+    .mobile-search-input-wrap {
+        display: flex;
+        align-items: center;
+        background: #FFFFFF;
+        border: 1.5px solid rgba(43, 29, 20, 0.1);
+        border-radius: 9999px;
+        padding: 0 12px;
+        height: 44px;
+        box-shadow: 0 2px 8px rgba(43, 29, 20, 0.04);
+        transition: all 0.2s ease;
+    }
+    .mobile-search-input-wrap:focus-within {
+        border-color: #E45D3E;
+        box-shadow: 0 2px 12px rgba(228, 93, 62, 0.15);
+    }
+    .mobile-search-icon {
+        color: #9C8F85;
+        flex-shrink: 0;
+        margin-right: 8px;
+    }
+    .mobile-search-input {
+        border: none;
+        background: transparent;
+        outline: none;
+        font-family: var(--font-body);
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: #2B1D14;
+        width: 100%;
+    }
+    .mobile-search-input::placeholder {
+        color: #9C8F85;
+    }
+    .mobile-search-clear {
+        color: #9C8F85;
+        font-size: 14px;
+        padding: 4px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .mobile-filter-trigger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        height: 44px;
+        padding: 0 14px;
+        border-radius: 9999px;
+        background: #FFFFFF;
+        border: 1.5px solid rgba(43, 29, 20, 0.12);
+        color: #2B1D14;
+        font-family: var(--font-body);
+        font-size: 0.86rem;
+        font-weight: 700;
+        cursor: pointer;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(43, 29, 20, 0.04);
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+    }
+    .mobile-filter-trigger.has-active {
+        background: #E45D3E;
+        border-color: #E45D3E;
+        color: #FFFFFF;
+    }
+    .mobile-filter-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #D3381C;
+        color: #FFFFFF;
+        font-size: 0.72rem;
+        font-weight: 800;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+    }
+    .mobile-filter-trigger.has-active .mobile-filter-badge {
+        background: #FFFFFF;
+        color: #D3381C;
+    }
+    .mobile-quick-chips {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        margin: 0 -1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .mobile-quick-chips::-webkit-scrollbar {
+        display: none;
+    }
+    .mobile-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 6px 13px;
+        border-radius: 9999px;
+        background: #FFFFFF;
+        border: 1.5px solid rgba(43, 29, 20, 0.1);
+        color: #5C4B41;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        box-shadow: 0 1px 4px rgba(43, 29, 20, 0.03);
+        transition: all 0.2s ease;
+        cursor: pointer;
+        font-family: var(--font-body);
+    }
+    .mobile-chip.active {
+        background: #E45D3E;
+        border-color: #E45D3E;
+        color: #FFFFFF;
+    }
+    .mobile-chip.active svg {
+        stroke: #FFFFFF;
+    }
+    .mobile-chip.active-dismiss {
+        background: #FFF3EE;
+        border-color: #E45D3E;
+        color: #D3381C;
+    }
+    .mobile-chip .chip-remove {
+        font-size: 11px;
+        margin-left: 2px;
+        opacity: 0.8;
+    }
+    .mobile-chip.clear-all-chip {
+        background: transparent;
+        border-color: transparent;
+        color: #9C8F85;
+        text-decoration: underline;
+        box-shadow: none;
+        padding: 6px 6px;
+    }
+    .chip-emoji {
+        font-size: 0.85rem;
+        line-height: 1;
+    }
+
+    /* Mobile Filter Bottom Sheet Drawer */
+    .mobile-filter-drawer {
+        display: block !important;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        visibility: hidden;
+        pointer-events: none;
+        transition: visibility 0.3s ease;
+    }
+    .mobile-filter-drawer.open {
+        visibility: visible;
+        pointer-events: auto;
+    }
+    .mobile-drawer-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(18, 11, 7, 0.6);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-filter-drawer.open .mobile-drawer-backdrop {
+        opacity: 1;
+    }
+    .mobile-drawer-sheet {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-height: 85vh;
+        background: #FFFFFF;
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+        box-shadow: 0 -8px 32px rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow: hidden;
+    }
+    .mobile-filter-drawer.open .mobile-drawer-sheet {
+        transform: translateY(0);
+    }
+    .drawer-handle-bar {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0 4px;
+    }
+    .drawer-handle {
+        width: 40px;
+        height: 4px;
+        background: #E0D7D0;
+        border-radius: 4px;
+    }
+    .drawer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+        border-bottom: 1px solid rgba(43, 29, 20, 0.08);
+    }
+    .drawer-title-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .drawer-title {
+        font-family: var(--font-heading);
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: #2B1D14;
+        margin: 0;
+    }
+    .drawer-badge-count {
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 9999px;
+        background: #FFF0EB;
+        color: #D3381C;
+    }
+    .drawer-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .drawer-clear-text {
+        color: #E45D3E;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+    }
+    .drawer-close-btn {
+        background: #F4EFEB;
+        border: none;
+        color: #2B1D14;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .drawer-body-form {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 1.25rem 1.25rem 2rem 1.25rem;
+        gap: 1.5rem;
+    }
+    .drawer-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .drawer-group-title {
+        font-family: var(--font-heading);
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: #2B1D14;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+    }
+    .drawer-group-title svg {
+        color: #E45D3E;
+    }
+    .drawer-sort-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    .drawer-sort-pill {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 8px;
+        border-radius: 12px;
+        background: #FAF7F4;
+        border: 1.5px solid rgba(43, 29, 20, 0.08);
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #5C4B41;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .drawer-sort-pill input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .drawer-sort-pill.selected {
+        background: #FFF3EE;
+        border-color: #E45D3E;
+        color: #D3381C;
+        font-weight: 700;
+    }
+    .drawer-price-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .drawer-price-box {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        background: #FAF7F4;
+        border: 1.5px solid rgba(43, 29, 20, 0.1);
+        border-radius: 12px;
+        padding: 0 12px;
+        height: 44px;
+    }
+    .drawer-price-box:focus-within {
+        border-color: #E45D3E;
+        background: #FFFFFF;
+    }
+    .price-unit {
+        font-weight: 700;
+        color: #9C8F85;
+        margin-right: 6px;
+    }
+    .drawer-price-input {
+        width: 100%;
+        border: none;
+        background: transparent;
+        outline: none;
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #2B1D14;
+    }
+    .price-dash {
+        font-weight: bold;
+        color: #9C8F85;
+    }
+    .drawer-check-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .drawer-check-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #FAF7F4;
+        border: 1.5px solid rgba(43, 29, 20, 0.08);
+        border-radius: 14px;
+        padding: 10px 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .drawer-check-item input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .drawer-check-item.checked {
+        background: #FFF3EE;
+        border-color: #E45D3E;
+    }
+    .check-box-indicator {
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        border: 2px solid #C4B5AA;
+        background: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.2s ease;
+    }
+    .drawer-check-item input:checked + .check-box-indicator,
+    .drawer-check-item.checked .check-box-indicator {
+        background: #E45D3E;
+        border-color: #E45D3E;
+    }
+    .drawer-check-item input:checked + .check-box-indicator::after,
+    .drawer-check-item.checked .check-box-indicator::after {
+        content: "";
+        width: 5px;
+        height: 10px;
+        border: solid #FFFFFF;
+        border-width: 0 2.5px 2.5px 0;
+        transform: rotate(45deg);
+        margin-bottom: 2px;
+    }
+    .check-text-wrap {
+        display: flex;
+        flex-direction: column;
+    }
+    .check-title {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #2B1D14;
+    }
+    .check-desc {
+        font-size: 0.74rem;
+        color: #7A695E;
+    }
+    .drawer-footer {
+        position: sticky;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-top: 1rem;
+        background: #FFFFFF;
+        border-top: 1px solid rgba(43, 29, 20, 0.08);
+        margin-top: auto;
+    }
+    .drawer-reset-btn {
+        padding: 0.75rem 1.2rem;
+        border-radius: 14px;
+        background: #FAF7F4;
+        border: 1.5px solid rgba(43, 29, 20, 0.1);
+        color: #5C4B41;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .drawer-apply-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 0.85rem 1.5rem;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #E45D3E 0%, #D3381C 100%);
+        border: none;
+        color: #FFFFFF;
+        font-size: 0.95rem;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(211, 56, 28, 0.3);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .drawer-apply-btn:active {
+        transform: scale(0.98);
+    }
+
+    .shop-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    .product-card {
+        border-radius: 16px !important;
+    }
+    .product-details {
+        padding: 0.75rem 0.6rem !important;
+    }
+    .product-title {
+        font-size: 13.5px !important;
+        height: 35px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 0.25rem;
+    }
+    .product-price {
+        font-size: 15px !important;
+        margin-bottom: 0.4rem;
+        gap: 4px;
+    }
+    .price-compare {
+        font-size: 12px !important;
+    }
+    .product-stock {
+        margin: 0.1rem 0 0.4rem;
+    }
+    .product-stock .stock-badge {
+        font-size: 0.72rem;
+    }
+    .add-to-cart-btn {
+        padding: 0.55rem 0.5rem;
+        font-size: 0.75rem;
+        border-radius: 12px;
+    }
+    .add-to-cart-btn .btn-icon {
+        width: 15px;
+        height: 15px;
+    }
+    .shop-pagination-wrapper {
+        grid-column: 1 / -1;
+        margin-top: 1.5rem;
+    }
 }
 @media (max-width: 480px) {
-    .shop-filters { grid-template-columns: 1fr; gap: 1.5rem; }
-    .shop-grid { grid-template-columns: 1fr; }
+    .shop-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+    .product-badge {
+        font-size: 0.6rem !important;
+        top: 8px !important;
+        left: -32px !important;
+        width: 110px !important;
+    }
+    .discount-badge {
+        top: 0.5rem !important;
+        right: 0.5rem !important;
+        font-size: 0.68rem !important;
+        padding: 0.2rem 0.5rem !important;
+    }
 }
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Dropdown toggle logic
+        // Dropdown toggle logic for desktop
         const dropdown = document.getElementById('sortDropdown');
         if (dropdown) {
             const selected = dropdown.querySelector('.dropdown-selected');
             const options = dropdown.querySelectorAll('.dropdown-option');
             
-            selected.addEventListener('click', () => {
+            selected?.addEventListener('click', () => {
                 dropdown.classList.toggle('open');
             });
             
@@ -734,6 +1555,86 @@
                 }
             });
         }
+
+        // Mobile Filter Bottom Sheet Drawer logic
+        const drawer = document.getElementById('mobileFilterDrawer');
+        const openBtn = document.getElementById('mobileFilterOpenBtn');
+        const chipOpenBtn = document.getElementById('mobileChipOpenDrawer');
+        const closeBtn = document.getElementById('mobileDrawerCloseBtn');
+        const backdrop = document.getElementById('mobileDrawerBackdrop');
+        const resetFieldsBtn = document.getElementById('drawerResetAllFields');
+
+        function openMobileDrawer() {
+            if (!drawer) return;
+            drawer.classList.add('open');
+            drawer.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileDrawer() {
+            if (!drawer) return;
+            drawer.classList.remove('open');
+            drawer.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        openBtn?.addEventListener('click', openMobileDrawer);
+        chipOpenBtn?.addEventListener('click', openMobileDrawer);
+        closeBtn?.addEventListener('click', closeMobileDrawer);
+        backdrop?.addEventListener('click', closeMobileDrawer);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) {
+                closeMobileDrawer();
+            }
+        });
+
+        // Sort Pills Selection
+        const sortPills = document.querySelectorAll('.drawer-sort-pill');
+        sortPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                sortPills.forEach(p => p.classList.remove('selected'));
+                pill.classList.add('selected');
+                const radio = pill.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+            });
+        });
+
+        // Checkbox cards styling toggle
+        const checkItems = document.querySelectorAll('.drawer-check-item');
+        checkItems.forEach(item => {
+            const input = item.querySelector('input[type="checkbox"]');
+            input?.addEventListener('change', () => {
+                item.classList.toggle('checked', input.checked);
+            });
+        });
+
+        // Drawer Reset Fields Button
+        resetFieldsBtn?.addEventListener('click', () => {
+            // Reset sort to featured
+            sortPills.forEach(p => {
+                const radio = p.querySelector('input[type="radio"]');
+                if (radio && radio.value === 'featured') {
+                    radio.checked = true;
+                    p.classList.add('selected');
+                } else {
+                    p.classList.remove('selected');
+                }
+            });
+
+            // Clear price inputs
+            const minPrice = document.getElementById('drawerMinPrice');
+            const maxPrice = document.getElementById('drawerMaxPrice');
+            if (minPrice) minPrice.value = '';
+            if (maxPrice) maxPrice.value = '';
+
+            // Uncheck all checkboxes
+            checkItems.forEach(item => {
+                const input = item.querySelector('input[type="checkbox"]');
+                if (input) input.checked = false;
+                item.classList.remove('checked');
+            });
+        });
     });
 </script>
 @endsection

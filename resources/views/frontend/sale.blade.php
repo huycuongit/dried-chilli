@@ -226,6 +226,9 @@
     line-height: 1.6;
     text-align: justify;
     text-justify: inter-word;
+    text-align-last: left;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 .yum-action {
     display: flex;
@@ -318,11 +321,57 @@
 }
 
 @media (max-width: 768px) {
+    .sale-banner-wrapper {
+        height: clamp(220px, 50vw, 320px) !important;
+        margin-bottom: 2rem !important;
+        border-radius: 14px !important;
+    }
     .tier-title {
-        font-size: clamp(26px, 5vw, 32px) !important;
+        font-size: 24px !important;
+        margin-bottom: 1.5rem !important;
     }
     .yum-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    .yum-card {
+        border-radius: 16px !important;
+    }
+    .yum-card-bottom {
+        padding: 0.75rem 0.6rem !important;
+    }
+    .yum-title {
+        font-size: 13.5px !important;
+        height: 35px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .yum-desc {
+        display: none !important;
+    }
+    .yum-action {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        align-items: stretch !important;
+    }
+    .yum-btn {
+        width: 100% !important;
+        padding: 0.5rem 0 !important;
+        font-size: 0.75rem !important;
+        border-radius: 12px !important;
+    }
+    .countdown-timer {
+        font-size: 0.68rem !important;
+        padding: 0.25rem 0.5rem !important;
+        bottom: 8px !important;
+    }
+}
+@media (max-width: 480px) {
+    .yum-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
     }
 }
 </style>

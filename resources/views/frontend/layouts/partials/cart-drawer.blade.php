@@ -405,4 +405,13 @@
         color: var(--spice-primary);
         border-color: var(--spice-primary);
     }
+
+    @media (max-width: 900px) {
+        .cart-drawer,
+        .cart-drawer-overlay {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+    }
 </style>

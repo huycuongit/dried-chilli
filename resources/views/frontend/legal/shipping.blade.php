@@ -329,9 +329,7 @@
         margin-top: 0;
     }
 
-    .document-wrapper p,
-    .document-wrapper ul,
-    .document-wrapper ol {
+    .document-wrapper p {
         font-family: var(--font-body);
         font-size: 15px;
         line-height: 1.65;
@@ -339,11 +337,20 @@
         margin-bottom: 1.5rem;
         text-align: justify;
         text-justify: inter-word;
+        text-align-last: left;
+        -webkit-hyphens: auto;
+        hyphens: auto;
         line-height: 1.7;
     }
 
     .document-wrapper ul,
     .document-wrapper ol {
+        font-family: var(--font-body);
+        font-size: 15px;
+        color: #4A3B32;
+        margin-bottom: 1.5rem;
+        text-align: left;
+        line-height: 1.7;
         padding-left: 2rem;
     }
 
@@ -505,6 +512,11 @@
     }
 
     @media (max-width: 768px) {
+        .legal-hero {
+            height: auto !important;
+            min-height: 260px !important;
+            padding: 4rem 1.25rem 2.5rem 1.25rem !important;
+        }
         .legal-hero h1 {
             font-size: clamp(34px, 7vw, 42px) !important;
         }

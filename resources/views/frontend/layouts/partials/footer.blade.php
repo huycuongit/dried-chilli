@@ -13,10 +13,10 @@
                 <ul class="footer-link-list">
                     <li><a href="{{ route('page.shop') }}">Shop All Spices</a></li>
                     <li><a href="{{ route('page.sale') }}">Hot Deals & Bundles</a></li>
-                    <li><a href="{{ route('page.product', 'extra-garlic-crunch-5') }}">Extra Garlic Crunch</a></li>
-                    <li><a href="{{ route('page.product', 'ghost-pepper-flakes-2') }}">Ghost Pepper Flakes</a></li>
-                    <li><a href="{{ route('page.product', 'smoked-paprika-blend-3') }}">Smoked Paprika</a></li>
-                    <li><a href="{{ route('page.product', 'dried-ancho-chilies-1') }}">Dried Ancho Chilies</a></li>
+                    <li><a href="{{ route('page.product', 'extra-garlic-crunch') }}">Extra Garlic Crunch</a></li>
+                    <li><a href="{{ route('page.product', 'ghost-pepper-flakes') }}">Ghost Pepper Flakes</a></li>
+                    <li><a href="{{ route('page.product', 'smoked-paprika-blend') }}">Smoked Paprika</a></li>
+                    <li><a href="{{ route('page.product', 'dried-ancho-chilies') }}">Dried Ancho Chilies</a></li>
                 </ul>
             </div>
 
@@ -35,12 +35,13 @@
             <div class="footer-newsletter">
                 <h4>Stay Spicy</h4>
                 <p>Join our newsletter for recipes, new releases, and exclusive offers.</p>
-                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Dried Chili!');">
-                    <input type="email" placeholder="Email address" required aria-label="Email address">
-                    <button type="submit" aria-label="Subscribe">
+                <form class="newsletter-form" id="footer-newsletter-form">
+                    <input type="email" id="footer-newsletter-email" placeholder="Email address" required aria-label="Email address">
+                    <button type="submit" id="footer-newsletter-btn" aria-label="Subscribe">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </button>
                 </form>
+                <div id="footer-newsletter-feedback" style="display: none; font-size: 0.85rem; margin-top: 8px;"></div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -82,6 +83,9 @@
         max-width: 32ch;
         text-align: justify;
         text-justify: inter-word;
+        text-align-last: left;
+        -webkit-hyphens: auto;
+        hyphens: auto;
         margin: 0;
     }
 
@@ -159,6 +163,9 @@
         line-height: 1.6;
         text-align: justify;
         text-justify: inter-word;
+        text-align-last: left;
+        -webkit-hyphens: auto;
+        hyphens: auto;
     }
 
     .newsletter-form {
@@ -241,46 +248,133 @@
         color: #6C5F57;
     }
 
-    @media (max-width: 992px) {
+    /* Responsive: Tablet (768px - 992px) */
+    @media (min-width: 769px) and (max-width: 992px) {
         .footer-grid {
             grid-template-columns: 1fr 1fr;
             gap: 2.5rem;
         }
+        .footer-newsletter {
+            grid-column: span 2;
+            max-width: 500px;
+        }
     }
     
-    @media (max-width: 576px) {
+    /* Responsive: Mobile Phone (768px and below) */
+    @media (max-width: 768px) {
+        .spice-footer {
+            padding: 2.5rem 0 5.5rem 0;
+        }
         .footer-grid {
-            grid-template-columns: 1fr;
-            gap: 2.25rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 1rem;
+            margin-bottom: 2rem;
         }
         .footer-brand {
+            grid-column: span 2;
             text-align: center;
             align-items: center;
         }
         .footer-logo-wrap {
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 1rem;
+            margin: 0 auto 0.5rem auto;
         }
         .footer-logo {
-            width: 130px;
-            margin: 0 auto;
+            width: 120px;
         }
         .footer-brand p {
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
             text-align: center;
+            font-size: 0.88rem;
+            max-width: 290px;
         }
         .footer-links {
-            text-align: center;
+            text-align: left;
+            padding: 0 0.5rem;
+        }
+        .footer-links h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
         }
         .footer-link-list {
-            align-items: center;
+            gap: 0.45rem;
+        }
+        .footer-link-list a {
+            font-size: 0.85rem;
+        }
+        .footer-newsletter {
+            grid-column: span 2;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        .footer-newsletter h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer-newsletter p {
+            text-align: center;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            max-width: 320px;
+            margin: 0 auto;
+            padding: 3px 5px 3px 14px;
         }
         .footer-bottom {
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.5rem;
             text-align: center;
+            font-size: 0.78rem;
+            padding-top: 1.25rem;
         }
     }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const footerForm = document.getElementById('footer-newsletter-form');
+    const footerEmail = document.getElementById('footer-newsletter-email');
+    const footerBtn = document.getElementById('footer-newsletter-btn');
+    const footerFeedback = document.getElementById('footer-newsletter-feedback');
+
+    if (footerForm) {
+        footerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = footerEmail.value.trim();
+            if (!email) return;
+
+            footerBtn.disabled = true;
+            footerFeedback.style.display = 'block';
+            footerFeedback.style.color = '#BDBDBD';
+            footerFeedback.textContent = 'Sending...';
+
+            fetch('/api/coupon/claim-voucher', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(res => res.json())
+            .then(data => {
+                footerBtn.disabled = false;
+                if (data.success) {
+                    footerFeedback.style.color = '#81C784';
+                    footerFeedback.textContent = 'Mã 15% của bạn: ' + data.code + ' (Đã gửi email!)';
+                    footerEmail.value = '';
+                } else {
+                    footerFeedback.style.color = '#E57373';
+                    footerFeedback.textContent = data.message || 'Lỗi khi gửi voucher.';
+                }
+            })
+            .catch(() => {
+                footerBtn.disabled = false;
+                footerFeedback.style.color = '#E57373';
+                footerFeedback.textContent = 'Lỗi kết nối. Vui lòng thử lại.';
+            });
+        });
+    }
+});
+</script>

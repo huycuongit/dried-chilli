@@ -7,7 +7,9 @@
     @if (renderData($systemSettings, 'google_site_verification', ''))
     <meta name="google-site-verification" content="{{ renderData($systemSettings, 'google_site_verification', '') }}">
     @endif
-    <meta name="view-transition" content="same-origin" />
+    <style>
+        @view-transition { navigation: auto; }
+    </style>
     @yield('meta')
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}?v=20261015-chili">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}?v=20261015-chili">
@@ -21,6 +23,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap">
+    <!-- Lucide Icons (Self-hosted locally, zero tracking warnings & 100% offline ready) -->
+    <script src="{{ asset('js/lucide.min.js') }}"></script>
     @stack('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/nafu-richtext.css') }}?v=20260919-1">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/quill/katex.css') }}">

@@ -273,6 +273,9 @@
     margin: 0;
     text-align: justify;
     text-justify: inter-word;
+    text-align-last: left;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 /* Help Box */
@@ -342,6 +345,11 @@
 }
 
 @media (max-width: 768px) {
+    .legal-hero {
+        height: auto !important;
+        min-height: 260px !important;
+        padding: 4rem 1.25rem 2.5rem 1.25rem !important;
+    }
     .legal-hero h1 {
         font-size: clamp(34px, 7vw, 42px) !important;
     }

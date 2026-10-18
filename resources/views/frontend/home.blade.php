@@ -313,20 +313,58 @@
     @media (max-width: 768px) {
         .spice-features-banner {
             min-height: auto;
-            padding: 2.5rem 0;
+            padding: 0.75rem 0;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         .features-banner-grid {
-            grid-template-columns: 1fr;
-            gap: 1.75rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.25rem;
+            align-items: center;
         }
 
         .feature-col {
-            border-right: none !important;
-            max-width: 320px;
-            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.35rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+            max-width: none;
+            margin: 0;
             width: 100%;
-            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .feature-col:last-child {
+            border-right: none !important;
+        }
+
+        .feature-icon-wrap {
+            width: 32px;
+            height: 32px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .feature-icon-wrap svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .feature-title {
+            font-size: 11px !important;
+            line-height: 1.25 !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.2px !important;
+            margin: 0 !important;
+        }
+
+        .feature-desc {
+            display: none !important;
         }
     }
     </style>
@@ -366,7 +404,8 @@
                             style="display: block; width: 100%; height: 100%;">
                             <img src="{{ asset('images/product_hero.png') }}" alt="{{ $product->name }}">
                         </a>
-                        <button type="button" class="quick-add" data-product-id="{{ $product->id }}">
+                        <!-- Desktop Hover Quick Add Button -->
+                        <button type="button" class="quick-add desktop-quick-add" data-product-id="{{ $product->id }}" aria-label="Quick Add {{ $product->name }}">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M5 12h14" />
@@ -387,6 +426,15 @@
                             <span class="price-current">${{ number_format($product->price, 2) }}</span>
                             @endif
                         </div>
+                        <!-- Mobile Quick Add Button (Visible <= 768px below price) -->
+                        <button type="button" class="quick-add mobile-quick-add" data-product-id="{{ $product->id }}" aria-label="Quick Add {{ $product->name }}">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                            <span>Quick Add</span>
+                        </button>
                     </div>
                 </div>
                 @endforeach
@@ -652,7 +700,7 @@
                                 d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
                         </svg>
                     </div>
-                    <p>"This chili powder brings the perfect fiery kick to my daily cooking. Absolutely obsessed!"</p>
+                    <p>This chili powder brings the perfect fiery kick to my daily cooking. Absolutely obsessed!</p>
                     <div class="testi-footer">
                         <div class="author-initials">MT</div>
                         <div class="author-info">
@@ -674,7 +722,7 @@
                                 d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
                         </svg>
                     </div>
-                    <p>"The curry blend is incredibly authentic. It transformed my weekend dinners into a masterpiece."
+                    <p>The curry blend is incredibly authentic. It transformed my weekend dinners into a masterpiece.
                     </p>
                     <div class="testi-footer">
                         <div class="author-initials">SW</div>
@@ -697,7 +745,7 @@
                                 d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
                         </svg>
                     </div>
-                    <p>"I've never tasted spices this fresh and aromatic before. The heat level is just perfect."</p>
+                    <p>I've never tasted spices this fresh and aromatic before. The heat level is just perfect.</p>
                     <div class="testi-footer">
                         <div class="author-initials">DL</div>
                         <div class="author-info">
@@ -936,6 +984,9 @@
     font-weight: 400;
     text-align: justify;
     text-justify: inter-word;
+    text-align-last: left;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 .testi-footer {
@@ -1122,12 +1173,11 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: center;
-    gap: 100px;
-    /* Giãn cách hero-content và hero-stage cách xa nhau 100px */
+    gap: 80px;
     height: 100%;
     max-width: 1430px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 3.5rem;
     box-sizing: border-box;
 }
 
@@ -1174,26 +1224,27 @@
     font-family: var(--font-heading);
     font-size: clamp(48px, 4.2vw, 64px);
     line-height: 1.08;
-    margin: 0 0 0.85rem 0;
-    /* Giảm margin dưới */
+    margin: 0 0 1rem 0;
     color: #2A0800;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    display: flex;
-    align-items: flex-start;
+    display: block;
     font-weight: 800;
+    letter-spacing: -0.5px;
 }
 
 .hero-desc {
     font-family: var(--font-body);
     color: #5C4B41;
-    font-size: 16px;
-    line-height: 1.65;
-    margin: 0 0 1.4rem 0;
-    /* Giảm margin dưới */
-    max-width: 480px;
-    text-align: justify;
-    text-justify: inter-word;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin: 0 0 1.6rem 0;
+    max-width: 440px;
+    text-align: left;
+    text-wrap: pretty;
+    hyphens: none;
+    -webkit-hyphens: none;
+    font-weight: 450;
 }
 
 .hero-actions {
@@ -1316,10 +1367,10 @@
 
 /* ==========================================================================
        STRICTLY CONTAINED STICKER COORDINATES (ZERO TEXT OVERLAP GUARANTEED)
-       Phối màu chuẩn: 1 Nóng kèm 1 Lạnh, 1 Lạnh kèm Trá Sáng, Tương phản cao
+       Phối màu chuẩn: Tông Màu Nóng Đồng Bộ Thương Hiệu (Spicy Amber, Fire Coral, Roast Gold)
        ========================================================================== */
 
-/* --- SLIDE 1 (Original Flavor): 1 Nóng (Chili Coral) + 1 Lạnh (Cool Jade Mint) kèm Trá Sáng --- */
+/* --- SLIDE 1 (Original Flavor): 1 Nóng (Chili Coral) + 1 Nóng (Warm Curry Gold) --- */
 .slide:nth-child(1) .sticker-1 {
     top: 8%;
     left: 0%;
@@ -1342,31 +1393,31 @@
     left: auto;
     top: auto;
     color: #FFFFFF;
-    border: 2px solid #5EEAD4;
-    background: rgba(10, 36, 32, 0.95);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 20px rgba(94, 234, 212, 0.35);
+    border: 2px solid #FFB300;
+    background: rgba(48, 20, 8, 0.95);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 179, 0, 0.35);
     animation: floatDream2 7.0s ease-in-out 0.6s infinite alternate;
 }
 
 .slide:nth-child(1) .sticker-2 span {
-    color: #5EEAD4;
+    color: #FCD34D;
 }
 
-/* --- SLIDE 2 (Garlic Crunch): 1 Lạnh (Arctic Cyan) kèm Trá Sáng + 1 Nóng (Garlic Amber) --- */
+/* --- SLIDE 2 (Garlic Crunch): 1 Nóng (Spicy Tangerine) + 1 Nóng (Garlic Amber) --- */
 .slide:nth-child(2) .sticker-1 {
     top: 12%;
     left: 2%;
     right: auto;
     bottom: auto;
     color: #FFFFFF;
-    border: 2px solid #38BDF8;
-    background: rgba(12, 34, 50, 0.95);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 20px rgba(56, 189, 248, 0.35);
+    border: 2px solid #FF7A1A;
+    background: rgba(46, 14, 10, 0.95);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 122, 26, 0.35);
     animation: floatDream3 6.2s ease-in-out 0.2s infinite alternate;
 }
 
 .slide:nth-child(2) .sticker-1 span {
-    color: #7DD3FC;
+    color: #FFA066;
 }
 
 .slide:nth-child(2) .sticker-2 {
@@ -1385,7 +1436,7 @@
     color: #FBBF24;
 }
 
-/* --- SLIDE 3 (Fire Roasted): 1 Nóng (Smoky Crimson) + 1 Lạnh (Glacier Emerald) kèm Trá Sáng --- */
+/* --- SLIDE 3 (Fire Roasted): 1 Nóng (Smoky Crimson) + 1 Nóng (Honey Roast Amber) --- */
 .slide:nth-child(3) .sticker-1 {
     top: 8%;
     left: 2%;
@@ -1408,31 +1459,31 @@
     left: auto;
     top: auto;
     color: #FFFFFF;
-    border: 2px solid #34D399;
-    background: rgba(10, 38, 30, 0.95);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 22px rgba(52, 211, 153, 0.35);
+    border: 2px solid #E59528;
+    background: rgba(45, 18, 6, 0.95);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 22px rgba(229, 149, 40, 0.35);
     animation: floatDream6 8.2s ease-in-out 0.3s infinite alternate;
 }
 
 .slide:nth-child(3) .sticker-2 span {
-    color: #6EE7B7;
+    color: #FDE047;
 }
 
-/* --- SLIDE 4 (Plant Power): 1 Lạnh (Botanical Green) kèm Trá Sáng + 1 Nóng (Warm Tangerine) --- */
+/* --- SLIDE 4 (Plant Power): 1 Nóng (Coral Chili Red) + 1 Nóng (Warm Tangerine) --- */
 .slide:nth-child(4) .sticker-1 {
     top: 6%;
     left: 4%;
     right: auto;
     bottom: auto;
     color: #FFFFFF;
-    border: 2px solid #4ADE80;
-    background: rgba(12, 38, 20, 0.95);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 20px rgba(74, 222, 128, 0.35);
+    border: 2px solid #E45D3E;
+    background: rgba(48, 15, 12, 0.95);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 20px rgba(228, 93, 62, 0.35);
     animation: floatDream7 6.4s ease-in-out 0.5s infinite alternate;
 }
 
 .slide:nth-child(4) .sticker-1 span {
-    color: #86EFAC;
+    color: #FF8A65;
 }
 
 .slide:nth-child(4) .sticker-2 {
@@ -1647,6 +1698,9 @@
     line-height: 1.6;
     text-align: justify;
     text-justify: inter-word;
+    text-align-last: left;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 .view-all-btn {
@@ -1740,7 +1794,20 @@
     line-height: 1.4;
 }
 
-.quick-add {
+.mobile-quick-add {
+    display: none !important;
+}
+
+.product-img-wrapper > a {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 2;
+}
+
+.desktop-quick-add {
     position: absolute;
     bottom: 1.5rem;
     left: 50%;
@@ -1761,18 +1828,21 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 10;
     border: none;
+    pointer-events: none;
 }
 
-.product-card:hover .quick-add {
+.product-card:hover .desktop-quick-add {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
+    pointer-events: auto;
 }
 
-.quick-add:hover {
+.desktop-quick-add:hover {
     background: var(--spice-primary);
+    box-shadow: 0 4px 15px rgba(228, 93, 62, 0.4);
 }
 
 .product-badge {
@@ -1914,6 +1984,9 @@
     margin: 0 0 2.5rem 0;
     text-align: justify;
     text-justify: inter-word;
+    text-align-last: left;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 /* Bundle Section */
@@ -1958,6 +2031,9 @@
     opacity: 0.9;
     text-align: justify;
     text-justify: inter-word;
+    text-align-last: center;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 .bundle-grid {
@@ -2137,110 +2213,779 @@
     background: linear-gradient(135deg, var(--spice-fire) 0%, var(--spice-accent) 100%);
 }
 
-@media (max-width: 900px) {
+/* ==========================================================================
+   TABLET RESPONSIVE SUITE (iPad / Tablets 769px to 1024px)
+   Layout 2 cột cân đối, hiển thị đầy đủ hình ảnh và nội dung ở tỷ lệ phù hợp
+   ========================================================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .spice-hero-slider {
+        height: 560px;
+        min-height: 560px;
+    }
+
+    .slide-split {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        padding: 2rem 1.5rem;
+        max-width: 960px;
+    }
+
+    .hero-title {
+        font-size: clamp(32px, 3.8vw, 44px);
+    }
+
+    .hero-can {
+        height: 340px;
+        width: auto;
+        max-width: 220px;
+    }
+
+    .hero-burst {
+        width: 480px;
+        height: 480px;
+    }
+
+    .hero-stage {
+        min-height: 400px;
+    }
+
+    .product-carousel {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem;
+    }
 
     .props-grid,
     .story-grid {
         grid-template-columns: 1fr;
     }
 
-    .product-carousel,
-    .bundle-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .hero-title {
-        font-size: clamp(38px, 5vw, 48px);
-    }
-
-    .slide-split {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2rem;
-        padding: 3rem 1rem;
-    }
-
-    .hero-actions {
-        justify-content: center;
-    }
-
     .story-content {
-        padding: 4rem 2rem;
-    }
-
-    .hero-visual img {
-        max-height: 300px;
+        padding: 3rem 1.5rem;
     }
 }
 
+/* ==========================================================================
+   MOBILE-FIRST NATIVE RESPONSIVE SUITE (Phones <= 768px, 375x667, 390x844)
+   ========================================================================== */
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: clamp(34px, 7vw, 42px) !important;
+    /* 1. Global Container Spacing */
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
 
+    /* 2. Hero Slider (Refined Mobile Redesign: 480px, Proportional, Balanced) */
+    .spice-hero-slider {
+        height: 480px !important;
+        min-height: 480px !important;
+        max-height: 480px !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+        position: relative !important;
+    }
+
+    .slider-container {
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+    }
+
+    .slide {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .slide-split {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 8px !important;
+        padding: 16px 1rem 36px 1rem !important;
+        width: 100% !important;
+        max-width: 420px !important;
+        height: 100% !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+    }
+
+    /* Product Jar Stage cleanly placed on TOP (order 1) */
+    .hero-stage {
+        order: 1 !important;
+        min-height: 175px !important;
+        height: 175px !important;
+        max-height: 175px !important;
+        width: 100% !important;
+        max-width: 330px !important;
+        position: relative !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transform: none !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+    }
+
+    /* Radiant Burst effect behind the jar - Thu nhỏ & định vị tinh tế không đè lên text */
+    .hero-burst {
+        display: block !important;
+        position: absolute !important;
+        top: 44% !important;
+        left: 50% !important;
+        width: 250px !important;
+        height: 250px !important;
+        border-radius: 50% !important;
+        z-index: 1 !important;
+        pointer-events: none !important;
+        mask-image: radial-gradient(circle at center, black 25%, transparent 64%) !important;
+        -webkit-mask-image: radial-gradient(circle at center, black 25%, transparent 64%) !important;
+        animation: spinBurstMobile 36s linear infinite !important;
+    }
+
+    .slide.active .hero-burst {
+        opacity: 0.85 !important;
+        visibility: visible !important;
+    }
+
+    .slide:not(.active):not(.fading-out) .hero-burst {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    @keyframes spinBurstMobile {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+
+    .hero-can {
+        height: 155px !important;
+        width: auto !important;
+        max-width: 120px !important;
+        object-fit: contain !important;
+        animation: floatImgMobile 4s ease-in-out infinite alternate !important;
+        transform: none !important;
+        filter: drop-shadow(0 8px 18px rgba(43, 29, 20, 0.28)) !important;
+        position: relative !important;
+        z-index: 5 !important;
+        margin: 0 auto !important;
+    }
+
+    /* Floating Pill Badges around the jar - Định vị rộng ra hai bên không đè lên thân hũ */
+    .hero-sticker {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 3px !important;
+        position: absolute !important;
+        z-index: 7 !important;
+        border-radius: 20px !important;
+        padding: 3.5px 8px !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        color: #FFFFFF !important;
+        white-space: nowrap !important;
+        pointer-events: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+        will-change: transform;
+    }
+
+    .hero-sticker.sticker-1 {
+        left: 0 !important;
+        top: 18% !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: rotate(-4deg) !important;
+        background: rgba(45, 12, 10, 0.94) !important;
+        border: 1.5px solid #FF5722 !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(255, 87, 34, 0.4) !important;
+    }
+
+    .hero-sticker.sticker-1 span {
+        color: #FFA066 !important;
+        font-weight: 800 !important;
+    }
+
+    .hero-sticker.sticker-2 {
+        right: 0 !important;
+        bottom: 20% !important;
+        left: auto !important;
+        top: auto !important;
+        transform: rotate(4deg) !important;
+        background: rgba(48, 20, 8, 0.94) !important;
+        border: 1.5px solid #FFB300 !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(255, 179, 0, 0.4) !important;
+    }
+
+    .hero-sticker.sticker-2 span {
+        color: #FCD34D !important;
+        font-weight: 800 !important;
+    }
+
+    /* Tông màu nóng theo từng slide trên mobile */
+    .slide:nth-child(2) .sticker-1 {
+        border-color: #FF7A1A !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(255, 122, 26, 0.4) !important;
+    }
+    .slide:nth-child(2) .sticker-2 {
+        border-color: #F59E0B !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(245, 158, 11, 0.35) !important;
+    }
+
+    .slide:nth-child(3) .sticker-1 {
+        border-color: #EF4444 !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(239, 68, 68, 0.4) !important;
+    }
+    .slide:nth-child(3) .sticker-2 {
+        border-color: #E59528 !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(229, 149, 40, 0.35) !important;
+    }
+
+    .slide:nth-child(4) .sticker-1 {
+        border-color: #E45D3E !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(228, 93, 62, 0.4) !important;
+    }
+    .slide:nth-child(4) .sticker-2 {
+        border-color: #FB923C !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(251, 146, 60, 0.35) !important;
+    }
+
+    /* Content below the jar (order 2) */
+    .hero-content {
+        order: 2 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        transform: none !important;
+        gap: 5px !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 10 !important;
+    }
+
+    .hero-subtitle {
+        display: inline-flex !important;
+        align-items: center !important;
+        width: fit-content !important;
+        font-size: 10.5px !important;
+        letter-spacing: 1.2px !important;
+        text-transform: uppercase !important;
+        color: var(--spice-fire) !important;
+        font-weight: 800 !important;
+        border: 1.5px solid var(--spice-fire) !important;
+        padding: 2.5px 10px !important;
+        border-radius: 20px !important;
+        line-height: 1.2 !important;
+        margin: 0 0 3px 0 !important;
+        background: rgba(228, 93, 62, 0.06) !important;
+    }
+
+    .hero-title br {
+        display: inline !important;
+        content: ' ' !important;
+    }
+
+    .hero-title {
+        font-family: var(--font-heading) !important;
+        font-size: clamp(21px, 5.8vw, 25px) !important;
+        font-weight: 800 !important;
+        line-height: 1.15 !important;
+        margin: 0 0 4px 0 !important;
+        text-align: center !important;
+        justify-content: center !important;
+        display: block !important;
+        color: #2A0800 !important;
+        letter-spacing: -0.2px !important;
+        text-transform: uppercase !important;
+        white-space: normal !important;
+    }
+
+    .hero-desc {
+        display: block !important;
+        font-family: var(--font-body) !important;
+        font-size: 13.5px !important;
+        line-height: 1.5 !important;
+        color: #5C4B41 !important;
+        margin: 0 auto 12px auto !important;
+        max-width: 330px !important;
+        text-align: center !important;
+        hyphens: none !important;
+        -webkit-hyphens: none !important;
+        text-wrap: pretty !important;
+    }
+
+    .hero-actions {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .hero-actions .btn-primary {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: auto !important;
+        min-width: 155px !important;
+        max-width: 220px !important;
+        padding: 0.58rem 1.65rem !important;
+        font-size: 13.5px !important;
+        font-weight: 700 !important;
+        border-radius: 24px !important;
+        background: var(--spice-primary) !important;
+        color: #FFFFFF !important;
+        box-shadow: 0 5px 16px rgba(228, 93, 62, 0.38) !important;
+        gap: 6px !important;
+        text-decoration: none !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    }
+
+    .hero-actions .btn-primary:active {
+        transform: scale(0.97) !important;
+    }
+
+    .slider-controls {
+        bottom: 12px !important;
+        position: absolute !important;
+        left: 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        z-index: 10 !important;
+    }
+
+    .slider-dots .dot {
+        width: 8px !important;
+        height: 8px !important;
+        margin: 0 4px !important;
+        background: rgba(42, 8, 0, 0.2) !important;
+        border-radius: 50% !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .slider-dots .dot.active {
+        width: 22px !important;
+        border-radius: 10px !important;
+        background: var(--spice-primary) !important;
+    }
+
+    @keyframes floatImgMobile {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-7px); }
+    }
+
+    /* 3. Section Titles & Spacing */
     .serif-title,
     .social-feed h2,
     .story-content h2,
     .testi-heading,
     .bundle-title {
-        font-size: clamp(26px, 5vw, 32px) !important;
+        font-size: 20px !important;
+        line-height: 1.2 !important;
     }
 
-    .hero-sticker {
-        font-size: 0.85rem;
-        padding: 0.4rem 0.9rem;
+    /* 4. Trending Products - Clean, Airy 2-Column Grid */
+    .trending-products {
+        padding: 1.75rem 0 !important;
     }
 
-    .slide:nth-child(1) .sticker-1 {
-        left: 2%;
-        top: 6%;
+    .rich-header {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        margin-bottom: 0.85rem !important;
+        padding-bottom: 0.65rem !important;
+        border-bottom: 1px solid rgba(59, 42, 32, 0.08) !important;
+        gap: 0.5rem !important;
     }
 
-    .slide:nth-child(1) .sticker-2 {
-        right: 2%;
-        bottom: 8%;
+    .trending-products .section-subtitle,
+    .trending-products .section-desc,
+    .product-vendor {
+        display: none !important;
     }
 
-    .slide:nth-child(2) .sticker-1 {
-        left: 2%;
-        top: 10%;
+    .header-action {
+        width: auto !important;
     }
 
-    .slide:nth-child(2) .sticker-2 {
-        right: 2%;
-        bottom: 12%;
+    .view-all-btn {
+        width: auto !important;
+        padding: 0.35rem 0.75rem !important;
+        font-size: 0.72rem !important;
+        border-radius: 12px !important;
+        white-space: nowrap !important;
     }
 
-    .slide:nth-child(3) .sticker-1 {
-        right: 2%;
-        top: 6%;
+    .product-carousel {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        margin-top: 0.5rem !important;
     }
 
-    .slide:nth-child(3) .sticker-2 {
-        left: 4%;
-        bottom: 8%;
+    .product-card {
+        background: #FFFFFF !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(43, 29, 20, 0.08) !important;
+        box-shadow: 0 3px 12px rgba(43, 29, 20, 0.05) !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        transition: none !important;
+        position: relative !important;
     }
 
-    .slide:nth-child(4) .sticker-1 {
-        left: 8%;
-        top: 4%;
+    .product-badge {
+        position: absolute !important;
+        top: 6px !important;
+        left: 6px !important;
+        transform: none !important;
+        width: auto !important;
+        padding: 2px 7px !important;
+        font-size: 0.62rem !important;
+        border-radius: 6px !important;
+        letter-spacing: 0.5px !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
+        z-index: 10 !important;
     }
 
-    .slide:nth-child(4) .sticker-2 {
-        left: 2%;
-        bottom: 12%;
+    .product-img-wrapper {
+        padding-top: 86% !important;
+        background: #FAF7F2 !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    .product-img-wrapper a {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .product-img-wrapper img {
+        position: absolute !important;
+        top: 8% !important;
+        left: 10% !important;
+        width: 80% !important;
+        height: 80% !important;
+        object-fit: contain !important;
+    }
+
+    .desktop-quick-add {
+        display: none !important;
+    }
+
+    .mobile-quick-add {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        width: 100% !important;
+        padding: 0.52rem 0.5rem !important;
+        margin-top: 0.55rem !important;
+        font-size: 0.76rem !important;
+        font-weight: 700 !important;
+        border-radius: 10px !important;
+        background: linear-gradient(135deg, #E45D3E 0%, #D3381C 100%) !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        cursor: pointer !important;
+        box-shadow: 0 3px 10px rgba(211, 56, 28, 0.25) !important;
+        transition: transform 0.2s, background 0.2s !important;
+        position: static !important;
+        transform: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    .mobile-quick-add:active {
+        transform: scale(0.97) !important;
+    }
+
+    .product-details {
+        padding: 0.6rem 0.5rem 0.65rem 0.5rem !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        flex: 1 !important;
+    }
+
+    .product-title {
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        line-height: 1.3 !important;
+        height: 34px !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+        margin-bottom: 0.2rem !important;
+    }
+
+    .product-price {
+        margin: 0.15rem 0 0 0 !important;
+        gap: 5px !important;
+        justify-content: center !important;
+    }
+
+    .price-current {
+        font-size: 14.5px !important;
+        font-weight: 800 !important;
+    }
+
+    .price-compare {
+        font-size: 11.5px !important;
+    }
+
+    /* 5. Social Feed on Mobile - Clean & Airy */
+    .social-feed {
+        padding: 1.75rem 0 !important;
+    }
+
+    .social-feed .sec-head .label {
+        display: none !important;
+    }
+
+    .feed-track {
+        padding: 0.5rem 0 !important;
+        border: none !important;
+        margin-top: 0.75rem !important;
+    }
+
+    .feed-card {
+        width: 125px !important;
+        border-radius: 12px !important;
+    }
+
+    .feed-badge {
+        font-size: 0.65rem !important;
+        padding: 0.2rem 0.45rem !important;
+        bottom: 0.4rem !important;
+        left: 0.4rem !important;
+    }
+
+    .btn-ghost {
+        padding: 0.45rem 0.9rem !important;
+        font-size: 0.75rem !important;
+        margin: 0.2rem !important;
+    }
+
+    /* 6. Brand Story on Mobile - Airy & Concise */
+    .spice-story {
+        padding: 1.75rem 0 !important;
+    }
+
+    .story-content .subheading {
+        display: none !important;
+    }
+
+    .story-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.85rem !important;
+    }
+
+    .story-image img {
+        max-height: 160px !important;
+        width: 100% !important;
+        object-fit: cover !important;
+        border-radius: 14px !important;
+    }
+
+    .story-content {
+        padding: 0 !important;
+        text-align: center !important;
+        align-items: center !important;
+    }
+
+    .story-content h2 {
+        font-size: 20px !important;
+        margin-bottom: 0.35rem !important;
+    }
+
+    .story-content p {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 0.85rem !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+        text-align-last: left !important;
+        -webkit-hyphens: auto !important;
+        hyphens: auto !important;
+        color: #5C4B41 !important;
+    }
+
+    .story-content .btn-primary {
+        padding: 0.55rem 1.5rem !important;
+        font-size: 13px !important;
+        border-radius: 20px !important;
+    }
+
+    /* 7. Testimonials on Mobile - Horizontal Swipe Track */
+    .spice-compact-testimonials {
+        padding: 1.75rem 0 2.5rem 0 !important;
+    }
+
+    .quote-icon {
+        display: none !important;
+    }
+
+    .testi-header-flex {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        margin-bottom: 0.85rem !important;
+        gap: 0.5rem !important;
+    }
+
+    .testi-rating-overall {
+        align-items: flex-end !important;
+    }
+
+    .testi-rating-overall .stars {
+        font-size: 1rem !important;
+    }
+
+    .testi-rating-overall .rating-text {
+        font-size: 0.75rem !important;
+    }
+
+    .testi-grid-container {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 10px !important;
+        padding: 0.25rem 1rem 0.6rem 1rem !important;
+        margin: 0 -1rem !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .testi-grid-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .compact-testimonial-item.premium-card {
+        flex: 0 0 82vw !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        padding: 1rem !important;
+        border-radius: 14px !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .compact-testimonial-item.premium-card p {
+        font-size: 13px !important;
+        line-height: 1.45 !important;
+        margin-bottom: 0.75rem !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+        text-align-last: left !important;
+        -webkit-hyphens: auto !important;
+        hyphens: auto !important;
+    }
+
+    .testi-footer {
+        padding-top: 0.5rem !important;
+        gap: 0.65rem !important;
+    }
+
+    .author-initials {
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 0.85rem !important;
+        border-radius: 10px !important;
+    }
+
+    .author-name {
+        font-size: 0.88rem !important;
+    }
+
+    .author-sub {
+        font-size: 0.7rem !important;
     }
 }
 
-@media (max-width: 600px) {
-
-    .product-carousel,
-    .bundle-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 380px) {
+    .spice-hero-slider {
+        height: 440px !important;
+        min-height: 440px !important;
+        max-height: 440px !important;
     }
-
-    .hero-actions {
-        flex-direction: column;
+    .slide-split {
+        padding: 12px 0.75rem 28px 0.75rem !important;
+        gap: 6px !important;
+    }
+    .hero-stage {
+        min-height: 155px !important;
+        height: 155px !important;
+        max-height: 155px !important;
+    }
+    .hero-can {
+        height: 140px !important;
+        max-width: 110px !important;
+    }
+    .hero-burst {
+        width: 220px !important;
+        height: 220px !important;
+    }
+    .hero-sticker {
+        font-size: 10px !important;
+        padding: 3px 8px !important;
+    }
+    .hero-title {
+        font-size: 19px !important;
+    }
+    .hero-desc {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+        max-width: 290px !important;
+        margin-bottom: 8px !important;
+    }
+    .hero-actions .btn-primary {
+        padding: 0.5rem 1.4rem !important;
+        font-size: 13px !important;
+        min-width: 140px !important;
+    }
+    .product-carousel {
+        gap: 8px !important;
+    }
+    .product-title {
+        font-size: 12px !important;
     }
 }
 </style>

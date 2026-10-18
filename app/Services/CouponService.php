@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Coupon;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Str;
 
 class CouponService
 {
@@ -75,5 +76,53 @@ class CouponService
         }
 
         return 0;
+    }
+
+    /**
+     * Generate a unique 15% discount voucher for an email address,
+     * or return their active unused voucher if one already exists.
+     *
+     * @param string $email
+     * @param float $discountPercent
+     * @return Coupon
+     */
+    public function generateVoucherForEmail(string $email, float $discountPercent = 15.0): Coupon
+    {
+        $normalizedEmail = strtolower(trim($email));
+
+        $existing = Coupon::where('email', $normalizedEmail)
+            ->where('is_active', true)
+            ->where('type', 'percent')
+            ->where('value', $discountPercent)
+            ->where(function ($query) {
+                $query->whereNull('expires_at')
+                      ->orWhere('expires_at', '>', Carbon::now());
+            })
+            ->where(function ($query) {
+                $query->whereNull('usage_limit')
+                      ->orWhereColumn('used_count', '<', 'usage_limit');
+            })
+            ->first();
+
+        if ($existing) {
+            return $existing;
+        }
+
+        do {
+            $code = 'CHILLI15-' . strtoupper(Str::random(6));
+        } while (Coupon::where('code', $code)->exists());
+
+        return Coupon::create([
+            'code' => $code,
+            'email' => $normalizedEmail,
+            'type' => 'percent',
+            'value' => $discountPercent,
+            'min_order_amount' => 0,
+            'max_discount' => null,
+            'usage_limit' => 1,
+            'used_count' => 0,
+            'expires_at' => Carbon::now()->addDays(30),
+            'is_active' => true,
+        ]);
     }
 }
