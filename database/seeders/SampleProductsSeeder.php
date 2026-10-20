@@ -45,7 +45,7 @@ class SampleProductsSeeder extends Seeder
 
         // 3. Insert into Database
         foreach ($products as $p) {
-            Product::firstOrCreate(
+            $product = Product::firstOrCreate(
                 ['slug' => Str::slug($p['name'])],
                 [
                     'category_id' => $category->id,
@@ -55,6 +55,14 @@ class SampleProductsSeeder extends Seeder
                     'is_best_seller' => $p['is_best_seller'],
                     'is_active' => true,
                     'description' => 'A delicious sample product to spice up your life.'
+                ]
+            );
+
+            \App\Models\Inventory::updateOrCreate(
+                ['product_id' => $product->id],
+                [
+                    'quantity' => 30,
+                    'low_stock_threshold' => 5,
                 ]
             );
         }

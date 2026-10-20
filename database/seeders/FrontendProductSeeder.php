@@ -79,7 +79,14 @@ class FrontendProductSeeder extends Seeder
         ]);
 
         foreach ($products as $p) {
-            Product::updateOrCreate(['id' => $p['id']], $p);
+            $product = Product::updateOrCreate(['id' => $p['id']], $p);
+            \App\Models\Inventory::updateOrCreate(
+                ['product_id' => $product->id],
+                [
+                    'quantity' => 30,
+                    'low_stock_threshold' => 5,
+                ]
+            );
         }
     }
 }
