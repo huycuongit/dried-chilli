@@ -235,8 +235,8 @@
         .container,
         .header-container,
         .spice-container {
-            padding-left: 0.75rem !important;
-            padding-right: 0.75rem !important;
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
         }
     }
 </style>

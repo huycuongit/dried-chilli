@@ -111,8 +111,8 @@ class CouponController extends Controller
         return response()->json([
             'success' => true,
             'message' => $mailSent 
-                ? 'Mã giảm giá 15% đã được gửi thành công đến email của bạn!' 
-                : 'Mã giảm giá 15% của bạn đã được tạo thành công!',
+                ? 'Your 15% discount code has been sent to your email successfully!' 
+                : 'Your 15% discount code has been generated successfully!',
             'code' => $coupon->code,
             'discount' => 15,
             'mail_sent' => $mailSent,

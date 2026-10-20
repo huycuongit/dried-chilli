@@ -103,8 +103,7 @@
                         <span class="tag-text">SACRED SOIL · THE ORIGIN VALLEY</span>
                     </div>
                     <h2 class="pillar-heading">
-                        Where Mountain Sun Meets <br>
-                        Ancient Volcanic Terroir
+                        Where Mountain Sun Meets 
                     </h2>
                     
                     <div class="pillar-body">

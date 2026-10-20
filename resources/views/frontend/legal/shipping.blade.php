@@ -6,16 +6,55 @@
 
 @section('full-content')
 <main class="page-content legal-page bg-cream">
-    <!-- Hero Section -->
-    <section class="legal-hero">
-        <div class="container text-center reveal">
-            <h1 class="text-white mt-3" style="color: var(--spice-secondary) !important;">SHIPPING &
-                REFUNDS</h1>
-            <p class="hero-subtitle text-white mt-3 mx-auto"
-                style="max-width: 650px; opacity: 0.9; font-size: 1.15rem; line-height: 1.6; margin-left: auto !important; margin-right: auto !important;">
-                Fast, reliable delivery straight to your kitchen, backed by our 100% 30-Day
-                Freshness & Satisfaction Guarantee.
+    <!-- Hero Section: Standardized Hero Banner -->
+    <section class="about-hero-section legal-hero">
+        <div class="container about-hero-container">
+            <div class="about-hero-badge">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+                <span>DELIVERY & RETURNS · 100% RISK-FREE POLICY</span>
+            </div>
+            
+            <h1 class="about-hero-title">
+                Fast Tracked Shipping<br>
+                <span class="highlight-gold">30-Day Freshness Guarantee</span>
+            </h1>
+            
+            <p class="about-hero-desc">
+                We pack every glass jar with high-grade thermal cushioning and ship directly from our atelier to guarantee peak aroma, crispness, and zero leakage.
             </p>
+
+            <!-- 3 Brighter Highlight Clusters -->
+            <div class="hero-stats-clusters">
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Free Delivery</strong>
+                        <span>Orders Over $50</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>24–48h Dispatch</strong>
+                        <span>Fresh From Kitchen</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>30-Day Returns</strong>
+                        <span>Easy Replacements</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -214,29 +253,7 @@
 
     /* Hero */
     .legal-hero {
-        background: var(--spice-bg-dark);
-        padding: 0;
-        height: 650px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        color: var(--spice-bg);
-    }
-
-    .legal-hero h1 {
-        font-family: var(--font-heading);
-        font-size: clamp(48px, 4.5vw, 64px);
-        font-weight: 800;
-        margin: 0 0 1rem 0;
-        line-height: 1.08;
-        text-transform: uppercase;
-    }
-
-    .legal-hero .hero-subtitle {
-        max-width: 650px;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        text-align: center;
+        background: #1F0701;
     }
 
     /* Document */
@@ -512,15 +529,6 @@
     }
 
     @media (max-width: 768px) {
-        .legal-hero {
-            height: auto !important;
-            min-height: 260px !important;
-            padding: 4rem 1.25rem 2.5rem 1.25rem !important;
-        }
-        .legal-hero h1 {
-            font-size: clamp(34px, 7vw, 42px) !important;
-        }
-
         .document-wrapper {
             padding: 2.5rem 1.5rem;
             margin-top: -2rem;

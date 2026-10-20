@@ -6,13 +6,55 @@
 
 @section('full-content')
 <main class="page-content about-page">
-    <!-- Hero Section -->
-    <section class="about-hero" style="background: var(--spice-bg-dark);">
-        <div class="container text-center reveal">
-            <h1 class="text-white mt-3" style="color: var(--spice-secondary) !important;">CONTACT US</h1>
-            <p class="hero-subtitle text-white mt-3 mx-auto" style="max-width: 650px; opacity: 0.9; font-size: 1.15rem; line-height: 1.6; margin-left: auto !important; margin-right: auto !important;">
-                Have questions about our spices, need help with an order, or want to inquire about wholesale opportunities? Our team is always here to assist you.
+    <!-- Hero Section: Standardized Hero Banner -->
+    <section class="about-hero-section about-hero">
+        <div class="container about-hero-container">
+            <div class="about-hero-badge">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>COMMUNICATION DESK · KITCHEN ADVISORY</span>
+            </div>
+            
+            <h1 class="about-hero-title">
+                Get In Touch With<br>
+                <span class="highlight-gold">The Dried Chili Kitchen</span>
+            </h1>
+            
+            <p class="about-hero-desc">
+                Have questions about our heat levels, custom culinary orders, or wholesale collaborations? Our advisory team responds within 24 business hours.
             </p>
+
+            <!-- 3 Brighter Highlight Clusters -->
+            <div class="hero-stats-clusters">
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>24h Response</strong>
+                        <span>Direct Advisory</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Spice Atelier</strong>
+                        <span>Flavor District</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Wholesale Care</strong>
+                        <span>Chef & Bulk Inquiries</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -185,43 +227,7 @@
 
 /* Hero */
 .about-hero {
-    padding: 0;
-    height: 650px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-.hero-badge {
-    display: inline-block;
-    background: var(--spice-primary);
-    color: #fff;
-    padding: 0.5rem 1.5rem;
-    border-radius: 20px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 2rem;
-    font-size: 0.9rem;
-}
-.about-hero h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(48px, 4.5vw, 64px);
-    font-weight: 800;
-    margin: 0 0 1rem 0;
-    line-height: 1.08;
-    text-transform: uppercase;
-}
-.about-hero .hero-subtitle,
-.hero-subtitle {
-    font-family: var(--font-body);
-    font-size: 1.15rem;
-    line-height: 1.6;
-    font-weight: 400;
-    max-width: 650px;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center;
-    opacity: 0.9;
+    background: #1F0701;
 }
 
 /* Sections */
@@ -504,9 +510,6 @@
     50% { transform: translateX(-50%) scale(0.7); opacity: 0.25; }
 }
 @media (max-width: 768px) {
-    .about-hero h1 {
-        font-size: clamp(34px, 7vw, 42px) !important;
-    }
     .contact-map-section {
         height: 380px;
     }

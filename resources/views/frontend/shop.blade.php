@@ -55,13 +55,55 @@
     $currentSortLabel = $sortLabels[$currentSort] ?? 'Featured';
 @endphp
 <main class="page-content shop-bg">
-    <!-- Shop Header -->
-    <header class="shop-header">
-        <div class="container text-center reveal">
-            <h1 class="text-white mt-3" style="color: var(--spice-secondary) !important;">SHOP ALL</h1>
-            <p class="hero-subtitle text-white mt-3 mx-auto" style="max-width: 650px; opacity: 0.9; font-size: 1.15rem; line-height: 1.6; margin-left: auto !important; margin-right: auto !important;">
-                Every fiery flavor, one place. From mild to wild.
+    <!-- Shop Header: Standardized Hero Banner -->
+    <header class="about-hero-section shop-header">
+        <div class="container about-hero-container">
+            <div class="about-hero-badge">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>ARTISANAL PANTRY · ALL NATURAL CRAFT</span>
+            </div>
+            
+            <h1 class="about-hero-title">
+                Every Fiery Flavor<br>
+                <span class="highlight-gold">From Mild Heat To Wild Crunch</span>
+            </h1>
+            
+            <p class="about-hero-desc">
+                Explore our handcrafted small-batch pantry — sun-dried chillies, golden crispy garlic, and slow-simmered umami oils created to elevate your home table.
             </p>
+
+            <!-- 3 Brighter Highlight Clusters -->
+            <div class="hero-stats-clusters">
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Free Shipping</strong>
+                        <span>Orders Over $50</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Small Batches</strong>
+                        <span>Under 200 Jars</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>100% Artisan</strong>
+                        <span>Freshness Verified</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -441,36 +483,7 @@
 .shop-bg { background: var(--spice-bg-alt); min-height: 100vh; padding-bottom: 6rem; }
 
 .shop-header {
-    background: var(--spice-bg-dark);
-    color: var(--spice-bg);
-    padding: 0;
-    height: 650px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-.shop-header h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(48px, 4.5vw, 64px);
-    margin: 0 0 1rem 0;
-    line-height: 1.08;
-    color: var(--spice-secondary);
-    font-weight: 800;
-    text-transform: uppercase;
-}
-.shop-header .hero-subtitle,
-.shop-header p {
-    font-family: var(--font-body);
-    font-size: 1.15rem;
-    line-height: 1.6;
-    font-weight: 400;
-    max-width: 650px;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center;
-    opacity: 0.9;
+    background: #1F0701;
 }
 
 .shop-container {
@@ -963,19 +976,6 @@
     .shop-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
-    .shop-header {
-        height: auto !important;
-        min-height: 260px !important;
-        padding: 3.5rem 1.25rem 2.5rem 1.25rem !important;
-    }
-    .shop-header h1 {
-        font-size: 28px !important;
-        margin-top: 0.5rem !important;
-    }
-    .shop-header p {
-        font-size: 0.92rem !important;
-        margin-top: 0.5rem !important;
-    }
     .shop-container {
         display: flex;
         flex-direction: column;
@@ -1498,7 +1498,6 @@
     .add-to-cart-btn {
         padding: 0.55rem 0.5rem;
         font-size: 0.75rem;
-        border-radius: 12px;
     }
     .add-to-cart-btn .btn-icon {
         width: 15px;

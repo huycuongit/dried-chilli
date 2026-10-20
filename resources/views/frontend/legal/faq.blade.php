@@ -6,13 +6,55 @@
 
 @section('full-content')
 <main class="page-content legal-page bg-cream">
-    <!-- Hero Section -->
-    <section class="legal-hero">
-        <div class="container text-center reveal">
-            <h1 class="text-white mt-3" style="color: var(--spice-secondary) !important;">FREQUENTLY ASKED QUESTIONS</h1>
-            <p class="hero-subtitle text-white mt-3 mx-auto" style="max-width: 650px; opacity: 0.9; font-size: 1.15rem; line-height: 1.6; margin-left: auto !important; margin-right: auto !important;">
-                Everything you need to know about our artisanal dried chilies, heat profiles, storage tips, shipping, and guarantees.
+    <!-- Hero Section: Standardized Hero Banner -->
+    <section class="about-hero-section legal-hero">
+        <div class="container about-hero-container">
+            <div class="about-hero-badge">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                <span>HELP CENTER · FREQUENTLY ASKED QUESTIONS</span>
+            </div>
+            
+            <h1 class="about-hero-title">
+                Questions & Answers<br>
+                <span class="highlight-gold">Everything You Need To Know</span>
+            </h1>
+            
+            <p class="about-hero-desc">
+                From Scoville heat ratings and allergen profiles to proper airtight storage, delivery times, and returns — find clear answers below.
             </p>
+
+            <!-- 3 Brighter Highlight Clusters -->
+            <div class="hero-stats-clusters">
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Heat Guide</strong>
+                        <span>Scoville Profiles</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Nationwide</strong>
+                        <span>Tracked Dispatch</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>30-Day Policy</strong>
+                        <span>100% Risk Free</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -25,7 +67,7 @@
                     <button type="button" class="faq-cat-btn active" data-filter="all">All Questions</button>
                     <button type="button" class="faq-cat-btn" data-filter="product">Products & Heat</button>
                     <button type="button" class="faq-cat-btn" data-filter="shipping">Shipping & Orders</button>
-                    <button type="button" class="faq-cat-btn" data-filter="storage">Quality & Storage</button>
+                    <button type="button" class="faq-cat-btn" data-filter="storage">Quality</button>
                 </div>
 
                 <!-- FAQ List -->
@@ -128,27 +170,7 @@
 
 /* Hero */
 .legal-hero {
-    background: var(--spice-bg-dark);
-    padding: 0;
-    height: 650px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: var(--spice-bg);
-}
-.legal-hero h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(48px, 4.5vw, 64px);
-    font-weight: 800;
-    margin: 0 0 1rem 0;
-    line-height: 1.08;
-    text-transform: uppercase;
-}
-.legal-hero .hero-subtitle {
-    max-width: 650px;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center;
+    background: #1F0701;
 }
 
 /* Document */
@@ -345,14 +367,6 @@
 }
 
 @media (max-width: 768px) {
-    .legal-hero {
-        height: auto !important;
-        min-height: 260px !important;
-        padding: 4rem 1.25rem 2.5rem 1.25rem !important;
-    }
-    .legal-hero h1 {
-        font-size: clamp(34px, 7vw, 42px) !important;
-    }
     .document-wrapper {
         padding: 2.5rem 1.5rem;
         margin-top: -2rem;

@@ -362,17 +362,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 footerBtn.disabled = false;
                 if (data.success) {
                     footerFeedback.style.color = '#81C784';
-                    footerFeedback.textContent = 'Mã 15% của bạn: ' + data.code + ' (Đã gửi email!)';
+                    footerFeedback.textContent = 'Your 15% code: ' + data.code + ' (Sent to your email!)';
                     footerEmail.value = '';
                 } else {
                     footerFeedback.style.color = '#E57373';
-                    footerFeedback.textContent = data.message || 'Lỗi khi gửi voucher.';
+                    footerFeedback.textContent = data.message || 'Error sending voucher.';
                 }
             })
             .catch(() => {
                 footerBtn.disabled = false;
                 footerFeedback.style.color = '#E57373';
-                footerFeedback.textContent = 'Lỗi kết nối. Vui lòng thử lại.';
+                footerFeedback.textContent = 'Connection error. Please try again.';
             });
         });
     }

@@ -5,7 +5,7 @@
 @endsection
 
 @section('full-content')
-<main class="auth-main" style="padding-top: 140px; min-height: 80vh; background-color: var(--spice-bg-alt); display: flex; align-items: center; justify-content: center;">
+<main class="auth-main" style="min-height: 80vh; background-color: var(--spice-bg-alt); display: flex; align-items: center; justify-content: center;">
     <div class="auth-container">
         <h2 class="serif-title" style="text-align: center; margin-bottom: 2rem;">Create Account</h2>
         
@@ -46,10 +46,9 @@
 <style>
     .auth-container {
         background: var(--spice-bg);
-        padding: 3rem;
+        padding: 2rem;
         border-radius: 20px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        width: 100%;
         max-width: 450px;
         border: 1px solid rgba(0,0,0,0.05);
     }

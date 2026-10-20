@@ -31,7 +31,7 @@ class VoucherDiscountMail extends Mailable
      */
     public function build()
     {
-        return $this->subject("Mã giảm giá 15% độc quyền từ Dried Chilli: {$this->coupon->code}")
+        return $this->subject("Your Exclusive 15% Off Discount Code from Dried Chilli: {$this->coupon->code}")
                     ->view('emails.voucher-discount');
     }
 }

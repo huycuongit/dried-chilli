@@ -7,13 +7,55 @@
 
 @section('full-content')
 <main class="page-content legal-page bg-cream">
-    <!-- Hero Section -->
-    <section class="legal-hero">
-        <div class="container text-center reveal">
-            <h1 class="text-white mt-3" style="color: var(--spice-secondary) !important;">TERMS AND CONDITIONS</h1>
-            <p class="hero-subtitle text-white mt-3 mx-auto" style="max-width: 600px; opacity: 0.9; font-size: 1.2rem;">
-                Please read these terms carefully before using our website or purchasing our spices.
+    <!-- Hero Section: Standardized Hero Banner -->
+    <section class="about-hero-section legal-hero">
+        <div class="container about-hero-container">
+            <div class="about-hero-badge">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                <span>LEGAL AGREEMENT · TRANSPARENT TERMS</span>
+            </div>
+            
+            <h1 class="about-hero-title">
+                Terms Of Service<br>
+                <span class="highlight-gold">Fair, Clear & Straightforward</span>
+            </h1>
+            
+            <p class="about-hero-desc">
+                Clear, transparent guidelines governing orders, deliveries, intellectual property, and mutual commitments between Dried Chili and our customers.
             </p>
+
+            <!-- 3 Brighter Highlight Clusters -->
+            <div class="hero-stats-clusters">
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Clear Terms</strong>
+                        <span>Zero Fine-Print</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Protected Pay</strong>
+                        <span>Stripe & PayPal</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Consumer First</strong>
+                        <span>Fair Resolutions</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -177,44 +219,7 @@
 
 /* Hero */
 .legal-hero {
-    background: var(--spice-bg-dark);
-    padding: 0;
-    height: 650px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: var(--spice-bg);
-}
-
-.hero-badge {
-    display: inline-block;
-    background: var(--spice-primary);
-    color: #fff;
-    padding: 0.5rem 1.5rem;
-    border-radius: 20px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 2rem;
-    font-size: 0.9rem;
-}
-
-.legal-hero h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
-    font-size: clamp(48px, 4.5vw, 64px);
-    font-weight: 800;
-    margin: 0 0 1rem 0;
-    line,
-    height: 1;
-    line-height: 1.08;
-    text-transform: uppercase;
-}
-
-.legal-hero .hero-subtitle {
-    max-width: 650px;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center;
+    background: #1F0701;
 }
 
 /* Document */
@@ -441,15 +446,6 @@
         }
 
         @media (max-width: 768px) {
-            .legal-hero {
-                height: auto !important;
-                min-height: 260px !important;
-                padding: 4rem 1.25rem 2.5rem 1.25rem !important;
-            }
-            .legal-hero h1 {
-                font-size: clamp(34px, 7vw, 42px) !important;
-            }
-
             .document-wrapper {
                 padding: 2.5rem 1.5rem;
                 margin-top: -2rem;

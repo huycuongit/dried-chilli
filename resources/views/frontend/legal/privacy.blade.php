@@ -6,15 +6,55 @@
 
 @section('full-content')
 <main class="page-content legal-page bg-cream">
-    <!-- Hero Section -->
-    <section class="legal-hero">
-        <div class="container text-center reveal">
-            <h1 class="text-white mt-3" style="color: var(--spice-secondary) !important;">PRIVACY POLICY</h1>
-            <p class="hero-subtitle text-white mt-3 mx-auto"
-                style="max-width: 650px; opacity: 0.9; font-size: 1.15rem; line-height: 1.6; margin-left: auto !important; margin-right: auto !important;">
-                We respect your privacy and are committed to safeguarding your personal data with full transparency,
-                integrity, and security.
+    <!-- Hero Section: Standardized Hero Banner -->
+    <section class="about-hero-section legal-hero">
+        <div class="container about-hero-container">
+            <div class="about-hero-badge">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>DATA PROTECTION · YOUR PRIVACY MATTERS</span>
+            </div>
+            
+            <h1 class="about-hero-title">
+                Privacy Policy<br>
+                <span class="highlight-gold">Transparency & Safe Data Care</span>
+            </h1>
+            
+            <p class="about-hero-desc">
+                Your personal details, order records, and checkout information are safeguarded with bank-grade security. We never sell your personal data.
             </p>
+
+            <!-- 3 Brighter Highlight Clusters -->
+            <div class="hero-stats-clusters">
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>256-Bit SSL</strong>
+                        <span>Bank-Grade Safety</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Zero Selling</strong>
+                        <span>Never Shared</span>
+                    </div>
+                </div>
+
+                <div class="hero-cluster-item">
+                    <div class="cluster-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+                    </div>
+                    <div class="cluster-text">
+                        <strong>Full Control</strong>
+                        <span>Manage Your Data</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -176,29 +216,7 @@
 
 /* Hero */
 .legal-hero {
-    background: var(--spice-bg-dark);
-    padding: 0;
-    height: 650px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: var(--spice-bg);
-}
-
-.legal-hero h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(48px, 4.5vw, 64px);
-    font-weight: 800;
-    margin: 0 0 1rem 0;
-    line-height: 1.08;
-    text-transform: uppercase;
-}
-
-.legal-hero .hero-subtitle {
-    max-width: 650px;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center;
+    background: #1F0701;
 }
 
 /* Document */
@@ -414,15 +432,6 @@
 }
 
 @media (max-width: 768px) {
-    .legal-hero {
-        height: auto !important;
-        min-height: 260px !important;
-        padding: 4rem 1.25rem 2.5rem 1.25rem !important;
-    }
-    .legal-hero h1 {
-        font-size: clamp(34px, 7vw, 42px) !important;
-    }
-
     .document-wrapper {
         padding: 2.5rem 1.5rem;
         margin-top: -2rem;

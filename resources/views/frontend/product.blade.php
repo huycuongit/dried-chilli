@@ -666,13 +666,13 @@ details[open] .accordion-chevron {
         display: flex;
         gap: 0.5rem;
     }
-    .quantity-selector {
+    /* .quantity-selector {
         width: 100px;
         height: 46px;
-    }
+    } */
     .add-to-cart-btn.large-btn {
         flex: 1;
-        height: 46px;
+        height: 54px;
         padding: 0 1rem;
         font-size: 14px;
     }
