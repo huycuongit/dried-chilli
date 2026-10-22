@@ -290,7 +290,7 @@
                     @endif
                     <a href="{{ route('page.product', $product->slug) }}" class="product-img-wrapper">
                         <!-- Use real product image or fallback -->
-                        <img src="{{ asset('images/product_hero.png') }}" alt="{{ $product->name }}">
+                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
                     </a>
                     <div class="product-details">
                         <div class="product-vendor">{{ $product->category->name ?? 'Dried Chili' }}</div>

@@ -15,12 +15,12 @@
                     @elseif($product->is_best_seller)
                         <div class="product-badge best-seller">BEST SELLER</div>
                     @endif
-                    <img src="{{ asset('images/product_hero.png') }}" alt="{{ $product->name }}" id="featured-img">
+                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}" id="featured-img">
                 </div>
                 <div class="thumbnail-list">
-                    <!-- Placeholder thumbnails -->
-                    <div class="thumb-item active"><img src="{{ asset('images/product_hero.png') }}" alt="thumb1"></div>
-                    <div class="thumb-item"><img src="{{ asset('images/product_hero.png') }}" alt="thumb2"></div>
+                    <!-- Product thumbnails -->
+                    <div class="thumb-item active"><img src="{{ $product->image_url }}" alt="thumb1"></div>
+                    <div class="thumb-item"><img src="{{ $product->image_url }}" alt="thumb2"></div>
                 </div>
             </div>
         </div>

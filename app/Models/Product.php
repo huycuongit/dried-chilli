@@ -21,9 +21,23 @@ class Product extends Model
         'sale_type',
         'sale_start_date',
         'sale_end_date',
+        'image',
         'is_active',
         'is_best_seller',
     ];
+
+    /**
+     * Get real image URL or fallback to default.
+     *
+     * @return string
+     */
+    public function getImageUrlAttribute(): string
+    {
+        if (!empty($this->image)) {
+            return str_starts_with($this->image, 'http') ? $this->image : asset($this->image);
+        }
+        return asset('images/product_hero.png');
+    }
 
     public function category()
     {

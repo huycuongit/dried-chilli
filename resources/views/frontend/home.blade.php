@@ -392,7 +392,7 @@
             </div>
 
             <div class="product-carousel">
-                @foreach($latestProducts->take(3) as $product)
+                @foreach($latestProducts->take(6) as $product)
                 <div class="product-card">
                     @if($product->sale_price)
                     <div class="product-badge sale">Sale</div>
@@ -402,7 +402,7 @@
                     <div class="product-img-wrapper">
                         <a href="{{ route('page.product', $product->slug) }}"
                             style="display: block; width: 100%; height: 100%;">
-                            <img src="{{ asset('images/product_hero.png') }}" alt="{{ $product->name }}">
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
                         </a>
                         <!-- Desktop Hover Quick Add Button -->
                         <button type="button" class="quick-add desktop-quick-add" data-product-id="{{ $product->id }}" aria-label="Quick Add {{ $product->name }}">
@@ -1173,11 +1173,11 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: center;
-    gap: 80px;
+    gap: 48px;
     height: 100%;
-    max-width: 1430px;
+    max-width: 1200px !important;
     margin: 0 auto;
-    padding: 0 3.5rem;
+    padding: 0 2rem;
     box-sizing: border-box;
 }
 

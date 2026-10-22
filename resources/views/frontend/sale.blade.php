@@ -29,7 +29,7 @@
                                 <div class="discount-badge">-{{ round((($product->price - $product->sale_price) / $product->price) * 100) }}%</div>
                             @endif
                             <a href="{{ route('page.product', $product->slug) }}">
-                                <img src="{{ asset('images/product_hero.png') }}" alt="{{ $product->name }}">
+                                <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
                             </a>
                         </div>
                         <div class="yum-card-bottom">
@@ -66,7 +66,7 @@
                                 <div class="discount-badge">-{{ round((($product->price - $product->sale_price) / $product->price) * 100) }}%</div>
                             @endif
                             <a href="{{ route('page.product', $product->slug) }}">
-                                <img src="{{ asset('images/product_hero.png') }}" alt="{{ $product->name }}">
+                                <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
                             </a>
                             <!-- COUNTDOWN TIMER -->
                             <div class="countdown-timer" data-end="{{ \Carbon\Carbon::parse($product->sale_end_date)->format('Y-m-d\TH:i:s') }}">
