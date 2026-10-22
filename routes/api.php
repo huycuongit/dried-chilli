@@ -25,8 +25,8 @@ Route::prefix('coupon')->group(function () {
 });
 
 Route::post('checkout', [CheckoutController::class, 'process']);
-Route::get('checkout/paypal/success', [CheckoutController::class, 'paypalSuccess'])->name('api.checkout.paypal.success');
-Route::get('checkout/paypal/cancel', [CheckoutController::class, 'paypalCancel'])->name('api.checkout.paypal.cancel');
+Route::get('checkout/paypal/success', [CheckoutController::class, 'paypalSuccess'])->middleware('web')->name('api.checkout.paypal.success');
+Route::get('checkout/paypal/cancel', [CheckoutController::class, 'paypalCancel'])->middleware('web')->name('api.checkout.paypal.cancel');
 
 Route::get('orders', [OrderController::class, 'index']);
 Route::put('orders/{id}/status', [OrderController::class, 'updateStatus']);
