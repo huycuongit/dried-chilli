@@ -613,93 +613,140 @@ document.addEventListener('DOMContentLoaded', function() {
             paymentCards.forEach(c => c.classList.remove('active'));
             this.classList.add('active');
             const radio = this.querySelector('input[type="radio"]');
-            if (radio) radio.checked = true;
+            if (radio) {
+                radio.checked = true;
+                document.dispatchEvent(new CustomEvent('checkout:payment-method', { detail: radio.value }));
+            }
         });
     });
 
-    // Form Submission & Validation
+    // Form Validation (shared with card / PayPal payments in checkout-payments.js)
+    const readCheckoutForm = () => {
+        // Clear previous errors
+        document.querySelectorAll('.field-error-msg').forEach(el => el.textContent = '');
+        document.querySelectorAll('.checkout-input').forEach(el => el.classList.remove('is-invalid'));
+        const alertBox = document.getElementById('checkout-form-alert');
+        if (alertBox) alertBox.style.display = 'none';
+
+        const nameInput = document.getElementById('checkout-name');
+        const phoneInput = document.getElementById('checkout-phone');
+        const emailInput = document.getElementById('checkout-email');
+        const streetInput = document.getElementById('checkout-street');
+        const cityInput = document.getElementById('checkout-city');
+        const noteInput = document.getElementById('checkout-note');
+
+        const name = nameInput ? nameInput.value.trim() : '';
+        const phone = phoneInput ? phoneInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+        const street = streetInput ? streetInput.value.trim() : '';
+        const city = cityInput ? cityInput.value.trim() : '';
+        const note = noteInput ? noteInput.value.trim() : '';
+
+        let hasError = false;
+
+        if (!name) {
+            if (nameInput) nameInput.classList.add('is-invalid');
+            const err = document.getElementById('error-checkout-name');
+            if (err) err.textContent = 'Please enter your full name.';
+            hasError = true;
+        }
+
+        if (!phone) {
+            if (phoneInput) phoneInput.classList.add('is-invalid');
+            const err = document.getElementById('error-checkout-phone');
+            if (err) err.textContent = 'Please enter your phone number.';
+            hasError = true;
+        } else if (phone.length < 8) {
+            if (phoneInput) phoneInput.classList.add('is-invalid');
+            const err = document.getElementById('error-checkout-phone');
+            if (err) err.textContent = 'Please enter a valid phone number.';
+            hasError = true;
+        }
+
+        if (!email) {
+            if (emailInput) emailInput.classList.add('is-invalid');
+            const err = document.getElementById('error-checkout-email');
+            if (err) err.textContent = 'Please enter your email address.';
+            hasError = true;
+        }
+
+        if (!street) {
+            if (streetInput) streetInput.classList.add('is-invalid');
+            const err = document.getElementById('error-checkout-street');
+            if (err) err.textContent = 'Please enter your delivery street address.';
+            hasError = true;
+        }
+
+        if (!city) {
+            if (cityInput) cityInput.classList.add('is-invalid');
+            const err = document.getElementById('error-checkout-city');
+            if (err) err.textContent = 'Please enter your city / province.';
+            hasError = true;
+        }
+
+        if (hasError) {
+            if (alertBox) {
+                alertBox.className = 'checkout-alert alert-danger';
+                alertBox.textContent = 'Please fill in all required fields indicated in red.';
+                alertBox.style.display = 'flex';
+            }
+            const firstInvalid = document.querySelector('.checkout-input.is-invalid');
+            if (firstInvalid) firstInvalid.focus();
+            return null;
+        }
+
+        return {
+            name, phone, email, street, city, note,
+            shippingAddress: `${name} (Phone: ${phone}, Email: ${email}) | Address: ${street}, ${city}${note ? ' | Note: ' + note : ''}`,
+            couponCode: window.currentAppliedCoupon || null
+        };
+    };
+
+    const paymentLabels = { cod: 'Cash on Delivery (COD)', bank_transfer: 'Bank Transfer', stripe: 'Credit / Debit Card', paypal: 'PayPal' };
+
+    // Success Modal Display
+    const showCheckoutSuccess = (orderId, paymentMethod, details) => {
+        const modal = document.getElementById('checkout-success-modal');
+        const modalOrderId = document.getElementById('modal-order-id');
+        const modalPaymentMethod = document.getElementById('modal-payment-method');
+        const modalOrderTotal = document.getElementById('modal-order-total');
+        const modalShippingSummary = document.getElementById('modal-shipping-summary');
+        const currentTotal = document.getElementById('cart-total')?.textContent || '$0.00';
+
+        if (modalOrderId) modalOrderId.textContent = `#ORD-${orderId || 'SUCCESS'}`;
+        if (modalPaymentMethod) modalPaymentMethod.textContent = paymentLabels[paymentMethod] || paymentMethod;
+        if (modalOrderTotal) modalOrderTotal.textContent = currentTotal;
+        if (modalShippingSummary) modalShippingSummary.textContent = details ? `${details.name} • ${details.phone} • ${details.street}, ${details.city}` : '';
+
+        if (modal) {
+            modal.style.display = 'flex';
+        }
+
+        // Clear and refresh cart state
+        mockCartState = { items: [] };
+        fetchCart();
+    };
+
+    window.ShopCheckout = { sessionId, readCheckoutForm, showCheckoutSuccess };
+
+    // Form Submission
     const confirmCheckoutBtn = document.getElementById('confirm-checkout-btn');
     if (confirmCheckoutBtn) {
         confirmCheckoutBtn.addEventListener('click', async (e) => {
             e.preventDefault();
 
-            // Clear previous errors
-            document.querySelectorAll('.field-error-msg').forEach(el => el.textContent = '');
-            document.querySelectorAll('.checkout-input').forEach(el => el.classList.remove('is-invalid'));
+            const details = readCheckoutForm();
+            if (!details) return;
             const alertBox = document.getElementById('checkout-form-alert');
-            if (alertBox) alertBox.style.display = 'none';
-
-            const nameInput = document.getElementById('checkout-name');
-            const phoneInput = document.getElementById('checkout-phone');
-            const emailInput = document.getElementById('checkout-email');
-            const streetInput = document.getElementById('checkout-street');
-            const cityInput = document.getElementById('checkout-city');
-            const noteInput = document.getElementById('checkout-note');
-
-            const name = nameInput ? nameInput.value.trim() : '';
-            const phone = phoneInput ? phoneInput.value.trim() : '';
-            const email = emailInput ? emailInput.value.trim() : '';
-            const street = streetInput ? streetInput.value.trim() : '';
-            const city = cityInput ? cityInput.value.trim() : '';
-            const note = noteInput ? noteInput.value.trim() : '';
-
-            let hasError = false;
-
-            if (!name) {
-                if (nameInput) nameInput.classList.add('is-invalid');
-                const err = document.getElementById('error-checkout-name');
-                if (err) err.textContent = 'Please enter your full name.';
-                hasError = true;
-            }
-
-            if (!phone) {
-                if (phoneInput) phoneInput.classList.add('is-invalid');
-                const err = document.getElementById('error-checkout-phone');
-                if (err) err.textContent = 'Please enter your phone number.';
-                hasError = true;
-            } else if (phone.length < 8) {
-                if (phoneInput) phoneInput.classList.add('is-invalid');
-                const err = document.getElementById('error-checkout-phone');
-                if (err) err.textContent = 'Please enter a valid phone number.';
-                hasError = true;
-            }
-
-            if (!email) {
-                if (emailInput) emailInput.classList.add('is-invalid');
-                const err = document.getElementById('error-checkout-email');
-                if (err) err.textContent = 'Please enter your email address.';
-                hasError = true;
-            }
-
-            if (!street) {
-                if (streetInput) streetInput.classList.add('is-invalid');
-                const err = document.getElementById('error-checkout-street');
-                if (err) err.textContent = 'Please enter your delivery street address.';
-                hasError = true;
-            }
-
-            if (!city) {
-                if (cityInput) cityInput.classList.add('is-invalid');
-                const err = document.getElementById('error-checkout-city');
-                if (err) err.textContent = 'Please enter your city / province.';
-                hasError = true;
-            }
-
-            if (hasError) {
-                if (alertBox) {
-                    alertBox.className = 'checkout-alert alert-danger';
-                    alertBox.textContent = 'Please fill in all required fields indicated in red.';
-                    alertBox.style.display = 'flex';
-                }
-                const firstInvalid = document.querySelector('.checkout-input.is-invalid');
-                if (firstInvalid) firstInvalid.focus();
-                return;
-            }
 
             const activeRadio = document.querySelector('input[name="checkout_payment_method"]:checked');
             const paymentMethod = activeRadio ? activeRadio.value : 'cod';
 
-            const shippingAddress = `${name} (Phone: ${phone}, Email: ${email}) | Address: ${street}, ${city}${note ? ' | Note: ' + note : ''}`;
+            // Card payments are collected by Stripe; the order is created only after payment succeeds.
+            if (paymentMethod === 'stripe' && window.ShopPayments) {
+                window.ShopPayments.startCard(details);
+                return;
+            }
 
             const originalBtnHtml = confirmCheckoutBtn.innerHTML;
             confirmCheckoutBtn.disabled = true;
@@ -717,41 +764,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         'Session-Id': sessionId
                     },
                     body: JSON.stringify({
-                        shipping_address: shippingAddress,
+                        shipping_address: details.shippingAddress,
                         payment_method: paymentMethod,
-                        coupon_code: window.currentAppliedCoupon || null
+                        coupon_code: details.couponCode
                     })
                 });
 
                 const result = await response.json();
 
                 if (response.ok) {
-                    if (result.redirect_url) {
-                        window.location.href = result.redirect_url;
-                        return;
-                    }
-
-                    // Success Modal Display
-                    const modal = document.getElementById('checkout-success-modal');
-                    const modalOrderId = document.getElementById('modal-order-id');
-                    const modalPaymentMethod = document.getElementById('modal-payment-method');
-                    const modalOrderTotal = document.getElementById('modal-order-total');
-                    const modalShippingSummary = document.getElementById('modal-shipping-summary');
-                    const currentTotal = document.getElementById('cart-total')?.textContent || '$0.00';
-
-                    if (modalOrderId) modalOrderId.textContent = `#ORD-${result.order_id || 'SUCCESS'}`;
-                    if (modalPaymentMethod) modalPaymentMethod.textContent = paymentMethod === 'paypal' ? 'PayPal / Credit Card' : 'Cash on Delivery (COD)';
-                    if (modalOrderTotal) modalOrderTotal.textContent = currentTotal;
-                    if (modalShippingSummary) modalShippingSummary.textContent = `${name} • ${phone} • ${street}, ${city}`;
-
-                    if (modal) {
-                        modal.style.display = 'flex';
-                    }
-
-                    // Clear and refresh cart state
-                    mockCartState = { items: [] };
-                    fetchCart();
-
+                    showCheckoutSuccess(result.order_id, paymentMethod, details);
+                    confirmCheckoutBtn.disabled = false;
+                    confirmCheckoutBtn.innerHTML = originalBtnHtml;
                 } else {
                     if (alertBox) {
                         alertBox.className = 'checkout-alert alert-danger';
