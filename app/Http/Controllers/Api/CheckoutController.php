@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Log;
 class CheckoutController extends Controller
 {
     /**
-     * Process order checkout from current cart session.
+     * Process an offline-payment (COD / bank transfer) order from the current cart session.
+     * Card and PayPal orders go through the payment endpoints below and are created only once paid.
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -28,7 +29,7 @@ class CheckoutController extends Controller
     {
         $request->validate([
             'shipping_address' => 'required|string|max:1000',
-            'payment_method' => 'required|string|in:cod,paypal,bank_transfer',
+            'payment_method' => 'required|string|in:cod,bank_transfer',
             'coupon_code' => 'nullable|string|max:50'
         ]);
 
@@ -48,89 +49,16 @@ class CheckoutController extends Controller
         }
 
         try {
-            DB::beginTransaction();
+            $order = DB::transaction(function () use ($request, $cart) {
+                $priced = CartCheckout::price($cart, $request->coupon_code ?? session('applied_coupon.code'), true);
 
-            $totalAmount = 0;
-            foreach ($cart->items as $item) {
-                $totalAmount += $item->price * $item->quantity;
-
-                // Handle regular product stock check & lock
-                if ($item->product_id) {
-                    $inventory = Inventory::where('product_id', $item->product_id)
-                                          ->where('variant_id', $item->variant_id)
-                                          ->lockForUpdate()
-                                          ->first();
-
-                    if (!$inventory || $inventory->quantity < $item->quantity) {
-                        $productName = $item->product ? $item->product->name : "Product #{$item->product_id}";
-                        throw new \Exception("{$productName} is out of stock or exceeds available quantity.");
-                    }
-
-                    // Decrement stock
-                    $inventory->quantity -= $item->quantity;
-                    $inventory->save();
-                }
-            }
-
-            // Coupon validation & application
-            $discountAmount = 0;
-            $appliedCouponCode = null;
-            $couponCode = $request->coupon_code ?? session('applied_coupon.code');
-
-            if ($couponCode) {
-                $coupon = Coupon::where('code', $couponCode)
-                                ->where('is_active', true)
-                                ->where(function($q) {
-                                    $q->whereNull('expires_at')->orWhere('expires_at', '>', now());
-                                })
-                                ->lockForUpdate()
-                                ->first();
-
-                if ($coupon && $totalAmount >= $coupon->min_order_amount) {
-                    if (!$coupon->usage_limit || $coupon->used_count < $coupon->usage_limit) {
-                        if ($coupon->type === 'fixed') {
-                            $discountAmount = min($coupon->value, $totalAmount);
-                        } else {
-                            $discountAmount = ($totalAmount * $coupon->value) / 100;
-                            if ($coupon->max_discount && $discountAmount > $coupon->max_discount) {
-                                $discountAmount = $coupon->max_discount;
-                            }
-                        }
-                        
-                        $coupon->used_count += 1;
-                        $coupon->save();
-                        $appliedCouponCode = $coupon->code;
-                    } else {
-                        throw new \Exception("Coupon usage limit has been reached.");
-                    }
-                }
-            }
-
-            $finalTotal = max(0, round($totalAmount - $discountAmount, 2));
-
-            // Create Order
-            $order = Order::create([
-                'user_id' => $userId,
-                'status' => 'pending',
-                'total_amount' => $finalTotal,
-                'shipping_address' => $request->shipping_address,
-                'payment_method' => $request->payment_method,
-                'payment_status' => $request->payment_method === 'cod' ? 'unpaid' : 'pending',
-                'coupon_code' => $appliedCouponCode,
-                'discount_amount' => $discountAmount,
-            ]);
-
-            // Create Order Items
-            foreach ($cart->items as $item) {
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => $item->product_id,
-                    'bundle_id' => $item->bundle_id,
-                    'variant_id' => $item->variant_id,
-                    'quantity' => $item->quantity,
-                    'price' => $item->price,
+                return CartCheckout::place($priced, [
+                    'user_id' => CartCheckout::userId(),
+                    'shipping_address' => $request->shipping_address,
+                    'payment_method' => $request->payment_method,
+                    'payment_status' => $request->payment_method === 'cod' ? 'unpaid' : 'pending',
                 ]);
-            }
+            });
 
             $redirectUrl = null;
 
@@ -170,15 +98,30 @@ class CheckoutController extends Controller
             return response()->json($responseData, 200);
 
         } catch (\Exception $e) {
-            DB::rollBack();
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
 
     /**
-     * PayPal payment success callback handler.
+     * Start a card payment (Stripe Payment Element). Returns the PaymentIntent client secret.
      */
-    public function paypalSuccess(Request $request)
+    public function createStripe(Request $request, CheckoutPaymentService $payments)
+    {
+        return $this->startPayment($request, $payments, PaymentAttempt::STRIPE);
+    }
+
+    /**
+     * Start a PayPal payment. Returns the PayPal order id for the PayPal Buttons.
+     */
+    public function createPayPal(Request $request, CheckoutPaymentService $payments)
+    {
+        return $this->startPayment($request, $payments, PaymentAttempt::PAYPAL);
+    }
+
+    /**
+     * Capture an approved PayPal order on the server and create the paid order.
+     */
+    public function capturePayPal(Request $request, CheckoutPaymentService $payments, string $payment)
     {
         $token = $request->query('token');
         $orderId = $request->query('order_id');
@@ -243,9 +186,23 @@ class CheckoutController extends Controller
     }
 
     /**
-     * PayPal payment cancel callback handler.
+     * Stripe webhook: the only place a card payment becomes a paid order.
      */
-    public function paypalCancel(Request $request)
+    public function stripeWebhook(Request $request, CheckoutPaymentService $payments)
+    {
+        $signature = (string) $request->header('Stripe-Signature');
+        abort_if($signature === '' || $request->getContent() === '', 400, 'Stripe signature and raw body are required');
+
+        try {
+            $payments->handleStripeWebhook($request->getContent(), $signature);
+        } catch (UnexpectedValueException $e) {
+            abort(400, $e->getMessage());
+        }
+
+        return response()->json(['received' => true]);
+    }
+
+    private function startPayment(Request $request, CheckoutPaymentService $payments, string $provider)
     {
         $orderId = $request->query('order_id');
 

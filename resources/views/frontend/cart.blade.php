@@ -7,6 +7,10 @@
 @endsection
 
 @section('content')
+@php
+    $stripePayments = \App\Support\Payments\CheckoutPaymentService::stripeEnabled();
+    $paypalPayments = \App\Support\Payments\CheckoutPaymentService::paypalEnabled();
+@endphp
 <div class="cart-page-wrapper" id="cart-page-app">
     <div class="cart-bg-glow"></div>
     <div class="container cart-container">
@@ -238,19 +242,48 @@
                                     </div>
                                 </label>
 
-                                <!-- PayPal Card -->
-                                <label class="payment-card" id="card-method-paypal">
-                                    <input type="radio" name="checkout_payment_method" value="paypal"
+                                @if ($stripePayments)
+                                <!-- Card (Stripe) -->
+                                <label class="payment-card" id="card-method-stripe">
+                                    <input type="radio" name="checkout_payment_method" value="stripe"
                                         class="payment-radio-input">
                                     <div class="custom-radio-circle"></div>
                                     <div class="payment-icon-box">💳</div>
                                     <div class="payment-card-info">
                                         <div class="payment-card-title-row">
-                                            <strong>PayPal / Credit Card</strong>
+                                            <strong>Credit / Debit Card</strong>
                                         </div>
                                     </div>
                                 </label>
+                                @endif
 
+                                @if ($paypalPayments)
+                                <!-- PayPal Card -->
+                                <label class="payment-card" id="card-method-paypal">
+                                    <input type="radio" name="checkout_payment_method" value="paypal"
+                                        class="payment-radio-input">
+                                    <div class="custom-radio-circle"></div>
+                                    <div class="payment-icon-box">🅿️</div>
+                                    <div class="payment-card-info">
+                                        <div class="payment-card-title-row">
+                                            <strong>PayPal</strong>
+                                        </div>
+                                    </div>
+                                </label>
+                                @endif
+
+                            </div>
+
+                            <!-- Online payment (card / PayPal): the order is placed only after payment is confirmed -->
+                            <div class="online-payment-panel" id="online-payment-panel" style="display: none;">
+                                <div class="online-payment-status" id="online-payment-status" role="status" style="display: none;"></div>
+                                <div class="stripe-payment-box" id="stripe-payment-box" style="display: none;">
+                                    <div id="stripe-payment-element"></div>
+                                    <button type="button" id="stripe-pay-btn" class="checkout-btn-final">
+                                        <span>Pay Securely • <strong></strong></span>
+                                    </button>
+                                </div>
+                                <div id="paypal-button-container" style="display: none;"></div>
                             </div>
                         </div>
 
@@ -2405,5 +2438,24 @@
             font-size: 0.95rem;
         }
     }
+
+    /* Online payment (Stripe card / PayPal) */
+    .online-payment-panel { margin-top: 18px; }
+    .online-payment-status { padding: 12px 16px; margin-bottom: 14px; border-radius: 10px; background: #FFF4E5; color: #8A4B00; font-weight: 600; }
+    .stripe-payment-box { padding: 18px; border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 14px; background: #FFFFFF; }
+    .stripe-payment-box #stripe-pay-btn { margin-top: 16px; width: 100%; }
+    #paypal-button-container { max-width: 100%; }
 </style>
 @endsection
+
+@push("scripts")
+<script>
+    window.shopPaymentConfig = {!! json_encode([
+        "currency" => \App\Support\Payments\CheckoutPaymentService::currency(),
+        "stripeKey" => $stripePayments ? \App\Support\Payments\CheckoutPaymentService::stripePublishableKey() : null,
+        "paypalClientId" => $paypalPayments ? config("services.paypal.client_id") : null,
+    ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!};
+</script>
+@if ($stripePayments)<script src="https://js.stripe.com/v3/"></script>@endif
+<script src="{{ asset("js/checkout-payments.js") }}"></script>
+@endpush

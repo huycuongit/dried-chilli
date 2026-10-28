@@ -30,4 +30,21 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // Shop checkout payments; prices in the shop are stored in this currency.
+    'shop_currency' => env('SHOP_CURRENCY', 'USD'),
+
+    'stripe' => [
+        'enabled' => env('STRIPE_PAYMENTS_ENABLED', false),
+        'key' => env('STRIPE_PUBLISHABLE_KEY'),
+        'secret' => env('STRIPE_SECRET_KEY'),
+        'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+    ],
+
+    'paypal' => [
+        'enabled' => env('PAYPAL_PAYMENTS_ENABLED', false),
+        'environment' => env('PAYPAL_ENVIRONMENT', 'sandbox'),
+        'client_id' => env('PAYPAL_CLIENT_ID'),
+        'client_secret' => env('PAYPAL_CLIENT_SECRET'),
+    ],
+
 ];
