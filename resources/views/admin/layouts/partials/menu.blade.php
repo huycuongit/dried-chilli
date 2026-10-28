@@ -2,10 +2,10 @@
     <div class="app-brand demo">
         <a href="{{ route('admin.dashboard.index') }}" class="app-brand-link">
             <span class="app-brand-logo demo">
-                <img width="58" height="40" src="{{ asset('assets/nafu/nafu-logo.png') }}" alt="Nafu Services"
-                    style="object-fit:contain;background:#333f23;border-radius:20px;padding:5px 7px">
+                <img width="48" height="38" src="{{ asset('images/logo_dried.webp') }}" alt="Dried Chili"
+                    style="object-fit:contain;border-radius:10px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.12));">
             </span>
-            <span class="app-brand-text demo menu-text fw-bold">NAFU</span>
+            <span class="app-brand-text demo menu-text fw-bold text-uppercase ms-2" style="color: #E45D3E; letter-spacing: 0.5px;">DRIED CHILI</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">

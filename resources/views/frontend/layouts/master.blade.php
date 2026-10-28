@@ -2,8 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 @include('frontend.layouts.partials.head')
 
-<body
-    class="{{ request()->routeIs('home') ? 'home-page' : (request()->routeIs('news.*') ? 'nafu-blog-page' : (request()->routeIs('services.*') ? 'nafu-blog-page nafu-services-page' : (request()->routeIs('contact.page') ? 'nafu-blog-page nafu-contact-page' : (request()->routeIs('projects.*') ? 'nafu-blog-page nafu-project-page' : '')))) }}">
+<body class="{{ request()->routeIs('home') ? 'home-page' : '' }}">
     <div class="spice-marquee" style="cursor: pointer;"
         onclick="document.getElementById('newsletter-modal').classList.add('active'); document.getElementById('voucher-popup').classList.remove('show');">
         <div class="marquee-track">

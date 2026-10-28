@@ -13,6 +13,10 @@ class EnforceCanonicalUrl
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (app()->environment('local', 'testing') || in_array($request->getHost(), ['127.0.0.1', 'localhost', '::1'])) {
+            return $next($request);
+        }
+
         $canonicalUrl = rtrim((string) config('app.url'), '/');
         $parts = parse_url($canonicalUrl);
 

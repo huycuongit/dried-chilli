@@ -1,57 +1,104 @@
 @extends('frontend.layouts.master')
 
 @section('meta')
-<title>Privacy Policy | Dried Chili</title>
+<title>Privacy Policy | Dried Chili - Plain English & Transparent Data Care</title>
+<meta name="description"
+    content="Read Dried Chili's privacy policy. Written in plain English: how we protect your personal information, handle secure payments, and respect your privacy under Australian standards.">
 @endsection
 
 @section('full-content')
+@php
+$sys = app(\App\Support\SystemSettings::class);
+$heroBadge = $sys->get('nafu_home_page_privacy_badge', 'CUSTOMER CARE · YOUR PRIVACY MATTERS');
+$heroTitle = $sys->get('nafu_home_page_privacy_title', 'Privacy Policy');
+$heroSubtitle = $sys->get('nafu_home_page_privacy_subtitle', 'Simple, Transparent & Safe Data Care');
+$heroDesc = $sys->get('nafu_home_page_privacy_desc', 'We treat your personal details with the same care and integrity
+that goes into our handcrafted spices. Here is plain-English information on what we collect, why we need it, and how
+your privacy is safeguarded under the Australian Privacy Act 1988 and Spam Act 2003.');
+$stat1Title = $sys->get('nafu_home_page_privacy_stat1_title', 'Safe Checkout');
+$stat1Desc = $sys->get('nafu_home_page_privacy_stat1_desc', 'Encrypted & Private');
+$stat2Title = $sys->get('nafu_home_page_privacy_stat2_title', 'Zero Spam');
+$stat2Desc = $sys->get('nafu_home_page_privacy_stat2_desc', '1-Click Unsubscribe');
+$stat3Title = $sys->get('nafu_home_page_privacy_stat3_title', 'Your Data Control');
+$stat3Desc = $sys->get('nafu_home_page_privacy_stat3_desc', 'Update or Delete');
+
+$card1Title = $sys->get('nafu_home_page_privacy_card1_title', 'Honest Data Care');
+$card1Text = $sys->get('nafu_home_page_privacy_card1_text', 'We only collect the essential details needed to deliver
+your delicious chili orders.');
+$card2Title = $sys->get('nafu_home_page_privacy_card2_title', 'Never Sold to Advertisers');
+$card2Text = $sys->get('nafu_home_page_privacy_card2_text', 'We never sell, rent, or trade your personal information to
+outside marketing firms.');
+$card3Title = $sys->get('nafu_home_page_privacy_card3_title', 'You Are In Full Control');
+$card3Text = $sys->get('nafu_home_page_privacy_card3_text', 'Easily view, edit, or ask us to remove your account details
+anytime you wish.');
+
+$customContent = $sys->get('nafu_home_page_privacy_content');
+@endphp
+
 <main class="page-content legal-page bg-cream">
-    <!-- Hero Section: Standardized Hero Banner -->
+    <!-- Hero Section -->
     <section class="about-hero-section legal-hero">
         <div class="container about-hero-container">
             <div class="about-hero-badge">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                <span>DATA PROTECTION · YOUR PRIVACY MATTERS</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <span>{{ $heroBadge }}</span>
             </div>
-            
+
             <h1 class="about-hero-title">
-                Privacy Policy<br>
-                <span class="highlight-gold">Transparency & Safe Data Care</span>
+                {{ $heroTitle }}<br>
+                <span class="highlight-gold">{{ $heroSubtitle }}</span>
             </h1>
-            
+
             <p class="about-hero-desc">
-                Your personal details, order records, and checkout information are safeguarded with bank-grade security. We never sell your personal data.
+                {{ $heroDesc }}
             </p>
 
             <!-- 3 Brighter Highlight Clusters -->
             <div class="hero-stats-clusters">
                 <div class="hero-cluster-item">
                     <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
                     </div>
                     <div class="cluster-text">
-                        <strong>256-Bit SSL</strong>
-                        <span>Bank-Grade Safety</span>
+                        <strong>{{ $stat1Title }}</strong>
+                        <span>{{ $stat1Desc }}</span>
                     </div>
                 </div>
 
                 <div class="hero-cluster-item">
                     <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
                     </div>
                     <div class="cluster-text">
-                        <strong>Zero Selling</strong>
-                        <span>Never Shared</span>
+                        <strong>{{ $stat2Title }}</strong>
+                        <span>{{ $stat2Desc }}</span>
                     </div>
                 </div>
 
                 <div class="hero-cluster-item">
                     <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <polyline points="16 11 18 13 22 9" />
+                        </svg>
                     </div>
                     <div class="cluster-text">
-                        <strong>Full Control</strong>
-                        <span>Manage Your Data</span>
+                        <strong>{{ $stat3Title }}</strong>
+                        <span>{{ $stat3Desc }}</span>
                     </div>
                 </div>
             </div>
@@ -60,7 +107,7 @@
 
     <!-- Document Section -->
     <section class="legal-document">
-        <div class="container reveal">
+        <div class="container">
             <div class="document-wrapper shadow-lg">
                 <!-- Privacy Highlights Bar -->
                 <div class="privacy-highlights">
@@ -74,8 +121,8 @@
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>100% Data Protection</h4>
-                            <p>Rigorous security standards and encryption protecting your order data.</p>
+                            <h4>Honest Data Care</h4>
+                            <p>We only collect the essential details needed to deliver your delicious chili orders.</p>
                         </div>
                     </div>
                     <div class="highlight-item">
@@ -87,8 +134,8 @@
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>No Third-Party Selling</h4>
-                            <p>We never sell, rent, or trade your personal details to outside advertisers.</p>
+                            <h4>Never Sold to Advertisers</h4>
+                            <p>We never sell, rent, or trade your personal information to outside marketing firms.</p>
                         </div>
                     </div>
                     <div class="highlight-item">
@@ -101,108 +148,106 @@
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>Full User Control</h4>
-                            <p>Request data access, profile updates, or total erasure at any time.</p>
+                            <h4>You Are In Full Control</h4>
+                            <p>Easily view, edit, or ask us to remove your account details anytime you wish.</p>
                         </div>
                     </div>
                 </div>
 
-                <h2>1. Introduction</h2>
-                <p>Welcome to <strong>Dried Chili</strong>. We deeply value your trust and are committed to safeguarding
-                    your personal data. This privacy policy explains how we collect, handle, store, and protect your
-                    information when you visit our website, explore our culinary spices, or place an order, as well as
-                    detailing your privacy rights and the legal protections available to you under applicable data
-                    privacy laws.</p>
+                <h2>1. Our Promise to You</h2>
+                <p>Welcome to <strong>Dried Chili</strong> (operated by <strong>Jojo Little Kitchen</strong> in
+                    Australia). We know that sharing your personal information requires trust, and we take that
+                    responsibility seriously.</p>
+                <p>This Privacy Policy explains clearly and simply how we collect, use, and protect your information
+                    when you visit our website, explore our artisan spices, or place an order. We operate in full
+                    compliance with Australia's <strong>Privacy Act 1988 (Cth)</strong>, the <strong>Australian Privacy Principles</strong>, and the <strong>Spam Act 2003</strong>—written here in straightforward words so you can easily understand your rights.</p>
 
-                <h2>2. Data We Collect</h2>
-                <p>We may collect, use, store, and transfer different categories of personal information about you,
-                    which we have organized as follows:</p>
+                <h2>2. What Information We Collect & Why</h2>
+                <p>We only ask for details that are genuinely needed to give you a smooth, enjoyable shopping
+                    experience. This includes:</p>
                 <ul>
-                    <li><strong>Identity Data:</strong> Includes first name, last name, username or customer account
-                        identifier.</li>
-                    <li><strong>Contact Data:</strong> Includes billing address, delivery address, email address, and
-                        telephone contact numbers.</li>
-                    <li><strong>Financial & Payment Data:</strong> Includes payment transaction tokens. Please note that
-                        all card details are encrypted and securely processed by certified third-party payment gateways
-                        (e.g., Stripe, PayPal); Dried Chili never stores full credit card numbers on our local servers.
+                    <li><strong>Your Delivery Details:</strong> Your full name, delivery address, phone number, and
+                        email address so we can pack your spice order, hand it to Australia Post, and send you live
+                        parcel tracking.</li>
+                    <li><strong>Order & Purchase History:</strong> What chili products you ordered, when you ordered
+                        them, and copies of your official Australian Tax Invoices.</li>
+                    <li><strong>Safe Payment Information:</strong> When you purchase online, your card details are
+                        processed directly and securely by certified payment services (Stripe or PayPal). <strong>Dried
+                            Chili never sees or saves your credit card numbers on our website.</strong></li>
+                    <li><strong>Customer Notes & Feedback:</strong> Any special delivery instructions (like gate codes)
+                        or questions you send to our support team so we can assist you quickly.</li>
+                    <li><strong>Website Cookies:</strong> Small, helpful files that remember what is inside your
+                        shopping cart as you browse our blends, keeping your session active.</li>
+                </ul>
+
+                <h2>3. How We Use Your Details</h2>
+                <p>We use your information exclusively to run our small-batch spice business and serve you well:</p>
+                <ul>
+                    <li>To prepare, safely pack, and dispatch your chili jars.</li>
+                    <li>To email you order confirmations, tracking numbers, and tax invoices.</li>
+                    <li>To assist you with questions, recipe tips, replacements, or refunds.</li>
+                    <li>To keep our online store secure against payment fraud.</li>
+                    <li>In the rare event of a product advisory or recall, to notify you promptly to protect your food
+                        safety.</li>
+                </ul>
+
+                <h2>4. Honest Email Communications & No Spam</h2>
+                <p>We hate unsolicited junk mail just as much as you do. Under Australia's <strong>Spam Act
+                        2003</strong>, we maintain a strict policy:</p>
+                <ul>
+                    <li>We will <strong>only</strong> send you newsletters, special discounts, or new seasonal harvest
+                        alerts if you explicitly signed up to receive them.</li>
+                    <li>Every promotional email has an instant, free <strong>1-click Unsubscribe link</strong> right at
+                        the bottom. Click it anytime, and you will be removed from our marketing list within 5 business
+                        days.</li>
+                    <li>We will still email you important transactional updates about your active orders (like your
+                        receipt and tracking link) even if you unsubscribe from promotional newsletters.</li>
+                </ul>
+
+                <h2>5. Who We Share Information With</h2>
+                <p>We never sell, rent, or trade your personal details to outside companies for marketing. We only share
+                    the minimum necessary information with trusted partners who help us fulfill your order:</p>
+                <ul>
+                    <li><strong>Postal Carriers:</strong> Australia Post or express delivery couriers so they can drive
+                        the package to your front door.</li>
+                    <li><strong>Payment Gateways:</strong> Certified payment partners (Stripe, PayPal) to safely approve
+                        your payment.</li>
+                    <li><strong>Cloud Infrastructure:</strong> Secure, industry-leading hosting systems that keep our
+                        website running smoothly 24/7.</li>
+                </ul>
+
+                <h2>6. How We Protect Your Data</h2>
+                <p>We use modern, bank-standard security safeguards to protect your personal details. All web traffic on
+                    Dried Chili is protected with 256-bit SSL encryption (look for the padlock in your browser address
+                    bar). Access to order records is strictly restricted to team members who need it to pack your boxes
+                    or answer customer care requests.</p>
+
+                <h2>7. Managing Your Account & Your Privacy Rights</h2>
+                <p>You have full control over your personal records:</p>
+                <ul>
+                    <li><strong>Update Your Details:</strong> You can log into your <a
+                            href="{{ route('account.dashboard') }}">Account Dashboard</a> anytime to edit your shipping
+                        address, name, or password.</li>
+                    <li><strong>Request Your Data or Account Deletion:</strong> If you would like a copy of the personal
+                        information we hold for you, or if you want us to remove your account and delete your records,
+                        simply email our team at <a href="mailto:privacy@driedchili.com">privacy@driedchili.com</a>. We
+                        will respond promptly within 30 days.</li>
+                </ul>
+
+                <h2>8. Questions, Feedback & Privacy Officer Contact</h2>
+                <p>If you have any questions about how your information is handled, or if you feel something wasn't
+                    handled properly, please contact our team first so we can make it right:</p>
+                <ul>
+                    <li><strong>Business:</strong> Dried Chili / Jojo Little Kitchen Pty Ltd</li>
+                    <li><strong>Email:</strong> <a href="mailto:privacy@driedchili.com">privacy@driedchili.com</a></li>
+                    <li><strong>Mailing Address:</strong> Privacy Care, Dried Chili, PO Box 412, Sydney NSW 2000,
+                        Australia</li>
+                    <li><strong>Online Support:</strong> <a href="{{ route('contact.page') }}">Contact Support Form</a>
                     </li>
-                    <li><strong>Transaction Data:</strong> Includes historical details about your spice orders,
-                        payments, invoice receipts, and delivery tracking.</li>
-                    <li><strong>Technical Data:</strong> Includes internet protocol (IP) address, login credentials,
-                        browser type and version, time zone setting, operating system, and platform.</li>
                 </ul>
+                <p>You also have the right under Australian law to contact the <strong>Office of the Australian Information Commissioner (OAIC)</strong> at <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer">www.oaic.gov.au</a> or by calling 1300 363 992.</p>
 
-                <h2>3. How We Use Your Data</h2>
-                <p>We will only utilize your personal data when permitted by law. Most commonly, we process your
-                    information in the following circumstances:</p>
-                <ul>
-                    <li><strong>Order Fulfillment:</strong> To prepare, package, and ship your spice orders, process
-                        payments, and provide live delivery notifications.</li>
-                    <li><strong>Customer Support:</strong> To communicate with you regarding order queries, returns,
-                        refunds, or product inquiries.</li>
-                    <li><strong>Legitimate Interests:</strong> To improve our spice recipes, optimize website usability,
-                        and detect fraudulent transactions.</li>
-                    <li><strong>Legal Compliance:</strong> To comply with mandatory statutory, tax, or legal reporting
-                        obligations.</li>
-                </ul>
 
-                <h2>4. Data Security</h2>
-                <p>We have instituted robust administrative, technical, and physical security measures to prevent your
-                    personal data from being accidentally lost, unauthorizedly accessed, altered, or disclosed. Access
-                    to your personal information is strictly restricted to employees, logistics partners, and agents who
-                    have an immediate business necessity. They process your data under strict contractual
-                    confidentiality obligations.</p>
-
-                <h2>5. Data Retention</h2>
-                <p>We retain your personal information only for as long as reasonably necessary to fulfill the purposes
-                    for which it was originally collected, including satisfying legal, accounting, tax, or regulatory
-                    compliance requirements.</p>
-
-                <h2>6. Your Legal Rights</h2>
-                <p>Under global data protection standards (including GDPR and CCPA where applicable), you have rights
-                    regarding your personal data, including the right to:</p>
-                <ul>
-                    <li>Request access to a copy of the personal data we hold about you.</li>
-                    <li>Request correction of any incomplete or inaccurate data.</li>
-                    <li>Request erasure of your personal data when there is no legitimate reason for us continuing to
-                        process it.</li>
-                    <li>Object to or restrict the processing of your personal data for direct marketing purposes.</li>
-                </ul>
-                <p>To exercise any of these privacy rights, please reach out directly to our privacy officer at <a
-                        href="mailto:privacy@driedchili.com">privacy@driedchili.com</a>.</p>
-
-                <h2>7. Cookie Policy</h2>
-                <p>We utilize cookies and similar tracking technologies to enhance your shopping experience, remember
-                    your cart items across sessions, and understand how visitors interact with our artisanal spice
-                    catalog. You can instruct your browser to refuse all or certain cookies. However, disabling
-                    essential cookies may impact checkout functionality and interactive store features.</p>
-
-                <!-- Help Box -->
-                <div class="privacy-help-box">
-                    <div class="help-box-content">
-                        <h3>Questions about your privacy or data?</h3>
-                        <p>Our dedicated compliance specialists are ready to assist with any data access, update, or
-                            deletion requests.</p>
-                    </div>
-                    <div class="help-box-actions">
-                        <a href="{{ route('contact.page') }}" class="help-btn primary">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect width="20" height="16" x="2" y="4" rx="2" />
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                            </svg>
-                            Contact Support
-                        </a>
-                        <a href="mailto:privacy@driedchili.com" class="help-btn outline">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                            </svg>
-                            Email Privacy Team
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -224,6 +269,11 @@
     padding: 4rem 0 8rem;
 }
 
+.legal-document .container {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
 .document-wrapper {
     background: #FFFFFF;
     border-radius: 20px;
@@ -236,6 +286,9 @@
     z-index: 10;
     border: 1px solid rgba(40, 18, 11, 0.08);
     box-shadow: 0 15px 45px rgba(0, 0, 0, 0.06);
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
 }
 
 /* Privacy Highlights */
@@ -298,7 +351,7 @@
 .document-wrapper h2 {
     font-family: var(--font-heading);
     color: var(--spice-bg-dark);
-    font-size: clamp(30px, 3vw, 40px);
+    font-size: clamp(26px, 2.5vw, 34px);
     font-weight: 800;
     margin-top: 3.5rem;
     margin-bottom: 1.25rem;

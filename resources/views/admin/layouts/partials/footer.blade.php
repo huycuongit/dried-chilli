@@ -7,7 +7,7 @@
                     document.write(new Date().getFullYear());
                 </script>, Built with ❤️ by
                 <a href="/" target="_blank" class="footer-link">
-                    NAFU digi
+                    Dried Chili - Jojo Little Kitchen
                 </a>
             </div>
             {{-- <div class="d-none d-lg-inline-block">

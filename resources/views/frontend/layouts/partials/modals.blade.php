@@ -192,7 +192,7 @@
         <div class="ballon-content">
             Bạn cần hỗ trợ!
         </div>
-        <a href="{{ renderData($systemSettings, 'support_url', '#') }}" class="ballon-icon-block">
+        <a href="{{ renderData($systemSettings, 'support_url', '#') }}" class="ballon-icon-block" aria-label="Customer Support">
             <svg xmlns="http://www.w3.org/2000/svg" class="ballon-icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
                 <g filter="url(#filter0_ii_3464_3730)">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M24 0C10.4801 0 0 9.90336 0 23.28C0 30.2769 2.86752 36.3229 7.53734 40.499C7.92936 40.8499 8.166 41.3414 8.18208 41.8675L8.31278 46.1366C8.35454 47.4984 9.76114 48.3845 11.0072 47.8344L15.7709 45.7315C16.1747 45.5534 16.6272 45.5203 17.0527 45.6374C19.2418 46.2394 21.5716 46.56 24 46.56C37.5199 46.56 48 36.6566 48 23.28C48 9.90336 37.5199 0 24 0Z" fill="#F7F6F2"/>

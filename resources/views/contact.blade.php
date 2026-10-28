@@ -80,7 +80,7 @@
                             </div>
                             <div class="details">
                                 <h4>Visit Atelier</h4>
-                                <p>123 Spice Market, Culinary District<br>Flavor Town, FL 33139, USA</p>
+                                <p>120 A'beckett street<br>Melbourne, 3000, VIC</p>
                                 <span class="contact-meta">Flagship Atelier & Tasting Room</span>
                             </div>
                         </div>
@@ -189,14 +189,14 @@
         <div class="map-wrapper">
             <iframe 
                 class="contact-map-iframe"
-                src="https://maps.google.com/maps?q=-37.8105,144.9665&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                src="https://maps.google.com/maps?q=120+A%27beckett+street,+Melbourne,+3000,+VIC&t=&z=16&ie=UTF8&iwloc=&output=embed" 
                 loading="lazy" 
                 referrerpolicy="no-referrer-when-downgrade"
-                title="Dried Chili Headquarters & Atelier Map">
+                title="Dried Chili Headquarters & Atelier Map - 120 A'beckett street, Melbourne, 3000, VIC">
             </iframe>
             
             <!-- Open in Maps Button (Top Left) -->
-            <a href="https://maps.google.com/?q=-37.8105,144.9665" target="_blank" rel="noopener noreferrer" class="btn-open-map">
+            <a href="https://maps.google.com/?q=120+A%27beckett+street,+Melbourne,+3000,+VIC" target="_blank" rel="noopener noreferrer" class="btn-open-map">
                 Open in Maps
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -206,7 +206,7 @@
             </a>
 
             <!-- Central Location Marker Pin -->
-            <div class="map-center-pin" title="Dried Chili Atelier & Flagship Store">
+            <div class="map-center-pin" title="Dried Chili Atelier & Flagship Store - 120 A'beckett street, Melbourne, 3000, VIC">
                 <div class="pin-marker">
                     <svg width="28" height="36" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 0C5.37 0 0 5.37 0 12C0 20.25 12 30 12 30C12 30 24 20.25 24 12C24 5.37 18.63 0 12 0Z" fill="#8B2218"/>

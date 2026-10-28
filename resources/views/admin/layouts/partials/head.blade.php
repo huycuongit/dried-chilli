@@ -40,6 +40,7 @@
 
 <!-- Page CSS -->
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/pages/cards-advance.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/admin/css/dried-chili-admin.css') }}?v=20261028" />
 
 <!-- Helpers -->
 <script src="{{ asset('assets/admin/vendor/js/helpers.js') }}"></script>

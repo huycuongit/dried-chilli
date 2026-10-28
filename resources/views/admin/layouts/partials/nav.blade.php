@@ -432,7 +432,7 @@
                                 </div>
                                 <div class="flex-grow-1">
                                     <h6 class="mb-0">{{ checkValue($auth, 'name') }}</h6>
-                                    <small class="text-muted">{{ isset($auth->roles) ? checkValue($auth->roles[0], 'name') : '' }}</small>
+                                    <small class="text-muted">{{ (isset($auth->roles) && $auth->roles->count() > 0) ? checkValue($auth->roles->first(), 'name') : 'Administrator' }}</small>
                                 </div>
                             </div>
                         </a>

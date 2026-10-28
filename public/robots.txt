@@ -1,9 +1,14 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /account/
+Disallow: /contract/
+Disallow: /reset-systems-cache
+Disallow: /ckfinder/
+Disallow: /cart
+Disallow: /submit-login
+Disallow: /submit-register
+Allow: /
+Allow: /assets/
 
-User-agent: Googlebot
-Disallow:
-
-Allow: /assets/favicon/favicon.ico
-
-Sitemap: https://febdigi.com/sitemap.xml
+Sitemap: https://driedchili.com/sitemap.xml
+Sitemap: /sitemap.xml

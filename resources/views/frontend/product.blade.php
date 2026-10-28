@@ -1,6 +1,66 @@
 @extends('frontend.layouts.master')
-@section('meta')
-    <title>{{ $product->name }} | Dried Chili</title>
+
+@section('title', $product->name . ' | Dried Chili')
+@section('meta_description', \Illuminate\Support\Str::limit(strip_tags($product->description ?: 'Shop ' . $product->name . ' at Dried Chili. Handcrafted premium spicy seasonings, 100% natural and freshly packaged.'), 155))
+@section('og_image', $product->image_url)
+@section('og_type', 'product')
+
+@section('schema_json')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "{{ addslashes($product->name) }}",
+      "image": ["{{ $product->image_url }}"],
+      "description": "{{ addslashes(strip_tags($product->description ?: $product->name)) }}",
+      "sku": "DC-{{ $product->id }}",
+      "brand": {
+        "@type": "Brand",
+        "name": "Dried Chili"
+      },
+      "category": "{{ addslashes($product->category->name ?? 'Spices & Seasonings') }}",
+      "offers": {
+        "@type": "Offer",
+        "url": "{{ request()->url() }}",
+        "priceCurrency": "USD",
+        "price": "{{ number_format((float)($product->sale_price ?? $product->price), 2, '.', '') }}",
+        "priceValidUntil": "{{ date('Y-12-31') }}",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Dried Chili"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ url('/') }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Shop",
+          "item": "{{ url('/shop') }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ addslashes($product->name) }}",
+          "item": "{{ request()->url() }}"
+        }
+      ]
+    }
+  ]
+}
+</script>
 @endsection
 @section('full-content')
 <main class="page-content detail-bg">
@@ -15,13 +75,17 @@
                     @elseif($product->is_best_seller)
                         <div class="product-badge best-seller">BEST SELLER</div>
                     @endif
-                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}" id="featured-img">
+                    <img src="{{ $product->gallery_images[0] ?? $product->image_url }}" alt="{{ $product->name }}" id="featured-img">
                 </div>
-                <div class="thumbnail-list">
-                    <!-- Product thumbnails -->
-                    <div class="thumb-item active"><img src="{{ $product->image_url }}" alt="thumb1"></div>
-                    <div class="thumb-item"><img src="{{ $product->image_url }}" alt="thumb2"></div>
-                </div>
+                @if(count($product->gallery_images) > 1)
+                    <div class="thumbnail-list">
+                        @foreach($product->gallery_images as $index => $imgUrl)
+                            <div class="thumb-item {{ $index === 0 ? 'active' : '' }}">
+                                <img src="{{ $imgUrl }}" alt="{{ $product->name }} thumb {{ $index + 1 }}">
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -322,20 +386,12 @@
     line-height: 1.65;
     margin-bottom: 2rem;
     color: #4A3B32;
-    text-align: justify;
-    text-justify: inter-word;
-    text-align-last: left;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+    text-align: left;
 }
 .product-description p {
     margin: 0;
     line-height: inherit;
-    text-align: justify;
-    text-justify: inter-word;
-    text-align-last: left;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+    text-align: left;
 }
 
 /* Cart Actions */
@@ -483,20 +539,12 @@ details[open] .accordion-chevron {
     font-family: var(--font-body);
     font-size: 14px;
     color: #4A3B32;
-    text-align: justify;
-    text-justify: inter-word;
-    text-align-last: left;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+    text-align: left;
 }
 .accordion-content p {
     margin: 0;
     line-height: inherit;
-    text-align: justify;
-    text-justify: inter-word;
-    text-align-last: left;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+    text-align: left;
 }
 
 /* Related Products */

@@ -1,9 +1,7 @@
 @extends('frontend.layouts.master')
 
-@section('meta')
-<title>Why Dried Chili? | Our Story</title>
-<meta name="description" content="Discover the story behind Dried Chili: Who we are, our small-batch artisanal spice craft, and why over 150,000 food lovers trust us to bring heat and umami to their tables.">
-@endsection
+@section('title', 'Why Dried Chili? | Our Story')
+@section('meta_description', 'Discover the story behind Dried Chili: Who we are, our small-batch artisanal spice craft, and why over 150,000 food lovers trust us to bring heat and umami to their tables.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/about.css') }}?v={{ time() }}">

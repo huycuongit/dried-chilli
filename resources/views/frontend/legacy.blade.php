@@ -1,9 +1,7 @@
 @extends('frontend.layouts.master')
 
-@section('meta')
-<title>Our Legacy | Roots & Terroir | Dried Chili</title>
-<meta name="description" content="Discover the 100-year legacy behind Dried Chili: four generations of heirloom farming, ancestral 21-day solar curing, and the sacred valley terroir that gives our chili its legendary flavor.">
-@endsection
+@section('title', 'Our Legacy | Roots & Terroir | Dried Chili')
+@section('meta_description', 'Discover the 100-year legacy behind Dried Chili: four generations of heirloom farming, ancestral 21-day solar curing, and the sacred valley terroir that gives our chili its legendary flavor.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/about.css') }}?v={{ time() }}">

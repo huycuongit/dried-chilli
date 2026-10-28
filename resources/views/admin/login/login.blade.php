@@ -8,13 +8,13 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login NAFU | ADMIN</title>
+    <title>Login | Dried Chili Admin</title>
 
     <meta name="description" content="" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('assets/nafu/nafu-logo.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon/favicon.ico') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,6 +54,7 @@
 
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/dried-chili-admin.css') }}?v=20261028">
 
     <!-- Theme helpers must load before config.js and main.js. -->
     <script src="{{ asset('assets/admin/vendor/js/helpers.js') }}"></script>
@@ -73,8 +74,8 @@
         <!-- Logo -->
         <a href="index.html" class="app-brand auth-cover-brand">
             <span class="app-brand-logo demo">
-                <img width="78" height="52" src="{{ asset('assets/nafu/nafu-logo.png') }}"
-                    alt="Nafu Services" style="object-fit:contain;background:#333f23;border-radius:20px;padding:6px 10px">
+                <img width="65" height="48" src="{{ asset('images/logo_dried.webp') }}"
+                    alt="Dried Chili" style="object-fit:contain;border-radius:10px;">
 
                 {{-- <svg width="32" height="22" viewBox="0 0 32 22" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +91,7 @@
                         fill="#1993E6" />
                 </svg> --}}
             </span>
-            <span class="app-brand-text demo text-heading fw-bold">NAFU | ADMIN</span>
+            <span class="app-brand-text demo text-heading fw-bold ms-2" style="color:#E45D3E;letter-spacing:0.5px;">DRIED CHILI | ADMIN</span>
         </a>
         <!-- /Logo -->
         <div class="authentication-inner row m-0">
@@ -113,10 +114,10 @@
             <!-- Login -->
             <div class="d-flex col-12 col-lg-4 align-items-center authentication-bg p-sm-12 p-6">
                 <div class="w-px-400 mx-auto mt-12 pt-5">
-                    <h4 class="mb-1">Welcome to NAFU Admin! 👋</h4>
-                    <p class="mb-6">Sign in to manage your website.</p>
+                    <h4 class="mb-1">Welcome to Dried Chili Admin! 🌶️</h4>
+                    <p class="mb-6">Sign in to manage your artisanal spices, orders & store operations.</p>
 
-                    <form id="form-form" class="mb-6" action="" method="POST">
+                    <form id="form-form" class="mb-6" action="javascript:void(0);" method="POST" onsubmit="return false;">
                         @csrf
                         <div class="mb-6">
                             <label for="email" class="form-label">Email address</label>
@@ -135,7 +136,7 @@
                         <div class="my-8">
                             <div class="d-flex justify-content-between">
                                 <div class="form-check mb-0 ms-2">
-                                    <input class="form-check-input" type="checkbox" id="remember-me" />
+                                    <input class="form-check-input" type="checkbox" id="remember-me" name="remember" value="1" />
                                     <label class="form-check-label" for="remember-me"> Remember me </label>
                                 </div>
                                 <a href="auth-forgot-password-cover.html">
@@ -178,8 +179,8 @@
             </div>
             <!-- /Login -->
 
-            <input type="hidden" value="{{ route('admin.save.login') }}" id="oSVPPhgRiSSPp6D">
-            <input type="hidden" value="{{ route('admin.dashboard.index') }}" id="oSVPPhgRiSSPp6D-dashboard">
+            <input type="hidden" value="{{ route('admin.save.login', [], false) }}" id="oSVPPhgRiSSPp6D">
+            <input type="hidden" value="{{ route('admin.dashboard.index', [], false) }}" id="oSVPPhgRiSSPp6D-dashboard">
         </div>
     </div>
     <!-- / Content -->
@@ -256,14 +257,12 @@
                 errorPlacement: function(error, input) {
                     $(input).parents('.form-group').append(error);
                 },
-                submitHandler: function(form) {
-                    funcLogin(form);
-                }
-            });
-
-            $(_idForm).keypress((e) => {
-                if (e.which === 13) {
-                    _idForm.submit();
+                submitHandler: function(form, event) {
+                    if (event) {
+                        event.preventDefault();
+                    }
+                    funcLogin();
+                    return false;
                 }
             });
         }
@@ -282,33 +281,44 @@
                 showMethod: 'fadeIn',
                 hideMethod: 'fadeOut',
                 positionClass: 'toast-top-right',
-                rtl: true
+                rtl: false
             };
 
-            if (resp.status == '200') {
+            if (resp.status == '200' || resp.status == 200) {
                 toastr.success(resp.success);
-                if (form_name != "") {
-                    document.getElementById(form_name).reset();
-                }
-                if (url != "") {
+                var target = resp.redirect_url || url;
+                if (target != "") {
                     setTimeout(function() {
-                        window.location.replace(url);
-                    }, 500);
+                        window.location.replace(target);
+                    }, 400);
                 }
             } else {
                 var obj = resp.errors;
                 if (typeof obj === 'string') {
                     toastr.error(obj);
-                } else {
+                } else if (Array.isArray(obj)) {
                     $.each(obj, function(i, e) {
                         toastr.error(e);
                     });
+                } else if (obj && typeof obj === 'object') {
+                    $.each(obj, function(k, v) {
+                        toastr.error(Array.isArray(v) ? v[0] : v);
+                    });
+                } else {
+                    toastr.error('Đăng nhập không thành công.');
                 }
             }
         }
 
+        var isSubmitting = false;
+
         //-- Func submit
         function funcLogin() {
+            if (isSubmitting) {
+                return false;
+            }
+            isSubmitting = true;
+
             toastr.options = {
                 closeButton: true,
                 progressBar: true,
@@ -322,32 +332,52 @@
                 showMethod: 'fadeIn',
                 hideMethod: 'fadeOut',
                 positionClass: 'toast-top-right',
-                rtl: true
+                rtl: false
             };
 
+            var $btn = $('.btn-login');
+            var originalBtnHtml = $btn.html();
+            $btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> Signing in...');
             $("#dvloader").show();
+
             var _idContactForm = $('#form-form');
             var _actionURL = $('#oSVPPhgRiSSPp6D').val();
             var _actionDashboardURL = $('#oSVPPhgRiSSPp6D-dashboard').val();
             var _formData = $(_idContactForm).serialize();
 
-            console.log('dữ liệu');
-            console.log(_formData);
-
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json'
                 },
                 type: 'POST',
                 url: _actionURL,
                 data: _formData,
+                dataType: 'json',
                 success: function(resp) {
                     $("#dvloader").hide();
-                    getResponseMessage(resp, 'form-form', _actionDashboardURL);
+                    if (resp.status == '200' || resp.status == 200) {
+                        getResponseMessage(resp, '', _actionDashboardURL);
+                    } else {
+                        isSubmitting = false;
+                        $btn.prop('disabled', false).html(originalBtnHtml);
+                        getResponseMessage(resp, '', '');
+                    }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     $("#dvloader").hide();
-                    toastr.error(errorThrown.msg, 'failed');
+                    if (XMLHttpRequest.status === 419) {
+                        toastr.warning('Phiên đăng nhập đã hết hạn. Đang làm mới trang...', 'Cảnh báo');
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1200);
+                        return;
+                    }
+                    isSubmitting = false;
+                    $btn.prop('disabled', false).html(originalBtnHtml);
+                    var errText = (XMLHttpRequest.responseJSON && XMLHttpRequest.responseJSON.message) ? XMLHttpRequest.responseJSON.message : (errorThrown || 'Login failed');
+                    toastr.error(errText, 'Login Error');
                 }
             });
         }
@@ -376,10 +406,7 @@
 
         $(function() {
             fomrLogin();
-            $('.btn-login').on('click', function(e) {
-                e.preventDefault();
-                $('#form-form').submit();
-            });
+            // Form submission handled natively by jquery.validate
             initPasswordToggle();
         });
     </script>

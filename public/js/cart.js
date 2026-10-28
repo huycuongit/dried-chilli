@@ -744,6 +744,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (modalOrderTotal) modalOrderTotal.textContent = currentTotal;
                     if (modalShippingSummary) modalShippingSummary.textContent = `${name} • ${phone} • ${street}, ${city}`;
 
+                    if (result.success_url) {
+                        const viewOrderLink = modal?.querySelector('.btn-primary-success');
+                        if (viewOrderLink) {
+                            viewOrderLink.href = result.success_url;
+                            viewOrderLink.textContent = 'View Order Receipt';
+                        }
+                    }
+
                     if (modal) {
                         modal.style.display = 'flex';
                     }

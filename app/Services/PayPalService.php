@@ -27,6 +27,20 @@ class PayPalService
         $config = config('paypal');
         if (!empty($config)) {
             $this->provider->setApiCredentials($config);
+
+            // In local development or if PAYPAL_VALIDATE_SSL is false, allow bypassing cURL SSL verify (needed for Windows dev)
+            $validateSsl = filter_var(config('paypal.validate_ssl', true), FILTER_VALIDATE_BOOLEAN);
+            if (!$validateSsl || app()->isLocal()) {
+                $client = new \GuzzleHttp\Client([
+                    'verify' => false,
+                    'curl' => [
+                        CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2,
+                        CURLOPT_SSL_VERIFYPEER => false,
+                        CURLOPT_SSL_VERIFYHOST => false,
+                    ],
+                ]);
+                $this->provider->setClient($client);
+            }
         }
     }
 
@@ -43,8 +57,9 @@ class PayPalService
     public function createOrder(float $amount, $orderId, string $returnUrl, string $cancelUrl): array
     {
         $token = $this->provider->getAccessToken();
-        if (empty($token)) {
-            throw new Exception('Unable to authenticate with PayPal API.');
+        if (empty($token) || isset($token['error'])) {
+            $msg = is_array($token) && isset($token['error']) ? (is_string($token['error']) ? $token['error'] : json_encode($token['error'])) : 'Unable to authenticate with PayPal API.';
+            throw new Exception($msg);
         }
 
         $data = [
@@ -105,8 +120,9 @@ class PayPalService
     public function capturePayment(string $token): array
     {
         $accessToken = $this->provider->getAccessToken();
-        if (empty($accessToken)) {
-            throw new Exception('Unable to authenticate with PayPal API.');
+        if (empty($accessToken) || isset($accessToken['error'])) {
+            $msg = is_array($accessToken) && isset($accessToken['error']) ? (is_string($accessToken['error']) ? $accessToken['error'] : json_encode($accessToken['error'])) : 'Unable to authenticate with PayPal API.';
+            throw new Exception($msg);
         }
 
         $response = $this->provider->capturePaymentOrder($token);

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use DataTables;
 
 class EcomProductController extends Controller
@@ -17,11 +19,18 @@ class EcomProductController extends Controller
     public function datatables(Request $request)
     {
         if ($request->ajax()) {
-            $query = Product::with('inventory');
+            $query = Product::with(['inventory', 'images']);
             if ($request->has('keyword') && $request->keyword != '') {
                 $query->where('name', 'like', '%' . $request->keyword . '%');
             }
             return DataTables::of($query)
+                ->addColumn('image', function($row) {
+                    $imgUrl = $row->image_url;
+                    $badge = $row->images->count() > 1 ? '<span class="badge bg-label-primary ms-1">+' . ($row->images->count() - 1) . '</span>' : '';
+                    return '<div class="d-flex align-items-center">
+                                <img src="' . $imgUrl . '" alt="' . e($row->name) . '" class="rounded me-2" style="width: 44px; height: 44px; object-fit: cover; border: 1px solid var(--chili-border);">' . $badge . '
+                            </div>';
+                })
                 ->addColumn('action', function($row) {
                     return '<div class="d-flex align-items-center">
                                 <a href="'.route('admin.ecom_products.edit', $row->id).'" class="btn btn-icon btn-text-secondary waves-effect waves-light rounded-pill btn-edit" title="Edit"><i class="ti ti-edit ti-md"></i></a>
@@ -40,7 +49,7 @@ class EcomProductController extends Controller
                 ->editColumn('is_best_seller', function($row) { return $row->is_best_seller ? '<span class="badge bg-success">Yes</span>' : '<span class="badge bg-secondary">No</span>'; })
                 ->editColumn('is_sale', function($row) { return $row->is_sale ? '<span class="badge bg-primary">Yes</span>' : '<span class="badge bg-secondary">No</span>'; })
                 ->editColumn('is_limited_sale', function($row) { return $row->is_limited_sale ? '<span class="badge bg-warning">Yes</span>' : '<span class="badge bg-secondary">No</span>'; })
-                ->rawColumns(['action', 'is_best_seller', 'is_sale', 'is_limited_sale'])
+                ->rawColumns(['image', 'action', 'is_best_seller', 'is_sale', 'is_limited_sale'])
                 ->make(true);
         }
     }
@@ -57,6 +66,9 @@ class EcomProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'quantity' => 'nullable|integer|min:0',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+            'primary_image_index' => 'nullable|integer',
         ]);
 
         $product = Product::create([
@@ -81,12 +93,33 @@ class EcomProductController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.ecom_products.index')->with('success', 'Product created successfully.');
+        // Upload and assign multiple images
+        if ($request->hasFile('images')) {
+            $primaryIndex = (int) $request->input('primary_image_index', 0);
+            foreach ($request->file('images') as $index => $file) {
+                $path = $file->store('products', 'public');
+                $imagePath = 'storage/' . $path;
+                $isPrimary = ($index === $primaryIndex);
+
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => $imagePath,
+                    'is_primary' => $isPrimary,
+                    'sort_order' => $index,
+                ]);
+
+                if ($isPrimary || empty($product->image)) {
+                    $product->update(['image' => $imagePath]);
+                }
+            }
+        }
+
+        return redirect()->route('admin.ecom_products.index')->with('success', 'Product created successfully with gallery images.');
     }
 
     public function edit($id)
     {
-        $data = Product::findOrFail($id);
+        $data = Product::with('images')->findOrFail($id);
         return view('admin.ecom_products.form', compact('data'));
     }
 
@@ -96,6 +129,11 @@ class EcomProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'quantity' => 'nullable|integer|min:0',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+            'delete_images' => 'nullable|array',
+            'delete_images.*' => 'integer',
+            'primary_image_id' => 'nullable|integer',
         ]);
 
         $product = Product::findOrFail($id);
@@ -120,12 +158,121 @@ class EcomProductController extends Controller
             $inventory->save();
         }
 
-        return redirect()->route('admin.ecom_products.index')->with('success', 'Product updated successfully.');
+        // Delete requested images
+        if ($request->has('delete_images')) {
+            $deleteIds = (array) $request->input('delete_images');
+            $imagesToDelete = ProductImage::where('product_id', $product->id)->whereIn('delete_images', $deleteIds)->orWhere(function($q) use ($deleteIds, $product) {
+                $q->where('product_id', $product->id)->whereIn('id', $deleteIds);
+            })->get();
+            foreach ($imagesToDelete as $delImg) {
+                if ($delImg->image_path && str_starts_with($delImg->image_path, 'storage/')) {
+                    Storage::disk('public')->delete(str_replace('storage/', '', $delImg->image_path));
+                }
+                $delImg->delete();
+            }
+        }
+
+        // Add newly uploaded images
+        if ($request->hasFile('images')) {
+            $lastSort = (int) ProductImage::where('product_id', $product->id)->max('sort_order');
+            foreach ($request->file('images') as $i => $file) {
+                $path = $file->store('products', 'public');
+                $imagePath = 'storage/' . $path;
+
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => $imagePath,
+                    'is_primary' => false,
+                    'sort_order' => $lastSort + $i + 1,
+                ]);
+
+                if (empty($product->image)) {
+                    $product->update(['image' => $imagePath]);
+                }
+            }
+        }
+
+        // Update primary image if specified
+        if ($request->has('primary_image_id') && $request->filled('primary_image_id')) {
+            $primaryId = $request->input('primary_image_id');
+            $chosen = ProductImage::where('product_id', $product->id)->where('id', $primaryId)->first();
+            if ($chosen) {
+                ProductImage::where('product_id', $product->id)->update(['is_primary' => false]);
+                $chosen->update(['is_primary' => true]);
+                $product->update(['image' => $chosen->image_path]);
+            }
+        }
+
+        // Ensure product cover image is synced with images relation
+        if ($product->images()->exists()) {
+            $currentPrimary = $product->images()->where('is_primary', true)->first();
+            if (!$currentPrimary) {
+                $firstImg = $product->images()->orderBy('sort_order')->first();
+                if ($firstImg) {
+                    $firstImg->update(['is_primary' => true]);
+                    $product->update(['image' => $firstImg->image_path]);
+                }
+            } else {
+                $product->update(['image' => $currentPrimary->image_path]);
+            }
+        }
+
+        return redirect()->route('admin.ecom_products.index')->with('success', 'Product updated successfully with gallery images.');
     }
 
     public function destroy($id)
     {
-        Product::findOrFail($id)->delete();
+        $product = Product::findOrFail($id);
+        
+        // Remove uploaded images from disk
+        foreach ($product->images as $img) {
+            if ($img->image_path && str_starts_with($img->image_path, 'storage/')) {
+                Storage::disk('public')->delete(str_replace('storage/', '', $img->image_path));
+            }
+        }
+
+        $product->delete();
         return redirect()->route('admin.ecom_products.index')->with('success', 'Product deleted successfully.');
+    }
+
+    public function deleteImage($productId, $imageId)
+    {
+        $image = ProductImage::where('product_id', $productId)->where('id', $imageId)->firstOrFail();
+        if ($image->image_path && str_starts_with($image->image_path, 'storage/')) {
+            Storage::disk('public')->delete(str_replace('storage/', '', $image->image_path));
+        }
+        $wasPrimary = $image->is_primary;
+        $image->delete();
+
+        $product = Product::findOrFail($productId);
+        if ($wasPrimary && $product->images()->exists()) {
+            $newPrimary = $product->images()->first();
+            $newPrimary->update(['is_primary' => true]);
+            $product->update(['image' => $newPrimary->image_path]);
+        } elseif (!$product->images()->exists()) {
+            $product->update(['image' => null]);
+        }
+
+        if (request()->ajax() || request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Image removed successfully.']);
+        }
+
+        return back()->with('success', 'Image removed successfully.');
+    }
+
+    public function setPrimaryImage($productId, $imageId)
+    {
+        $image = ProductImage::where('product_id', $productId)->where('id', $imageId)->firstOrFail();
+        ProductImage::where('product_id', $productId)->update(['is_primary' => false]);
+        $image->update(['is_primary' => true]);
+
+        $product = Product::findOrFail($productId);
+        $product->update(['image' => $image->image_path]);
+
+        if (request()->ajax() || request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Primary image set successfully.']);
+        }
+
+        return back()->with('success', 'Primary image set successfully.');
     }
 }

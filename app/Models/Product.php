@@ -53,4 +53,38 @@ class Product extends Model
     {
         return $this->hasOne(Inventory::class, 'product_id');
     }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id')->orderBy('sort_order')->orderBy('id');
+    }
+
+    /**
+     * Get all image URLs for the product gallery.
+     *
+     * @return array
+     */
+    public function getGalleryImagesAttribute(): array
+    {
+        $urls = [];
+
+        if (!empty($this->image)) {
+            $urls[] = $this->image_url;
+        }
+
+        if ($this->relationLoaded('images') || $this->images()->exists()) {
+            foreach ($this->images as $img) {
+                $url = $img->url;
+                if (!in_array($url, $urls)) {
+                    $urls[] = $url;
+                }
+            }
+        }
+
+        if (empty($urls)) {
+            $urls[] = asset('images/product_hero.png');
+        }
+
+        return $urls;
+    }
 }

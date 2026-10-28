@@ -148,14 +148,19 @@ class CheckoutController extends Controller
                 // Clear the cart & applied coupon session for COD and non-PayPal methods
                 $cart->items()->delete();
                 session()->forget('applied_coupon');
+                session(['last_order_id' => $order->id]);
             }
 
             DB::commit();
 
+            $token = hash('sha256', $order->id . $order->created_at . config('app.key'));
+            $successUrl = route('checkout.success', ['id' => $order->id, 'token' => $token]);
+
             $responseData = [
                 'message' => $redirectUrl ? 'Order placed. Redirecting to PayPal...' : 'Order placed successfully',
                 'order_id' => $order->id,
-                'total' => $finalTotal
+                'total' => $finalTotal,
+                'success_url' => $successUrl,
             ];
 
             if ($redirectUrl) {
@@ -215,8 +220,12 @@ class CheckoutController extends Controller
                     $cart->items()->delete();
                 }
                 session()->forget('applied_coupon');
+                session(['last_order_id' => $order->id]);
 
-                return redirect()->route('page.cart')->with('success', 'PayPal payment completed successfully!');
+                $token = hash('sha256', $order->id . $order->created_at . config('app.key'));
+
+                return redirect()->route('checkout.success', ['id' => $order->id, 'token' => $token])
+                    ->with('success', 'PayPal payment completed successfully!');
             }
 
             $order->payment_status = 'failed';
@@ -272,6 +281,6 @@ class CheckoutController extends Controller
             }
         }
 
-        return redirect()->route('page.cart')->with('error', 'PayPal payment was cancelled.');
+        return redirect()->route('page.cart')->with('error', 'PayPal payment was cancelled. Your items are still in your cart.');
     }
 }

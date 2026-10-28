@@ -15,7 +15,7 @@
         <!-- Center Section: Brand Logo -->
         <div class="header-center brand-logo-wrapper">
             <a class="brand-logo" href="{{ page_route('home') }}" aria-label="Dried Chili Home">
-                <img src="{{ asset('images/logo_dried.png') }}" alt="Dried Chili Logo" class="mobile-logo-img">
+                <img src="{{ asset('images/logo_dried.webp') }}" alt="Dried Chili Logo" class="mobile-logo-img" width="120" height="38">
             </a>
         </div>
         
@@ -63,8 +63,8 @@
 <!-- Mobile Navigation Off-canvas Drawer -->
 <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
     <div class="mobile-nav-header">
-        <a class="brand-logo" href="{{ page_route('home') }}">
-            <img src="{{ asset('images/logo_dried.png') }}" alt="Dried Chili Logo" style="height: 38px; width: auto; object-fit: contain;">
+        <a class="brand-logo" href="{{ page_route('home') }}" aria-label="Dried Chili Home">
+            <img src="{{ asset('images/logo_dried.webp') }}" alt="Dried Chili Logo" width="120" height="38" style="height: 38px; width: auto; object-fit: contain;">
         </a>
         <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -109,7 +109,7 @@
             </li>
             <li>
                 <a href="{{ route('contact.page') }}" class="mobile-menu-link {{ request()->routeIs('contact.page') ? 'active' : '' }}">
-                    <span>CONTACT</span>
+                    <span>CONTACT US</span>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
                 </a>
             </li>

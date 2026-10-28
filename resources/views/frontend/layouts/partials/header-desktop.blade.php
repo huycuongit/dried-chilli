@@ -24,7 +24,7 @@
         <!-- Center Section: Brand Logo -->
         <div class="header-center brand-logo-wrapper">
             <a class="brand-logo" href="{{ page_route('home') }}" aria-label="Dried Chili Home">
-                <img src="{{ asset('images/logo_dried.png') }}" alt="Dried Chili Logo" class="logo-img">
+                <img src="{{ asset('images/logo_dried.webp') }}" alt="Dried Chili Logo" class="logo-img" width="160" height="65" fetchpriority="high">
             </a>
         </div>
         
@@ -32,7 +32,7 @@
         <div class="header-right">
             <nav class="desktop-nav" aria-label="Desktop Navigation Right">
                 <a href="{{ route('page.legacy') }}" class="nav-link {{ request()->routeIs('page.legacy') ? 'active' : '' }}">OUR LEGACY</a>
-                <a href="{{ route('contact.page') }}" class="nav-link {{ request()->routeIs('contact.page') ? 'active' : '' }}">CONTACT</a>
+                <a href="{{ route('contact.page') }}" class="nav-link {{ request()->routeIs('contact.page') ? 'active' : '' }}">CONTACT US</a>
             </nav>
             <div class="cart-wrapper" style="position: relative;">
                 <a href="/cart" class="cart-btn {{ request()->is('cart') ? 'active' : '' }}" style="text-decoration: none;" aria-label="Cart">
@@ -58,6 +58,8 @@
             top: 0;
             z-index: 999;
             padding: 0.8rem 0;
+            min-height: 85px;
+            box-sizing: border-box;
             width: 100%;
         }
 

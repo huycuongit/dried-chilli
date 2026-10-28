@@ -3,8 +3,6 @@
 @include('frontend.layouts.partials.header-mobile')
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
-
     /* Native View Transitions Animations */
     ::view-transition-old(root) {
         animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both fade-out-up;
@@ -129,19 +127,11 @@
     .editor-content p,
     .editor-content,
     .legal-document p,
+    /* Long-form editorial & legal reading content: elegant justified formatting */
     .document-wrapper p,
     .faq-card p,
-    .compact-testimonial-item p,
-    .testi-quote,
-    .bundle-desc,
     .pillar-body p,
-    .feat-details p,
-    .step-desc,
-    .mini-card-content p,
-    .trust-card-desc,
-    .spotlight-text,
-    .yum-desc,
-    .accordion-content p {
+    .story-content p {
         text-align: justify !important;
         text-justify: inter-word !important;
         text-align-last: left !important;
@@ -149,6 +139,24 @@
         hyphens: auto;
         overflow-wrap: break-word;
         text-rendering: optimizeLegibility;
+    }
+
+    /* Small cards, product features & badges: clean left-aligned typography to prevent awkward word gaps */
+    .feat-details p,
+    .step-desc,
+    .mini-card-content p,
+    .trust-card-desc,
+    .spotlight-text,
+    .yum-desc,
+    .accordion-content p,
+    .compact-testimonial-item p,
+    .testi-quote,
+    .bundle-desc,
+    .product-description p {
+        text-align: left !important;
+        text-justify: auto !important;
+        line-height: 1.62;
+        overflow-wrap: break-word;
     }
 
     .reveal {

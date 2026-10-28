@@ -30,6 +30,7 @@
                     <thead class="border-top">
                         <tr>
                             <th>ID</th>
+                            <th>Image</th>
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Sale Price</th>
@@ -63,6 +64,7 @@
                 },
                 columns: [
                     { data: 'id', name: 'id' },
+                    { data: 'image', name: 'image', orderable: false, searchable: false },
                     { data: 'name', name: 'name' },
                     { data: 'price', name: 'price' },
                     { data: 'sale_price', name: 'sale_price' },

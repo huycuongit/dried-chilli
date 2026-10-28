@@ -51,7 +51,7 @@ class CheckPermissions
 
         'edit' => [
             'edit',
-            'update',
+            'update', 'set-primary-image', 'set_primary_image', 'primary',
             'histories',
             'instruments',
             'class-lessons',
@@ -66,7 +66,7 @@ class CheckPermissions
             'send'
         ],
 
-        'destroy' => ['destroy'],
+        'destroy' => ['destroy', 'delete-image', 'delete_image', 'images'],
         'generals' => ['generals'],
         'services' => ['services'],
         'socials' => ['socials'],

@@ -155,7 +155,7 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        @if (isset($auth->roles) && checkValue($auth->roles[0], 'name') === 'Admin')
+        @if (isset($auth->roles) && $auth->roles->count() > 0 && checkValue($auth->roles->first(), 'name') === 'Admin')
             <!-- Card -->
             <div class="row g-6 mb-6">
                 <div class="col-sm-6 col-xl-3">

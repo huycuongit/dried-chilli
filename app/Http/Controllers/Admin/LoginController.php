@@ -25,7 +25,9 @@ class LoginController extends Controller
     public function login()
     {
         try {
-            Auth()->guard('admin')->logout();
+            if (auth()->guard('admin')->check()) {
+                return redirect()->route('admin.dashboard.index');
+            }
             return view('admin.login.login');
         } catch (Exception $e) {
             return response()->json(
@@ -40,7 +42,7 @@ class LoginController extends Controller
     public function logout()
     {
         try {
-            Auth()->guard('admin')->logout();
+            auth()->guard('admin')->logout();
             return redirect()->route('admin.login')
                 ->with('success', __('label.logout_successfully'));
         } catch (Exception $e) {
@@ -91,12 +93,13 @@ class LoginController extends Controller
                 );
             }
 
-            $requestData = $request->all();
-            if (Auth()->guard('admin')->attempt(
+            $remember = $request->filled('remember');
+            if (auth()->guard('admin')->attempt(
                 [
-                    'email' => $requestData['email'],
-                    'password' => $requestData['password']
-                ]
+                    'email' => $input['email'],
+                    'password' => $input['password']
+                ],
+                $remember
             )) {
                 $user = auth()->guard('admin')->user();
 
@@ -110,14 +113,13 @@ class LoginController extends Controller
                     );
                 }
 
-                if ($user->type == 1) {
-                    $this->middleware('checkadmin');
-                }
+                $request->session()->regenerate();
 
                 return response()->json(
                     array(
                         'status' => 200,
-                        'success' => __('label.success_login')
+                        'success' => __('label.success_login'),
+                        'redirect_url' => route('admin.dashboard.index', [], false)
                     )
                 );
             } else {

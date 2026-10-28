@@ -18,9 +18,13 @@ class AuthAdmin
     public function handle(Request $request, Closure $next)
     {
         if (Auth::guard('admin')->guest()) {
-            if (!$request->ajax() || !$request->wantsJson()) {
-                return redirect(route('admin.login'));
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'status' => 401,
+                    'message' => 'Unauthenticated.'
+                ], 401);
             }
+            return redirect()->route('admin.login');
         }
     
         return $next($request);

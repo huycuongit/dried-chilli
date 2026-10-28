@@ -1,6 +1,16 @@
 @extends('frontend.layouts.master')
-@section('meta')
-    <title>Shop All | Dried Chili</title>
+@section('title', 'Shop All Premium Spices & Hot Chillies | Dried Chili')
+@section('meta_description', 'Explore the full collection of artisanal dried chillies, shrimp chilli jars, spicy seasonings, and culinary hot blends at Dried Chili.')
+@section('schema_json')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Shop All Spices",
+  "url": "{{ request()->url() }}",
+  "description": "Explore handcrafted dried chillies and artisanal spices at Dried Chili."
+}
+</script>
 @endsection
 @section('full-content')
 @php

@@ -19,7 +19,7 @@
 
 @section('content')
     @php
-        $pageNames = ['Services', 'Service Details', 'Projects', 'Project Details', 'News', 'News Details', 'Contact', 'Sale', 'About Us', 'Our Legacy', 'Privacy Policy', 'Terms of Service', '404'];
+        $pageNames = ['Services', 'Service Details', 'Projects', 'Project Details', 'News', 'News Details', 'Contact', 'Sale', 'About Us', 'Our Legacy', 'Privacy Policy', 'Terms of Service', 'Shipping & Refunds', 'FAQ', '404'];
         $pages = ['Home' => []];
         foreach ($sections as $section => $fields) {
             $matchedPage = false;
@@ -116,7 +116,7 @@
                                         </div>
                                     </details>
                                 @endforeach
-                                @if(in_array($page, ['Sale', 'About Us', 'Our Legacy', 'Privacy Policy', 'Terms of Service']))
+                                @if(in_array($page, ['Sale', 'About Us', 'Our Legacy', 'Privacy Policy', 'Terms of Service', 'Shipping & Refunds', 'FAQ']))
                                     <div class="card mb-3 bg-light border-dashed">
                                         <div class="card-body text-center py-4">
                                             <p class="mb-3 text-muted"><strong>Smart Layout: Dynamically Add Section</strong></p>

@@ -1,0 +1,261 @@
+/**
+ * Dried Chili Custom Admin Theme Stylesheet
+ * Brand colors: Coral Red #E45D3E, Deep Chili #C73B1B, Roasted Charcoal #1F0701, Warm Spice #FFB300
+ * Clean, modern layout overrides preserving all Vuexy & Bootstrap functionality.
+ */
+
+:root {
+    --bs-primary: #E45D3E !important;
+    --bs-primary-rgb: 228, 93, 62 !important;
+    --bs-primary-hover: #C73B1B !important;
+    --bs-primary-active: #A82D12 !important;
+    --chili-primary: #E45D3E;
+    --chili-deep: #C73B1B;
+    --chili-dark: #1F0701;
+    --chili-gold: #FFB300;
+    --chili-cream: #FDF9F1;
+    --chili-border: rgba(40, 18, 11, 0.08);
+}
+
+/* Base Background */
+body {
+    background-color: #F8F5F0 !important;
+}
+
+.content-wrapper {
+    background-color: #F8F5F0 !important;
+}
+
+/* App Brand in Sidebar */
+.app-brand {
+    border-bottom: 1px solid var(--chili-border) !important;
+    background: #FFFFFF !important;
+}
+
+.app-brand .app-brand-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    color: var(--chili-primary) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Sidebar Menu */
+.layout-menu.bg-menu-theme {
+    background: #FFFFFF !important;
+    border-right: 1px solid var(--chili-border) !important;
+    box-shadow: 2px 0 16px rgba(40, 18, 11, 0.03) !important;
+}
+
+.bg-menu-theme .menu-header .menu-header-text {
+    color: #9C8578 !important;
+    font-size: 0.73rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.85px !important;
+    text-transform: uppercase !important;
+}
+
+/* Active & Hover Menu Items */
+.bg-menu-theme .menu-item.active > .menu-link:not(.menu-toggle) {
+    background: linear-gradient(135deg, #E45D3E 0%, #C73B1B 100%) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 14px rgba(228, 93, 62, 0.35) !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+}
+
+.bg-menu-theme .menu-item.active > .menu-link:not(.menu-toggle) * {
+    color: #FFFFFF !important;
+}
+
+.bg-menu-theme .menu-item.active > .menu-link:not(.menu-toggle) .menu-icon {
+    color: #FFFFFF !important;
+}
+
+/* Active Submenu Items (e.g. Pages inside General Settings) */
+.bg-menu-theme .menu-sub .menu-item.active > .menu-link,
+.bg-menu-theme .menu-sub .menu-item.active > .menu-link:not(.menu-toggle) {
+    background: linear-gradient(135deg, #E45D3E 0%, #C73B1B 100%) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(228, 93, 62, 0.32) !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+}
+
+.bg-menu-theme .menu-sub .menu-item.active > .menu-link *,
+.bg-menu-theme .menu-sub .menu-item.active > .menu-link::before {
+    color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+}
+
+/* Open parent menu toggle styling */
+.bg-menu-theme .menu-item.open:not(.active) > .menu-link.menu-toggle,
+.bg-menu-theme .menu-item.active.open > .menu-link.menu-toggle {
+    background-color: rgba(228, 93, 62, 0.08) !important;
+    color: var(--chili-deep) !important;
+    font-weight: 700 !important;
+    border-radius: 10px !important;
+}
+
+.bg-menu-theme .menu-item.open > .menu-link.menu-toggle .menu-icon,
+.bg-menu-theme .menu-item.open > .menu-link.menu-toggle::after {
+    color: var(--chili-deep) !important;
+}
+
+.bg-menu-theme .menu-link:hover {
+    background-color: rgba(228, 93, 62, 0.07) !important;
+    color: var(--chili-primary) !important;
+    border-radius: 10px !important;
+}
+
+.bg-menu-theme .menu-sub .menu-item:not(.active) > .menu-link:hover {
+    background-color: rgba(228, 93, 62, 0.08) !important;
+    color: var(--chili-primary) !important;
+    border-radius: 8px !important;
+}
+
+/* Navbar */
+.layout-navbar.bg-navbar-theme {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--chili-border) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 20px rgba(40, 18, 11, 0.04) !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #E45D3E 0%, #C73B1B 100%) !important;
+    border: none !important;
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 14px rgba(228, 93, 62, 0.28) !important;
+    transition: all 0.22s ease !important;
+    border-radius: 8px !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: linear-gradient(135deg, #C73B1B 0%, #A82D12 100%) !important;
+    box-shadow: 0 6px 18px rgba(199, 59, 27, 0.38) !important;
+    transform: translateY(-1px) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-outline-primary {
+    border-color: var(--chili-primary) !important;
+    color: var(--chili-primary) !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    background-color: var(--chili-primary) !important;
+    border-color: var(--chili-primary) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(228, 93, 62, 0.25) !important;
+}
+
+/* Badges & Labels */
+.bg-label-primary {
+    background-color: rgba(228, 93, 62, 0.12) !important;
+    color: var(--chili-deep) !important;
+    font-weight: 700 !important;
+}
+
+.badge-primary,
+.bg-primary {
+    background-color: var(--chili-primary) !important;
+}
+
+/* Cards & Containers */
+.card {
+    border-radius: 14px !important;
+    border: 1px solid var(--chili-border) !important;
+    box-shadow: 0 4px 20px rgba(40, 18, 11, 0.035) !important;
+    background: #FFFFFF !important;
+}
+
+.card-header {
+    border-bottom: 1px solid var(--chili-border) !important;
+}
+
+/* Form Controls */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--chili-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(228, 93, 62, 0.18) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--chili-primary) !important;
+    border-color: var(--chili-primary) !important;
+}
+
+/* Links & Accents */
+a {
+    color: var(--chili-primary);
+}
+
+a:hover {
+    color: var(--chili-deep);
+}
+
+.text-primary {
+    color: var(--chili-primary) !important;
+}
+
+/* DataTables & Pagination */
+.page-item.active .page-link {
+    background-color: var(--chili-primary) !important;
+    border-color: var(--chili-primary) !important;
+    box-shadow: 0 2px 8px rgba(228, 93, 62, 0.3) !important;
+}
+
+.table th {
+    font-weight: 700 !important;
+    color: #4A3B32 !important;
+    background-color: #FAF7F2 !important;
+    border-bottom: 2px solid var(--chili-border) !important;
+}
+
+/* Analytics Swiper Banner on Dashboard */
+.swiper-card-advance-bg {
+    background: linear-gradient(135deg, #1F0701 0%, #3D1409 60%, #E45D3E 100%) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(31, 7, 1, 0.2) !important;
+}
+
+.website-analytics-text-bg {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-radius: 6px !important;
+    padding: 2px 8px !important;
+}
+
+/* Footer in Admin */
+.bg-footer-theme {
+    background-color: transparent !important;
+    border-top: 1px solid var(--chili-border) !important;
+}
+
+.bg-footer-theme .footer-link {
+    color: var(--chili-primary) !important;
+    font-weight: 600 !important;
+}
+
+/* Login Screen Enhancements */
+.auth-cover-bg-color {
+    background: radial-gradient(circle at center, #3D1409 0%, #1F0701 100%) !important;
+}
+
+.authentication-bg {
+    background-color: #FFFFFF !important;
+}
+
+.auth-illustration {
+    max-height: 480px !important;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.35));
+}
+

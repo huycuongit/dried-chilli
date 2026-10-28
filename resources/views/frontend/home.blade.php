@@ -1,9 +1,7 @@
 @extends('frontend.layouts.master')
 
-@section('meta')
-<meta name="description" content="Dried Chili - Premium quality spices, chillies, and organic seasonings.">
-<title>Dried Chili</title>
-@endsection
+@section('title', 'Dried Chili — Handcrafted Premium Spices & Organic Seasonings')
+@section('meta_description', 'Dried Chili specializes in artisanal shrimp chilli paste, premium dried chillies, and organic culinary seasonings crafted with 100% natural ingredients.')
 
 @section('full-content')
 <main class="spice-main">
@@ -34,7 +32,7 @@
                     <!-- Right: Image with Burst & Pills -->
                     <div class="hero-stage" aria-hidden="true">
                         <div class="hero-burst"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.png') }}" alt="Dried Chili Product">
+                        <img class="hero-can" src="{{ asset('images/product_hero.webp') }}" alt="Dried Chili Shrimply Extra Spicy" width="500" height="500" fetchpriority="high">
 
                         <!-- Floating Pills -->
                         <span class="hero-sticker sticker-1">Chef-made</span>
@@ -49,7 +47,7 @@
                     <!-- Left: Image with Burst & Pills -->
                     <div class="hero-stage" aria-hidden="true">
                         <div class="hero-burst burst-red"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.png') }}" alt="Dried Chili Product">
+                        <img class="hero-can" src="{{ asset('images/product_hero.webp') }}" alt="Dried Chili Extra Garlic Crunch" width="500" height="500" loading="lazy">
                         <span class="hero-sticker sticker-1">New Recipe</span>
                         <span class="hero-sticker sticker-2"><span>Extra</span> Crunchy</span>
                     </div>
@@ -57,7 +55,7 @@
                     <!-- Right: Text Content -->
                     <div class="hero-content">
                         <span class="hero-subtitle">NEW ARRIVAL RECIPE</span>
-                        <h1 class="hero-title">EXTRA<br>GARLIC CRUNCH</h1>
+                        <p class="hero-title">EXTRA<br>GARLIC CRUNCH</p>
                         <p class="hero-desc">Take your daily meals to the next level with our extra garlicky, crunchy
                             chilli crisp.</p>
                         <div class="hero-actions">
@@ -80,7 +78,7 @@
                     <!-- Left: Text Content -->
                     <div class="hero-content">
                         <span class="hero-subtitle">LIMITED SPICE EDITION</span>
-                        <h1 class="hero-title">SMOKY<br>FIRE ROASTED</h1>
+                        <p class="hero-title">SMOKY<br>FIRE ROASTED</p>
                         <p class="hero-desc">Experience the deep smoky flavor of premium chillies roasted slowly over an
                             open flame.</p>
                         <div class="hero-actions">
@@ -98,7 +96,7 @@
                     <!-- Right: Image with Burst & Pills -->
                     <div class="hero-stage" aria-hidden="true">
                         <div class="hero-burst burst-yellow"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.png') }}" alt="Dried Chili Product">
+                        <img class="hero-can" src="{{ asset('images/product_hero.webp') }}" alt="Dried Chili Smoky Fire Roasted" width="500" height="500" loading="lazy">
                         <span class="hero-sticker sticker-1">Smoky</span>
                         <span class="hero-sticker sticker-2"><span>Award</span> Winning</span>
                     </div>
@@ -111,7 +109,7 @@
                     <!-- Left: Image with Burst & Pills -->
                     <div class="hero-stage" aria-hidden="true">
                         <div class="hero-burst burst-red"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.png') }}" alt="Dried Chili Product">
+                        <img class="hero-can" src="{{ asset('images/product_hero.webp') }}" alt="Dried Chili Organic Plant Power" width="500" height="500" loading="lazy">
                         <span class="hero-sticker sticker-1">Plant Based</span>
                         <span class="hero-sticker sticker-2"><span>No</span> MSG</span>
                     </div>
@@ -119,7 +117,7 @@
                     <!-- Right: Text Content -->
                     <div class="hero-content">
                         <span class="hero-subtitle">ORGANIC VEGAN BLEND</span>
-                        <h1 class="hero-title">ORGANIC<br>PLANT POWER</h1>
+                        <p class="hero-title">ORGANIC<br>PLANT POWER</p>
                         <p class="hero-desc">All the umami, none of the seafood. Our vegan recipe delivers the same
                             intense punch.</p>
                         <div class="hero-actions">
@@ -159,7 +157,7 @@
                         </svg>
                     </div>
                     <div class="feature-text">
-                        <h3 class="feature-title">100% Authentic</h3>
+                        <p class="feature-title">100% Authentic</p>
                         <p class="feature-desc">Pure ingredients, no artificial additives</p>
                     </div>
                 </div>
@@ -173,7 +171,7 @@
                         </svg>
                     </div>
                     <div class="feature-text">
-                        <h3 class="feature-title">Sourced Globally</h3>
+                        <p class="feature-title">Sourced Globally</p>
                         <p class="feature-desc">Direct from premier spice farms</p>
                     </div>
                 </div>
@@ -189,7 +187,7 @@
                         </svg>
                     </div>
                     <div class="feature-text">
-                        <h3 class="feature-title">Fast Delivery</h3>
+                        <p class="feature-title">Fast Delivery</p>
                         <p class="feature-desc">Freshness delivered to your doorstep</p>
                     </div>
                 </div>
@@ -376,8 +374,7 @@
                 <div class="header-content">
                     <span class="section-subtitle">🔥 HOT RIGHT NOW</span>
                     <h2 class="serif-title">Trending Spices</h2>
-                    <p class="section-desc">Hand-picked community favorites. Elevate your everyday meals with our
-                        most-loved, top-rated chili blends.</p>
+                    <p class="section-desc">Hand-picked community favorites crafted for true heat lovers. Elevate your everyday home dining with our most-loved, small-batch artisanal chili blends and savory crisps.</p>
                 </div>
                 <div class="header-action">
                     <a href="/shop" class="view-all-btn">
@@ -401,8 +398,9 @@
                     @endif
                     <div class="product-img-wrapper">
                         <a href="{{ route('page.product', $product->slug) }}"
+                            aria-label="{{ $product->name }}"
                             style="display: block; width: 100%; height: 100%;">
-                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" width="300" height="300" loading="lazy">
                         </a>
                         <!-- Desktop Hover Quick Add Button -->
                         <button type="button" class="quick-add desktop-quick-add" data-product-id="{{ $product->id }}" aria-label="Quick Add {{ $product->name }}">
@@ -446,7 +444,7 @@
 
 
     <!-- Social Videos Section (Inspired by Nafu Services) -->
-    <section class="social-feed">
+    <!-- <section class="social-feed">
         <div class="wrap container">
             <div class="sec-head reveal in" style="margin-bottom:clamp(22px,3vw,36px)">
                 <span class="label">Straight off the feed</span>
@@ -476,76 +474,7 @@
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                             </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/1a93967f093d48399118f58f8c2da686.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/409babbdc3204efc9380fbac89c833af.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/3167fa95aa5642a8b1d90db9ba3f2a1b.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/1e91aa473a284eb191ec595e2d9d8703.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/f138f17e76914bd1a163b936cf8d33a1.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/e14cdc798d7f48b4a1677003f757141a.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/63e262bcf23748ceb1e9d5d35ed79ee3.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
+                    
                 </div>
                 <div class="feed-half">
                     <div class="feed-card"><video
@@ -578,66 +507,7 @@
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                             </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/409babbdc3204efc9380fbac89c833af.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/3167fa95aa5642a8b1d90db9ba3f2a1b.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/1e91aa473a284eb191ec595e2d9d8703.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/f138f17e76914bd1a163b936cf8d33a1.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/e14cdc798d7f48b4a1677003f757141a.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
-                    <div class="feed-card"><video
-                            data-src="https://cdn.shopify.com/videos/c/o/v/63e262bcf23748ceb1e9d5d35ed79ee3.mp4"
-                            crossorigin="anonymous" preload="none" muted loop playsinline></video><span
-                            class="feed-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>@yumyum.au</span></div>
+                    
                 </div>
             </div>
         </div>
@@ -647,22 +517,20 @@
             <a class="btn-ghost" href="https://www.tiktok.com/@dimsimlim" target="_blank" rel="noopener">TikTok
                 @dimsimlim</a>
         </div>
-    </section>
+    </section> -->
 
     <!-- Image with Text -->
     <section class="spice-story reveal">
         <div class="container">
             <div class="story-grid">
                 <div class="story-image">
-                    <img src="{{ asset('images/story_spices.jpg') }}" alt="Spices on market">
+                    <img src="{{ asset('images/story_spices.webp') }}" alt="Spices on market" width="600" height="450" loading="lazy">
                 </div>
                 <div class="story-content">
                     <span class="subheading">OUR STORY</span>
                     <h2>Passionate About Flavor</h2>
-                    <p>We believe that every dish tells a story, and the spices you use are its vocabulary. Our journey
-                        began in the vibrant spice markets of Asia, bringing authentic, sun-dried chillies and
-                        hand-ground spices to home chefs who demand the best.</p>
-                    <a href="/about" class="btn-primary">
+                    <p>We believe that every dish tells an unforgettable culinary story, and the spices you choose define its authentic voice. Our journey began across the vibrant heritage spice markets of Asia, curating prime sun-dried chillies and slow-roasting hand-ground aromatics to empower passionate home chefs who demand uncompromising heat, crunch, and umami depth.</p>
+                    <a href="{{ route('page.about') }}" class="btn-primary" aria-label="Learn More About Our Story">
                         <span>Learn More</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -700,7 +568,7 @@
                                 d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
                         </svg>
                     </div>
-                    <p>This chili powder brings the perfect fiery kick to my daily cooking. Absolutely obsessed!</p>
+                    <p>This crispy shrimp chili brings the exact fiery kick and rich aromatic depth my wok cooking needed. The crunchy garlic texture stays crisp on hot jasmine rice and noodles. Absolutely obsessed with this blend!</p>
                     <div class="testi-footer">
                         <div class="author-initials">MT</div>
                         <div class="author-info">
@@ -722,8 +590,7 @@
                                 d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
                         </svg>
                     </div>
-                    <p>The curry blend is incredibly authentic. It transformed my weekend dinners into a masterpiece.
-                    </p>
+                    <p>The chili crunch is incredibly authentic, layered with toasted sesame and slow-roasted chili pods. It instantly elevated our weekend family dinners into restaurant-worthy feasts. A permanent pantry staple!</p>
                     <div class="testi-footer">
                         <div class="author-initials">SW</div>
                         <div class="author-info">
@@ -745,7 +612,7 @@
                                 d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
                         </svg>
                     </div>
-                    <p>I've never tasted spices this fresh and aromatic before. The heat level is just perfect.</p>
+                    <p>I have never experienced store-bought spices this intensely fresh and fragrant before. The balanced heat profile and satisfying garlic crunch elevate everything from sunny-side-up eggs to late-night ramen.</p>
                     <div class="testi-footer">
                         <div class="author-initials">DL</div>
                         <div class="author-info">
@@ -1323,8 +1190,12 @@
     width: 300px;
     object-fit: contain;
     animation: floatImg 6s ease-in-out infinite alternate;
-    filter: drop-shadow(10px 10px 0px rgba(43, 29, 20, 1));
-    /* Hard retro shadow */
+    filter: drop-shadow(0 20px 30px rgba(43, 29, 20, 0.28)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.12));
+    transition: filter 0.3s ease;
+}
+
+.hero-can:hover {
+    filter: drop-shadow(0 26px 36px rgba(43, 29, 20, 0.35)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.16));
 }
 
 @keyframes floatImg {

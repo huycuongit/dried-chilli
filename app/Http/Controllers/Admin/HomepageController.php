@@ -26,9 +26,11 @@ class HomepageController extends Controller
                     continue;
                 }
                 if (str_contains($key, '_image_')) {
-                    $rules['content.'.$key] = ['present', 'nullable', 'string', 'max:7500000'];
+                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:7500000'];
+                } elseif (str_contains($key, '_content') || str_contains($key, '_text') || str_contains($key, '_editor') || str_contains($key, '_desc')) {
+                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:1000000'];
                 } else {
-                    $rules['content.'.$key] = ['present', 'nullable', 'string', 'max:10000'];
+                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:50000'];
                 }
             }
         }
@@ -40,7 +42,7 @@ class HomepageController extends Controller
         }
         unset($value);
         foreach ($content as $key => $value) {
-            System::updateOrCreate(['key' => 'nafu_home_'.$key], ['content' => $value ?? '']);
+            System::updateOrCreate(['key' => 'nafu_home_' . $key], ['content' => $value ?? '']);
         }
         app(SystemSettings::class)->forget();
         return back()->with('success', 'Pages updated successfully.');
@@ -55,9 +57,11 @@ class HomepageController extends Controller
             foreach ($fields as $key => $field) {
                 if (preg_match('/\.(css|js)(\?.*)?$/i', $field['value'] ?? '')) continue;
                 if (str_contains($key, '_image_')) {
-                    $rules['content.'.$key] = ['present', 'nullable', 'string', 'max:7500000'];
+                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:7500000'];
+                } elseif (str_contains($key, '_content') || str_contains($key, '_text') || str_contains($key, '_editor') || str_contains($key, '_desc')) {
+                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:1000000'];
                 } else {
-                    $rules['content.'.$key] = ['present', 'nullable', 'string', 'max:10000'];
+                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:50000'];
                 }
             }
         }
@@ -71,7 +75,7 @@ class HomepageController extends Controller
             }
             unset($val);
             foreach ($content as $key => $val) {
-                System::updateOrCreate(['key' => 'nafu_home_'.$key], ['content' => $val ?? '']);
+                System::updateOrCreate(['key' => 'nafu_home_' . $key], ['content' => $val ?? '']);
             }
         }
         // === END SAVE ===
@@ -94,7 +98,7 @@ class HomepageController extends Controller
 
         $newSectionKey = "{$page} - Section {$nextIndex}";
         $prefix = 'page_' . \Illuminate\Support\Str::slug($page, '_') . "_sec{$nextIndex}";
-        
+
         $newSectionData = [
             "{$prefix}_active" => [
                 "value" => "1",
@@ -212,7 +216,7 @@ class HomepageController extends Controller
         unset($json[$sectionKey]);
         file_put_contents($configPath, json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
-        $dbKeys = array_map(fn($k) => 'nafu_home_'.$k, array_keys($fields));
+        $dbKeys = array_map(fn($k) => 'nafu_home_' . $k, array_keys($fields));
         \App\Models\System::whereIn('key', $dbKeys)->delete();
         app(SystemSettings::class)->forget();
 

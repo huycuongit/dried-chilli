@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SaleController;
-use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 
@@ -65,22 +64,25 @@ Route::get('/{language}/{path?}', function ($language, $path = null) {
 })->where(['language' => 'en|vi', 'path' => '.*']);
 
 Route::redirect('/home', '/', 301);
-Route::get('/dich-vu/{slug}', fn ($slug) => redirect("/services/{$slug}", 301))->name('service.detail');
+Route::redirect('/dich-vu/{slug?}', '/shop', 301)->name('service.detail');
 Route::redirect('/dashboard', '/', 301)->name('page.index');
+
+// Redirect legacy routes to relevant Dried Chili store pages
+Route::redirect('/services', '/shop', 301)->name('services.index');
+Route::get('/services/{slug}', fn () => redirect('/shop', 301))->name('services.show');
+Route::redirect('/projects', '/our-legacy', 301)->name('projects.index');
+Route::get('/projects/{slug}', fn () => redirect('/our-legacy', 301))->name('projects.show');
+Route::redirect('/news', '/shop', 301)->name('news.index');
+Route::get('/news/{slug}', fn () => redirect('/shop', 301))->name('news.show');
 
 Route::middleware('set.locale')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-    Route::get('/projects/{slug}', [ProjectController::class, 'show'])->name('projects.show');
-    Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
-    Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
-    Route::get('/news', [NewsController::class, 'index'])->name('news.index');
     Route::view('/contact', 'contact')->name('contact.page');
-    Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
     Route::get('/shop', [HomeController::class, 'shop'])->name('page.shop');
     Route::get('/shop/{slug}', [HomeController::class, 'productDetail'])->name('page.product');
     Route::get('/sale', [SaleController::class, 'index'])->name('page.sale');
     Route::view('/cart', 'frontend.cart')->name('page.cart');
+    Route::get('/checkout/success/{id}', [\App\Http\Controllers\CheckoutWebController::class, 'success'])->name('checkout.success');
     Route::get('/about-us', [HomeController::class, 'about'])->name('page.about');
     Route::get('/our-legacy', [HomeController::class, 'legacy'])->name('page.legacy');
     Route::get('/faq', [\App\Http\Controllers\LegalController::class, 'faq'])->name('page.faq');

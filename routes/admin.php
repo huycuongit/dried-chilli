@@ -36,22 +36,30 @@ Route::get('reset-systems-cache-admin', function () {
 });
 
 // Routers for Auth Admin
-$finalString = 'nafu';
-Route::post('logout', [LoginController::class, 'logout'])->name('admin.logout');
-Route::get($finalString . 'login' . $finalString, [LoginController::class, 'login'])->name('admin.login');
-Route::post($finalString . 'login' . $finalString, [LoginController::class, 'postlogin'])->name('admin.save.login');
+$finalString = 'dried-chili';
+Route::get('/', fn() => redirect()->route('admin.login'));
+Route::match(['get', 'post'], 'logout', [LoginController::class, 'logout'])->name('admin.logout');
+Route::get($finalString, [LoginController::class, 'login'])->name('admin.login');
+Route::get($finalString . 'login' . $finalString, [LoginController::class, 'login']);
+Route::post($finalString, [LoginController::class, 'postlogin'])->name('admin.save.login');
+Route::post($finalString . 'login' . $finalString, [LoginController::class, 'postlogin']);
+Route::get('login', [LoginController::class, 'login']);
+Route::post('login', [LoginController::class, 'postlogin']);
+Route::get('admin/login', [LoginController::class, 'login']);
+Route::post('admin/login', [LoginController::class, 'postlogin']);
+
 
 // Routers for authadmin
 Route::group(['middleware' => 'authadmin'], function () {
 
-    $project = 'nafu-project';
+    $project = 'dried-chili';
 
     Route::post($project . '/editor/images', [\App\Http\Controllers\Admin\EditorImageController::class, 'store'])
         ->middleware('throttle:30,1')->name('admin.editor.images');
 
     Route::middleware(['check.permissions'])->group(function () use ($project) {
 
-        Route::get($project, [DashboardController::class, 'index'])->name('admin.dashboard.index');
+        Route::get($project . '/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
         Route::prefix("{$project}/")->group(function () {
 
@@ -99,7 +107,7 @@ Route::group(['middleware' => 'authadmin'], function () {
 
             Route::controller(SystemController::class)->prefix('/systems')->as('admin.systems.')->group(function () {
                 Route::get('/generals', 'general')->name('generals');
-                Route::redirect('/homepage', '/admin/nafu-project/systems/pages');
+                Route::redirect('/homepage', '/admin/dried-chili/systems/pages');
                 Route::get('/pages', [\App\Http\Controllers\Admin\HomepageController::class, 'index'])->name('pages');
                 Route::put('/pages', [\App\Http\Controllers\Admin\HomepageController::class, 'update'])->name('pages.save');
                 Route::match(['post', 'put'], '/pages/add-section', [\App\Http\Controllers\Admin\HomepageController::class, 'addSection'])->name('pages.add_section');
@@ -117,6 +125,8 @@ Route::group(['middleware' => 'authadmin'], function () {
             // Ecommerce CMS Routes
             Route::get('ecom-products/datatables', [\App\Http\Controllers\Admin\EcomProductController::class, 'datatables'])->name('admin.ecom_products.datatables');
             Route::resource('ecom-products', \App\Http\Controllers\Admin\EcomProductController::class)->names('admin.ecom_products');
+            Route::delete('ecom-products/{product}/images/{image}', [\App\Http\Controllers\Admin\EcomProductController::class, 'deleteImage'])->name('admin.ecom_products.images.destroy');
+            Route::post('ecom-products/{product}/images/{image}/primary', [\App\Http\Controllers\Admin\EcomProductController::class, 'setPrimaryImage'])->name('admin.ecom_products.images.primary');
             Route::get('ecom-orders/datatables', [\App\Http\Controllers\Admin\EcomOrderController::class, 'datatables'])->name('admin.ecom_orders.datatables');
             Route::resource('ecom-orders', \App\Http\Controllers\Admin\EcomOrderController::class)->names('admin.ecom_orders');
             

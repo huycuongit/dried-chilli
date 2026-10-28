@@ -45,23 +45,23 @@
             "label": "★★★★★"
         },
         "home_text_12": {
-            "value": "4.9 \/ 5 · 76 reviews",
-            "label": "4.9 \/ 5 · 76 reviews"
+            "value": "4.9 / 5 · 76 reviews",
+            "label": "4.9 / 5 · 76 reviews"
         },
         "home_image_13": {
-            "value": "assets\/nafu\/mrfix-home2.css",
+            "value": "assets/nafu/mrfix-home2.css",
             "label": "Image path"
         },
         "home_image_14": {
-            "value": "assets\/nafu\/support-avatar.png",
+            "value": "assets/nafu/support-avatar.png",
             "label": "Image path"
         },
         "home_image_15": {
-            "value": "assets\/nafu\/hero-handyman.avif",
+            "value": "assets/nafu/hero-handyman.avif",
             "label": "Image path"
         },
         "home_image_16": {
-            "value": "assets\/nafu\/nafu-home.js",
+            "value": "assets/nafu/nafu-home.js",
             "label": "Image path"
         }
     },
@@ -295,47 +295,47 @@
             "label": "Oops! Something went wrong while submitting the form."
         },
         "nafu_home_sections_image_58": {
-            "value": "assets\/nafu\/67ee7fac64a065125f1e5174_c98af9e8f3c3cd36c97b453bd131f3a3_single-image-02.avif",
+            "value": "assets/nafu/67ee7fac64a065125f1e5174_c98af9e8f3c3cd36c97b453bd131f3a3_single-image-02.avif",
             "label": "Image path"
         },
         "nafu_home_sections_image_59": {
-            "value": "assets\/nafu\/67ee7faa51cc7312f8341081_7abc69a7401579eaeeff88c9f9b9bb53_single-image-03.png",
+            "value": "assets/nafu/67ee7faa51cc7312f8341081_7abc69a7401579eaeeff88c9f9b9bb53_single-image-03.png",
             "label": "Image path"
         },
         "nafu_home_sections_image_60": {
-            "value": "assets\/nafu\/683ae87fcb9ea083f2cefef5_email -white.svg",
+            "value": "assets/nafu/683ae87fcb9ea083f2cefef5_email -white.svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_61": {
-            "value": "assets\/nafu\/683ae87f774ed8e134537a42_phone-call -white.svg",
+            "value": "assets/nafu/683ae87f774ed8e134537a42_phone-call -white.svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_62": {
-            "value": "assets\/nafu\/67ef6a36839fca685b93dfbe_66ef398ea4b08e3097fa3e50c3683e64_single-image-04.png",
+            "value": "assets/nafu/67ef6a36839fca685b93dfbe_66ef398ea4b08e3097fa3e50c3683e64_single-image-04.png",
             "label": "Image path"
         },
         "nafu_home_sections_image_63": {
-            "value": "assets\/nafu\/67ef6a361858aa5d3ae40c91_4f976330b42a653f1677245a89e88032_single-image-05.png",
+            "value": "assets/nafu/67ef6a361858aa5d3ae40c91_4f976330b42a653f1677245a89e88032_single-image-05.png",
             "label": "Image path"
         },
         "nafu_home_sections_image_64": {
-            "value": "assets\/nafu\/683995d214338209f9d5e446_footer-client (2).svg",
+            "value": "assets/nafu/683995d214338209f9d5e446_footer-client (2).svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_65": {
-            "value": "assets\/nafu\/683995d694f98209394381b5_footer-client (3).svg",
+            "value": "assets/nafu/683995d694f98209394381b5_footer-client (3).svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_66": {
-            "value": "assets\/nafu\/683995d2cd40ea35bc32d216_footer-client (4).svg",
+            "value": "assets/nafu/683995d2cd40ea35bc32d216_footer-client (4).svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_67": {
-            "value": "assets\/nafu\/683995d614fee9710d877c7f_footer-client (1).svg",
+            "value": "assets/nafu/683995d614fee9710d877c7f_footer-client (1).svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_68": {
-            "value": "assets\/nafu\/683a88de78bfb92194f9b472_email-phishing-hook.avif",
+            "value": "assets/nafu/683a88de78bfb92194f9b472_email-phishing-hook.avif",
             "label": "Image path"
         }
     },
@@ -405,8 +405,8 @@
             "label": "partner-loccitane.jpg"
         },
         "reviews_field_20": {
-            "value": "https:\/\/au.loccitane.com\/",
-            "label": "https:\/\/au.loccitane.com\/"
+            "value": "https://au.loccitane.com/",
+            "label": "https://au.loccitane.com/"
         },
         "reviews_field_21": {
             "value": "The George on Collins",
@@ -417,8 +417,8 @@
             "label": "partner-george.png"
         },
         "reviews_field_23": {
-            "value": "https:\/\/www.thegeorgeoncollins.com.au\/",
-            "label": "https:\/\/www.thegeorgeoncollins.com.au\/"
+            "value": "https://www.thegeorgeoncollins.com.au/",
+            "label": "https://www.thegeorgeoncollins.com.au/"
         },
         "reviews_field_24": {
             "value": "CorePlus",
@@ -429,8 +429,8 @@
             "label": "partner-coreplus.jpg"
         },
         "reviews_field_26": {
-            "value": "https:\/\/www.core-plus.com\/au",
-            "label": "https:\/\/www.core-plus.com\/au"
+            "value": "https://www.core-plus.com/au",
+            "label": "https://www.core-plus.com/au"
         },
         "reviews_field_27": {
             "value": "Hecho en Mexico",
@@ -441,8 +441,8 @@
             "label": "partner-hecho.png"
         },
         "reviews_field_29": {
-            "value": "https:\/\/hechoenmexico.com.au\/",
-            "label": "https:\/\/hechoenmexico.com.au\/"
+            "value": "https://hechoenmexico.com.au/",
+            "label": "https://hechoenmexico.com.au/"
         },
         "reviews_field_30": {
             "value": "Nexus Early Learning",
@@ -453,8 +453,8 @@
             "label": "partner-nexus.png"
         },
         "reviews_field_32": {
-            "value": "https:\/\/www.nexusearlylearning.com.au\/",
-            "label": "https:\/\/www.nexusearlylearning.com.au\/"
+            "value": "https://www.nexusearlylearning.com.au/",
+            "label": "https://www.nexusearlylearning.com.au/"
         }
     },
     "Contact popup": {
@@ -581,8 +581,8 @@
             "label": "Your home needs us"
         },
         "page_services_text_10": {
-            "value": "Reliable \/ Renos \/ Repairs \/ Apartment care \/ Melbourne locals \/ Clear communication \/",
-            "label": "Reliable \/ Renos \/ Repairs \/ Apartment care \/ Melbourne locals \/ Clear communication \/"
+            "value": "Reliable / Renos / Repairs / Apartment care / Melbourne locals / Clear communication /",
+            "label": "Reliable / Renos / Repairs / Apartment care / Melbourne locals / Clear communication /"
         },
         "page_services_seo_11": {
             "value": "Apartment repairs, painting, flooring, end of lease make good and property maintenance in Melbourne. Explore Nafu Home Care services.",
@@ -593,16 +593,16 @@
             "label": "SEO: Our services | Nafu Home Care"
         },
         "page_services_image_13": {
-            "value": "assets\/nafu\/blog-handyman.gif",
-            "label": "Image path: assets\/nafu\/blog-handyman.gif"
+            "value": "assets/nafu/blog-handyman.gif",
+            "label": "Image path: assets/nafu/blog-handyman.gif"
         },
         "page_services_image_14": {
-            "value": "assets\/nafu\/services-circle.png",
-            "label": "Image path: assets\/nafu\/services-circle.png"
+            "value": "assets/nafu/services-circle.png",
+            "label": "Image path: assets/nafu/services-circle.png"
         },
         "page_services_image_15": {
-            "value": "assets\/nafu\/services-cta.avif",
-            "label": "Image path: assets\/nafu\/services-cta.avif"
+            "value": "assets/nafu/services-cta.avif",
+            "label": "Image path: assets/nafu/services-cta.avif"
         }
     },
     "Service Details": {
@@ -619,7 +619,7 @@
             "label": "Contact button label"
         },
         "page_service_details_image_6": {
-            "value": "assets\/nafu\/blog-handyman.gif",
+            "value": "assets/nafu/blog-handyman.gif",
             "label": "Shared hero illustration"
         }
     },
@@ -689,8 +689,8 @@
             "label": "SEO: Reliable apartment repairs, painting, flooring and property maintenance completed across Melbourne."
         },
         "page_projects_image_23": {
-            "value": "assets\/nafu\/blog-handyman.gif",
-            "label": "Image path: assets\/nafu\/blog-handyman.gif"
+            "value": "assets/nafu/blog-handyman.gif",
+            "label": "Image path: assets/nafu/blog-handyman.gif"
         }
     },
     "Project Details": {
@@ -759,34 +759,34 @@
             "label": "Talk to our team"
         },
         "page_project_details_image_29": {
-            "value": "assets\/nafu\/blog-handyman.gif",
-            "label": "Image path: assets\/nafu\/682ade1088e04d40f8534321_project-0 (1).avif"
+            "value": "assets/nafu/blog-handyman.gif",
+            "label": "Image path: assets/nafu/682ade1088e04d40f8534321_project-0 (1).avif"
         },
         "page_project_details_image_30": {
-            "value": "assets\/nafu\/682aef9310703914675fd085_project-img (4).avif",
-            "label": "Image path: assets\/nafu\/682aef9310703914675fd085_project-img (4).avif"
+            "value": "assets/nafu/682aef9310703914675fd085_project-img (4).avif",
+            "label": "Image path: assets/nafu/682aef9310703914675fd085_project-img (4).avif"
         },
         "page_project_details_image_31": {
-            "value": "assets\/nafu\/682aefe6a46d07cc1744fa9d_project-img (3).avif",
-            "label": "Image path: assets\/nafu\/682aefe6a46d07cc1744fa9d_project-img (3).avif"
+            "value": "assets/nafu/682aefe6a46d07cc1744fa9d_project-img (3).avif",
+            "label": "Image path: assets/nafu/682aefe6a46d07cc1744fa9d_project-img (3).avif"
         },
         "page_project_details_image_32": {
-            "value": "assets\/nafu\/682ade1088e04d40f8534321_project-0 (1).avif",
-            "label": "Image path: assets\/nafu\/682ade1088e04d40f8534321_project-0 (1).avif"
+            "value": "assets/nafu/682ade1088e04d40f8534321_project-0 (1).avif",
+            "label": "Image path: assets/nafu/682ade1088e04d40f8534321_project-0 (1).avif"
         },
         "page_project_details_image_33": {
-            "value": "assets\/nafu\/682aef9310703914675fd085_project-img (4).avif",
-            "label": "Image path: assets\/nafu\/682aef9310703914675fd085_project-img (4).avif"
+            "value": "assets/nafu/682aef9310703914675fd085_project-img (4).avif",
+            "label": "Image path: assets/nafu/682aef9310703914675fd085_project-img (4).avif"
         }
     },
     "News": {
         "page_news_image_4": {
-            "value": "assets\/nafu\/blog-handyman.gif",
-            "label": "Image path: assets\/nafu\/blog-handyman.gif"
+            "value": "assets/nafu/blog-handyman.gif",
+            "label": "Image path: assets/nafu/blog-handyman.gif"
         },
         "page_news_image_5": {
-            "value": "assets\/nafu\/682ad431addb8bf5a550e766_blog (2).avif",
-            "label": "Image path: assets\/nafu\/682ad431addb8bf5a550e766_blog (2).avif"
+            "value": "assets/nafu/682ad431addb8bf5a550e766_blog (2).avif",
+            "label": "Image path: assets/nafu/682ad431addb8bf5a550e766_blog (2).avif"
         },
         "news_heading": {
             "value": "Reliable handyman for every home project",
@@ -831,20 +831,20 @@
             "label": "← All articles"
         },
         "page_news_details_image_9": {
-            "value": "assets\/nafu\/blog-detail-landscaping.avif",
-            "label": "Image path: assets\/nafu\/blog-detail-landscaping.avif"
+            "value": "assets/nafu/blog-detail-landscaping.avif",
+            "label": "Image path: assets/nafu/blog-detail-landscaping.avif"
         },
         "page_news_details_image_10": {
-            "value": "assets\/nafu\/blog-detail-landscaping.avif",
-            "label": "Image path: assets\/nafu\/blog-detail-landscaping.avif"
+            "value": "assets/nafu/blog-detail-landscaping.avif",
+            "label": "Image path: assets/nafu/blog-detail-landscaping.avif"
         },
         "page_news_details_image_11": {
-            "value": "assets\/nafu\/blog-handyman.gif",
-            "label": "Image path: assets\/nafu\/blog-handyman.gif"
+            "value": "assets/nafu/blog-handyman.gif",
+            "label": "Image path: assets/nafu/blog-handyman.gif"
         },
         "page_news_details_image_12": {
-            "value": "assets\/nafu\/blog-detail-secondary.avif",
-            "label": "Image path: assets\/nafu\/blog-detail-secondary.avif"
+            "value": "assets/nafu/blog-detail-secondary.avif",
+            "label": "Image path: assets/nafu/blog-detail-secondary.avif"
         }
     },
     "Contact": {
@@ -1184,105 +1184,322 @@
         }
     },
     "Privacy Policy - Hero": {
+        "page_privacy_badge": {
+            "value": "CUSTOMER CARE · YOUR PRIVACY MATTERS",
+            "label": "[Hero] Top Pill Badge"
+        },
         "page_privacy_title": {
-            "value": "PRIVACY POLICY",
-            "label": "[Hero] Title"
+            "value": "Privacy Policy",
+            "label": "[Hero] Page Title"
+        },
+        "page_privacy_subtitle": {
+            "value": "Simple, Transparent & Safe Data Care",
+            "label": "[Hero] Subtitle / Tagline"
         },
         "page_privacy_desc": {
-            "value": "Updated recently",
-            "label": "[Hero] Description"
+            "value": "We treat your personal details with the same care and integrity that goes into our handcrafted spices. Here is plain-English information on what we collect, why we need it, and how your privacy is safeguarded under the Australian Privacy Act 1988 and Spam Act 2003.",
+            "label": "[Hero] Introduction Description"
         },
-        "page_privacy_hero_align": {
-            "value": "center",
-            "label": "Text Alignment",
-            "type": "select",
-            "options": {
-                "left": "Align Left",
-                "center": "Align Center",
-                "right": "Align Right"
-            }
+        "page_privacy_stat1_title": {
+            "value": "Safe Checkout",
+            "label": "[Highlight Pill 1] Title"
         },
-        "page_privacy_image_banner": {
-            "value": "",
-            "label": "[Hero] Image Banner (Optional)",
-            "type": "image"
+        "page_privacy_stat1_desc": {
+            "value": "Encrypted & Private",
+            "label": "[Highlight Pill 1] Subtext"
+        },
+        "page_privacy_stat2_title": {
+            "value": "Zero Spam",
+            "label": "[Highlight Pill 2] Title"
+        },
+        "page_privacy_stat2_desc": {
+            "value": "1-Click Unsubscribe",
+            "label": "[Highlight Pill 2] Subtext"
+        },
+        "page_privacy_stat3_title": {
+            "value": "Your Data Control",
+            "label": "[Highlight Pill 3] Title"
+        },
+        "page_privacy_stat3_desc": {
+            "value": "Update or Delete",
+            "label": "[Highlight Pill 3] Subtext"
         },
         "page_privacy_color_banner": {
-            "value": "#2d3326",
-            "label": "[Hero] Fallback Background Color",
+            "value": "#1F0701",
+            "label": "[Hero] Background Accent Color",
             "type": "color"
+        }
+    },
+    "Privacy Policy - Highlights": {
+        "page_privacy_card1_title": {
+            "value": "Why We Collect Details",
+            "label": "[Card 1] Title"
+        },
+        "page_privacy_card1_text": {
+            "value": "To pack and deliver your gourmet chili jars, process secure payments, and send tracking notifications.",
+            "label": "[Card 1] Description"
+        },
+        "page_privacy_card2_title": {
+            "value": "Zero Spam Promise",
+            "label": "[Card 2] Title"
+        },
+        "page_privacy_card2_text": {
+            "value": "Commercial messages only with your explicit permission under Spam Act 2003. One-click instant unsubscribe.",
+            "label": "[Card 2] Description"
+        },
+        "page_privacy_card3_title": {
+            "value": "Never Sold to Third Parties",
+            "label": "[Card 3] Title"
+        },
+        "page_privacy_card3_text": {
+            "value": "We do not sell, rent, or trade your personal information. Only shared with essential postal carriers & payment gateways.",
+            "label": "[Card 3] Description"
+        },
+        "page_privacy_card4_title": {
+            "value": "You're Always in Control",
+            "label": "[Card 4] Title"
+        },
+        "page_privacy_card4_text": {
+            "value": "Request access to your stored records, correct any inaccuracies, or ask for account deletion at any time.",
+            "label": "[Card 4] Description"
+        }
+    },
+    "Privacy Policy - Content": {
+        "page_privacy_content": {
+            "value": "<h3>1. Who We Are & Our Commitment</h3>\n<p>Dried Chili is a specialty Australian producer and online retailer of handcrafted gourmet chili crisps, dried chili pods, and artisanal spice blends. We operate under the registered Australian business entity <strong>Dried Chili Pty Ltd</strong> (ABN: 12 345 678 901) based in Sydney, New South Wales, Australia.</p>\n<p>We are dedicated to safeguarding your privacy in line with the <strong>Privacy Act 1988</strong> and the 13 <strong>Australian Privacy Principles (APPs)</strong>, alongside the <strong>Spam Act 2003</strong> for all electronic communications. We believe that your personal details should be handled with the highest level of care, clarity, and respect.</p>\n\n<h3>2. What Information We Collect</h3>\n<p>We only collect personal information that is necessary to fulfill your gourmet chili orders, deliver packages to your doorstep, and provide helpful customer service:</p>\n<ul>\n    <li><strong>Contact & Delivery Details:</strong> Full name, delivery address, billing address, email address, and mobile phone number for courier delivery updates.</li>\n    <li><strong>Order Records:</strong> Items purchased, pack sizes, recipe notes, order history, and official Australian Tax Invoices with GST breakdowns.</li>\n    <li><strong>Payment Information:</strong> All card payments are processed securely through certified Level 1 PCI-DSS payment gateways (such as Stripe and PayPal). We never see, store, or log your full credit card numbers or CVV codes on our servers.</li>\n    <li><strong>Customer Support Records:</strong> Inquiries, culinary feedback, reviews, and correspondence with our customer care team.</li>\n</ul>\n\n<h3>3. How We Use Your Information</h3>\n<p>Your personal information is used strictly for legitimate culinary retail operations, including:</p>\n<ul>\n    <li>Packing, dispatching, and tracking your spice shipments across Australia.</li>\n    <li>Sending order confirmations, tracking links, and delivery notices.</li>\n    <li>Issuing compliant Australian Tax Invoices under the <strong>A New Tax System (Goods and Services Tax) Act 1999</strong>.</li>\n    <li>Providing prompt customer care, culinary advice, and handling returns or exchanges under the Australian Consumer Law.</li>\n</ul>\n\n<h3>4. Clear Consent & Email Communications</h3>\n<p>Under the Australian <strong>Spam Act 2003</strong>, we operate with a strict zero-spam commitment:</p>\n<ul>\n    <li>We never send promotional emails, special discounts, or new seasonal blend announcements without your prior express consent (opt-in checkbox at checkout or newsletter signup).</li>\n    <li>Every single marketing message contains a clear, functioning 1-click unsubscribe button.</li>\n    <li>Unsubscribe requests are processed immediately and always honored within 5 business days without difficulty.</li>\n</ul>\n\n<h3>5. How We Keep Your Data Safe</h3>\n<p>We implement industry-standard technical and organizational security measures to protect your personal information against misuse, interference, loss, unauthorized access, modification, or disclosure:</p>\n<ul>\n    <li>256-bit SSL/TLS end-to-end encryption for all browser sessions and checkout pages.</li>\n    <li>Tokenized payment gateway integration so payment credentials never touch our web databases.</li>\n    <li>Restricted internal access: only authorized staff who need information to dispatch orders or manage accounts can access order details.</li>\n</ul>\n\n<h3>6. Sharing Only With Essential Partners</h3>\n<p>We never sell, rent, commercialize, or trade your personal details with third-party data brokers or marketing networks. Information is disclosed solely to trusted partners necessary to fulfill your order:</p>\n<ul>\n    <li><strong>Postal & Courier Carriers:</strong> Australia Post and certified domestic courier services strictly for parcel delivery and SMS tracking.</li>\n    <li><strong>Payment Processors:</strong> PCI-DSS certified financial institutions (Stripe, PayPal, Apple Pay, Google Pay).</li>\n    <li><strong>Legal Obligations:</strong> Australian regulatory bodies, courts, or law enforcement only where strictly required by Australian Commonwealth or State legislation.</li>\n</ul>\n\n<h3>7. Accessing, Updating, or Deleting Your Details</h3>\n<p>Under Australian Privacy Principles 12 and 13, you have full control over your personal records:</p>\n<ul>\n    <li>You may request access to any personal information we hold about you at any time.</li>\n    <li>You may request corrections if any details (e.g. delivery address or name) are inaccurate, outdated, or incomplete.</li>\n    <li>You may request complete account and data deletion subject only to statutory tax record retention requirements under Australian taxation law (5 years for GST invoices).</li>\n    <li>To make a request, contact our Privacy Officer at <strong>hello@driedchili.com.au</strong>. We respond to all privacy inquiries within 30 days.</li>\n    <li>If you feel an issue has not been resolved satisfactorily, you have the right to contact the <strong>Office of the Australian Information Commissioner (OAIC)</strong> at www.oaic.gov.au.</li>\n</ul>\n\n<h3>8. Cookies & Website Analytics</h3>\n<p>Our website uses minimal, functional cookies to keep your shopping cart intact while browsing, remember chosen preferences, and collect anonymous aggregate website traffic analytics to improve website speed and navigation. You can adjust your browser settings to decline cookies at any time, though some shopping cart features may require functional cookies to complete checkout.</p>",
+            "label": "Privacy Policy Document Content (Rich Text Editor)",
+            "type": "editor"
         }
     },
     "Terms of Service - Hero": {
+        "page_terms_badge": {
+            "value": "SHOPPING WITH US · FAIR & TRANSPARENT TERMS",
+            "label": "[Hero] Top Pill Badge"
+        },
         "page_terms_title": {
-            "value": "TERMS OF SERVICE",
-            "label": "[Hero] Title"
+            "value": "Terms of Service",
+            "label": "[Hero] Page Title"
+        },
+        "page_terms_subtitle": {
+            "value": "Clear, Friendly & Built on Trust",
+            "label": "[Hero] Subtitle / Tagline"
         },
         "page_terms_desc": {
-            "value": "Updated recently",
-            "label": "[Hero] Description"
+            "value": "We believe buying gourmet spices should be straightforward and enjoyable. Here are our plain-English terms covering all-inclusive AUD pricing, Australian Consumer Law protections, food safety, and customer care.",
+            "label": "[Hero] Introduction Description"
         },
-        "page_terms_hero_align": {
-            "value": "center",
-            "label": "Text Alignment",
-            "type": "select",
-            "options": {
-                "left": "Align Left",
-                "center": "Align Center",
-                "right": "Align Right"
-            }
+        "page_terms_stat1_title": {
+            "value": "Consumer Rights",
+            "label": "[Highlight Pill 1] Title"
         },
-        "page_terms_image_banner": {
-            "value": "",
-            "label": "[Hero] Image Banner (Optional)",
-            "type": "image"
+        "page_terms_stat1_desc": {
+            "value": "ACL Protected",
+            "label": "[Highlight Pill 1] Subtext"
+        },
+        "page_terms_stat2_title": {
+            "value": "All-Inclusive AUD",
+            "label": "[Highlight Pill 2] Title"
+        },
+        "page_terms_stat2_desc": {
+            "value": "10% Tax Included",
+            "label": "[Highlight Pill 2] Subtext"
+        },
+        "page_terms_stat3_title": {
+            "value": "Kitchen Certified",
+            "label": "[Highlight Pill 3] Title"
+        },
+        "page_terms_stat3_desc": {
+            "value": "Food Standards Assured",
+            "label": "[Highlight Pill 3] Subtext"
         },
         "page_terms_color_banner": {
-            "value": "#2d3326",
-            "label": "[Hero] Fallback Background Color",
+            "value": "#1F0701",
+            "label": "[Hero] Background Accent Color",
             "type": "color"
         }
     },
-    "Privacy Policy - Section 2": {
-        "page_privacy_policy_sec2_active": {
-            "value": "1",
-            "label": "[Section 2] Status",
-            "type": "select",
-            "options": {
-                "1": "Show Section",
-                "0": "Hide Section"
-            }
+    "Terms of Service - Highlights": {
+        "page_terms_card1_title": {
+            "value": "No Hidden Surcharges",
+            "label": "[Card 1] Title"
         },
-        "page_privacy_policy_sec2_type": {
-            "value": "text-image",
-            "label": "[Section 2] Section Type",
-            "type": "select",
-            "options": {
-                "text-image": "Text & Image",
-                "card": "Feature Cards"
-            }
+        "page_terms_card1_text": {
+            "value": "All prices are in Australian Dollars with 10% GST included. What you see is what you pay.",
+            "label": "[Card 1] Description"
         },
-        "page_privacy_policy_sec2_layout": {
-            "value": "normal",
-            "label": "[Section 2] Image Position",
-            "type": "select",
-            "options": {
-                "normal": "Image Left, Text Right",
-                "reverse": "Image Right, Text Left",
-                "full-text": "Full Text (Centered)"
-            }
+        "page_terms_card2_title": {
+            "value": "Australian Consumer Law",
+            "label": "[Card 2] Title"
         },
-        "page_privacy_policy_sec2_image": {
-            "value": "",
-            "label": "[Section 2] Image"
+        "page_terms_card2_text": {
+            "value": "Our products come with non-excludable statutory guarantees under the Australian Consumer Law.",
+            "label": "[Card 2] Description"
         },
-        "page_privacy_policy_sec2_title": {
-            "value": "New Section 2",
-            "label": "[Section 2] Title"
+        "page_terms_card3_title": {
+            "value": "Safe, Certified Kitchen",
+            "label": "[Card 3] Title"
         },
-        "page_privacy_policy_sec2_text": {
-            "value": "New section content...",
-            "label": "[Section 2] Text",
+        "page_terms_card3_text": {
+            "value": "Prepared under Australia New Zealand Food Standards Code and State Food Acts.",
+            "label": "[Card 3] Description"
+        }
+    },
+    "Terms of Service - Content": {
+        "page_terms_content": {
+            "value": "<h3>1. Welcome to Dried Chili & Agreement</h3>\n<p>Welcome to <strong>Dried Chili</strong> (operated by Dried Chili Pty Ltd, ABN 12 345 678 901). By placing an order, browsing our website, or creating an account, you agree to these Terms of Service. These terms are designed in accordance with Australian law to ensure a transparent, fair, and safe shopping experience.</p>\n\n<h3>2. All-Inclusive AUD Pricing & 10% GST</h3>\n<p>All prices displayed across our online store are stated in <strong>Australian Dollars (AUD)</strong> and are fully inclusive of the 10% <strong>Goods and Services Tax (GST)</strong> in accordance with the <em>A New Tax System (Goods and Services Tax) Act 1999</em> and the Australian Consumer Law. What you see is exactly what you pay at checkout with zero hidden surcharge surprises.</p>\n<p>An official compliant Australian Tax Invoice itemizing the product total, freight charges, and exact GST breakdown is generated automatically and emailed upon order confirmation.</p>\n\n<h3>3. Unit Pricing for Fair Comparison</h3>\n<p>To help you compare prices and package value easily, we voluntarily adopt the principles of the Australian <strong>Unit Pricing Code</strong>. Each product listing clearly specifies the price per unit (such as price per 100g) alongside the retail package price, together with accurate net weights excluding container tare.</p>\n\n<h3>4. Product Quality, Heat Levels & Food Standards</h3>\n<p>All Dried Chili products are prepared, packed, and labelled in full compliance with the <strong>Australia New Zealand Food Standards Code</strong> and applicable <strong>State and Territory Food Acts</strong> (including the NSW Food Act 2003):</p>\n<ul>\n    <li>Our chili heat ratings (Mild, Medium, Extra Hot, Extreme) serve as helpful culinary guidance. Natural heat variations may occur between seasonal crop harvests.</li>\n    <li>All jars are fitted with airtight, tamper-evident seals to guarantee culinary freshness, hygiene, and product integrity from our kitchen to your table.</li>\n    <li>Store all opened jars in a cool, dry place out of direct sunlight, ensuring spoons used are dry and clean.</li>\n</ul>\n\n<h3>5. Allergen Declarations & Dietary Information</h3>\n<p>We strictly comply with the <strong>Plain English Allergen Labelling (PEAL)</strong> standard under the Australia New Zealand Food Standards Code. Full ingredient lists and highlighted allergen declarations are clearly stated on every product page and jar label:</p>\n<ul>\n    <li>Blends containing crustacea (e.g., Artisanal Umami Shrimp Chili), sesame, soybeans, or tree nuts are explicitly highlighted in bold allergen declarations.</li>\n    <li>Pure dried chili pods and flakes are processed in clean, controlled batches to avoid cross-contamination.</li>\n    <li>Customers with severe food allergies are advised to review the allergen warning block on each product page prior to ordering.</li>\n</ul>\n\n<h3>6. Country of Origin Food Labelling</h3>\n<p>In accordance with the <em>Country of Origin Food Labelling Information Standard 2016</em>, every product listing and physical package clearly states the country of origin, including standard Australian ingredient percentage bars where Australian produce is blended with imported specialty heirloom peppers.</p>\n\n<h3>7. Orders, Payment & Security</h3>\n<p>Orders are confirmed upon successful authorization of payment through our secure payment gateway partners. We accept Visa, MasterCard, American Express, PayPal, Apple Pay, and Google Pay. All online transactions are encrypted via 256-bit SSL/TLS encryption. We reserve the right to cancel or place on hold any order suspected of fraudulent credit card use.</p>\n\n<h3>8. Your Consumer Guarantees & Returns</h3>\n<p>Nothing in these terms excludes, restricts, or modifies any guarantee, right, or remedy conferred on you by the <strong>Australian Consumer Law (ACL)</strong> under Schedule 2 of the <em>Competition and Consumer Act 2010 (Cth)</em>:</p>\n<ul>\n    <li>Our goods come with statutory guarantees that cannot be excluded under the ACL.</li>\n    <li>You are entitled to a replacement or refund for a <strong>major failure</strong> and compensation for any other reasonably foreseeable loss or damage.</li>\n    <li>You are also entitled to have the goods replaced or refunded if the goods fail to be of acceptable quality and the failure does not amount to a major failure.</li>\n    <li>If your package arrives broken, compromised, or does not match your ordered blend, notify us within 30 days for an immediate replacement or full refund.</li>\n</ul>\n\n<h3>9. Governing Law</h3>\n<p>These terms are governed by and construed in accordance with the laws in force in the State of <strong>New South Wales, Australia</strong>. Both you and Dried Chili Pty Ltd submit to the non-exclusive jurisdiction of the courts of New South Wales and courts of appeal from them.</p>",
+            "label": "Terms of Service Document Content (Rich Text Editor)",
+            "type": "editor"
+        }
+    },
+    "Shipping & Refunds - Hero": {
+        "page_shipping_badge": {
+            "value": "AUSTRALIAN DELIVERY & REFUNDS · 100% RISK-FREE",
+            "label": "[Hero] Top Pill Badge"
+        },
+        "page_shipping_title": {
+            "value": "Fast Tracked Shipping",
+            "label": "[Hero] Page Title"
+        },
+        "page_shipping_subtitle": {
+            "value": "Carefully Packed & 100% Guaranteed",
+            "label": "[Hero] Subtitle / Tagline"
+        },
+        "page_shipping_desc": {
+            "value": "Every jar of Dried Chili is wrapped with protective cushioning and airtight tamper-evident seals. Dispatched across Australia with transparent AUD pricing, GST included, and backed by Australian Consumer Law protections.",
+            "label": "[Hero] Introduction Description"
+        },
+        "page_shipping_stat1_title": {
+            "value": "Free Over $50 AUD",
+            "label": "[Highlight Pill 1] Title"
+        },
+        "page_shipping_stat1_desc": {
+            "value": "Australia-Wide",
+            "label": "[Highlight Pill 1] Subtext"
+        },
+        "page_shipping_stat2_title": {
+            "value": "24–48h Dispatch",
+            "label": "[Highlight Pill 2] Title"
+        },
+        "page_shipping_stat2_desc": {
+            "value": "Tracked Transit",
+            "label": "[Highlight Pill 2] Subtext"
+        },
+        "page_shipping_stat3_title": {
+            "value": "Free Replacement",
+            "label": "[Highlight Pill 3] Title"
+        },
+        "page_shipping_stat3_desc": {
+            "value": "If Damaged in Transit",
+            "label": "[Highlight Pill 3] Subtext"
+        },
+        "page_shipping_color_banner": {
+            "value": "#1F0701",
+            "label": "[Hero] Background Accent Color",
+            "type": "color"
+        }
+    },
+    "Shipping & Refunds - Highlights": {
+        "page_shipping_card1_title": {
+            "value": "Tracked Australia Post & Couriers",
+            "label": "[Card 1] Title"
+        },
+        "page_shipping_card1_text": {
+            "value": "Every parcel includes full tracking and email updates from door to door.",
+            "label": "[Card 1] Description"
+        },
+        "page_shipping_card2_title": {
+            "value": "100% Transit Guarantee",
+            "label": "[Card 2] Title"
+        },
+        "page_shipping_card2_text": {
+            "value": "If glass arrives broken or compromised, we replace or refund immediately.",
+            "label": "[Card 2] Description"
+        },
+        "page_shipping_card3_title": {
+            "value": "All-Inclusive Shipping Rates",
+            "label": "[Card 3] Title"
+        },
+        "page_shipping_card3_text": {
+            "value": "All delivery charges include 10% GST with zero surprise handling fees at checkout.",
+            "label": "[Card 3] Description"
+        }
+    },
+    "Shipping & Refunds - Content": {
+        "page_shipping_content": {
+            "value": "<h3>1. Shipping Rates & Delivery Timeframes</h3>\n<p>We dispatch all orders from our Sydney warehouse within 24 to 48 business hours. We partner with Australia Post and tracked domestic freight couriers to ensure fast, reliable delivery throughout metropolitan and regional Australia:</p>\n<ul>\n    <li><strong>Standard Shipping:</strong> $9.95 AUD flat rate across Australia. Typical delivery within 3–6 business days (metro areas 2–4 business days; WA, NT & regional locations 5–8 business days).</li>\n    <li><strong>Express Shipping:</strong> $14.95 AUD flat rate across Australia. Typical delivery within 1–3 business days via Australia Post Express.</li>\n    <li><strong>Free Shipping Guarantee:</strong> Orders of <strong>$50.00 AUD or more</strong> qualify for automatic Free Standard Tracked Shipping nationwide.</li>\n    <li>All shipping fees are in Australian Dollars and include 10% GST with zero handling surcharges.</li>\n</ul>\n\n<h3>2. Packaging & Food Safety in Transit</h3>\n<p>Because our chili crisps and spice oils are packed in premium heavy glass jars, packaging safety is our top priority:</p>\n<ul>\n    <li>Every jar is sealed with an airtight, tamper-evident neck band.</li>\n    <li>Jars are nestled in honeycomb protective shock-absorbing kraft wraps and recyclable cartons designed to withstand postal sorting vibrations.</li>\n    <li>Our products are shelf-stable at ambient warehouse temperatures, ensuring optimal spice aroma and food safety throughout transit in all Australian climate zones.</li>\n</ul>\n\n<h3>3. Order Tracking & Delivery Instructions</h3>\n<p>The moment your parcel is scanned into the courier network, an automated email containing your tracking reference and live transit portal link is dispatched to your provided email address. You can manage Authority to Leave (Safe Drop) or redirect parcels to your local Post Office directly through the Australia Post tracking portal.</p>\n\n<h3>4. Damaged or Broken Jar Guarantee</h3>\n<p>If despite our reinforced protective packaging your jar arrives cracked, chipped, leaking, or damaged in transit:</p>\n<ul>\n    <li>Do not consume product from broken glass or damaged jars.</li>\n    <li>Snap a quick photo of the damaged parcel and broken container.</li>\n    <li>Email our friendly customer care team at <strong>hello@driedchili.com.au</strong> with your Order Number.</li>\n    <li>We will immediately send out a brand-new replacement parcel via Express Post at zero extra charge, or issue a 100% full refund to your original payment method.</li>\n</ul>\n\n<h3>5. 30-Day Returns Policy & Consumer Guarantees</h3>\n<p>Under the <strong>Australian Consumer Law (ACL)</strong>, you are entitled to a remedy (refund, replacement, or repair) if goods are not of acceptable quality, not fit for purpose, or do not match sample descriptions:</p>\n<ul>\n    <li><strong>Change of Mind Returns:</strong> For unopened items with original tamper-evident seals intact, we accept returns within <strong>30 days of delivery</strong>. Return postage is covered by the customer for change-of-mind returns.</li>\n    <li><strong>Faulty or Defective Items:</strong> If any item is found to be defective, spoiled, or incorrectly packaged, return postage is 100% paid by Dried Chili, and a full refund or immediate replacement is provided.</li>\n</ul>\n\n<h3>6. Incorrect or Missing Items</h3>\n<p>If you discover that your delivery is missing an item or contains an incorrect chili blend, contact us right away. We will immediately dispatch the correct products via Express Post at no expense to you. You are welcome to keep the mis-shipped jar with our compliments!</p>\n\n<h3>7. How Refunds Are Processed</h3>\n<p>Approved refunds are credited directly back to the original method of payment (credit card, PayPal, Apple Pay, Google Pay). Once initiated by our team, refunds generally reflect on your financial statement within 2 to 5 business days, depending on your bank's processing schedule. No restocking fees or administration charges are ever deducted.</p>",
+            "label": "Shipping & Refunds Document Content (Rich Text Editor)",
+            "type": "editor"
+        }
+    },
+    "FAQ - Hero": {
+        "page_faq_badge": {
+            "value": "HELP CENTER · COMMONLY ASKED QUESTIONS",
+            "label": "[Hero] Top Pill Badge"
+        },
+        "page_faq_title": {
+            "value": "Frequently Asked Questions",
+            "label": "[Hero] Page Title"
+        },
+        "page_faq_subtitle": {
+            "value": "Clear Answers for Every Spice Lover",
+            "label": "[Hero] Subtitle / Tagline"
+        },
+        "page_faq_desc": {
+            "value": "From spice heat levels and allergen safety to delivery times, fair returns, and all-inclusive AUD pricing — here are clear answers to the questions our customers ask most.",
+            "label": "[Hero] Introduction Description"
+        },
+        "page_faq_stat1_title": {
+            "value": "Protected Shopping",
+            "label": "[Highlight Pill 1] Title"
+        },
+        "page_faq_stat1_desc": {
+            "value": "Australian Consumer Law",
+            "label": "[Highlight Pill 1] Subtext"
+        },
+        "page_faq_stat2_title": {
+            "value": "All-Inclusive AUD",
+            "label": "[Highlight Pill 2] Title"
+        },
+        "page_faq_stat2_desc": {
+            "value": "10% GST Included",
+            "label": "[Highlight Pill 2] Subtext"
+        },
+        "page_faq_stat3_title": {
+            "value": "Honest Ingredients",
+            "label": "[Highlight Pill 3] Title"
+        },
+        "page_faq_stat3_desc": {
+            "value": "Food Standards & Origin",
+            "label": "[Highlight Pill 3] Subtext"
+        },
+        "page_faq_color_banner": {
+            "value": "#1F0701",
+            "label": "[Hero] Background Accent Color",
+            "type": "color"
+        }
+    },
+    "FAQ - Quick Help & Support": {
+        "page_faq_support_title": {
+            "value": "Need Personal Spice Advice or Have an Urgent Order Question?",
+            "label": "[Support Box] Title"
+        },
+        "page_faq_support_desc": {
+            "value": "Our Sydney customer care team is here to help with allergen questions, custom gift boxes, order tracking, and chef recommendations.",
+            "label": "[Support Box] Description"
+        },
+        "page_faq_support_email": {
+            "value": "hello@driedchili.com.au",
+            "label": "[Support Box] Email Address"
+        },
+        "page_faq_support_hours": {
+            "value": "Monday – Friday, 9:00 AM – 5:00 PM AEST",
+            "label": "[Support Box] Support Hours"
+        }
+    },
+    "FAQ - Content": {
+        "page_faq_intro": {
+            "value": "<p>Here you will find friendly, transparent answers regarding our chili blends, allergen certifications under the Australia New Zealand Food Standards Code, Australian Consumer Law guarantees, and all-inclusive AUD pricing.</p>\n<p>If you don't find what you are looking for, our friendly customer care team is always here to assist with culinary tips, custom orders, or shipping inquiries.</p>",
+            "label": "FAQ Intro & Notes (Rich Text Editor)",
             "type": "editor"
         }
     }

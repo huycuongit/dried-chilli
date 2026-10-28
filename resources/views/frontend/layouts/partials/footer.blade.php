@@ -3,9 +3,9 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <a href="{{ route('home') }}" class="footer-logo-wrap" aria-label="Dried Chili Home">
-                    <img src="{{ asset('images/logo_dried.png') }}" alt="Dried Chili Logo" class="footer-logo" width="150">
+                    <img src="{{ asset('images/logo_dried.webp') }}" alt="Dried Chili Logo" class="footer-logo" width="150" height="61" loading="lazy">
                 </a>
-                <p>Bringing authentic Asian flavors to your kitchen. Handcrafted with passion, shipped globally.</p>
+                <p>Bringing authentic Asian chili craftsmanship directly to your kitchen. Handcrafted in small batches with premium sun-dried peppers, aromatic crispy garlic, and shipped fresh to heat lovers globally.</p>
             </div>
             
             <div class="footer-links">
@@ -13,10 +13,6 @@
                 <ul class="footer-link-list">
                     <li><a href="{{ route('page.shop') }}">Shop All Spices</a></li>
                     <li><a href="{{ route('page.sale') }}">Hot Deals & Bundles</a></li>
-                    <li><a href="{{ route('page.product', 'extra-garlic-crunch') }}">Extra Garlic Crunch</a></li>
-                    <li><a href="{{ route('page.product', 'ghost-pepper-flakes') }}">Ghost Pepper Flakes</a></li>
-                    <li><a href="{{ route('page.product', 'smoked-paprika-blend') }}">Smoked Paprika</a></li>
-                    <li><a href="{{ route('page.product', 'dried-ancho-chilies') }}">Dried Ancho Chilies</a></li>
                 </ul>
             </div>
 
@@ -27,14 +23,15 @@
                     <li><a href="{{ route('page.legacy') }}">Our Legacy</a></li>
                     <li><a href="{{ route('contact.page') }}">Contact Us</a></li>
                     <li><a href="{{ route('page.faq') }}">FAQ</a></li>
+                    <li><a href="{{ route('page.shipping') }}">Shipping & Refunds</a></li>
                     <li><a href="{{ route('page.privacy') }}">Privacy Policy</a></li>
-                    <li><a href="{{ route('page.terms') }}">Term and Conditions</a></li>
+                    <li><a href="{{ route('page.terms') }}">Terms and Conditions</a></li>
                 </ul>
             </div>
 
             <div class="footer-newsletter">
                 <h4>Stay Spicy</h4>
-                <p>Join our newsletter for recipes, new releases, and exclusive offers.</p>
+                <p>Subscribe to our spice dispatch for secret family recipes, limited small-batch releases and exclusive culinary offers delivered straight to your inbox.</p>
                 <form class="newsletter-form" id="footer-newsletter-form">
                     <input type="email" id="footer-newsletter-email" placeholder="Email address" required aria-label="Email address">
                     <button type="submit" id="footer-newsletter-btn" aria-label="Subscribe">
@@ -47,7 +44,7 @@
         <div class="footer-bottom">
             <p>&copy; {{ date('Y') }} Dried Chili - Jojo Little Kitchen. All rights reserved.</p>
             <div class="footer-bottom-info">
-                <span>Handcrafted with passion &bull; Shipped globally</span>
+                <span>Designed and developed by FEB Digi.</span>
             </div>
         </div>
     </div>
@@ -77,10 +74,10 @@
 
     .footer-brand p {
         font-size: 0.95rem;
-        line-height: 1.6;
+        line-height: 1.68;
         color: var(--spice-text);
-        opacity: 0.88;
-        max-width: 32ch;
+        opacity: 0.95;
+        max-width: 38ch;
         text-align: justify;
         text-justify: inter-word;
         text-align-last: left;
@@ -143,7 +140,7 @@
         display: inline-flex;
         align-items: center;
         color: var(--spice-text);
-        opacity: 0.82;
+        opacity: 0.95;
         text-decoration: none;
         font-size: 0.95rem;
         font-weight: 500;
@@ -160,7 +157,8 @@
     .footer-newsletter p {
         font-size: 0.95rem;
         margin-bottom: 1.25rem;
-        line-height: 1.6;
+        line-height: 1.68;
+        max-width: 44ch;
         text-align: justify;
         text-justify: inter-word;
         text-align-last: left;

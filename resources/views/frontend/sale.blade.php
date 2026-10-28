@@ -1,7 +1,6 @@
 @extends('frontend.layouts.master')
-@section('meta')
-    <title>Sale | Dried Chili</title>
-@endsection
+@section('title', 'Exclusive Sale & Deals | Dried Chili')
+@section('meta_description', 'Discover limited-time promotions, bundle discounts, and special offers on premium dried chillies and shrimp seasonings.')
 @section('full-content')
 <main class="page-content shop-bg">
     
@@ -35,7 +34,7 @@
                         <div class="yum-card-bottom">
                             <div class="yum-meta">{{ $product->category->name ?? 'Spices & Seasonings' }}</div>
                             <h3 class="yum-title"><a href="{{ route('page.product', $product->slug) }}" style="color: inherit; text-decoration: none;">{{ $product->name }}</a></h3>
-                            <p class="yum-desc">{{ Str::limit($product->description, 60) }}</p>
+                            <p class="yum-desc">{{ Str::limit($product->description ?: 'Artisanal sun-dried chili blend infused with slow-roasted garlic and rich umami crunch.', 120) }}</p>
                             <div class="yum-action">
                                 <div class="price-wrapper">
                                     <span class="price-original">${{ number_format($product->price, 2) }}</span>
@@ -78,7 +77,7 @@
                         <div class="yum-card-bottom">
                             <div class="yum-meta">{{ $product->category->name ?? 'Spices & Seasonings' }}</div>
                             <h3 class="yum-title"><a href="{{ route('page.product', $product->slug) }}" style="color: inherit; text-decoration: none;">{{ $product->name }}</a></h3>
-                            <p class="yum-desc">{{ Str::limit($product->description, 60) }}</p>
+                            <p class="yum-desc">{{ Str::limit($product->description ?: 'Artisanal sun-dried chili blend infused with slow-roasted garlic and rich umami crunch.', 120) }}</p>
                             <div class="yum-action">
                                 <div class="price-wrapper">
                                     <span class="price-original">${{ number_format($product->price, 2) }}</span>
@@ -223,12 +222,8 @@
     margin: 0 0 2rem 0;
     color: #6C5D53;
     flex: 1;
-    line-height: 1.6;
-    text-align: justify;
-    text-justify: inter-word;
-    text-align-last: left;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+    line-height: 1.62;
+    text-align: left;
 }
 .yum-action {
     display: flex;
