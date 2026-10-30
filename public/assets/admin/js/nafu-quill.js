@@ -35,13 +35,13 @@
 
             function editImage(attribute) {
                 if (!selectedImage || !element.contains(selectedImage)) {
-                    alert('Click an image in the editor first.');
+                    AdminUI.toast('Click an image in the editor first.', 'error');
                     return;
                 }
                 const value = prompt(attribute === 'width' ? 'Image width in pixels (leave blank for automatic):' : 'Alternative text:', selectedImage.getAttribute(attribute) || '');
                 if (value === null) return;
                 if (attribute === 'width' && value !== '' && !/^[1-9][0-9]{0,3}$/.test(value)) {
-                    alert('Please enter a width between 1 and 9999 pixels.');
+                    AdminUI.toast('Please enter a width between 1 and 9999 pixels.', 'error');
                     return;
                 }
                 const blot = Quill.find(selectedImage);
@@ -87,11 +87,11 @@
 
             async function uploadImage(file) {
                 if (!['image/jpeg', 'image/png', 'image/webp', 'image/gif'].includes(file.type) || file.size > 5 * 1024 * 1024) {
-                    alert('Please choose a JPG, PNG, WEBP or GIF image up to 5 MB.');
+                    AdminUI.toast('Please choose a JPG, PNG, WEBP or GIF image up to 5 MB.', 'error');
                     return;
                 }
                 const url = window.nafuEditorUploadUrl;
-                if (!url) { alert('Image upload is not configured.'); return; }
+                if (!url) { AdminUI.toast('Image upload is not configured.', 'error'); return; }
                 const range = quill.getSelection(true);
                 uploading++;
                 if (uploading === 1) {
@@ -118,7 +118,7 @@
                     status.textContent = 'Image uploaded.';
                 } catch (error) {
                     status.textContent = error.message;
-                    alert(error.message);
+                    AdminUI.toast(error.message, 'error');
                 } finally {
                     uploading--;
                     if (!uploading) {
@@ -204,7 +204,7 @@
                 if (uploading) {
                     event.preventDefault();
                     event.stopImmediatePropagation();
-                    alert('Please wait for image uploads to finish.');
+                    AdminUI.toast('Please wait for image uploads to finish.', 'error');
                 }
                 sync();
             }, true);

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\System;
 use App\Support\SystemSettings;
+use App\Support\PageContentGroups;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
@@ -16,69 +18,45 @@ class HomepageController extends Controller
         return view('admin.homepage', compact('sections', 'values'));
     }
 
-    public function update(Request $request)
+    private function savePageContent(Request $request, array $sections): void
     {
-        $sections = json_decode(file_get_contents(config_path('nafu-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
-        $rules = [];
-        foreach ($sections as $fields) {
+        $pages = PageContentGroups::fromSections($sections);
+        $page = $request->validate(['selected_page' => ['required', 'string', Rule::in(array_keys($pages))]])['selected_page'];
+        $rules = ['content' => ['required', 'array']];
+        foreach ($pages[$page] as $fields) {
             foreach ($fields as $key => $field) {
                 if (preg_match('/\.(css|js)(\?.*)?$/i', $field['value'] ?? '')) {
                     continue;
                 }
-                if (str_contains($key, '_image_')) {
-                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:7500000'];
-                } elseif (str_contains($key, '_content') || str_contains($key, '_text') || str_contains($key, '_editor') || str_contains($key, '_desc')) {
-                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:1000000'];
-                } else {
-                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:50000'];
-                }
+                $max = str_contains($key, '_image_') ? 7500000 :
+                    ((str_contains($key, '_content') || str_contains($key, '_text') || str_contains($key, '_editor') || str_contains($key, '_desc')) ? 1000000 : 50000);
+                $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:' . $max];
             }
         }
         $content = $request->validate($rules)['content'];
-        foreach ($content as $key => &$value) {
+        foreach ($content as $key => $value) {
+            if (!isset($rules['content.' . $key])) {
+                continue;
+            }
             if (str_contains($key, '_image_') && str_starts_with((string) $value, 'data:image/')) {
                 $value = \App\Support\Base64ImageStore::store($value, 'page-images');
             }
-        }
-        unset($value);
-        foreach ($content as $key => $value) {
             System::updateOrCreate(['key' => 'nafu_home_' . $key], ['content' => $value ?? '']);
         }
         app(SystemSettings::class)->forget();
-        return back()->with('success', 'Pages updated successfully.');
+    }
+
+    public function update(Request $request)
+    {
+        $sections = json_decode(file_get_contents(config_path('nafu-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
+        $this->savePageContent($request, $sections);
+        return back()->with('success', 'Page updated successfully.');
     }
 
     public function addSection(Request $request)
     {
-        // === SAVE CURRENT FORM DATA FIRST ===
         $sections = json_decode(file_get_contents(config_path('nafu-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
-        $rules = [];
-        foreach ($sections as $fields) {
-            foreach ($fields as $key => $field) {
-                if (preg_match('/\.(css|js)(\?.*)?$/i', $field['value'] ?? '')) continue;
-                if (str_contains($key, '_image_')) {
-                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:7500000'];
-                } elseif (str_contains($key, '_content') || str_contains($key, '_text') || str_contains($key, '_editor') || str_contains($key, '_desc')) {
-                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:1000000'];
-                } else {
-                    $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:50000'];
-                }
-            }
-        }
-        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules);
-        if ($validator->passes()) {
-            $content = $validator->validated()['content'] ?? [];
-            foreach ($content as $key => &$val) {
-                if (str_contains($key, '_image_') && str_starts_with((string) $val, 'data:image/')) {
-                    $val = \App\Support\Base64ImageStore::store($val, 'page-images');
-                }
-            }
-            unset($val);
-            foreach ($content as $key => $val) {
-                System::updateOrCreate(['key' => 'nafu_home_' . $key], ['content' => $val ?? '']);
-            }
-        }
-        // === END SAVE ===
+        $this->savePageContent($request, $sections);
 
         $type = $request->input('type');
         $page = $request->input('page', 'About Us');

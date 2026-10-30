@@ -77,7 +77,7 @@ class RoleRepository implements RoleRepositoryInterface
 
     public function datatables(array $params)
     {
-        $query = $this->model->query();
+        $query = $this->model->query()->with(['userCreated', 'userUpdated']);
         $query->withCount(['admins as total_employees']);
         
         if (isset($params['keyword'])) {
@@ -88,12 +88,12 @@ class RoleRepository implements RoleRepositoryInterface
             });
         }
 
-        if (isset($params['active'])) {
+        if (isset($params['active']) && $params['active'] !== '') {
             $active = $params['active'];
             $query->where('active', $active);
         }
 
-        if (isset($params['user_id'])) {
+        if (!empty($params['user_id'])) {
             $userId = $params['user_id'];
             $query->whereHas('admins', function($q) use ($userId) {
                 $q->where('admin_id', $userId);
@@ -102,7 +102,7 @@ class RoleRepository implements RoleRepositoryInterface
 
         $query->orderByMultipleColumns(['id'], 'desc');
 
-        return $query->get();
+        return $query;
     }
 
     public function filterFrontEnd(array $filters = [])

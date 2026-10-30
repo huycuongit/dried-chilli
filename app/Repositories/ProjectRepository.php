@@ -56,8 +56,8 @@ class ProjectRepository implements ProjectRepositoryInterface
                 $subQuery->where('title', 'like', "%{$keyword}%")
                     ->orWhere('description', 'like', "%{$keyword}%");
             }))
-            ->when(isset($params['active']), fn($q) => $q->where('active', $params['active']))
-            ->orderBy('position')->orderByDesc('id')->get();
+            ->when(isset($params['active']) && $params['active'] !== '', fn($q) => $q->where('active', $params['active']))
+            ->orderBy('position')->orderByDesc('id');
     }
 
     public function filterFrontEnd(array $filters = [])

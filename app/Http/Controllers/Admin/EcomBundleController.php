@@ -21,7 +21,7 @@ class EcomBundleController extends Controller
                 ->addColumn('action', function($row) {
                     return '<div class="d-flex align-items-center">
                                 <a href="'.route('admin.ecom_bundles.edit', $row->id).'" class="btn btn-icon btn-text-secondary waves-effect waves-light rounded-pill btn-edit"><i class="ti ti-edit ti-md"></i></a>
-                                <form action="'.route('admin.ecom_bundles.destroy', $row->id).'" method="POST" class="d-inline-block" onsubmit="return confirm(\'Are you sure?\');">
+                                <form action="'.route('admin.ecom_bundles.destroy', $row->id).'" method="POST" class="d-inline-block" data-confirm="Are you sure?">
                                     '.csrf_field().method_field('DELETE').'
                                     <button type="submit" class="btn btn-icon btn-text-danger waves-effect waves-light rounded-pill"><i class="ti ti-trash ti-md"></i></button>
                                 </form>

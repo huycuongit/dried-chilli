@@ -166,6 +166,22 @@
         @endif
         <!-- /. Categories -->
 
+        @if (userHasPermission('admin.systems.pages'))
+            <li class="menu-header small"><span class="menu-header-text">PAGES</span></li>
+            <li class="menu-item {{ request()->routeIs('admin.systems.pages') ? 'active open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon ti ti-file-text"></i><div>Pages</div>
+                </a>
+                <ul class="menu-sub">
+                    @foreach (\App\Support\PageContentGroups::all() as $pageName => $pageSections)
+                        <li class="menu-item {{ request()->routeIs('admin.systems.pages') && request()->query('page', 'Home') === $pageName ? 'active' : '' }}" data-page-menu="{{ $pageName }}">
+                            <a href="{{ route('admin.systems.pages', ['page' => $pageName]) }}" class="menu-link"><div>{{ $pageName }}</div></a>
+                        </li>
+                    @endforeach
+                </ul>
+            </li>
+        @endif
+
         <!-- Systems -->
         @if (userHasAnyPermission([
                 'admin.systems.generals',
@@ -179,7 +195,7 @@
                 <span class="menu-header-text" data-i18n="SYSTEM SETTINGS">SYSTEM SETTINGS</span>
             </li>
             <li
-                class="menu-item {{ request()->routeIs('admin.systems*') |
+                class="menu-item {{ (request()->routeIs('admin.systems*') && !request()->routeIs('admin.systems.pages')) |
                 request()->routeIs('admin.roles*') |
                 request()->routeIs('admin.users*') |
                 request()->routeIs('admin.coach-systems*')
@@ -219,7 +235,6 @@
 
                     @if (userHasAnyPermission([
                             'admin.systems.generals',
-                            'admin.systems.pages',
                             'admin.systems.apis',
                             'admin.systems.edit',
                             'admin.coach-systems.generals',
@@ -227,7 +242,7 @@
                             'admin.coach-systems.edit',
                         ]))
                         <li
-                            class="menu-item {{ request()->routeIs('admin.systems*') | request()->routeIs('admin.coach-systems*') ? 'active open' : '' }}">
+                            class="menu-item {{ (request()->routeIs('admin.systems*') && !request()->routeIs('admin.systems.pages')) | request()->routeIs('admin.coach-systems*') ? 'active open' : '' }}">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
                                 <div data-i18n="General settings">General settings</div>
@@ -241,13 +256,6 @@
                                                 <div data-i18n="General">General</div>
                                             </a>
                                         </li>
-                                @endif
-                                @if (userHasPermission('admin.systems.pages'))
-                                    <li class="menu-item {{ request()->routeIs('admin.systems.pages') ? 'active' : '' }}">
-                                        <a href="{{ route('admin.systems.pages') }}" class="menu-link">
-                                            <div data-i18n="Pages">Pages</div>
-                                        </a>
-                                    </li>
                                 @endif
                                 {{-- @if (userHasPermission('admin.systems.apis'))
                                     <li

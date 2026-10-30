@@ -422,7 +422,7 @@
                         return meta.row + 1;
                     },
                     searchable: false,
-                    orderable: true
+                    orderable: false
                 },
                 {
                     "data": "name",
@@ -447,7 +447,7 @@
                     }
                 },
                 {
-                    "data": "created_name"
+                    "data": "created_name", orderable: false, searchable: false
                 },
                 {
                     "data": "created_at",
@@ -472,6 +472,7 @@
                 },
                 {
                     data: 'action',
+                    orderable: false, searchable: false,
                     render: function(data, type, full, meta) {
                         var _actionStart = '<div class="d-flex align-items-center">';
 
@@ -832,7 +833,7 @@
                     loadDistricts();
                 },
                 error: function() {
-                    alert('Error loading provinces');
+                    AdminUI.toast('Error loading provinces', 'error');
                 }
             });
 
@@ -862,7 +863,7 @@
                         loadWards();
                     },
                     error: function() {
-                        alert('Error loading districts');
+                        AdminUI.toast('Error loading districts', 'error');
                     }
                 });
             }
@@ -892,7 +893,7 @@
                             }
                         },
                         error: function() {
-                            alert('Error loading wards');
+                            AdminUI.toast('Error loading wards', 'error');
                         }
                     });
                 } else {
@@ -930,7 +931,7 @@
                         }
                     },
                     error: function() {
-                        alert('Error loading districts');
+                        AdminUI.toast('Error loading districts', 'error');
                     }
                 });
             });
@@ -958,7 +959,7 @@
                         });
                     },
                     error: function() {
-                        alert('Error loading wards');
+                        AdminUI.toast('Error loading wards', 'error');
                     }
                 });
             });

@@ -54,7 +54,7 @@ class ServiceRepository implements ServiceRepositoryInterface
                 $subQuery->where('name', 'like', "%{$keyword}%")->orWhere('description', 'like', "%{$keyword}%");
             }))
             ->when(isset($params['active']) && $params['active'] !== '', fn ($query) => $query->where('active', $params['active']))
-            ->orderBy('position')->orderByDesc('id')->get();
+            ->orderBy('position')->orderByDesc('id');
     }
 
     private function payload(array $data): array

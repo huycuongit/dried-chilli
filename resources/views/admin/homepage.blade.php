@@ -8,42 +8,25 @@
         .service-editor { min-height: 260px; }
         .service-editor .ql-editor { min-height: 220px; }
         
-        .nav-tabs { flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }
-        .nav-tabs::-webkit-scrollbar { height: 4px; }
-        .nav-tabs::-webkit-scrollbar-track { background: transparent; }
-        .nav-tabs::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 20px; }
-        .nav-tabs::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.3); }
-        .nav-tabs .nav-link { white-space: nowrap; }
     </style>
 @endpush
 
 @section('content')
     @php
-        $pageNames = ['Services', 'Service Details', 'Projects', 'Project Details', 'News', 'News Details', 'Contact', 'Sale', 'About Us', 'Our Legacy', 'Privacy Policy', 'Terms of Service', 'Shipping & Refunds', 'FAQ', '404'];
-        $pages = ['Home' => []];
-        foreach ($sections as $section => $fields) {
-            $matchedPage = false;
-            foreach ($pageNames as $pageName) {
-                if (str_starts_with($section, $pageName)) {
-                    $pages[$pageName][$section] = $fields;
-                    $matchedPage = true;
-                    break;
-                }
-            }
-            if (!$matchedPage) {
-                $pages['Home'][$section] = $fields;
-            }
-        }
+        $pages = \App\Support\PageContentGroups::fromSections($sections);
+        $requestedPage = request()->query('page');
+        $selectedPage = is_string($requestedPage) && array_key_exists($requestedPage, $pages) ? $requestedPage : 'Home';
     @endphp
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <form method="POST" action="{{ route('admin.systems.pages.save') }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+            <input type="hidden" name="selected_page" value="{{ $selectedPage }}">
 
             <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
                 <div>
-                    <h3 class="mb-1">Pages</h3>
+                    <h3 class="mb-1">{{ $selectedPage }}</h3>
                     <p class="text-muted mb-0">Manage page headings, descriptions, images, buttons and SEO. Individual services, projects and articles use their own modules.</p>
                 </div>
                 <button type="submit" class="btn btn-primary">
@@ -58,32 +41,8 @@
             @endif
 
             <div class="card">
-                <div class="card-header p-0 border-bottom">
-                    <ul class="nav nav-tabs px-3 pt-3" role="tablist">
-                        @foreach ($pages as $page => $pageSections)
-                            <li class="nav-item" role="presentation">
-                                <button type="button"
-                                    class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                    id="page-tab-{{ $loop->index }}"
-                                    data-bs-toggle="tab"
-                                    data-bs-target="#page-pane-{{ $loop->index }}"
-                                    role="tab"
-                                    aria-controls="page-pane-{{ $loop->index }}"
-                                    aria-selected="{{ $loop->first ? 'true' : 'false' }}">
-                                    {{ $page }}
-                                </button>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-
                 <div class="card-body">
-                    <div class="tab-content p-0 shadow-none">
-                        @foreach ($pages as $page => $pageSections)
-                            <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                id="page-pane-{{ $loop->index }}"
-                                role="tabpanel"
-                                aria-labelledby="page-tab-{{ $loop->index }}">
+                    @php $page = $selectedPage; $pageSections = $pages[$selectedPage]; @endphp
                                 @foreach ($pageSections as $section => $fields)
                                     <details class="card mb-3" {{ $loop->first ? 'open' : '' }}>
                                         <summary class="card-header">
@@ -93,7 +52,7 @@
                                         <div class="card-body">
                                             @if(str_contains($section, ' - Section '))
                                                 <div class="d-flex justify-content-end mb-3">
-                                                    <button type="submit" formmethod="POST" formaction="{{ route('admin.systems.pages.delete_section') }}?section={{ urlencode($section) }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa section này? Thao tác không thể hoàn tác.')">
+                                                    <button type="submit" formmethod="POST" formaction="{{ route('admin.systems.pages.delete_section') }}?section={{ urlencode($section) }}" class="btn btn-sm btn-outline-danger" data-confirm="Delete this section? This cannot be undone.">
                                                         <i class="ti ti-trash me-1"></i> Xóa Section Này
                                                     </button>
                                                 </div>
@@ -129,9 +88,6 @@
                                         </div>
                                     </div>
                                 @endif
-                            </div>
-                        @endforeach
-                    </div>
                 </div>
             </div>
         </form>

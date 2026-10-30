@@ -10,6 +10,8 @@ class Admin extends Authenticatable
 {
     use HasFactory;
 
+    private $permissionRoutes;
+
     protected $fillable = [
         'name',
         'user_name',
@@ -89,17 +91,18 @@ class Admin extends Authenticatable
     public function hasPermission($permission)
     {
         if ($this->user_name === 'Admin') return true;
-        return $this->roles()->whereHas('permissions', function ($q) use ($permission) {
-            $q->where('route', $permission);
-        })->exists();
+        return $this->permissionRoutes()->contains($permission);
     }
 
     public function hasAnyPermission($permission)
     {
         if ($this->user_name === 'Admin') return true;
-        return $this->roles()->whereHas('permissions', function ($q) use ($permission) {
-            $q->whereIn('route', $permission);
-        })->exists();
+        return $this->permissionRoutes()->intersect($permission)->isNotEmpty();
+    }
+
+    private function permissionRoutes()
+    {
+        return $this->permissionRoutes ??= $this->getAllCheckPermissions();
     }
 
     public function getAllPermissions()

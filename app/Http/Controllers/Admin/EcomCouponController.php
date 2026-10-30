@@ -25,7 +25,7 @@ class EcomCouponController extends Controller
                 ->addColumn('action', function($row) {
                     return '<div class="d-flex align-items-center">
                                 <a href="'.route('admin.ecom_coupons.edit', $row->id).'" class="btn btn-icon btn-text-secondary waves-effect waves-light rounded-pill btn-edit" title="Edit"><i class="ti ti-edit ti-md"></i></a>
-                                <form action="'.route('admin.ecom_coupons.destroy', $row->id).'" method="POST" class="d-inline-block" onsubmit="return confirm(\'Are you sure you want to delete this coupon?\');">
+                                <form action="'.route('admin.ecom_coupons.destroy', $row->id).'" method="POST" class="d-inline-block" data-confirm="Are you sure you want to delete this coupon?">
                                     '.csrf_field().'
                                     '.method_field('DELETE').'
                                     <button type="submit" class="btn btn-icon btn-text-secondary waves-effect waves-light rounded-pill" title="Delete"><i class="ti ti-trash ti-md text-danger"></i></button>

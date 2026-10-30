@@ -91,7 +91,11 @@ class CheckPermissions
         $resource = $segments[1];
         $action = $segments[2];
 
-        $permission = $this->getMappedPermission($resource, $action);
+        if ($resource === 'ecom_products' && $action === 'images') {
+            $permission = $request->isMethod('delete') ? 'admin.ecom_products.destroy' : 'admin.ecom_products.edit';
+        } else {
+            $permission = $this->getMappedPermission($resource, $action);
+        }
 
         $admin = Auth::guard('admin')->user();
 

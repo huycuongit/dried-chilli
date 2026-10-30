@@ -34,7 +34,7 @@ class EcomProductController extends Controller
                 ->addColumn('action', function($row) {
                     return '<div class="d-flex align-items-center">
                                 <a href="'.route('admin.ecom_products.edit', $row->id).'" class="btn btn-icon btn-text-secondary waves-effect waves-light rounded-pill btn-edit" title="Edit"><i class="ti ti-edit ti-md"></i></a>
-                                <form action="'.route('admin.ecom_products.destroy', $row->id).'" method="POST" class="d-inline-block" onsubmit="return confirm(\'Are you sure you want to delete this product?\');">
+                                <form action="'.route('admin.ecom_products.destroy', $row->id).'" method="POST" class="d-inline-block" data-confirm="Are you sure you want to delete this product?">
                                     '.csrf_field().'
                                     '.method_field('DELETE').'
                                     <button type="submit" class="btn btn-icon btn-text-secondary waves-effect waves-light rounded-pill" title="Delete"><i class="ti ti-trash ti-md text-danger"></i></button>
@@ -68,7 +68,6 @@ class EcomProductController extends Controller
             'quantity' => 'nullable|integer|min:0',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,webp,gif|max:5120',
-            'primary_image_index' => 'nullable|integer',
         ]);
 
         $product = Product::create([
@@ -95,11 +94,10 @@ class EcomProductController extends Controller
 
         // Upload and assign multiple images
         if ($request->hasFile('images')) {
-            $primaryIndex = (int) $request->input('primary_image_index', 0);
             foreach ($request->file('images') as $index => $file) {
                 $path = $file->store('products', 'public');
                 $imagePath = 'storage/' . $path;
-                $isPrimary = ($index === $primaryIndex);
+                $isPrimary = ($index === 0);
 
                 ProductImage::create([
                     'product_id' => $product->id,
@@ -161,9 +159,7 @@ class EcomProductController extends Controller
         // Delete requested images
         if ($request->has('delete_images')) {
             $deleteIds = (array) $request->input('delete_images');
-            $imagesToDelete = ProductImage::where('product_id', $product->id)->whereIn('delete_images', $deleteIds)->orWhere(function($q) use ($deleteIds, $product) {
-                $q->where('product_id', $product->id)->whereIn('id', $deleteIds);
-            })->get();
+            $imagesToDelete = ProductImage::where('product_id', $product->id)->whereIn('id', $deleteIds)->get();
             foreach ($imagesToDelete as $delImg) {
                 if ($delImg->image_path && str_starts_with($delImg->image_path, 'storage/')) {
                     Storage::disk('public')->delete(str_replace('storage/', '', $delImg->image_path));
@@ -174,6 +170,13 @@ class EcomProductController extends Controller
 
         // Add newly uploaded images
         if ($request->hasFile('images')) {
+            if ($product->image && !$product->images()->where('image_path', $product->image)->exists()) {
+                $product->images()->create([
+                    'image_path' => $product->image,
+                    'is_primary' => !$product->images()->where('is_primary', true)->exists(),
+                    'sort_order' => 0,
+                ]);
+            }
             $lastSort = (int) ProductImage::where('product_id', $product->id)->max('sort_order');
             foreach ($request->file('images') as $i => $file) {
                 $path = $file->store('products', 'public');
@@ -254,7 +257,11 @@ class EcomProductController extends Controller
         }
 
         if (request()->ajax() || request()->wantsJson()) {
-            return response()->json(['success' => true, 'message' => 'Image removed successfully.']);
+            return response()->json([
+                'success' => true,
+                'message' => 'Image removed successfully.',
+                'primary_image_id' => $product->images()->where('is_primary', true)->value('id'),
+            ]);
         }
 
         return back()->with('success', 'Image removed successfully.');

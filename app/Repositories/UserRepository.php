@@ -80,7 +80,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function datatables(array $params)
     {
-        $query = $this->model->query();
+        $query = $this->model->query()->with(['roles']);
 
         if (isset($params['keyword'])) {
             $keyword = $params['keyword'];
@@ -101,7 +101,7 @@ class UserRepository implements UserRepositoryInterface
 
         $query->orderByMultipleColumns(['id'], 'desc');
 
-        return $query->get();
+        return $query;
     }
 
     public function filterFrontEnd(array $filters = [])

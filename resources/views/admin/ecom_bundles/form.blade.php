@@ -95,7 +95,7 @@
                 if (rows.length > 1) {
                     e.target.closest('.bundle-item-row').remove();
                 } else {
-                    alert('A bundle must have at least one product.');
+                    AdminUI.toast('A bundle must have at least one product.', 'error');
                 }
             }
         });

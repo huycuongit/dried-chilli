@@ -13,6 +13,7 @@
 <!-- Icons -->
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/fontawesome.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/tabler-icons.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/lucide-admin.css') }}?v=1" />
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/flag-icons.css') }}" />
 
 <!-- Core CSS -->
@@ -27,13 +28,17 @@
 
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/typeahead-js/typeahead.css') }}" />
+@if (request()->routeIs('admin.dashboard.*'))
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/apex-charts/apex-charts.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/swiper/swiper.css') }}" />
+@endif
+@if (request()->routeIs('admin.users.*', 'admin.roles.*', 'admin.news.index', 'admin.projects.index', 'admin.services.index', 'admin.contacts.index', 'admin.ecom_orders.index', 'admin.ecom_products.index', 'admin.ecom_customers.index', 'admin.ecom_inventory.index', 'admin.ecom_coupons.index', 'admin.ecom_bundles.index', 'admin.dashboard.*'))
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
 <link rel="stylesheet"
     href="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
 <link rel="stylesheet"
     href="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
+@endif
 
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/toastr/toastr.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/animate-css/animate.css') }}" />

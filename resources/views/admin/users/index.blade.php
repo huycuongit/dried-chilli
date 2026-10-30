@@ -528,7 +528,7 @@
                         return meta.row + 1;
                     },
                     searchable: false,
-                    orderable: true
+                    orderable: false
                 },
                 {
                     "data": "name",
@@ -541,7 +541,7 @@
                     }
                 },
                 {
-                    "data": "roles"
+                    "data": "roles", orderable: false, searchable: false
                 },
                 {
                     "data": "active",
@@ -566,6 +566,7 @@
                 },
                 {
                     data: 'action',
+                    orderable: false, searchable: false,
                     render: function(data, type, full, meta) {
                         var _actionStart = '<div class="d-flex align-items-center">';
 

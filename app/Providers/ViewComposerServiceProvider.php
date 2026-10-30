@@ -28,6 +28,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
+            if ($view->getName() === 'errors.upload-too-large') return;
             $systemSettings = app(SystemSettings::class)->all();
 
             // User permistion

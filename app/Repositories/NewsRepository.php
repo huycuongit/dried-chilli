@@ -133,7 +133,7 @@ class NewsRepository implements NewsRepositoryInterface
 
     public function datatables(array $params)
     {
-        $query = $this->model->query();
+        $query = $this->model->query()->with(['userCreated', 'userUpdated']);
 
         // $query->with([
         //     'category',
@@ -147,17 +147,17 @@ class NewsRepository implements NewsRepositoryInterface
             });
         }
 
-        if (isset($params['created_at'])) {
+        if (!empty($params['created_at'])) {
             $createdAt = Carbon::parse($params['created_at'])->format('Y-m-d');
             $query->whereDate('created_at', $createdAt);
         }
 
-        if (isset($params['active'])) {
+        if (isset($params['active']) && $params['active'] !== '') {
             $active = $params['active'];
             $query->where('active', $active);
         }
 
-        if (isset($params['created_at'])) {
+        if (!empty($params['created_at'])) {
             $createdAt = Carbon::parse($params['created_at'])->format('Y-m-d');
             $query->whereDate('created_at', $createdAt);
         }
@@ -172,7 +172,7 @@ class NewsRepository implements NewsRepositoryInterface
 
         $query->orderByMultipleColumns(['id'], 'desc');
 
-        return $query->get();
+        return $query;
     }
 
     public function filterFrontEnd(array $filters = [])

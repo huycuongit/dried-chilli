@@ -128,33 +128,33 @@
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <div>
                                 <label class="form-label mb-0 fw-bold fs-6">
-                                    <i class="ti ti-photo me-1 text-primary"></i> Product Image Gallery (Nhiều hình ảnh)
+                                    <i class="ti ti-photo me-1 text-primary"></i> Product Image Gallery
                                 </label>
-                                <p class="text-muted small mb-0">Tải lên một hoặc nhiều hình ảnh cho sản phẩm. Bạn có thể chọn ảnh chính (Main Image) và xóa ảnh không cần thiết.</p>
+                                <p class="text-muted small mb-0">Upload one or more images. Choose a primary image and remove images you no longer need.</p>
                             </div>
                             <button type="button" class="btn btn-sm btn-outline-primary" onclick="document.getElementById('product_images').click()">
-                                <i class="ti ti-upload me-1"></i> Chọn thêm ảnh
+                                <i class="ti ti-upload me-1"></i> Add images
                             </button>
                         </div>
 
                         <!-- Dropzone Area -->
                         <div class="image-dropzone-box" id="dropzoneBox" onclick="document.getElementById('product_images').click()">
                             <i class="ti ti-cloud-upload text-primary" style="font-size: 2.4rem;"></i>
-                            <h6 class="mt-2 mb-1 fw-bold">Kéo thả hoặc bấm vào đây để chọn ảnh</h6>
-                            <p class="text-muted small mb-0">Hỗ trợ JPG, PNG, WEBP, GIF (tối đa 5MB mỗi ảnh). Giữ phím Ctrl hoặc Shift để chọn nhiều ảnh cùng lúc.</p>
-                            <input type="file" id="product_images" name="images[]" multiple accept="image/*" class="d-none" onchange="previewNewImages(this)">
+                            <h6 class="mt-2 mb-1 fw-bold">Drag and drop images here, or click to select</h6>
+                            <p class="text-muted small mb-0">JPG, PNG, WEBP or GIF, up to {{ rtrim(rtrim(number_format(\App\Support\UploadLimits::imageBytes() / 1048576, 2), '0'), '.') }} MB per image. You can select multiple images.</p>
+                            <input type="file" id="product_images" name="images[]" multiple accept="image/*" class="d-none" onchange="addImages(this.files)" onclick="event.stopPropagation()">
                         </div>
 
                         <!-- New Selected Images Preview (Before Upload) -->
                         <div id="newImagesContainer" class="mt-3 d-none">
-                            <h6 class="small fw-bold text-primary mb-2"><i class="ti ti-clock me-1"></i> Ảnh mới chuẩn bị tải lên:</h6>
+                            <h6 class="small fw-bold text-primary mb-2"><i class="ti ti-clock me-1"></i> Images ready to upload:</h6>
                             <div class="row g-3" id="newImagesGrid"></div>
                         </div>
 
                         <!-- Existing Images Gallery -->
                         @if($data->id && ($data->images->count() > 0 || !empty($data->image)))
                             <div class="mt-4" id="existingImagesSection">
-                                <h6 class="small fw-bold text-dark mb-2"><i class="ti ti-library-photo me-1"></i> Thư viện ảnh hiện tại của sản phẩm:</h6>
+                                <h6 class="small fw-bold text-dark mb-2"><i class="ti ti-library-photo me-1"></i> Current product images:</h6>
                                 <div class="row g-3" id="existingImagesGrid">
                                     @php
                                         $primaryImgId = optional($data->images->where('is_primary', true)->first())->id;
@@ -167,23 +167,25 @@
                                         <div class="col-6 col-sm-4 col-md-3 col-lg-2 image-card-wrapper" id="img-card-{{ $img->id }}">
                                             <div class="gallery-preview-card {{ $isMain ? 'border-primary' : '' }}">
                                                 @if($isMain)
-                                                    <span class="primary-badge" id="badge-{{ $img->id }}"><i class="ti ti-star me-1"></i>Ảnh chính</span>
+                                                    <span class="primary-badge" id="badge-{{ $img->id }}"><i class="ti ti-star me-1"></i>Primary</span>
                                                 @else
-                                                    <span class="primary-badge d-none" id="badge-{{ $img->id }}"><i class="ti ti-star me-1"></i>Ảnh chính</span>
+                                                    <span class="primary-badge d-none" id="badge-{{ $img->id }}"><i class="ti ti-star me-1"></i>Primary</span>
                                                 @endif
                                                 <img src="{{ $img->url }}" class="gallery-preview-img" alt="Product Image">
                                                 <div class="gallery-actions">
                                                     <button type="button" 
                                                             class="btn btn-xs {{ $isMain ? 'btn-primary' : 'btn-outline-primary' }} w-100 btn-set-primary" 
                                                             id="btn-primary-{{ $img->id }}"
-                                                            onclick="setPrimaryImage({{ $data->id }}, {{ $img->id }})"
-                                                            title="Đặt làm ảnh đại diện chính">
-                                                        <i class="ti ti-star me-1"></i>{{ $isMain ? 'Chính' : 'Đặt làm chính' }}
+                                                            onclick="setPrimaryImage({{ $img->id }}, this.dataset.url)"
+                                                            data-url="{{ route('admin.ecom_products.images.primary', [$data->id, $img->id]) }}"
+                                                            title="Set as primary image">
+                                                        <i class="ti ti-star me-1"></i>{{ $isMain ? 'Primary' : 'Set as primary' }}
                                                     </button>
                                                     <button type="button" 
                                                             class="btn btn-xs btn-outline-danger" 
-                                                            onclick="deleteExistingImage({{ $data->id }}, {{ $img->id }})"
-                                                            title="Xóa ảnh này">
+                                                            onclick="deleteExistingImage({{ $img->id }}, this.dataset.url)"
+                                                            data-url="{{ route('admin.ecom_products.images.destroy', [$data->id, $img->id]) }}"
+                                                            title="Delete this image">
                                                         <i class="ti ti-trash"></i>
                                                     </button>
                                                 </div>
@@ -193,10 +195,10 @@
                                         @if(!empty($data->image))
                                             <div class="col-6 col-sm-4 col-md-3 col-lg-2">
                                                 <div class="gallery-preview-card border-primary">
-                                                    <span class="primary-badge"><i class="ti ti-star me-1"></i>Ảnh chính</span>
+                                                    <span class="primary-badge"><i class="ti ti-star me-1"></i>Primary</span>
                                                     <img src="{{ $data->image_url }}" class="gallery-preview-img" alt="{{ $data->name }}">
                                                     <div class="p-2 text-center bg-light">
-                                                        <small class="text-muted">Ảnh cover hiện tại</small>
+                                                        <small class="text-muted">Current cover image</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -240,133 +242,120 @@
 
 @push('js')
 <script>
-    // Drag and drop handlers
     const dropzone = document.getElementById('dropzoneBox');
     const fileInput = document.getElementById('product_images');
+    const maxImageBytes = @json(\App\Support\UploadLimits::imageBytes());
+    const maxPostBytes = @json(\App\Support\UploadLimits::bytes('post_max_size'));
+    const maxFiles = @json((int) ini_get('max_file_uploads'));
+    let selectedImages = [];
 
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropzone.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropzone.classList.add('dragover');
-        }, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-        dropzone.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropzone.classList.remove('dragover');
-        }, false);
-    });
-
-    dropzone.addEventListener('drop', (e) => {
-        const dt = e.dataTransfer;
-        const files = dt.files;
-        fileInput.files = files;
-        previewNewImages(fileInput);
-    }, false);
-
-    // Client-side preview of selected new images
-    function previewNewImages(input) {
-        const container = document.getElementById('newImagesContainer');
+    function syncImages() {
+        const transfer = new DataTransfer();
+        selectedImages.forEach(file => transfer.items.add(file));
+        fileInput.files = transfer.files;
         const grid = document.getElementById('newImagesGrid');
-        grid.innerHTML = '';
+        grid.replaceChildren();
+        document.getElementById('newImagesContainer').classList.toggle('d-none', selectedImages.length === 0);
+        selectedImages.forEach((file, index) => {
+            const column = document.createElement('div');
+            column.className = 'col-6 col-sm-4 col-md-3 col-lg-2';
+            const card = document.createElement('div');
+            card.className = 'gallery-preview-card';
+            const image = document.createElement('img');
+            image.className = 'gallery-preview-img';
+            image.alt = 'New image preview';
+            const imageUrl = URL.createObjectURL(file);
+            image.src = imageUrl;
+            image.onload = () => URL.revokeObjectURL(imageUrl);
+            image.onerror = () => URL.revokeObjectURL(imageUrl);
+            const actions = document.createElement('div');
+            actions.className = 'gallery-actions';
+            const name = document.createElement('small');
+            name.className = 'text-truncate';
+            name.textContent = file.name;
+            name.title = file.name;
+            const remove = document.createElement('button');
+            remove.type = 'button';
+            remove.className = 'btn btn-xs btn-outline-danger';
+            remove.textContent = 'Remove';
+            remove.setAttribute('aria-label', 'Remove ' + file.name);
+            remove.addEventListener('click', () => { selectedImages.splice(index, 1); syncImages(); });
+            actions.append(name, remove);
+            card.append(image, actions);
+            column.append(card);
+            grid.append(column);
+        });
+    }
 
-        if (input.files && input.files.length > 0) {
-            container.classList.remove('d-none');
-            Array.from(input.files).forEach((file, index) => {
-                if (!file.type.startsWith('image/')) return;
-
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const col = document.createElement('div');
-                    col.className = 'col-6 col-sm-4 col-md-3 col-lg-2';
-                    col.innerHTML = `
-                        <div class="gallery-preview-card">
-                            <span class="badge bg-secondary position-absolute top-0 start-0 m-2">Mới #${index + 1}</span>
-                            <img src="${e.target.result}" class="gallery-preview-img" alt="Preview">
-                            <div class="p-2 text-center bg-light">
-                                <small class="text-truncate d-block" title="${file.name}">${file.name}</small>
-                            </div>
-                        </div>
-                    `;
-                    grid.appendChild(col);
-                };
-                reader.readAsDataURL(file);
-            });
-        } else {
-            container.classList.add('d-none');
+    function addImages(files) {
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+        const incoming = Array.from(files);
+        if (incoming.some(file => !allowedTypes.includes(file.type) || file.size > maxImageBytes)) {
+            AdminUI.toast(`Choose JPG, PNG, WEBP or GIF images no larger than ${(maxImageBytes / 1048576).toFixed(2)} MB each.`, 'error');
         }
+        const valid = incoming.filter(file => allowedTypes.includes(file.type) && file.size <= maxImageBytes);
+        if (maxFiles > 0 && selectedImages.length + valid.length > maxFiles) {
+            AdminUI.toast(`You can upload at most ${maxFiles} images at a time.`, 'error');
+        } else {
+            selectedImages.push(...valid);
+        }
+        syncImages();
     }
 
-    // Set existing image as primary via AJAX
-    function setPrimaryImage(productId, imageId) {
-        const url = `/admin/dried-chili/ecom-products/${productId}/images/${imageId}/primary`;
-        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    document.getElementById('productForm').addEventListener('submit', event => {
+        const fileBytes = selectedImages.reduce((total, file) => total + file.size, 0);
+        const formBytes = Array.from(new FormData(event.currentTarget).values())
+            .reduce((total, value) => total + (typeof value === 'string' ? new TextEncoder().encode(value).length : 0), 0);
+        if (maxPostBytes > 0 && fileBytes + formBytes + 65536 > maxPostBytes) {
+            event.preventDefault();
+            AdminUI.toast(`The selected images exceed this server's ${(maxPostBytes / 1048576).toFixed(1)} MB request limit. Remove some images and upload them in batches.`, 'error');
+        }
+    });
 
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': token,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                // Update UI state
-                document.getElementById('primary_image_id').value = imageId;
-                document.querySelectorAll('.primary-badge').forEach(b => b.classList.add('d-none'));
-                document.querySelectorAll('.btn-set-primary').forEach(btn => {
-                    btn.classList.remove('btn-primary');
-                    btn.classList.add('btn-outline-primary');
-                    btn.innerHTML = '<i class="ti ti-star me-1"></i>Đặt làm chính';
-                });
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(name => {
+        dropzone.addEventListener(name, event => {
+            event.preventDefault();
+            event.stopPropagation();
+            dropzone.classList.toggle('dragover', name === 'dragenter' || name === 'dragover');
+            if (name === 'drop') addImages(event.dataTransfer.files);
+        });
+    });
 
-                const targetBadge = document.getElementById(`badge-${imageId}`);
-                if (targetBadge) targetBadge.classList.remove('d-none');
-
-                const targetBtn = document.getElementById(`btn-primary-${imageId}`);
-                if (targetBtn) {
-                    targetBtn.classList.remove('btn-outline-primary');
-                    targetBtn.classList.add('btn-primary');
-                    targetBtn.innerHTML = '<i class="ti ti-star me-1"></i>Chính';
-                }
-            }
-        })
-        .catch(err => console.error('Error setting primary image:', err));
+    async function imageRequest(url, method) {
+        const response = await fetch(url, { method, headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+        }});
+        if (!response.ok) throw new Error('The image operation failed. Please try again.');
+        return response.json();
     }
 
-    // Delete existing image via AJAX
-    function deleteExistingImage(productId, imageId) {
-        if (!confirm('Bạn có chắc chắn muốn xóa ảnh này khỏi sản phẩm?')) return;
+    function updatePrimary(primaryId) {
+        document.getElementById('primary_image_id').value = primaryId || '';
+        document.querySelectorAll('.btn-set-primary').forEach(button => {
+            const isPrimary = button.id === `btn-primary-${primaryId}`;
+            button.classList.toggle('btn-primary', isPrimary);
+            button.classList.toggle('btn-outline-primary', !isPrimary);
+            button.textContent = isPrimary ? 'Primary' : 'Set as primary';
+            button.closest('.gallery-preview-card').classList.toggle('border-primary', isPrimary);
+        });
+        document.querySelectorAll('[id^="badge-"]').forEach(badge => {
+            badge.classList.toggle('d-none', badge.id !== `badge-${primaryId}`);
+        });
+    }
 
-        const url = `/admin/dried-chili/ecom-products/${productId}/images/${imageId}`;
-        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    async function setPrimaryImage(imageId, url) {
+        try { await imageRequest(url, 'POST'); updatePrimary(imageId); }
+        catch (error) { AdminUI.toast(error.message, 'error'); }
+    }
 
-        fetch(url, {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': token,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                const card = document.getElementById(`img-card-${imageId}`);
-                if (card) {
-                    card.style.transition = 'all 0.3s ease';
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.8)';
-                    setTimeout(() => card.remove(), 300);
-                }
-            }
-        })
-        .catch(err => console.error('Error deleting image:', err));
+    async function deleteExistingImage(imageId, url) {
+        if (!await AdminUI.confirm('Remove this image from the product?')) return;
+        try {
+            const result = await imageRequest(url, 'DELETE');
+            document.getElementById(`img-card-${imageId}`).remove();
+            updatePrimary(result.primary_image_id);
+        } catch (error) { AdminUI.toast(error.message, 'error'); }
     }
 </script>
 @endpush

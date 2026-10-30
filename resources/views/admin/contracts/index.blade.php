@@ -43,7 +43,7 @@
                                     <a class="btn btn-sm btn-label-warning" href="{{ route('admin.contracts.edit', $contract->id) }}"><i class="ti ti-edit"></i></a>
                                 @endif
                                 @if (!$contract->isSigned() && userHasPermission('admin.contracts.destroy'))
-                                    <form method="POST" action="{{ route('admin.contracts.destroy', $contract->id) }}" onsubmit="return confirm('Delete hợp đồng {{ $contract->contract_number }}?')">@csrf @method('DELETE')<button class="btn btn-sm btn-label-danger" title="Delete hợp đồng"><i class="ti ti-trash"></i></button></form>
+                                    <form method="POST" action="{{ route('admin.contracts.destroy', $contract->id) }}" data-confirm="Delete contract {{ $contract->contract_number }}?">@csrf @method('DELETE')<button class="btn btn-sm btn-label-danger" title="Delete hợp đồng"><i class="ti ti-trash"></i></button></form>
                                 @endif
                             </div></td>
                         </tr>
