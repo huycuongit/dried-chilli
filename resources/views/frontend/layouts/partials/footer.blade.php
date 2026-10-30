@@ -3,7 +3,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <a href="{{ route('home') }}" class="footer-logo-wrap" aria-label="Dried Chili Home">
-                    <img src="{{ asset('images/logo_dried.webp') }}" alt="Dried Chili Logo" class="footer-logo" width="150" height="61" loading="lazy">
+                    <img src="{{ asset('images/logo_dried-360.webp') }}" alt="Dried Chili Logo" class="footer-logo" width="150" height="61" loading="lazy">
                 </a>
                 <p>Bringing authentic Asian chili craftsmanship directly to your kitchen. Handcrafted in small batches with premium sun-dried peppers, aromatic crispy garlic, and shipped fresh to heat lovers globally.</p>
             </div>

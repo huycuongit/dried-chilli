@@ -34,9 +34,12 @@ class Product extends Model
     public function getImageUrlAttribute(): string
     {
         if (!empty($this->image)) {
+            if ($this->image === 'images/product_hero.png') {
+                return asset('images/product_hero-320.webp');
+            }
             return str_starts_with($this->image, 'http') ? $this->image : asset($this->image);
         }
-        return asset('images/product_hero.png');
+        return asset('images/product_hero-320.webp');
     }
 
     public function category()

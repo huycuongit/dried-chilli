@@ -15,7 +15,7 @@
         <!-- Center Section: Brand Logo -->
         <div class="header-center brand-logo-wrapper">
             <a class="brand-logo" href="{{ page_route('home') }}" aria-label="Dried Chili Home">
-                <img src="{{ asset('images/logo_dried.webp') }}" alt="Dried Chili Logo" class="mobile-logo-img" width="120" height="38">
+                <img src="{{ asset('images/logo_dried-360.webp') }}" alt="Dried Chili Logo" class="mobile-logo-img" width="120" height="38">
             </a>
         </div>
         
@@ -64,7 +64,7 @@
 <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
     <div class="mobile-nav-header">
         <a class="brand-logo" href="{{ page_route('home') }}" aria-label="Dried Chili Home">
-            <img src="{{ asset('images/logo_dried.webp') }}" alt="Dried Chili Logo" width="120" height="38" style="height: 38px; width: auto; object-fit: contain;">
+            <img src="{{ asset('images/logo_dried-360.webp') }}" alt="Dried Chili Logo" width="120" height="38" style="height: 38px; width: auto; object-fit: contain;">
         </a>
         <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">

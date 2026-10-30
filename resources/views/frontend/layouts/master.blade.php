@@ -87,19 +87,19 @@
         <a href="{{ page_route('home') }}" class="bottom-nav-item {{ request()->routeIs('home') ? 'active' : '' }}"
             aria-label="Home">
             <div class="bottom-nav-icon">
-                <i data-lucide="home"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
             </div>
             <span>Home</span>
         </a>
         <a href="/shop" class="bottom-nav-item {{ request()->is('shop') ? 'active' : '' }}" aria-label="Shop">
             <div class="bottom-nav-icon">
-                <i data-lucide="shopping-bag"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
             </div>
             <span>Shop</span>
         </a>
         <a href="/cart" class="bottom-nav-item {{ request()->is('cart') ? 'active' : '' }}" aria-label="Cart">
             <div class="bottom-nav-icon bottom-nav-cart-wrap">
-                <i data-lucide="shopping-cart"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M2 2h2l2.5 12.4a2 2 0 0 0 2 1.6H19a2 2 0 0 0 2-1.6L22 7H5"/></svg>
                 <span class="bottom-nav-cart-badge cart-count">0</span>
             </div>
             <span>Cart</span>
@@ -309,11 +309,6 @@
     <script src="{{ asset('js/cart.js') }}"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize Lucide Icons
-        if (window.lucide) {
-            lucide.createIcons();
-        }
-
         // Scroll reveal
         const reveals = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {

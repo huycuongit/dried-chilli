@@ -62,6 +62,16 @@
 }
 </script>
 @endsection
+@php
+    $pageLayoutGroups = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
+    $pageLayoutFields = collect($pageLayoutGroups)->collapse()->all();
+    $pageLayoutValue = static fn (string $key) => \App\Support\AboutPageContent::value($key, $pageLayoutFields, $systemSettings);
+    $pageLayoutLink = static function (string $key) use ($pageLayoutValue) {
+        $link = trim($pageLayoutValue($key));
+        return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
+    };
+@endphp
+
 @section('full-content')
 <main class="page-content detail-bg">
     
@@ -71,9 +81,9 @@
             <div class="product-gallery">
                 <div class="main-image">
                     @if($product->sale_price)
-                        <div class="product-badge sale">SALE</div>
+                        <div class="product-badge sale">{{ $pageLayoutValue('page_layout_product_product_details_01') }}</div>
                     @elseif($product->is_best_seller)
-                        <div class="product-badge best-seller">BEST SELLER</div>
+                        <div class="product-badge best-seller">{{ $pageLayoutValue('page_layout_product_product_details_02') }}</div>
                     @endif
                     <img src="{{ $product->gallery_images[0] ?? $product->image_url }}" alt="{{ $product->name }}" id="featured-img">
                 </div>
@@ -111,12 +121,12 @@
                 @if($product->inventory && $product->inventory->quantity > 0)
                     <span class="stock-badge in-stock">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                        In Stock
+                        {{ $pageLayoutValue('page_layout_product_product_details_03') }}
                     </span>
                 @else
                     <span class="stock-badge out-of-stock">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-                        Out of stock
+                        {{ $pageLayoutValue('page_layout_product_product_details_04') }}
                     </span>
                 @endif
             </div>
@@ -137,7 +147,7 @@
                     data-price="{{ $product->sale_price ?? $product->price }}"
                     @if(!$product->inventory || $product->inventory->quantity <= 0) disabled style="opacity: 0.5; cursor: not-allowed; pointer-events: none;" @endif>
                     <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                    {{ (!$product->inventory || $product->inventory->quantity <= 0) ? 'OUT OF STOCK' : 'ADD TO CART' }}
+                    {{ (!$product->inventory || $product->inventory->quantity <= 0) ? $pageLayoutValue('page_layout_product_unavailable') : $pageLayoutValue('page_layout_product_add_to_cart') }}
                 </button>
             </div>
 
@@ -145,29 +155,29 @@
             <div class="product-accordion">
                 <details class="accordion-item" open>
                     <summary class="accordion-header">
-                        <span>INGREDIENTS</span>
+                        <span>{{ $pageLayoutValue('page_layout_product_product_details_05') }}</span>
                         <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                     </summary>
                     <div class="accordion-content">
-                        <p>100% Natural, non-GMO spices. No artificial colors or preservatives. Made in a facility that also processes peanuts.</p>
+                        <p>{{ $pageLayoutValue('page_layout_product_product_details_06') }}</p>
                     </div>
                 </details>
                 <details class="accordion-item">
                     <summary class="accordion-header">
-                        <span>HOW TO USE</span>
+                        <span>{{ $pageLayoutValue('page_layout_product_product_details_07') }}</span>
                         <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                     </summary>
                     <div class="accordion-content">
-                        <p>Sprinkle generously on meat, poultry, or vegetables before cooking. Can also be used as a finishing salt.</p>
+                        <p>{{ $pageLayoutValue('page_layout_product_product_details_08') }}</p>
                     </div>
                 </details>
                 <details class="accordion-item">
                     <summary class="accordion-header">
-                        <span>SHIPPING & RETURNS</span>
+                        <span>{{ $pageLayoutValue('page_layout_product_product_details_09') }}</span>
                         <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                     </summary>
                     <div class="accordion-content">
-                        <p>Free standard shipping on orders over $50. Returns accepted within 30 days of purchase for unopened items.</p>
+                        <p>{{ $pageLayoutValue('page_layout_product_shipping_text') }}</p>
                     </div>
                 </details>
             </div>
@@ -177,12 +187,12 @@
     <!-- Related Products -->
     @if(isset($relatedProducts) && $relatedProducts->count() > 0)
     <div class="container related-container reveal">
-        <h2 class="section-heading">YOU MIGHT ALSO LIKE</h2>
+        <h2 class="section-heading">{{ $pageLayoutValue('page_layout_product_product_details_10') }}</h2>
         <div class="yum-grid">
             @foreach($relatedProducts as $related)
             <div class="product-card">
                 <a href="{{ route('page.product', $related->slug) }}" class="product-img-wrapper">
-                    <img src="{{ asset('images/product_hero.png') }}" alt="{{ $related->name }}">
+                    <img src="{{ $related->image_url }}" alt="{{ $related->name }}" loading="lazy">
                 </a>
                 <div class="product-details">
                     <div class="product-vendor">{{ $related->category->name ?? 'Dried Chili' }}</div>
@@ -199,15 +209,15 @@
                         @if($related->inventory && $related->inventory->quantity > 0)
                             <span class="stock-badge in-stock">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                                In Stock
+                                {{ $pageLayoutValue('page_layout_product_product_details_11') }}
                             </span>
                         @else
-                            <span class="stock-badge out-of-stock">Out of stock</span>
+                            <span class="stock-badge out-of-stock">{{ $pageLayoutValue('page_layout_product_product_details_12') }}</span>
                         @endif
                     </div>
                     <button class="add-to-cart-btn" data-product-id="{{ $related->id }}" data-name="{{ $related->name }}" data-price="{{ $related->sale_price ?? $related->price }}">
                         <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                        Add to Cart
+                        {{ $pageLayoutValue('page_layout_product_product_details_13') }}
                     </button>
                 </div>
             </div>
@@ -215,6 +225,7 @@
         </div>
     </div>
     @endif
+@include('frontend.layouts.partials.custom-page-sections', ['customPageName' => 'Product Details'])
 </main>
 
 <style>

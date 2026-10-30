@@ -5,6 +5,16 @@
     <meta name="description" content="Find clear, friendly answers to common questions about Dried Chili spices, heat levels, allergens, shipping, Australian Consumer Law guarantees, and GST.">
 @endsection
 
+@php
+    $pageLayoutGroups = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
+    $pageLayoutFields = collect($pageLayoutGroups)->collapse()->all();
+    $pageLayoutValue = static fn (string $key) => \App\Support\AboutPageContent::value($key, $pageLayoutFields, $systemSettings);
+    $pageLayoutLink = static function (string $key) use ($pageLayoutValue) {
+        $link = trim($pageLayoutValue($key));
+        return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
+    };
+@endphp
+
 @section('full-content')
 @php
     $sys = app(\App\Support\SystemSettings::class);
@@ -24,6 +34,7 @@
 
 <main class="page-content legal-page bg-cream">
     <!-- Hero Section -->
+    @if($pageLayoutValue('page_layout_faq_show_hero') === '1')
     <section class="about-hero-section legal-hero">
         <div class="container about-hero-container">
             <div class="about-hero-badge">
@@ -74,19 +85,21 @@
             </div>
         </div>
     </section>
+    @endif
     
     <!-- FAQ Accordion Section -->
+    @if($pageLayoutValue('page_layout_faq_show_content') === '1')
     <section class="legal-document">
         <div class="container">
             <div class="document-wrapper shadow-lg">
                 <!-- Category Highlights Bar -->
                 <div class="faq-categories">
-                    <button type="button" class="faq-cat-btn active" data-filter="all">All Questions</button>
-                    <button type="button" class="faq-cat-btn" data-filter="compliance">Ordering & Consumer Law</button>
-                    <button type="button" class="faq-cat-btn" data-filter="product">Food Standards & Allergens</button>
-                    <button type="button" class="faq-cat-btn" data-filter="shipping">Shipping & Refunds</button>
-                    <button type="button" class="faq-cat-btn" data-filter="privacy">Privacy & Email</button>
-                    <button type="button" class="faq-cat-btn" data-filter="storage">Storage & Freshness</button>
+                    <button type="button" class="faq-cat-btn active" data-filter="all">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_01') }}</button>
+                    <button type="button" class="faq-cat-btn" data-filter="compliance">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_02') }}</button>
+                    <button type="button" class="faq-cat-btn" data-filter="product">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_03') }}</button>
+                    <button type="button" class="faq-cat-btn" data-filter="shipping">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_04') }}</button>
+                    <button type="button" class="faq-cat-btn" data-filter="privacy">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_05') }}</button>
+                    <button type="button" class="faq-cat-btn" data-filter="storage">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_06') }}</button>
                 </div>
 
                 <!-- FAQ List -->
@@ -122,135 +135,135 @@
                         <!-- 1. Consumer Law & Pricing (ACL, GST, Unit Pricing) -->
                         <details class="faq-accordion-item" data-category="compliance" open>
                             <summary class="faq-header">
-                                <span class="faq-question">What guarantees protect my purchase under the Australian Consumer Law?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_07') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>As an Australian shopper, you are fully protected by the <strong>Australian Consumer Law</strong>. All our spices and chili blends come with automatic guarantees that cannot be excluded. You are entitled to products that are safe, of premium culinary quality, and accurately described. If your order ever arrives damaged, leaking, unsealed, or not as described, you have the right to an immediate replacement or a full refund.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_01') }}</p>
                             </div>
                         </details>
 
                         <details class="faq-accordion-item" data-category="compliance">
                             <summary class="faq-header">
-                                <span class="faq-question">Are all prices in Australian Dollars (AUD) and do they include GST?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_11') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>Yes! All prices across our Australian store are displayed in Australian Dollars (AUD) with 10% Goods and Services Tax (GST) already included. What you see on our product pages is exactly what you pay at checkout with zero surprise surcharges. An official Australian Tax Invoice showing our ABN and the GST amount is emailed automatically with every order.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_02') }}</p>
                             </div>
                         </details>
 
                         <details class="faq-accordion-item" data-category="compliance">
                             <summary class="faq-header">
-                                <span class="faq-question">How does Unit Pricing work on your store?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_13') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>To help you easily compare value across different jar sizes and blends, we follow the Australian <strong>Unit Pricing Code</strong>. Every product listing displays both the total package price and the standard unit price (such as price per 100 grams), alongside certified metric net weights (strictly excluding the glass jar weight).</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_03') }}</p>
                             </div>
                         </details>
 
                         <!-- 2. Food Standards & Allergens (FSANZ, PEAL, Origin) -->
                         <details class="faq-accordion-item" data-category="product">
                             <summary class="faq-header">
-                                <span class="faq-question">Are your chili products allergen-safe, vegan, or gluten-free?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_17') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>We take food safety and allergen transparency very seriously under the <strong>Australia New Zealand Food Standards Code</strong>. All ingredients and allergens are clearly declared in plain English on both our website and product labels. For example, our signature <strong>Shrimp Chilli</strong> clearly highlights dried shrimp (crustacea) and sesame. Meanwhile, our pure chili flakes and whole dried pods are 100% plant-based, gluten-free, and prepared with zero artificial colors or preservatives.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_04') }}</p>
                             </div>
                         </details>
 
                         <details class="faq-accordion-item" data-category="product">
                             <summary class="faq-header">
-                                <span class="faq-question">Where are your ingredients sourced and grown?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_23') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>In accordance with Australia's <strong>Country of Origin Food Labelling</strong> rules, every jar and pouch displays clear origin information. For our handcrafted blends combining specialty imported peppers (such as Ghost Pepper, Bird's Eye, and Habanero) with fresh Australian garlic, shallots, and cold-pressed Australian oils, our packaging openly shows the percentage of Australian ingredients.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_05') }}</p>
                             </div>
                         </details>
 
                         <details class="faq-accordion-item" data-category="product">
                             <summary class="faq-header">
-                                <span class="faq-question">How spicy are Dried Chili blends, and how is heat measured?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_27') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>Our collection spans from mild, fruity, and aromatic (such as Ancho chili at 1,000–2,000 Scoville Heat Units) to scorching heat (like our Ghost Pepper and Carolina Reaper blends exceeding 800,000 SHU). Every product displays an easy-to-read 1-to-5 flame rating and Scoville estimate so you know exactly what level of heat you are getting into.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_06') }}</p>
                             </div>
                         </details>
 
                         <!-- 3. Shipping & Refunds (ACL Remedies, Delivery Times) -->
                         <details class="faq-accordion-item" data-category="shipping">
                             <summary class="faq-header">
-                                <span class="faq-question">What are your shipping times and delivery rates across Australia?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_29') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>Orders placed Monday to Friday before 2:00 PM AEST are packed and dispatched within 24 to 48 hours. Standard Australia Post delivery takes 3 to 5 business days for metro areas (4 to 7 for regional), and Express Priority arrives in 1 to 2 business days. We provide Free Standard Shipping on all Australian orders of $50.00 AUD or more ($4.99 AUD under $50, or $9.99 AUD for Express).</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_07') }}</p>
                             </div>
                         </details>
 
                         <details class="faq-accordion-item" data-category="shipping">
                             <summary class="faq-header">
-                                <span class="faq-question">Can I return an opened jar of chili if I change my mind?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_30') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>We offer a 30-day return policy on any unopened jar or spice pouch with the factory tamper seal intact for a full product refund. Under Australian food safety laws and state food hygiene regulations (such as the NSW Food Act), we cannot accept returns on jars once opened, unsealed, or tasted, due to health and safety risks. However, this hygiene rule never affects your statutory rights: if a jar arrives broken, damaged, or defective, we will gladly replace it or issue a full refund immediately.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_08') }}</p>
                             </div>
                         </details>
 
                         <details class="faq-accordion-item" data-category="shipping">
                             <summary class="faq-header">
-                                <span class="faq-question">What if a jar arrives cracked, leaking, or broken in the mail?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_32') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>You are completely protected by our damage replacement guarantee. For your safety, do not mail broken glass back to us. Simply take a quick photo of the damaged package and email it to <a href="mailto:support@driedchili.com">support@driedchili.com</a> with your order number. We will dispatch a brand-new replacement via express post right away or give you a full 100% refund.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_09') }}</p>
                             </div>
                         </details>
 
                         <!-- 4. Privacy & Email (Privacy Act 1988, Spam Act 2003) -->
                         <details class="faq-accordion-item" data-category="privacy">
                             <summary class="faq-header">
-                                <span class="faq-question">How is my personal information protected under the Privacy Act 1988?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_35') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>We respect your personal details under the <strong>Privacy Act 1988</strong> and the <strong>Australian Privacy Principles</strong>. We only collect the necessary information to deliver your orders and manage your account. We never sell, rent, or trade your personal data to advertisers. Online payments are processed through secure, bank-level encrypted checkout partners (Stripe and PayPal), so your card numbers are never stored on our website.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_10') }}</p>
                             </div>
                         </details>
 
                         <details class="faq-accordion-item" data-category="privacy">
                             <summary class="faq-header">
-                                <span class="faq-question">Will I receive spam emails, and how do I unsubscribe under the Spam Act 2003?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_41') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>We hate spam as much as you do. Under Australia's <strong>Spam Act 2003</strong>, we only send newsletters or special recipe discounts if you explicitly chose to opt in. Every marketing email includes a quick <strong>1-click Unsubscribe link</strong> at the bottom, and you can opt out instantly anytime at no cost.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_11') }}</p>
                             </div>
                         </details>
 
                         <!-- 5. Food Safety & Storage (FSANZ & State Food Acts) -->
                         <details class="faq-accordion-item" data-category="storage">
                             <summary class="faq-header">
-                                <span class="faq-question">How are your chili products prepared and kept food-safe?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_47') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>All our chili blends and sauces are produced in registered commercial food premises overseen by state food authorities and certified Food Safety Supervisors. We maintain strict hygiene protocols, routine temperature monitoring, and dedicated allergen separation to ensure every jar is clean, fresh, and safe.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_12') }}</p>
                             </div>
                         </details>
 
                         <details class="faq-accordion-item" data-category="storage">
                             <summary class="faq-header">
-                                <span class="faq-question">How should I store dried chilies to preserve peak aroma and shelf life?</span>
+                                <span class="faq-question">{{ $pageLayoutValue('page_layout_faq_questions_and_answers_49') }}</span>
                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                             </summary>
                             <div class="faq-content">
-                                <p>Store your chili jars tightly sealed in a cool, dark, and dry pantry away from direct sunlight, stovetop heat, and humidity. Always use a clean, dry spoon to avoid introducing moisture into chili crisp jars. Sealed jars have an optimal Best Before shelf life of up to 18 to 24 months from the production date printed on the base.</p>
+                                <p>{{ $pageLayoutValue('page_layout_faq_default_answer_13') }}</p>
                             </div>
                         </details>
                     @endif
@@ -259,27 +272,18 @@
             </div>
         </div>
     </section>
-</main>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect width="20" height="16" x="2" y="4" rx="2" />
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                            </svg>
-                            Contact Support
-                        </a>
-                        <a href="mailto:support@driedchili.com" class="help-btn outline">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                            </svg>
-                            Email Customer Care
-                        </a>
-                    </div>
-                </div>
-            </div>
+    @endif
+<section class="legal-document" aria-label="Customer support">
+    <div class="container"><div class="document-wrapper shadow-lg">
+        <h2>{{ $pageLayoutValue('page_layout_faq_support_title') }}</h2>
+        <p>{{ $pageLayoutValue('page_layout_faq_support_desc') }}</p>
+        <div class="d-flex" style="display:flex;flex-wrap:wrap;gap:1rem">
+            <a href="{{ $pageLayoutLink('page_layout_faq_support_contact_link') }}" class="help-btn">{{ $pageLayoutValue('page_layout_faq_support_contact_text') }}</a>
+            <a href="mailto:{{ $pageLayoutValue('page_layout_faq_support_email') }}" class="help-btn outline">{{ $pageLayoutValue('page_layout_faq_support_email_text') }}</a>
         </div>
-    </section>
+    </div></div>
+</section>
+@include('frontend.layouts.partials.custom-page-sections', ['customPageName' => 'FAQ'])
 </main>
 
 <style>

@@ -1,6 +1,16 @@
 @extends('frontend.layouts.master')
 @section('title', 'Exclusive Sale & Deals | Dried Chili')
 @section('meta_description', 'Discover limited-time promotions, bundle discounts, and special offers on premium dried chillies and shrimp seasonings.')
+@php
+    $pageLayoutGroups = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
+    $pageLayoutFields = collect($pageLayoutGroups)->collapse()->all();
+    $pageLayoutValue = static fn (string $key) => \App\Support\AboutPageContent::value($key, $pageLayoutFields, $systemSettings);
+    $pageLayoutLink = static function (string $key) use ($pageLayoutValue) {
+        $link = trim($pageLayoutValue($key));
+        return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
+    };
+@endphp
+
 @section('full-content')
 <main class="page-content shop-bg">
     
@@ -10,7 +20,7 @@
         <div class="sale-tier reveal" id="big-sale">
             @if($bigSaleBanner)
             <div class="sale-banner-wrapper" style="margin-bottom: 3rem; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.06); height: 650px;">
-                <img src="{{ str_starts_with($bigSaleBanner, 'http') ? $bigSaleBanner : asset('storage/' . $bigSaleBanner) }}" alt="{{ $bigSaleTitle }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+                <img src="{{ str_starts_with($bigSaleBanner, 'http') ? $bigSaleBanner : asset(str_starts_with(ltrim($bigSaleBanner, '/'), 'storage/') ? ltrim($bigSaleBanner, '/') : 'storage/' . ltrim($bigSaleBanner, '/')) }}" alt="{{ $bigSaleTitle }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
             </div>
             @endif
             
@@ -20,9 +30,9 @@
                     <div class="yum-card">
                         <div class="yum-card-top">
                             @if($product->is_best_seller)
-                                <div class="yum-badge badge-red">★ BEST SELLER ★</div>
+                                <div class="yum-badge badge-red">{{ $pageLayoutValue('page_layout_sale_sale_page_01') }}</div>
                             @else
-                                <div class="yum-badge badge-black">LIMITED OFFER</div>
+                                <div class="yum-badge badge-black">{{ $pageLayoutValue('page_layout_sale_sale_page_02') }}</div>
                             @endif
                             @if($product->price > $product->sale_price)
                                 <div class="discount-badge">-{{ round((($product->price - $product->sale_price) / $product->price) * 100) }}%</div>
@@ -40,12 +50,12 @@
                                     <span class="price-original">${{ number_format($product->price, 2) }}</span>
                                     <span class="yum-price">${{ number_format($product->sale_price, 2) }}</span>
                                 </div>
-                                <button class="yum-btn" data-product-id="{{ $product->id }}">ADD TO CART</button>
+                                <button class="yum-btn" data-product-id="{{ $product->id }}">{{ $pageLayoutValue('page_layout_sale_add_to_cart') }}</button>
                             </div>
                         </div>
                     </div>
                 @empty
-                    <p style="font-size: 1.5rem; color: var(--spice-text); text-align: center; grid-column: 1/-1;">No items in Big Sale.</p>
+                    <p style="font-size: 1.5rem; color: var(--spice-text); text-align: center; grid-column: 1/-1;">{{ $pageLayoutValue('page_layout_sale_sale_page_03') }}</p>
                 @endforelse
             </div>
         </div>
@@ -53,13 +63,13 @@
 
         <!-- FLASH SALE Section -->
         <div class="sale-tier reveal" id="flash-sale">
-            <h2 class="tier-title"><span style="font-weight: 800; letter-spacing: 0.1em; margin-right: 5px">SPICIEST</span>DEALS</h2>
+            <h2 class="tier-title"><span style="font-weight: 800; letter-spacing: 0.1em; margin-right: 5px">{{ $pageLayoutValue('page_layout_sale_sale_page_04') }}</span>{{ $pageLayoutValue('page_layout_sale_sale_page_05') }}</h2>
             <div class="yum-grid">
                 @forelse($flashSaleProducts as $product)
                     <div class="yum-card flash-card">
                         <div class="yum-card-top">
                             <div class="yum-badge badge-red flash-badge">
-                                FLASH SALE
+                                {{ $pageLayoutValue('page_layout_sale_sale_page_06') }}
                             </div>
                             @if($product->price > $product->sale_price)
                                 <div class="discount-badge">-{{ round((($product->price - $product->sale_price) / $product->price) * 100) }}%</div>
@@ -69,9 +79,9 @@
                             </a>
                             <!-- COUNTDOWN TIMER -->
                             <div class="countdown-timer" data-end="{{ \Carbon\Carbon::parse($product->sale_end_date)->format('Y-m-d\TH:i:s') }}">
-                                <span class="cd-item"><b class="cd-h">00</b><small>h</small></span>:
-                                <span class="cd-item"><b class="cd-m">00</b><small>m</small></span>:
-                                <span class="cd-item"><b class="cd-s">00</b><small>s</small></span>
+                                <span class="cd-item"><b class="cd-h">00</b><small>{{ $pageLayoutValue('page_layout_sale_sale_page_07') }}</small></span>:
+                                <span class="cd-item"><b class="cd-m">00</b><small>{{ $pageLayoutValue('page_layout_sale_sale_page_08') }}</small></span>:
+                                <span class="cd-item"><b class="cd-s">00</b><small>{{ $pageLayoutValue('page_layout_sale_sale_page_09') }}</small></span>
                             </div>
                         </div>
                         <div class="yum-card-bottom">
@@ -83,16 +93,17 @@
                                     <span class="price-original">${{ number_format($product->price, 2) }}</span>
                                     <span class="yum-price">${{ number_format($product->sale_price, 2) }}</span>
                                 </div>
-                                <button class="yum-btn" data-product-id="{{ $product->id }}">ADD TO CART</button>
+                                <button class="yum-btn" data-product-id="{{ $product->id }}">{{ $pageLayoutValue('page_layout_sale_add_to_cart') }}</button>
                             </div>
                         </div>
                     </div>
                 @empty
-                    <p style="font-size: 1.5rem; color: var(--spice-text); text-align: center; grid-column: 1/-1;">No flash sale items available today.</p>
+                    <p style="font-size: 1.5rem; color: var(--spice-text); text-align: center; grid-column: 1/-1;">{{ $pageLayoutValue('page_layout_sale_sale_page_10') }}</p>
                 @endforelse
             </div>
         </div>
     </div>
+@include('frontend.layouts.partials.custom-page-sections', ['customPageName' => 'Sale'])
 </main>
 
 <style>

@@ -102,15 +102,12 @@ class Admin extends Authenticatable
 
     private function permissionRoutes()
     {
-        return $this->permissionRoutes ??= $this->getAllCheckPermissions();
+        return $this->getAllCheckPermissions();
     }
 
     public function getAllPermissions()
     {
-        return $this->roles()->with('permissions')->get()
-            ->pluck('permissions.*.route')
-            ->flatten()
-            ->unique()
+        return $this->getAllCheckPermissions()
             ->reject(function ($permission) {
                 return str_contains($permission, 'create') || str_contains($permission, 'destroy') || str_contains($permission, 'edit');
             });
@@ -118,7 +115,7 @@ class Admin extends Authenticatable
 
     public function getAllCheckPermissions()
     {
-        return $this->roles()->with('permissions')->get()
+        return $this->permissionRoutes ??= $this->roles()->with('permissions')->get()
             ->pluck('permissions.*.route')
             ->flatten()
             ->unique();

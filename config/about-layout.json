@@ -1,0 +1,647 @@
+{
+    "About Us - Hero": {
+        "page_about_layout_show_hero": {
+            "value": "1",
+            "label": "Show this section",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            },
+            "group": "Section settings"
+        },
+        "page_about_layout_hero_10": {
+            "value": "OUR STORY · HANDCRAFTED SPICY GOODS",
+            "label": "Small label above the title",
+            "group": "Heading"
+        },
+        "page_about_layout_hero_09": {
+            "value": "Small-Batch Heat",
+            "label": "Title - first line",
+            "group": "Heading"
+        },
+        "page_about_layout_hero_08": {
+            "value": "Uncompromising Flavor",
+            "label": "Title - highlighted line",
+            "group": "Heading"
+        },
+        "page_about_layout_hero_07": {
+            "value": "We craft small-batch condiments using sun-dried chillies, golden crispy garlic, and rich natural umami — dedicated to elevating everyday meals with authentic Asian spice craft",
+            "label": "Introduction",
+            "group": "Heading"
+        },
+        "page_about_layout_hero_06": {
+            "value": "100% Natural",
+            "label": "Highlight 1 - title",
+            "group": "Highlights"
+        },
+        "page_about_layout_hero_05": {
+            "value": "Raw Ingredients",
+            "label": "Highlight 1 - caption",
+            "group": "Highlights"
+        },
+        "page_about_layout_hero_04": {
+            "value": "Small-Batch",
+            "label": "Highlight 2 - title",
+            "group": "Highlights"
+        },
+        "page_about_layout_hero_03": {
+            "value": "Stone-Ground",
+            "label": "Highlight 2 - caption",
+            "group": "Highlights"
+        },
+        "page_about_layout_hero_02": {
+            "value": "150,000+ Jars",
+            "label": "Highlight 3 - title",
+            "group": "Highlights"
+        },
+        "page_about_layout_hero_01": {
+            "value": "Delivered",
+            "label": "Highlight 3 - caption",
+            "group": "Highlights"
+        }
+    },
+    "About Us - Navigation": {
+        "page_about_layout_navigation_03": {
+            "value": "Who We Are",
+            "label": "Link to Who We Are",
+            "group": "Navigation labels"
+        },
+        "page_about_layout_navigation_02": {
+            "value": "What We Do",
+            "label": "Link to What We Do",
+            "group": "Navigation labels"
+        },
+        "page_about_layout_navigation_01": {
+            "value": "Why Trust Us",
+            "label": "Link to Why Trust Us",
+            "group": "Navigation labels"
+        }
+    },
+    "About Us - Who We Are": {
+        "page_about_layout_show_identity": {
+            "value": "1",
+            "label": "Show this section",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            },
+            "group": "Section settings"
+        },
+        "page_about_layout_identity_position": {
+            "value": "right",
+            "label": "Image position",
+            "type": "select",
+            "options": {
+                "right": "Image on the right",
+                "left": "Image on the left"
+            },
+            "group": "Section settings"
+        },
+        "page_about_layout_who_we_are_15": {
+            "value": "WHO WE ARE · OUR IDENTITY",
+            "label": "Small label",
+            "group": "Heading"
+        },
+        "page_about_layout_who_we_are_14": {
+            "value": "Small-Kitchen Artisans",
+            "label": "Title - first line",
+            "group": "Heading"
+        },
+        "page_about_layout_who_we_are_13": {
+            "value": "Keeping The Culinary Fire Alive",
+            "label": "Title - second line",
+            "group": "Heading"
+        },
+        "page_about_layout_identity_lead": {
+            "value": "Dried Chili (born out of the Jojo Little Kitchen family) didn't start in an industrial laboratory or an automated packaging line. We started at the family stove, driven by an uncompromising love for authentic Asian spice craftsmanship.",
+            "label": "Story paragraph 1",
+            "group": "Our story",
+            "parts": [
+                "page_about_layout_who_we_are_12",
+                "page_about_layout_who_we_are_11",
+                "page_about_layout_who_we_are_10",
+                "page_about_layout_who_we_are_09"
+            ],
+            "suffix": "",
+            "type": "textarea"
+        },
+        "page_about_layout_who_we_are_12": {
+            "value": "Dried Chili",
+            "label": "Dried Chili",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_who_we_are_11": {
+            "value": "(born out of the",
+            "label": "(born out of the",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_who_we_are_10": {
+            "value": "Jojo Little Kitchen",
+            "label": "Jojo Little Kitchen",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_who_we_are_09": {
+            "value": "family) didn't start in an industrial laboratory or an automated packaging line. We started at the family stove, driven by an uncompromising love for authentic Asian spice craftsmanship.",
+            "label": "family) didn't start in an industrial laboratory or an automated packaging …",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_who_we_are_08": {
+            "value": "Years ago, we grew tired of mainstream supermarket chilli oils loaded with artificial preservatives, synthetic colorants, and the cloying sweetness of flavor enhancers. Real heat — that fragrant, smoky warmth of sun-dried chillies that gently warms your palate and awakens every sense — had been lost in the pursuit of mass manufacturing.",
+            "label": "Story paragraph 2",
+            "group": "Our story"
+        },
+        "page_about_layout_who_we_are_07": {
+            "value": "We chose to return to the source: tracking down heirloom chilli varieties, honoring the slow-roasting techniques passed down by our grandmothers, and perfecting every step to meet the uncompromising standards of modern food lovers.",
+            "label": "Story paragraph 3",
+            "group": "Our story"
+        },
+        "page_about_layout_who_we_are_06": {
+            "value": "Chef-Crafted Recipes",
+            "label": "Highlight 1 - title",
+            "group": "Highlights"
+        },
+        "page_about_layout_who_we_are_05": {
+            "value": "Every formulation is refined through hundreds of kitchen tastings to achieve the golden balance of Heat, Crunch, and Umami.",
+            "label": "Highlight 1 - description",
+            "group": "Highlights"
+        },
+        "page_about_layout_who_we_are_04": {
+            "value": "Batches Under 200 Jars",
+            "label": "Highlight 2 - title",
+            "group": "Highlights"
+        },
+        "page_about_layout_who_we_are_03": {
+            "value": "No shortcuts. Every batch is tended by hand over gentle heat to prevent bitterness and ensure our garlic turns golden-crisp.",
+            "label": "Highlight 2 - description",
+            "group": "Highlights"
+        },
+        "page_about_layout_who_we_are_02": {
+            "value": "“To us, spicy food isn't an endurance test. It's a multisensory spark that elevates every meal on your family table.”",
+            "label": "Quote",
+            "group": "Image and quote"
+        },
+        "page_about_layout_who_we_are_01": {
+            "value": "— The Dried Chili Founding Team —",
+            "label": "Quote attribution",
+            "group": "Image and quote"
+        },
+        "page_about_layout_image_founders": {
+            "value": "images/about_founders.jpg",
+            "label": "Founders image",
+            "type": "image",
+            "group": "Image and quote"
+        }
+    },
+    "About Us - What We Do": {
+        "page_about_layout_show_craft": {
+            "value": "1",
+            "label": "Show this section",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            },
+            "group": "Section settings"
+        },
+        "page_about_layout_what_we_do_30": {
+            "value": "WHAT WE DO · OUR CRAFT",
+            "label": "Small label",
+            "group": "Heading"
+        },
+        "page_about_layout_what_we_do_29": {
+            "value": "Handcrafted In Small Batches",
+            "label": "Title - first line",
+            "group": "Heading"
+        },
+        "page_about_layout_what_we_do_28": {
+            "value": "Fresh, Pure & Crunchy To The Very Last Spoon",
+            "label": "Title - second line",
+            "group": "Heading"
+        },
+        "page_about_layout_what_we_do_27": {
+            "value": "We turn sun-ripened chillies into pantry essentials that elevate everything from late-night ramen and crispy fried eggs to family holiday feasts.",
+            "label": "Introduction",
+            "group": "Heading"
+        },
+        "page_about_layout_what_we_do_26": {
+            "value": "STEP 01",
+            "label": "Step label",
+            "group": "Process step 1"
+        },
+        "page_about_layout_what_we_do_25": {
+            "value": "Sun-Ripened Selection",
+            "label": "Title",
+            "group": "Process step 1"
+        },
+        "page_about_layout_what_we_do_24": {
+            "value": "We harvest only uniformly ripe chillies from clean agricultural partners, naturally sun-drying them to concentrate their volatile essential oils and distinctive fiery aroma.",
+            "label": "Description",
+            "group": "Process step 1"
+        },
+        "page_about_layout_what_we_do_23": {
+            "value": "STEP 02",
+            "label": "Step label",
+            "group": "Process step 2"
+        },
+        "page_about_layout_what_we_do_22": {
+            "value": "Roasting & Stone Crushing",
+            "label": "Title",
+            "group": "Process step 2"
+        },
+        "page_about_layout_what_we_do_21": {
+            "value": "Chillies are gently roasted over low embers to release deep smoky notes, then coarsely crushed using traditional stone mills to preserve light, crispy flakes instead of powdery dust.",
+            "label": "Description",
+            "group": "Process step 2"
+        },
+        "page_about_layout_what_we_do_20": {
+            "value": "STEP 03",
+            "label": "Step label",
+            "group": "Process step 3"
+        },
+        "page_about_layout_what_we_do_19": {
+            "value": "Crispy Garlic & Dried Shrimp",
+            "label": "Title",
+            "group": "Process step 3"
+        },
+        "page_about_layout_what_we_do_18": {
+            "value": "Whole garlic cloves are slow-fried to golden crunchiness in clean vegetable oil, blended with premium sun-dried shrimp for deep natural umami that lingers on the palate.",
+            "label": "Description",
+            "group": "Process step 3"
+        },
+        "page_about_layout_what_we_do_17": {
+            "value": "STEP 04",
+            "label": "Step label",
+            "group": "Process step 4"
+        },
+        "page_about_layout_what_we_do_16": {
+            "value": "Small-Batch Sealing",
+            "label": "Title",
+            "group": "Process step 4"
+        },
+        "page_about_layout_what_we_do_15": {
+            "value": "Every glass jar is heat-sterilized, hot-filled in limited runs under 200 jars, and vacuum-sealed to lock in crunch and peak freshness for months without artificial additives.",
+            "label": "Description",
+            "group": "Process step 4"
+        },
+        "page_about_layout_what_we_do_14": {
+            "value": "Our 3 Signature Product Lines",
+            "label": "Title",
+            "group": "Product showcase"
+        },
+        "page_about_layout_what_we_do_13": {
+            "value": "Each crafted with a distinct personality to complete your culinary pantry",
+            "label": "Introduction",
+            "group": "Product showcase"
+        },
+        "page_about_layout_what_we_do_12": {
+            "value": "BESTSELLER · TOP 1",
+            "label": "Badge",
+            "group": "Product card 1"
+        },
+        "page_about_layout_what_we_do_11": {
+            "value": "Crispy Garlic Chili Crisp",
+            "label": "Product name",
+            "group": "Product card 1"
+        },
+        "page_about_layout_what_we_do_10": {
+            "value": "Mellow warmth, addictive garlic crunch, and savory oil. The ultimate spoonable topping for noodles, warm rice, dumplings, and sunny-side eggs.",
+            "label": "Description",
+            "group": "Product card 1"
+        },
+        "page_about_layout_what_we_do_09": {
+            "value": "Explore this blend →",
+            "label": "Button text",
+            "group": "Product card 1"
+        },
+        "page_about_layout_what_we_do_08": {
+            "value": "SIGNATURE · UMAMI BOMB",
+            "label": "Badge",
+            "group": "Product card 2"
+        },
+        "page_about_layout_what_we_do_07": {
+            "value": "Artisanal Umami Shrimp Chili",
+            "label": "Product name",
+            "group": "Product card 2"
+        },
+        "page_about_layout_what_we_do_06": {
+            "value": "Rich, slow-simmered dried shrimp folded into ruby-red aromatic oil. The soulful backbone for broths, hotpots, and seafood dips.",
+            "label": "Description",
+            "group": "Product card 2"
+        },
+        "page_about_layout_what_we_do_05": {
+            "value": "Explore this blend →",
+            "label": "Button text",
+            "group": "Product card 2"
+        },
+        "page_about_layout_what_we_do_04": {
+            "value": "PURE SPICE · 100% RAW",
+            "label": "Badge",
+            "group": "Product card 3"
+        },
+        "page_about_layout_what_we_do_03": {
+            "value": "Fire-Roasted Flakes & Seasonings",
+            "label": "Product name",
+            "group": "Product card 3"
+        },
+        "page_about_layout_what_we_do_02": {
+            "value": "100% whole roasted chillies stone-ground into coarse flakes. Free of fillers or artificial salt. Essential for BBQ rubs and pan sears.",
+            "label": "Description",
+            "group": "Product card 3"
+        },
+        "page_about_layout_what_we_do_01": {
+            "value": "Explore this blend →",
+            "label": "Button text",
+            "group": "Product card 3"
+        },
+        "page_about_layout_image_product_1": {
+            "value": "images/product_hero.png",
+            "label": "Image",
+            "type": "image",
+            "group": "Product card 1"
+        },
+        "page_about_layout_image_product_2": {
+            "value": "images/shrimp_chilli_2.png",
+            "label": "Image",
+            "type": "image",
+            "group": "Product card 2"
+        },
+        "page_about_layout_image_product_3": {
+            "value": "images/cat_powders.jpg",
+            "label": "Image",
+            "type": "image",
+            "group": "Product card 3"
+        },
+        "page_about_layout_product_link_1": {
+            "value": "/shop",
+            "label": "Button link",
+            "group": "Product card 1"
+        },
+        "page_about_layout_product_link_2": {
+            "value": "/shop",
+            "label": "Button link",
+            "group": "Product card 2"
+        },
+        "page_about_layout_product_link_3": {
+            "value": "/shop",
+            "label": "Button link",
+            "group": "Product card 3"
+        }
+    },
+    "About Us - Why Trust Us": {
+        "page_about_layout_show_trust": {
+            "value": "1",
+            "label": "Show this section",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            },
+            "group": "Section settings"
+        },
+        "page_about_layout_why_trust_us_28": {
+            "value": "WHY TRUST US · RADICAL TRANSPARENCY",
+            "label": "Small label",
+            "group": "Heading"
+        },
+        "page_about_layout_why_trust_us_27": {
+            "value": "Radical Transparency",
+            "label": "Title - first line",
+            "group": "Heading"
+        },
+        "page_about_layout_why_trust_us_26": {
+            "value": "Full Accountability In Every Single Jar",
+            "label": "Title - second line",
+            "group": "Heading"
+        },
+        "page_about_layout_why_trust_us_25": {
+            "value": "We understand that spices go directly into the food you prepare for yourself and your loved ones. Real trust isn't earned through advertising, but through transparent actions and strict standards.",
+            "label": "Introduction",
+            "group": "Heading"
+        },
+        "page_about_layout_why_trust_us_24": {
+            "value": "150K+",
+            "label": "Number badge",
+            "group": "Customer trust"
+        },
+        "page_about_layout_why_trust_us_23": {
+            "value": "150,000+ Jars Delivered",
+            "label": "Title",
+            "group": "Customer trust"
+        },
+        "page_about_layout_why_trust_us_22": {
+            "value": "Embraced in tens of thousands of home kitchens and relied upon by over 120 restaurants and food creators. Supported by an 84%+ repeat order rate from loyal customers.",
+            "label": "Description",
+            "group": "Customer trust"
+        },
+        "page_about_layout_why_trust_us_21": {
+            "value": "4.9 / 5.0 Average Customer Rating",
+            "label": "Footer text",
+            "group": "Customer trust"
+        },
+        "page_about_layout_why_trust_us_20": {
+            "value": "Direct-Trade Farm Partners",
+            "label": "Title",
+            "group": "Farm partners"
+        },
+        "page_about_layout_why_trust_us_19": {
+            "value": "We collaborate directly with family farming collectives who practice sustainable agriculture. We pay fair prices above market benchmarks, ensuring clean crops and full origin traceability.",
+            "label": "Description",
+            "group": "Farm partners"
+        },
+        "page_about_layout_why_trust_us_18": {
+            "value": "100% Traceable ingredient supply chain",
+            "label": "Footer text",
+            "group": "Farm partners"
+        },
+        "page_about_layout_why_trust_us_17": {
+            "value": "The Strict \"3-NO\" Standard",
+            "label": "Title",
+            "group": "Quality standards"
+        },
+        "page_about_layout_why_trust_us_16": {
+            "value": "Your health is our red line. We refuse to compromise on quality:",
+            "label": "Introduction",
+            "group": "Quality standards"
+        },
+        "page_about_layout_why_trust_us_15": {
+            "value": "NO chemical preservatives",
+            "label": "Standard 1 - bold text",
+            "group": "Quality standards"
+        },
+        "page_about_layout_why_trust_us_14": {
+            "value": "(Zero Benzoate or Sorbate additives)",
+            "label": "Standard 1 - details",
+            "group": "Quality standards"
+        },
+        "page_about_layout_why_trust_us_13": {
+            "value": "NO synthetic dyes",
+            "label": "Standard 2 - bold text",
+            "group": "Quality standards"
+        },
+        "page_about_layout_why_trust_us_12": {
+            "value": "(100% vibrant red from natural chillies and annatto)",
+            "label": "Standard 2 - details",
+            "group": "Quality standards"
+        },
+        "page_about_layout_why_trust_us_11": {
+            "value": "NO artificial thickeners",
+            "label": "Standard 3 - bold text",
+            "group": "Quality standards"
+        },
+        "page_about_layout_why_trust_us_10": {
+            "value": "or synthetic chemical heat intensifiers",
+            "label": "Standard 3 - details",
+            "group": "Quality standards"
+        },
+        "page_about_layout_why_trust_us_09": {
+            "value": "Certified Food Safety & Lab Inspected",
+            "label": "Footer text",
+            "group": "Quality standards"
+        },
+        "page_about_layout_why_trust_us_08": {
+            "value": "100% Flavor Guarantee",
+            "label": "Title",
+            "group": "Guarantee"
+        },
+        "page_about_layout_guarantee_description": {
+            "value": "We stand behind every small batch we brew. If you pop open your jar and aren't completely thrilled by the crunch, fragrance, and heat balance, we will replace it or issue a 100% full refund — no questions asked.",
+            "label": "Description",
+            "group": "Guarantee",
+            "parts": [
+                "page_about_layout_why_trust_us_07",
+                "page_about_layout_why_trust_us_06",
+                "page_about_layout_why_trust_us_05"
+            ],
+            "suffix": "",
+            "type": "textarea"
+        },
+        "page_about_layout_why_trust_us_07": {
+            "value": "We stand behind every small batch we brew. If you pop open your jar and aren't completely thrilled by the crunch, fragrance, and heat balance, we will replace it or issue a",
+            "label": "We stand behind every small batch we brew. If you pop open your jar and are…",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_why_trust_us_06": {
+            "value": "100% full refund",
+            "label": "100% full refund",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_why_trust_us_05": {
+            "value": "— no questions asked.",
+            "label": "— no questions asked.",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_why_trust_us_04": {
+            "value": "7-Day Hassle-Free Satisfaction Guarantee",
+            "label": "Footer text",
+            "group": "Guarantee"
+        },
+        "page_about_layout_why_trust_us_03": {
+            "value": "As a professional chef, I am notoriously strict with oil-based condiments. Dried Chili won me over completely: the garlic is genuinely crisp as if straight from the wok, the roasted chillies have a warm smoky depth without stinging your throat, and the shrimp leaves a savory sweet umami finish. It is a permanent fixture in my kitchen.",
+            "label": "Review",
+            "group": "Customer testimonial"
+        },
+        "page_about_layout_why_trust_us_02": {
+            "value": "Chef Minh Quan Le",
+            "label": "Customer name",
+            "group": "Customer testimonial"
+        },
+        "page_about_layout_why_trust_us_01": {
+            "value": "Asian Fusion Restaurateur & Customer since 2021",
+            "label": "Customer details",
+            "group": "Customer testimonial"
+        }
+    },
+    "About Us - Call to Action": {
+        "page_about_layout_show_cta": {
+            "value": "1",
+            "label": "Show this section",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            },
+            "group": "Section settings"
+        },
+        "page_about_layout_call_to_action_09": {
+            "value": "READY TO TASTE THE CRAFT?",
+            "label": "Small label",
+            "group": "Heading"
+        },
+        "page_about_layout_call_to_action_08": {
+            "value": "Take Your Everyday Meals",
+            "label": "Title - first line",
+            "group": "Heading"
+        },
+        "page_about_layout_call_to_action_07": {
+            "value": "To The Next Level!",
+            "label": "Title - second line",
+            "group": "Heading"
+        },
+        "page_about_layout_cta_description": {
+            "value": "Say goodbye to dull, mass-produced sauces. Order today to experience authentic crunch and fiery aroma — plus enjoy our limited Buy 2 Get 1 Free deal and Free Shipping on orders over $50.",
+            "label": "Description",
+            "group": "Heading",
+            "parts": [
+                "page_about_layout_call_to_action_06",
+                "page_about_layout_call_to_action_05",
+                "page_about_layout_call_to_action_04",
+                "page_about_layout_call_to_action_03"
+            ],
+            "suffix": ".",
+            "type": "textarea"
+        },
+        "page_about_layout_call_to_action_06": {
+            "value": "Say goodbye to dull, mass-produced sauces. Order today to experience authentic crunch and fiery aroma — plus enjoy our limited",
+            "label": "Say goodbye to dull, mass-produced sauces. Order today to experience authen…",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_call_to_action_05": {
+            "value": "Buy 2 Get 1 Free",
+            "label": "Buy 2 Get 1 Free",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_call_to_action_04": {
+            "value": "deal and",
+            "label": "deal and",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_call_to_action_03": {
+            "value": "Free Shipping on orders over $50",
+            "label": "Free Shipping on orders over $50",
+            "editor_hidden": true,
+            "group": "Section settings"
+        },
+        "page_about_layout_call_to_action_02": {
+            "value": "Explore The Pantry Now",
+            "label": "Primary button text",
+            "group": "Buttons"
+        },
+        "page_about_layout_call_to_action_01": {
+            "value": "View Bestseller Deals (Sale)",
+            "label": "Secondary button text",
+            "group": "Buttons"
+        },
+        "page_about_layout_cta_primary_link": {
+            "value": "/shop",
+            "label": "Primary button link",
+            "group": "Buttons"
+        },
+        "page_about_layout_cta_secondary_link": {
+            "value": "/sale",
+            "label": "Secondary button link",
+            "group": "Buttons"
+        }
+    }
+}

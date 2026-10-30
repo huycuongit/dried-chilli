@@ -6,6 +6,16 @@
     content="Read Dried Chili's privacy policy. Written in plain English: how we protect your personal information, handle secure payments, and respect your privacy under Australian standards.">
 @endsection
 
+@php
+    $pageLayoutGroups = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
+    $pageLayoutFields = collect($pageLayoutGroups)->collapse()->all();
+    $pageLayoutValue = static fn (string $key) => \App\Support\AboutPageContent::value($key, $pageLayoutFields, $systemSettings);
+    $pageLayoutLink = static function (string $key) use ($pageLayoutValue) {
+        $link = trim($pageLayoutValue($key));
+        return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
+    };
+@endphp
+
 @section('full-content')
 @php
 $sys = app(\App\Support\SystemSettings::class);
@@ -37,6 +47,7 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
 
 <main class="page-content legal-page bg-cream">
     <!-- Hero Section -->
+    @if($pageLayoutValue('page_layout_privacy_show_hero') === '1')
     <section class="about-hero-section legal-hero">
         <div class="container about-hero-container">
             <div class="about-hero-badge">
@@ -104,8 +115,10 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
             </div>
         </div>
     </section>
+    @endif
 
     <!-- Document Section -->
+    @if($pageLayoutValue('page_layout_privacy_show_content') === '1')
     <section class="legal-document">
         <div class="container">
             <div class="document-wrapper shadow-lg">
@@ -121,8 +134,8 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>Honest Data Care</h4>
-                            <p>We only collect the essential details needed to deliver your delicious chili orders.</p>
+                            <h4>{{ $pageLayoutValue('page_layout_privacy_policy_content_01') }}</h4>
+                            <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_02') }}</p>
                         </div>
                     </div>
                     <div class="highlight-item">
@@ -134,8 +147,8 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>Never Sold to Advertisers</h4>
-                            <p>We never sell, rent, or trade your personal information to outside marketing firms.</p>
+                            <h4>{{ $pageLayoutValue('page_layout_privacy_policy_content_03') }}</h4>
+                            <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_04') }}</p>
                         </div>
                     </div>
                     <div class="highlight-item">
@@ -148,109 +161,80 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>You Are In Full Control</h4>
-                            <p>Easily view, edit, or ask us to remove your account details anytime you wish.</p>
+                            <h4>{{ $pageLayoutValue('page_layout_privacy_policy_content_05') }}</h4>
+                            <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_06') }}</p>
                         </div>
                     </div>
                 </div>
 
-                <h2>1. Our Promise to You</h2>
-                <p>Welcome to <strong>Dried Chili</strong> (operated by <strong>Jojo Little Kitchen</strong> in
-                    Australia). We know that sharing your personal information requires trust, and we take that
-                    responsibility seriously.</p>
-                <p>This Privacy Policy explains clearly and simply how we collect, use, and protect your information
-                    when you visit our website, explore our artisan spices, or place an order. We operate in full
-                    compliance with Australia's <strong>Privacy Act 1988 (Cth)</strong>, the <strong>Australian Privacy Principles</strong>, and the <strong>Spam Act 2003</strong>—written here in straightforward words so you can easily understand your rights.</p>
+                <h2>{{ $pageLayoutValue('page_layout_privacy_policy_content_07') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_08') }} <strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_09') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_10') }} <strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_11') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_12') }}</p>
+                <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_13') }} <strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_14') }}</strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_15') }} <strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_16') }}</strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_17') }} <strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_18') }}</strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_19') }}</p>
 
-                <h2>2. What Information We Collect & Why</h2>
-                <p>We only ask for details that are genuinely needed to give you a smooth, enjoyable shopping
-                    experience. This includes:</p>
+                <h2>{{ $pageLayoutValue('page_layout_privacy_policy_content_20') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_21') }}</p>
                 <ul>
-                    <li><strong>Your Delivery Details:</strong> Your full name, delivery address, phone number, and
-                        email address so we can pack your spice order, hand it to Australia Post, and send you live
-                        parcel tracking.</li>
-                    <li><strong>Order & Purchase History:</strong> What chili products you ordered, when you ordered
-                        them, and copies of your official Australian Tax Invoices.</li>
-                    <li><strong>Safe Payment Information:</strong> When you purchase online, your card details are
-                        processed directly and securely by certified payment services (Stripe or PayPal). <strong>Dried
-                            Chili never sees or saves your credit card numbers on our website.</strong></li>
-                    <li><strong>Customer Notes & Feedback:</strong> Any special delivery instructions (like gate codes)
-                        or questions you send to our support team so we can assist you quickly.</li>
-                    <li><strong>Website Cookies:</strong> Small, helpful files that remember what is inside your
-                        shopping cart as you browse our blends, keeping your session active.</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_22') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_23') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_24') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_25') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_26') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_27') }} <strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_28') }}</strong></li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_29') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_30') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_31') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_32') }}</li>
                 </ul>
 
-                <h2>3. How We Use Your Details</h2>
-                <p>We use your information exclusively to run our small-batch spice business and serve you well:</p>
+                <h2>{{ $pageLayoutValue('page_layout_privacy_policy_content_33') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_34') }}</p>
                 <ul>
-                    <li>To prepare, safely pack, and dispatch your chili jars.</li>
-                    <li>To email you order confirmations, tracking numbers, and tax invoices.</li>
-                    <li>To assist you with questions, recipe tips, replacements, or refunds.</li>
-                    <li>To keep our online store secure against payment fraud.</li>
-                    <li>In the rare event of a product advisory or recall, to notify you promptly to protect your food
-                        safety.</li>
+                    <li>{{ $pageLayoutValue('page_layout_privacy_policy_content_35') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_privacy_policy_content_36') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_privacy_policy_content_37') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_privacy_policy_content_38') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_privacy_policy_content_39') }}</li>
                 </ul>
 
-                <h2>4. Honest Email Communications & No Spam</h2>
-                <p>We hate unsolicited junk mail just as much as you do. Under Australia's <strong>Spam Act
-                        2003</strong>, we maintain a strict policy:</p>
+                <h2>{{ $pageLayoutValue('page_layout_privacy_policy_content_40') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_41') }} <strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_42') }}</strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_43') }}</p>
                 <ul>
-                    <li>We will <strong>only</strong> send you newsletters, special discounts, or new seasonal harvest
-                        alerts if you explicitly signed up to receive them.</li>
-                    <li>Every promotional email has an instant, free <strong>1-click Unsubscribe link</strong> right at
-                        the bottom. Click it anytime, and you will be removed from our marketing list within 5 business
-                        days.</li>
-                    <li>We will still email you important transactional updates about your active orders (like your
-                        receipt and tracking link) even if you unsubscribe from promotional newsletters.</li>
+                    <li>{{ $pageLayoutValue('page_layout_privacy_policy_content_44') }} <strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_45') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_46') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_privacy_policy_content_47') }} <strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_48') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_49') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_privacy_policy_content_50') }}</li>
                 </ul>
 
-                <h2>5. Who We Share Information With</h2>
-                <p>We never sell, rent, or trade your personal details to outside companies for marketing. We only share
-                    the minimum necessary information with trusted partners who help us fulfill your order:</p>
+                <h2>{{ $pageLayoutValue('page_layout_privacy_policy_content_51') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_52') }}</p>
                 <ul>
-                    <li><strong>Postal Carriers:</strong> Australia Post or express delivery couriers so they can drive
-                        the package to your front door.</li>
-                    <li><strong>Payment Gateways:</strong> Certified payment partners (Stripe, PayPal) to safely approve
-                        your payment.</li>
-                    <li><strong>Cloud Infrastructure:</strong> Secure, industry-leading hosting systems that keep our
-                        website running smoothly 24/7.</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_53') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_54') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_55') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_56') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_57') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_58') }}</li>
                 </ul>
 
-                <h2>6. How We Protect Your Data</h2>
-                <p>We use modern, bank-standard security safeguards to protect your personal details. All web traffic on
-                    Dried Chili is protected with 256-bit SSL encryption (look for the padlock in your browser address
-                    bar). Access to order records is strictly restricted to team members who need it to pack your boxes
-                    or answer customer care requests.</p>
+                <h2>{{ $pageLayoutValue('page_layout_privacy_policy_content_59') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_60') }}</p>
 
-                <h2>7. Managing Your Account & Your Privacy Rights</h2>
-                <p>You have full control over your personal records:</p>
+                <h2>{{ $pageLayoutValue('page_layout_privacy_policy_content_61') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_62') }}</p>
                 <ul>
-                    <li><strong>Update Your Details:</strong> You can log into your <a
-                            href="{{ route('account.dashboard') }}">Account Dashboard</a> anytime to edit your shipping
-                        address, name, or password.</li>
-                    <li><strong>Request Your Data or Account Deletion:</strong> If you would like a copy of the personal
-                        information we hold for you, or if you want us to remove your account and delete your records,
-                        simply email our team at <a href="mailto:privacy@driedchili.com">privacy@driedchili.com</a>. We
-                        will respond promptly within 30 days.</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_63') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_64') }} <a
+                            href="{{ route('account.dashboard') }}">{{ $pageLayoutValue('page_layout_privacy_policy_content_65') }}</a> {{ $pageLayoutValue('page_layout_privacy_policy_content_66') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_67') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_68') }} <a href="mailto:{{ $pageLayoutValue('page_layout_privacy_contact_email') }}">{{ $pageLayoutValue('page_layout_privacy_contact_email') }}</a>{{ $pageLayoutValue('page_layout_privacy_policy_content_69') }}</li>
                 </ul>
 
-                <h2>8. Questions, Feedback & Privacy Officer Contact</h2>
-                <p>If you have any questions about how your information is handled, or if you feel something wasn't
-                    handled properly, please contact our team first so we can make it right:</p>
+                <h2>{{ $pageLayoutValue('page_layout_privacy_policy_content_70') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_71') }}</p>
                 <ul>
-                    <li><strong>Business:</strong> Dried Chili / Jojo Little Kitchen Pty Ltd</li>
-                    <li><strong>Email:</strong> <a href="mailto:privacy@driedchili.com">privacy@driedchili.com</a></li>
-                    <li><strong>Mailing Address:</strong> Privacy Care, Dried Chili, PO Box 412, Sydney NSW 2000,
-                        Australia</li>
-                    <li><strong>Online Support:</strong> <a href="{{ route('contact.page') }}">Contact Support Form</a>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_72') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_73') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_74') }}</strong> <a href="mailto:{{ $pageLayoutValue('page_layout_privacy_contact_email') }}">{{ $pageLayoutValue('page_layout_privacy_contact_email') }}</a></li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_75') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_76') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_77') }}</strong> <a href="{{ route('contact.page') }}">{{ $pageLayoutValue('page_layout_privacy_policy_content_78') }}</a>
                     </li>
                 </ul>
-                <p>You also have the right under Australian law to contact the <strong>Office of the Australian Information Commissioner (OAIC)</strong> at <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer">www.oaic.gov.au</a> or by calling 1300 363 992.</p>
+                <p>{{ $pageLayoutValue('page_layout_privacy_policy_content_79') }} <strong>{{ $pageLayoutValue('page_layout_privacy_policy_content_80') }}</strong> {{ $pageLayoutValue('page_layout_privacy_policy_content_81') }} <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer">{{ $pageLayoutValue('page_layout_privacy_policy_content_82') }}</a> {{ $pageLayoutValue('page_layout_privacy_policy_content_83') }}</p>
 
 
             </div>
         </div>
     </section>
+    @endif
+@include('frontend.layouts.partials.custom-page-sections', ['customPageName' => 'Privacy Policy'])
 </main>
 
 <style>

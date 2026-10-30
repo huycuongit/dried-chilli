@@ -19,21 +19,29 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/favicon/favicon.ico') }}?v=20261015-chili">
     <!-- Critical Assets Preload for LCP & CLS Optimization -->
     @if(request()->is('/') || request()->routeIs('home'))
-    <link rel="preload" as="image" href="{{ asset('images/product_hero.webp') }}" type="image/webp" fetchpriority="high">
+    @php $heroImage = $systemSettings['nafu_home_page_layout_home_image_slide_1'] ?? 'images/product_hero.webp'; @endphp
+    @if($heroImage !== '')<link rel="preload" as="image" href="{{ asset($heroImage) }}" fetchpriority="high">@endif
     @endif
-    <link rel="preload" as="image" href="{{ asset('images/logo_dried.webp') }}" type="image/webp" fetchpriority="high">
 
     <!-- Web Fonts Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    @if(request()->routeIs('home'))
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"></noscript>
+    @else
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap">
+    @endif
 
     <!-- Core Layout CSS -->
+    @if(request()->routeIs('home'))
+    <link rel="stylesheet" href="{{ asset('assets/nafu/mrfix-home2.css') }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ asset('assets/nafu/mrfix-home2.css') }}"></noscript>
+    @else
     <link rel="stylesheet" href="{{ asset('assets/nafu/mrfix-home2.css') }}">
+    @endif
     <link rel="stylesheet" href="{{ asset('assets/css/nafu-layout.css') }}?v=20260918-3">
     <link rel="stylesheet" href="{{ asset('assets/css/nafu-richtext.css') }}?v=20260919-1" media="print" onload="this.media='all'">
 
-    <!-- Lucide Icons (Deferred so it does not block HTML parser) -->
-    <script src="{{ asset('js/lucide.min.js') }}" defer></script>
     @stack('styles')
 </head>

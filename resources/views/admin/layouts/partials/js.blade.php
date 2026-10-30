@@ -25,7 +25,9 @@
 <script src="{{ asset('assets/admin/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 <script src="{{ asset('assets/admin/vendor/libs/swiper/swiper.js') }}"></script>
 @endif
+@if (request()->routeIs('admin.users.*'))
 <script src="{{ asset('assets/admin/vendor/libs/select2/select2.js') }}"></script>
+@endif
 @if (request()->routeIs('admin.users.*', 'admin.roles.*', 'admin.news.index', 'admin.projects.index', 'admin.services.index', 'admin.contacts.index', 'admin.ecom_orders.index', 'admin.ecom_products.index', 'admin.ecom_customers.index', 'admin.ecom_inventory.index', 'admin.ecom_coupons.index', 'admin.ecom_bundles.index'))
 <script src="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
 @endif
@@ -34,7 +36,9 @@
 <script src="{{ asset('assets/admin/js/main.js') }}"></script>
 
 <!-- Page JS -->
+@if (request()->routeIs('admin.users.*'))
 <script src="{{ asset('assets/admin/js/forms-selects.js') }}"></script>
+@endif
 
 <!-- Js __construct -->
 <script>

@@ -22,6 +22,18 @@
     background-color: #F7EFE6;
 }
 
+/* Identity layout can be selected in the page editor. */
+.about-identity-image-left .pillar-visual { order: -1; }
+.about-custom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.about-custom-grid > img { width: 100%; max-height: 32rem; object-fit: cover; border-radius: 20px; }
+.about-custom-image-right > img { order: 2; }
+.about-custom-full { grid-template-columns: 1fr; }
+.about-custom-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+@media (max-width: 767px) {
+    .about-custom-grid, .about-custom-cards { grid-template-columns: 1fr; }
+    .about-custom-image-right > img { order: 0; }
+}
+
 /* Lucide Icon Box Common Styling */
 .lucide-icon-box {
     width: 48px;

@@ -3,6 +3,16 @@
 @section('title', 'Dried Chili — Handcrafted Premium Spices & Organic Seasonings')
 @section('meta_description', 'Dried Chili specializes in artisanal shrimp chilli paste, premium dried chillies, and organic culinary seasonings crafted with 100% natural ingredients.')
 
+@php
+    $pageLayoutGroups = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
+    $pageLayoutFields = collect($pageLayoutGroups)->collapse()->all();
+    $pageLayoutValue = static fn (string $key) => \App\Support\AboutPageContent::value($key, $pageLayoutFields, $systemSettings);
+    $pageLayoutLink = static function (string $key) use ($pageLayoutValue) {
+        $link = trim($pageLayoutValue($key));
+        return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
+    };
+@endphp
+
 @section('full-content')
 <main class="spice-main">
     <!-- Hero Slider Section -->
@@ -13,13 +23,12 @@
                 <div class="slide-split container">
                     <!-- Left: Text Content -->
                     <div class="hero-content">
-                        <span class="hero-subtitle">THE ORIGINAL FLAVOR</span>
-                        <h1 class="hero-title">SHRIMPLY<br>EXTRA SPICY</h1>
-                        <p class="hero-desc">The ultimate umami bomb. Handcrafted with authentic shrimp and our
-                            signature spice blend.</p>
+                        <span class="hero-subtitle">{{ $pageLayoutValue('page_layout_home_slide_1_01') }}</span>
+                        <h1 class="hero-title">{{ $pageLayoutValue('page_layout_home_slide_1_02') }}<br>{{ $pageLayoutValue('page_layout_home_slide_1_03') }}</h1>
+                        <p class="hero-desc">{{ $pageLayoutValue('page_layout_home_slide_1_04') }}</p>
                         <div class="hero-actions">
-                            <a href="/shop" class="btn-primary">
-                                <span>Shop Now</span>
+                            <a href="{{ $pageLayoutLink('page_layout_home_link_slide_1') }}" class="btn-primary">
+                                <span>{{ $pageLayoutValue('page_layout_home_slide_1_05') }}</span>
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M5 12h14" />
@@ -32,11 +41,11 @@
                     <!-- Right: Image with Burst & Pills -->
                     <div class="hero-stage" aria-hidden="true">
                         <div class="hero-burst"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.webp') }}" alt="Dried Chili Shrimply Extra Spicy" width="500" height="500" fetchpriority="high">
+                        @if($pageLayoutValue('page_layout_home_image_slide_1') !== '')<img class="hero-can" src="{{ asset($pageLayoutValue('page_layout_home_image_slide_1')) }}" alt="{{ $pageLayoutValue('page_layout_home_image_alt_1') }}" width="409" height="610" fetchpriority="high">@endif
 
                         <!-- Floating Pills -->
-                        <span class="hero-sticker sticker-1">Chef-made</span>
-                        <span class="hero-sticker sticker-2"><span>150,000+</span> jars sold</span>
+                        <span class="hero-sticker sticker-1">{{ $pageLayoutValue('page_layout_home_slide_1_06') }}</span>
+                        <span class="hero-sticker sticker-2"><span>{{ $pageLayoutValue('page_layout_home_slide_1_08') }}</span> {{ $pageLayoutValue('page_layout_home_slide_1_07') }}</span>
                     </div>
                 </div>
             </div>
@@ -47,20 +56,19 @@
                     <!-- Left: Image with Burst & Pills -->
                     <div class="hero-stage" aria-hidden="true">
                         <div class="hero-burst burst-red"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.webp') }}" alt="Dried Chili Extra Garlic Crunch" width="500" height="500" loading="lazy">
-                        <span class="hero-sticker sticker-1">New Recipe</span>
-                        <span class="hero-sticker sticker-2"><span>Extra</span> Crunchy</span>
+                        @if($pageLayoutValue('page_layout_home_image_slide_2') !== '')<img class="hero-can" src="{{ asset($pageLayoutValue('page_layout_home_image_slide_2')) }}" alt="{{ $pageLayoutValue('page_layout_home_image_alt_2') }}" width="500" height="500" loading="lazy">@endif
+                        <span class="hero-sticker sticker-1">{{ $pageLayoutValue('page_layout_home_slide_2_01') }}</span>
+                        <span class="hero-sticker sticker-2"><span>{{ $pageLayoutValue('page_layout_home_slide_2_02') }}</span> {{ $pageLayoutValue('page_layout_home_slide_2_03') }}</span>
                     </div>
 
                     <!-- Right: Text Content -->
                     <div class="hero-content">
-                        <span class="hero-subtitle">NEW ARRIVAL RECIPE</span>
-                        <p class="hero-title">EXTRA<br>GARLIC CRUNCH</p>
-                        <p class="hero-desc">Take your daily meals to the next level with our extra garlicky, crunchy
-                            chilli crisp.</p>
+                        <span class="hero-subtitle">{{ $pageLayoutValue('page_layout_home_slide_2_04') }}</span>
+                        <p class="hero-title">{{ $pageLayoutValue('page_layout_home_slide_2_05') }}<br>{{ $pageLayoutValue('page_layout_home_slide_2_06') }}</p>
+                        <p class="hero-desc">{{ $pageLayoutValue('page_layout_home_slide_2_07') }}</p>
                         <div class="hero-actions">
-                            <a href="/shop" class="btn-primary">
-                                <span>Discover</span>
+                            <a href="{{ $pageLayoutLink('page_layout_home_link_slide_2') }}" class="btn-primary">
+                                <span>{{ $pageLayoutValue('page_layout_home_slide_2_08') }}</span>
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M5 12h14" />
@@ -77,13 +85,12 @@
                 <div class="slide-split container">
                     <!-- Left: Text Content -->
                     <div class="hero-content">
-                        <span class="hero-subtitle">LIMITED SPICE EDITION</span>
-                        <p class="hero-title">SMOKY<br>FIRE ROASTED</p>
-                        <p class="hero-desc">Experience the deep smoky flavor of premium chillies roasted slowly over an
-                            open flame.</p>
+                        <span class="hero-subtitle">{{ $pageLayoutValue('page_layout_home_slide_3_01') }}</span>
+                        <p class="hero-title">{{ $pageLayoutValue('page_layout_home_slide_3_02') }}<br>{{ $pageLayoutValue('page_layout_home_slide_3_03') }}</p>
+                        <p class="hero-desc">{{ $pageLayoutValue('page_layout_home_slide_3_04') }}</p>
                         <div class="hero-actions">
-                            <a href="/shop" class="btn-primary">
-                                <span>Shop Limited</span>
+                            <a href="{{ $pageLayoutLink('page_layout_home_link_slide_3') }}" class="btn-primary">
+                                <span>{{ $pageLayoutValue('page_layout_home_slide_3_05') }}</span>
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M5 12h14" />
@@ -96,9 +103,9 @@
                     <!-- Right: Image with Burst & Pills -->
                     <div class="hero-stage" aria-hidden="true">
                         <div class="hero-burst burst-yellow"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.webp') }}" alt="Dried Chili Smoky Fire Roasted" width="500" height="500" loading="lazy">
-                        <span class="hero-sticker sticker-1">Smoky</span>
-                        <span class="hero-sticker sticker-2"><span>Award</span> Winning</span>
+                        @if($pageLayoutValue('page_layout_home_image_slide_3') !== '')<img class="hero-can" src="{{ asset($pageLayoutValue('page_layout_home_image_slide_3')) }}" alt="{{ $pageLayoutValue('page_layout_home_image_alt_3') }}" width="500" height="500" loading="lazy">@endif
+                        <span class="hero-sticker sticker-1">{{ $pageLayoutValue('page_layout_home_slide_3_06') }}</span>
+                        <span class="hero-sticker sticker-2"><span>{{ $pageLayoutValue('page_layout_home_slide_3_07') }}</span> {{ $pageLayoutValue('page_layout_home_slide_3_08') }}</span>
                     </div>
                 </div>
             </div>
@@ -109,20 +116,19 @@
                     <!-- Left: Image with Burst & Pills -->
                     <div class="hero-stage" aria-hidden="true">
                         <div class="hero-burst burst-red"></div>
-                        <img class="hero-can" src="{{ asset('images/product_hero.webp') }}" alt="Dried Chili Organic Plant Power" width="500" height="500" loading="lazy">
-                        <span class="hero-sticker sticker-1">Plant Based</span>
-                        <span class="hero-sticker sticker-2"><span>No</span> MSG</span>
+                        @if($pageLayoutValue('page_layout_home_image_slide_4') !== '')<img class="hero-can" src="{{ asset($pageLayoutValue('page_layout_home_image_slide_4')) }}" alt="{{ $pageLayoutValue('page_layout_home_image_alt_4') }}" width="500" height="500" loading="lazy">@endif
+                        <span class="hero-sticker sticker-1">{{ $pageLayoutValue('page_layout_home_slide_4_01') }}</span>
+                        <span class="hero-sticker sticker-2"><span>{{ $pageLayoutValue('page_layout_home_slide_4_02') }}</span> {{ $pageLayoutValue('page_layout_home_slide_4_03') }}</span>
                     </div>
 
                     <!-- Right: Text Content -->
                     <div class="hero-content">
-                        <span class="hero-subtitle">ORGANIC VEGAN BLEND</span>
-                        <p class="hero-title">ORGANIC<br>PLANT POWER</p>
-                        <p class="hero-desc">All the umami, none of the seafood. Our vegan recipe delivers the same
-                            intense punch.</p>
+                        <span class="hero-subtitle">{{ $pageLayoutValue('page_layout_home_slide_4_04') }}</span>
+                        <p class="hero-title">{{ $pageLayoutValue('page_layout_home_slide_4_05') }}<br>{{ $pageLayoutValue('page_layout_home_slide_4_06') }}</p>
+                        <p class="hero-desc">{{ $pageLayoutValue('page_layout_home_slide_4_07') }}</p>
                         <div class="hero-actions">
-                            <a href="/shop" class="btn-primary">
-                                <span>Try Vegan</span>
+                            <a href="{{ $pageLayoutLink('page_layout_home_link_slide_4') }}" class="btn-primary">
+                                <span>{{ $pageLayoutValue('page_layout_home_slide_4_08') }}</span>
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M5 12h14" />
@@ -524,7 +530,7 @@
         <div class="container">
             <div class="story-grid">
                 <div class="story-image">
-                    <img src="{{ asset('images/story_spices.webp') }}" alt="Spices on market" width="600" height="450" loading="lazy">
+                    <img src="{{ asset('images/story_spices-optimized.webp') }}" alt="Spices on market" width="1024" height="1024" loading="lazy" decoding="async">
                 </div>
                 <div class="story-content">
                     <span class="subheading">OUR STORY</span>
@@ -1139,6 +1145,11 @@
 .slide.active .hero-stage {
     opacity: 1;
     transform: scale(1);
+}
+
+.slide:first-child.active .hero-content,
+.slide:first-child.active .hero-stage {
+    transition: none;
 }
 
 /* Hero Burst 700px x 700px - Cân đối, tỏa sáng dịu mắt */
@@ -2911,7 +2922,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function resetInterval() {
         clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 5500);
+        slideInterval = setInterval(nextSlide, 12000);
     }
 
     if (slides.length > 0) {

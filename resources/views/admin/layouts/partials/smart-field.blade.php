@@ -1,6 +1,6 @@
 @php
     $isLong = strlen($value) > 100;
-    $isImage = str_contains($key, 'image') || str_contains($key, 'logo');
+    $isImage = ($field['type'] ?? null) === 'image' || ((str_contains($key, 'image') || str_contains($key, 'logo')) && !str_contains($key, '_alt_') && !str_contains($key, '_description'));
     $isEditor = isset($field['type']) && $field['type'] === 'editor';
     $isSelect = isset($field['type']) && $field['type'] === 'select';
     $isColor = isset($field['type']) && $field['type'] === 'color';
@@ -20,7 +20,7 @@
 @endphp
 <div class="{{ $colClass }}">
     <label class="form-label" {!! (!$isImage && !$isEditor) ? 'for="'.$key.'"' : '' !!}>
-        {{ $isImage ? 'Image' : \Illuminate\Support\Str::limit(strip_tags($field['label']), 90) }}
+        {{ \Illuminate\Support\Str::limit(strip_tags($field['label']), 90) }}
     </label>
 
     @if ($isImage)
@@ -28,6 +28,9 @@
             'valueName' => $inputName, 'imageValue' => $value,
             'uploadId' => $key,
         ])
+    @elseif (($field['type'] ?? null) === 'fixed')
+        <input type="hidden" name="{{ $inputName }}" value="{{ $value }}">
+        <div class="form-control-plaintext">{{ ($field['options'] ?? [])[$value] ?? $value }}</div>
     @elseif ($isSelect)
         <select id="{{ $key }}" name="{{ $inputName }}" class="form-select">
             @foreach ($field['options'] as $optKey => $optLabel)
@@ -37,7 +40,7 @@
     @elseif ($isEditor)
         <textarea class="d-none" id="input-{{ $key }}" name="{{ $inputName }}">{{ $value }}</textarea>
         <div class="service-editor nafu-dynamic-editor" id="editor-{{ $key }}">{!! $value !!}</div>
-    @elseif ($isLong)
+    @elseif ($isLong || ($field['type'] ?? null) === 'textarea')
         <textarea id="{{ $key }}"
             name="{{ $inputName }}"
             class="form-control"

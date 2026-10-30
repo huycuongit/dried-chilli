@@ -1,0 +1,2593 @@
+{
+    "Home - Hero banner": {
+        "page_layout_home_slide_1_01": {
+            "value": "THE ORIGINAL FLAVOR",
+            "label": "Top label",
+            "group": "Slide 1"
+        },
+        "page_layout_home_slide_1_02": {
+            "value": "SHRIMPLY",
+            "label": "Title - first line",
+            "group": "Slide 1"
+        },
+        "page_layout_home_slide_1_03": {
+            "value": "EXTRA SPICY",
+            "label": "Title - second line",
+            "group": "Slide 1"
+        },
+        "page_layout_home_slide_1_04": {
+            "value": "The ultimate umami bomb. Handcrafted with authentic shrimp and our\n                            signature spice blend.",
+            "label": "Description",
+            "group": "Slide 1",
+            "type": "textarea"
+        },
+        "page_layout_home_slide_1_05": {
+            "value": "Shop Now",
+            "label": "Button text",
+            "group": "Slide 1"
+        },
+        "page_layout_home_slide_1_06": {
+            "value": "Chef-made",
+            "label": "Sticker 1",
+            "group": "Slide 1"
+        },
+        "page_layout_home_slide_1_07": {
+            "value": "jars sold",
+            "label": "Sticker 2 - caption",
+            "group": "Slide 1"
+        },
+        "page_layout_home_slide_2_01": {
+            "value": "New Recipe",
+            "label": "Sticker 1",
+            "group": "Slide 2"
+        },
+        "page_layout_home_slide_2_02": {
+            "value": "Extra",
+            "label": "Sticker 2 - highlighted text",
+            "group": "Slide 2"
+        },
+        "page_layout_home_slide_2_03": {
+            "value": "Crunchy",
+            "label": "Sticker 2 - caption",
+            "group": "Slide 2"
+        },
+        "page_layout_home_slide_2_04": {
+            "value": "NEW ARRIVAL RECIPE",
+            "label": "Top label",
+            "group": "Slide 2"
+        },
+        "page_layout_home_slide_2_05": {
+            "value": "EXTRA",
+            "label": "Title - first line",
+            "group": "Slide 2"
+        },
+        "page_layout_home_slide_2_06": {
+            "value": "GARLIC CRUNCH",
+            "label": "Title - second line",
+            "group": "Slide 2"
+        },
+        "page_layout_home_slide_2_07": {
+            "value": "Take your daily meals to the next level with our extra garlicky, crunchy\n                            chilli crisp.",
+            "label": "Description",
+            "group": "Slide 2",
+            "type": "textarea"
+        },
+        "page_layout_home_slide_2_08": {
+            "value": "Discover",
+            "label": "Button text",
+            "group": "Slide 2"
+        },
+        "page_layout_home_slide_3_01": {
+            "value": "LIMITED SPICE EDITION",
+            "label": "Top label",
+            "group": "Slide 3"
+        },
+        "page_layout_home_slide_3_02": {
+            "value": "SMOKY",
+            "label": "Title - first line",
+            "group": "Slide 3"
+        },
+        "page_layout_home_slide_3_03": {
+            "value": "FIRE ROASTED",
+            "label": "Title - second line",
+            "group": "Slide 3"
+        },
+        "page_layout_home_slide_3_04": {
+            "value": "Experience the deep smoky flavor of premium chillies roasted slowly over an\n                            open flame.",
+            "label": "Description",
+            "group": "Slide 3",
+            "type": "textarea"
+        },
+        "page_layout_home_slide_3_05": {
+            "value": "Shop Limited",
+            "label": "Button text",
+            "group": "Slide 3"
+        },
+        "page_layout_home_slide_3_06": {
+            "value": "Smoky",
+            "label": "Sticker 1",
+            "group": "Slide 3"
+        },
+        "page_layout_home_slide_3_07": {
+            "value": "Award",
+            "label": "Sticker 2 - highlighted text",
+            "group": "Slide 3"
+        },
+        "page_layout_home_slide_3_08": {
+            "value": "Winning",
+            "label": "Sticker 2 - caption",
+            "group": "Slide 3"
+        },
+        "page_layout_home_slide_4_01": {
+            "value": "Plant Based",
+            "label": "Sticker 1",
+            "group": "Slide 4"
+        },
+        "page_layout_home_slide_4_02": {
+            "value": "No",
+            "label": "Sticker 2 - highlighted text",
+            "group": "Slide 4"
+        },
+        "page_layout_home_slide_4_03": {
+            "value": "MSG",
+            "label": "Sticker 2 - caption",
+            "group": "Slide 4"
+        },
+        "page_layout_home_slide_4_04": {
+            "value": "ORGANIC VEGAN BLEND",
+            "label": "Top label",
+            "group": "Slide 4"
+        },
+        "page_layout_home_slide_4_05": {
+            "value": "ORGANIC",
+            "label": "Title - first line",
+            "group": "Slide 4"
+        },
+        "page_layout_home_slide_4_06": {
+            "value": "PLANT POWER",
+            "label": "Title - second line",
+            "group": "Slide 4"
+        },
+        "page_layout_home_slide_4_07": {
+            "value": "All the umami, none of the seafood. Our vegan recipe delivers the same\n                            intense punch.",
+            "label": "Description",
+            "group": "Slide 4",
+            "type": "textarea"
+        },
+        "page_layout_home_slide_4_08": {
+            "value": "Try Vegan",
+            "label": "Button text",
+            "group": "Slide 4"
+        },
+        "page_layout_home_image_slide_1": {
+            "value": "images/product_hero.webp",
+            "label": "Slide 1 image",
+            "group": "Slide 1",
+            "type": "image"
+        },
+        "page_layout_home_image_slide_2": {
+            "value": "images/product_hero.webp",
+            "label": "Slide 2 image",
+            "group": "Slide 2",
+            "type": "image"
+        },
+        "page_layout_home_image_slide_3": {
+            "value": "images/product_hero.webp",
+            "label": "Slide 3 image",
+            "group": "Slide 3",
+            "type": "image"
+        },
+        "page_layout_home_image_slide_4": {
+            "value": "images/product_hero.webp",
+            "label": "Slide 4 image",
+            "group": "Slide 4",
+            "type": "image"
+        },
+        "page_layout_home_link_slide_1": {
+            "value": "/shop",
+            "label": "Slide 1 button link",
+            "group": "Slide 1"
+        },
+        "page_layout_home_link_slide_2": {
+            "value": "/shop",
+            "label": "Slide 2 button link",
+            "group": "Slide 2"
+        },
+        "page_layout_home_link_slide_3": {
+            "value": "/shop",
+            "label": "Slide 3 button link",
+            "group": "Slide 3"
+        },
+        "page_layout_home_link_slide_4": {
+            "value": "/shop",
+            "label": "Slide 4 button link",
+            "group": "Slide 4"
+        },
+        "page_layout_home_image_alt_4": {
+            "value": "Dried Chili Organic Plant Power",
+            "label": "Slide 4 image description",
+            "group": "Slide 4"
+        },
+        "page_layout_home_image_alt_3": {
+            "value": "Dried Chili Smoky Fire Roasted",
+            "label": "Slide 3 image description",
+            "group": "Slide 3"
+        },
+        "page_layout_home_image_alt_2": {
+            "value": "Dried Chili Extra Garlic Crunch",
+            "label": "Slide 2 image description",
+            "group": "Slide 2"
+        },
+        "page_layout_home_image_alt_1": {
+            "value": "Dried Chili Shrimply Extra Spicy",
+            "label": "Slide 1 image description",
+            "group": "Slide 1"
+        },
+        "page_layout_home_slide_1_08": {
+            "value": "150,000+",
+            "label": "Sticker 2 - highlighted text",
+            "group": "Slide 1"
+        }
+    },
+    "Our Legacy - Opening banner": {
+        "page_layout_legacy_show_hero": {
+            "value": "1",
+            "label": "Show this section",
+            "group": "Section settings",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        },
+        "page_layout_legacy_opening_banner_01": {
+            "value": "ESTABLISHED 1920 · 4 GENERATIONS OF TERROIR & CRAFT",
+            "label": "Text — ESTABLISHED 1920 · 4 GENERATIONS OF TERROIR & CRAFT",
+            "group": "Opening banner"
+        },
+        "page_layout_legacy_opening_banner_02": {
+            "value": "A Century of Terroir",
+            "label": "Heading — A Century of Terroir",
+            "group": "Opening banner"
+        },
+        "page_layout_legacy_opening_banner_03": {
+            "value": "Roots That Run Deep",
+            "label": "Text — Roots That Run Deep",
+            "group": "Opening banner"
+        },
+        "page_layout_legacy_opening_banner_04": {
+            "value": "Before the jars, before the modern kitchen — there was a sun-drenched valley, heirloom seeds preserved across four generations, and an unshakeable refusal to let machines replace patience.",
+            "label": "Description — Before the jars, before the modern kitchen — there was a sun…",
+            "group": "Opening banner",
+            "type": "textarea"
+        },
+        "page_layout_legacy_opening_banner_05": {
+            "value": "1920 Established",
+            "label": "Highlighted text — 1920 Established",
+            "group": "Opening banner"
+        },
+        "page_layout_legacy_opening_banner_06": {
+            "value": "Century Terroir",
+            "label": "Text — Century Terroir",
+            "group": "Opening banner"
+        },
+        "page_layout_legacy_opening_banner_07": {
+            "value": "4th Generation",
+            "label": "Highlighted text — 4th Generation",
+            "group": "Opening banner"
+        },
+        "page_layout_legacy_opening_banner_08": {
+            "value": "Family Lineage",
+            "label": "Text — Family Lineage",
+            "group": "Opening banner"
+        },
+        "page_layout_legacy_opening_banner_09": {
+            "value": "21-Day Sun-Cured",
+            "label": "Highlighted text — 21-Day Sun-Cured",
+            "group": "Opening banner"
+        },
+        "page_layout_legacy_opening_banner_10": {
+            "value": "Pure Sunshine",
+            "label": "Text — Pure Sunshine",
+            "group": "Opening banner"
+        }
+    },
+    "Our Legacy - Quick links": {
+        "page_layout_legacy_quick_links_01": {
+            "value": "The Origin Valley",
+            "label": "Text — The Origin Valley",
+            "group": "Quick links"
+        },
+        "page_layout_legacy_quick_links_02": {
+            "value": "Century Chronicle",
+            "label": "Text — Century Chronicle",
+            "group": "Quick links"
+        },
+        "page_layout_legacy_quick_links_03": {
+            "value": "Sun vs. Machine",
+            "label": "Text — Sun vs. Machine",
+            "group": "Quick links"
+        },
+        "page_layout_legacy_quick_links_04": {
+            "value": "The Founder's Code",
+            "label": "Text — The Founder's Code",
+            "group": "Quick links"
+        }
+    },
+    "Our Legacy - Origin valley": {
+        "page_layout_legacy_show_origin": {
+            "value": "1",
+            "label": "Show this section",
+            "group": "Section settings",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        },
+        "page_layout_legacy_origin_valley_01": {
+            "value": "SACRED SOIL · THE ORIGIN VALLEY",
+            "label": "Text — SACRED SOIL · THE ORIGIN VALLEY",
+            "group": "Origin valley"
+        },
+        "page_layout_legacy_origin_valley_02": {
+            "value": "Where Mountain Sun Meets",
+            "label": "Heading — Where Mountain Sun Meets",
+            "group": "Where Mountain Sun Meets"
+        },
+        "page_layout_legacy_origin_valley_03": {
+            "value": "It all began in 1920",
+            "label": "Highlighted text — It all began in 1920",
+            "group": "Where Mountain Sun Meets"
+        },
+        "page_layout_legacy_origin_valley_04": {
+            "value": "in a secluded highland valley nestled between volcanic mountain ridges. The soil was rich with dark organic loam, crisp alpine breezes cooled the hills at dusk, and pure sunshine poured uninhibited for over 300 days a year.",
+            "label": "Text — in a secluded highland valley nestled between volcanic mount…",
+            "group": "Where Mountain Sun Meets",
+            "type": "textarea"
+        },
+        "page_layout_legacy_origin_valley_05": {
+            "value": "Our great-grandfather recognized this rare microclimate: sharp day-night temperature swings stress the chili plants just enough to concentrate their natural capsicum oils. The result is thin-skinned pods bursting with floral aromatics, deep fruit sugars, and clean warmth that never stings the throat.",
+            "label": "Description — Our great-grandfather recognized this rare microclimate: sha…",
+            "group": "Where Mountain Sun Meets",
+            "type": "textarea"
+        },
+        "page_layout_legacy_origin_valley_06": {
+            "value": "While commercial agriculture continuously crossbreeds hybrid varieties for transport durability, our family has hand-saved the exact same heirloom seeds generation after generation. When you taste our chili, you are tasting unchanged 1920 botanical genetics.",
+            "label": "Description — While commercial agriculture continuously crossbreeds hybrid…",
+            "group": "Where Mountain Sun Meets",
+            "type": "textarea"
+        },
+        "page_layout_legacy_origin_valley_07": {
+            "value": "Highland Valley Microclimate",
+            "label": "Heading — Highland Valley Microclimate",
+            "group": "Highland Valley Microclimate"
+        },
+        "page_layout_legacy_origin_valley_08": {
+            "value": "Volcanic soil and sharp day-night temperature swings nurture intense essential capsicum oils and caramelized natural sweetness.",
+            "label": "Description — Volcanic soil and sharp day-night temperature swings nurture…",
+            "group": "Highland Valley Microclimate",
+            "type": "textarea"
+        },
+        "page_layout_legacy_origin_valley_09": {
+            "value": "Protected Heirloom Lineage",
+            "label": "Heading — Protected Heirloom Lineage",
+            "group": "Protected Heirloom Lineage"
+        },
+        "page_layout_legacy_origin_valley_10": {
+            "value": "Uncrossed seeds collected by hand every harvest season for over a century — 100% non-GMO and free from laboratory hybridization.",
+            "label": "Description — Uncrossed seeds collected by hand every harvest season for o…",
+            "group": "Protected Heirloom Lineage",
+            "type": "textarea"
+        },
+        "page_layout_legacy_origin_valley_11": {
+            "value": "“Nature dictates our schedule. We simply listen and craft the finest spices the earth can offer.”",
+            "label": "Description — “Nature dictates our schedule. We simply listen and craft th…",
+            "group": "Protected Heirloom Lineage"
+        },
+        "page_layout_legacy_origin_valley_12": {
+            "value": "— The Tran Family Patriarch, Circa 1920 —",
+            "label": "Text — — The Tran Family Patriarch, Circa 1920 —",
+            "group": "Protected Heirloom Lineage"
+        },
+        "page_layout_legacy_image_farm": {
+            "value": "images/legacy_farm.jpg",
+            "label": "Farm image",
+            "group": "Image",
+            "type": "image"
+        }
+    },
+    "Our Legacy - Family timeline": {
+        "page_layout_legacy_show_timeline": {
+            "value": "1",
+            "label": "Show this section",
+            "group": "Section settings",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        },
+        "page_layout_legacy_family_timeline_01": {
+            "value": "THE CENTURY CHRONICLE · 1920 TO PRESENT",
+            "label": "Text — THE CENTURY CHRONICLE · 1920 TO PRESENT",
+            "group": "Protected Heirloom Lineage"
+        },
+        "page_layout_legacy_family_timeline_02": {
+            "value": "A 100-Year Family Lineage",
+            "label": "Heading — A 100-Year Family Lineage",
+            "group": "A 100-Year Family Lineage Of Unbroken Artisanal Craft"
+        },
+        "page_layout_legacy_family_timeline_03": {
+            "value": "Of Unbroken Artisanal Craft",
+            "label": "Text — Of Unbroken Artisanal Craft",
+            "group": "A 100-Year Family Lineage Of Unbroken Artisanal Craft"
+        },
+        "page_layout_legacy_family_timeline_04": {
+            "value": "Trace our journey from a humble valley kitchen hearth to modern culinary pantries worldwide — century by century, harvest by harvest.",
+            "label": "Description — Trace our journey from a humble valley kitchen hearth to mod…",
+            "group": "A 100-Year Family Lineage Of Unbroken Artisanal Craft",
+            "type": "textarea"
+        },
+        "page_layout_legacy_family_timeline_05": {
+            "value": "1920 · THE FIRST SEED",
+            "label": "Text — 1920 · THE FIRST SEED",
+            "group": "A 100-Year Family Lineage Of Unbroken Artisanal Craft"
+        },
+        "page_layout_legacy_family_timeline_06": {
+            "value": "The Farmhouse Hearth",
+            "label": "Heading — The Farmhouse Hearth",
+            "group": "The Farmhouse Hearth"
+        },
+        "page_layout_legacy_family_timeline_07": {
+            "value": "Our great-grandfather planted the valley's first heirloom chili crop. Roasting pods over wood embers with crispy garlic and aromatic spices, he began sharing jars with traveling merchants and village cooks.",
+            "label": "Description — Our great-grandfather planted the valley's first heirloom ch…",
+            "group": "The Farmhouse Hearth",
+            "type": "textarea"
+        },
+        "page_layout_legacy_family_timeline_08": {
+            "value": "1958 · SOLAR TERRACES",
+            "label": "Text — 1958 · SOLAR TERRACES",
+            "group": "The Farmhouse Hearth"
+        },
+        "page_layout_legacy_family_timeline_09": {
+            "value": "The Raised Bamboo Decks",
+            "label": "Heading — The Raised Bamboo Decks",
+            "group": "The Raised Bamboo Decks"
+        },
+        "page_layout_legacy_family_timeline_10": {
+            "value": "The second generation engineered elevated bamboo drying terraces along the hillsides. This allowed alpine breezes to circulate beneath the chillies, perfecting our signature 21-day solar curing method.",
+            "label": "Description — The second generation engineered elevated bamboo drying terr…",
+            "group": "The Raised Bamboo Decks",
+            "type": "textarea"
+        },
+        "page_layout_legacy_family_timeline_11": {
+            "value": "1994 · THE HEIRS' PLEDGE",
+            "label": "Text — 1994 · THE HEIRS' PLEDGE",
+            "group": "The Raised Bamboo Decks"
+        },
+        "page_layout_legacy_family_timeline_12": {
+            "value": "Resisting The Machine Age",
+            "label": "Heading — Resisting The Machine Age",
+            "group": "Resisting The Machine Age"
+        },
+        "page_layout_legacy_family_timeline_13": {
+            "value": "When commercial factories adopted high-speed electrical dehydrators, our elders gathered and took an oath: we would never mechanize sun curing, even if it meant remaining small and unhurried.",
+            "label": "Description — When commercial factories adopted high-speed electrical dehy…",
+            "group": "Resisting The Machine Age",
+            "type": "textarea"
+        },
+        "page_layout_legacy_family_timeline_14": {
+            "value": "TODAY · 4TH GENERATION",
+            "label": "Text — TODAY · 4TH GENERATION",
+            "group": "Resisting The Machine Age"
+        },
+        "page_layout_legacy_family_timeline_15": {
+            "value": "The Modern Artisanal Table",
+            "label": "Heading — The Modern Artisanal Table",
+            "group": "The Modern Artisanal Table"
+        },
+        "page_layout_legacy_family_timeline_16": {
+            "value": "Today, under the Jojo Little Kitchen banner, the 4th generation brings this hundred-year heritage to over 150,000 food lovers globally, still crafting every batch under 200 jars.",
+            "label": "Description — Today, under the Jojo Little Kitchen banner, the 4th generat…",
+            "group": "The Modern Artisanal Table",
+            "type": "textarea"
+        }
+    },
+    "Our Legacy - Sun drying": {
+        "page_layout_legacy_show_sun": {
+            "value": "1",
+            "label": "Show this section",
+            "group": "Section settings",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        },
+        "page_layout_legacy_sun_drying_01": {
+            "value": "THE ARTISANAL ADVANTAGE · SUN VS MACHINE",
+            "label": "Text — THE ARTISANAL ADVANTAGE · SUN VS MACHINE",
+            "group": "The Modern Artisanal Table"
+        },
+        "page_layout_legacy_sun_drying_02": {
+            "value": "Why 21 Days In The Sun",
+            "label": "Heading — Why 21 Days In The Sun",
+            "group": "Why 21 Days In The Sun Cannot Be Replaced By A 3-Hour Machine"
+        },
+        "page_layout_legacy_sun_drying_03": {
+            "value": "Cannot Be Replaced By A 3-Hour Machine",
+            "label": "Text — Cannot Be Replaced By A 3-Hour Machine",
+            "group": "Why 21 Days In The Sun Cannot Be Replaced By A 3-Hour Machine"
+        },
+        "page_layout_legacy_sun_drying_04": {
+            "value": "A clear, uncompromising comparison between ancestral solar curing and modern industrial shortcut processing.",
+            "label": "Description — A clear, uncompromising comparison between ancestral solar c…",
+            "group": "Why 21 Days In The Sun Cannot Be Replaced By A 3-Hour Machine",
+            "type": "textarea"
+        },
+        "page_layout_legacy_sun_drying_05": {
+            "value": "OUR ANCESTRAL WAY",
+            "label": "Text — OUR ANCESTRAL WAY",
+            "group": "Why 21 Days In The Sun Cannot Be Replaced By A 3-Hour Machine"
+        },
+        "page_layout_legacy_sun_drying_06": {
+            "value": "21-Day Natural Solar Curing",
+            "label": "Heading — 21-Day Natural Solar Curing",
+            "group": "21-Day Natural Solar Curing"
+        },
+        "page_layout_legacy_sun_drying_07": {
+            "value": "Caramelized Natural Sugars:",
+            "label": "Highlighted text — Caramelized Natural Sugars:",
+            "group": "21-Day Natural Solar Curing"
+        },
+        "page_layout_legacy_sun_drying_08": {
+            "value": "14 to 21 days of gentle sun exposure allows organic fruit sugars to concentrate into deep, savory umami without scorching.",
+            "label": "Text — 14 to 21 days of gentle sun exposure allows organic fruit su…",
+            "group": "21-Day Natural Solar Curing",
+            "type": "textarea"
+        },
+        "page_layout_legacy_sun_drying_09": {
+            "value": "Preserved Volatile Essential Oils:",
+            "label": "Highlighted text — Preserved Volatile Essential Oils:",
+            "group": "21-Day Natural Solar Curing"
+        },
+        "page_layout_legacy_sun_drying_10": {
+            "value": "Ambient solar warmth preserves delicate floral terpenes and capsaicin aromatic compounds that high heat destroys.",
+            "label": "Text — Ambient solar warmth preserves delicate floral terpenes and …",
+            "group": "21-Day Natural Solar Curing",
+            "type": "textarea"
+        },
+        "page_layout_legacy_sun_drying_11": {
+            "value": "Crisp, Crunchy Flake Texture:",
+            "label": "Highlighted text — Crisp, Crunchy Flake Texture:",
+            "group": "21-Day Natural Solar Curing"
+        },
+        "page_layout_legacy_sun_drying_12": {
+            "value": "Coarse stone grinding yields airy, light chili flakes that stay crisp inside oil instead of turning soggy.",
+            "label": "Text — Coarse stone grinding yields airy, light chili flakes that s…",
+            "group": "21-Day Natural Solar Curing",
+            "type": "textarea"
+        },
+        "page_layout_legacy_sun_drying_13": {
+            "value": "100% Pure Natural Ruby Color:",
+            "label": "Highlighted text — 100% Pure Natural Ruby Color:",
+            "group": "21-Day Natural Solar Curing"
+        },
+        "page_layout_legacy_sun_drying_14": {
+            "value": "Glowing deep crimson derived exclusively from sun-ripened chillies — zero synthetic food coloring.",
+            "label": "Text — Glowing deep crimson derived exclusively from sun-ripened ch…",
+            "group": "21-Day Natural Solar Curing"
+        },
+        "page_layout_legacy_sun_drying_15": {
+            "value": "MASS INDUSTRIAL FACTORIES",
+            "label": "Text — MASS INDUSTRIAL FACTORIES",
+            "group": "21-Day Natural Solar Curing"
+        },
+        "page_layout_legacy_sun_drying_16": {
+            "value": "3-Hour Forced Dehydration",
+            "label": "Heading — 3-Hour Forced Dehydration",
+            "group": "3-Hour Forced Dehydration"
+        },
+        "page_layout_legacy_sun_drying_17": {
+            "value": "Scorched Bitter Sugars:",
+            "label": "Highlighted text — Scorched Bitter Sugars:",
+            "group": "3-Hour Forced Dehydration"
+        },
+        "page_layout_legacy_sun_drying_18": {
+            "value": "180°C forced industrial blowers burn delicate fruit sugars, leaving a harsh, acrid bitter aftertaste in your mouth.",
+            "label": "Text — 180°C forced industrial blowers burn delicate fruit sugars, …",
+            "group": "3-Hour Forced Dehydration",
+            "type": "textarea"
+        },
+        "page_layout_legacy_sun_drying_19": {
+            "value": "Evaporated Aromatics:",
+            "label": "Highlighted text — Evaporated Aromatics:",
+            "group": "3-Hour Forced Dehydration"
+        },
+        "page_layout_legacy_sun_drying_20": {
+            "value": "Intense machine heat boils away the fragrant volatile oils, resulting in a flat, pungent sting without complexity.",
+            "label": "Text — Intense machine heat boils away the fragrant volatile oils, …",
+            "group": "3-Hour Forced Dehydration",
+            "type": "textarea"
+        },
+        "page_layout_legacy_sun_drying_21": {
+            "value": "Soggy Powdery Sludge:",
+            "label": "Highlighted text — Soggy Powdery Sludge:",
+            "group": "3-Hour Forced Dehydration"
+        },
+        "page_layout_legacy_sun_drying_22": {
+            "value": "High-speed industrial metal crushers pulverize chillies into powdery dust that absorbs oil and turns gummy.",
+            "label": "Text — High-speed industrial metal crushers pulverize chillies into…",
+            "group": "3-Hour Forced Dehydration",
+            "type": "textarea"
+        },
+        "page_layout_legacy_sun_drying_23": {
+            "value": "Chemical Preservatives & Dyes:",
+            "label": "Highlighted text — Chemical Preservatives & Dyes:",
+            "group": "3-Hour Forced Dehydration"
+        },
+        "page_layout_legacy_sun_drying_24": {
+            "value": "Heavy reliance on sodium benzoate, artificial red colorants, and anti-caking agents to mimic freshness.",
+            "label": "Text — Heavy reliance on sodium benzoate, artificial red colorants,…",
+            "group": "3-Hour Forced Dehydration",
+            "type": "textarea"
+        }
+    },
+    "Our Legacy - Heritage values": {
+        "page_layout_legacy_show_heritage": {
+            "value": "1",
+            "label": "Show this section",
+            "group": "Section settings",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        },
+        "page_layout_legacy_heritage_values_01": {
+            "value": "TIME-HONORED CODE · THE FOUR TENETS",
+            "label": "Text — TIME-HONORED CODE · THE FOUR TENETS",
+            "group": "3-Hour Forced Dehydration"
+        },
+        "page_layout_legacy_heritage_values_02": {
+            "value": "The Four Generational Golden Rules",
+            "label": "Heading — The Four Generational Golden Rules",
+            "group": "The Four Generational Golden Rules"
+        },
+        "page_layout_legacy_heritage_values_03": {
+            "value": "Recorded in family logs in 1920, strictly observed by every family custodian who steps before the kitchen hearth.",
+            "label": "Description — Recorded in family logs in 1920, strictly observed by every …",
+            "group": "The Four Generational Golden Rules",
+            "type": "textarea"
+        },
+        "page_layout_legacy_heritage_values_04": {
+            "value": "TENET I",
+            "label": "Text — TENET I",
+            "group": "The Four Generational Golden Rules"
+        },
+        "page_layout_legacy_heritage_values_05": {
+            "value": "Never Rush The Sun",
+            "label": "Heading — Never Rush The Sun",
+            "group": "Never Rush The Sun"
+        },
+        "page_layout_legacy_heritage_values_06": {
+            "value": "Nature sets our harvest calendar. We never harvest early and never force dehydration. If a batch requires 24 days instead of 21, it stays in the sun.",
+            "label": "Description — Nature sets our harvest calendar. We never harvest early and…",
+            "group": "Never Rush The Sun",
+            "type": "textarea"
+        },
+        "page_layout_legacy_heritage_values_07": {
+            "value": "TENET II",
+            "label": "Text — TENET II",
+            "group": "Never Rush The Sun"
+        },
+        "page_layout_legacy_heritage_values_08": {
+            "value": "Soil Comes First",
+            "label": "Heading — Soil Comes First",
+            "group": "Soil Comes First"
+        },
+        "page_layout_legacy_heritage_values_09": {
+            "value": "A robust chili pod can only come from nutrient-rich living soil. We feed our fields with clean organic compost and never use synthetic chemical boosters.",
+            "label": "Description — A robust chili pod can only come from nutrient-rich living s…",
+            "group": "Soil Comes First",
+            "type": "textarea"
+        },
+        "page_layout_legacy_heritage_values_10": {
+            "value": "TENET III",
+            "label": "Text — TENET III",
+            "group": "Soil Comes First"
+        },
+        "page_layout_legacy_heritage_values_11": {
+            "value": "Taste With The Spoon",
+            "label": "Heading — Taste With The Spoon",
+            "group": "Taste With The Spoon"
+        },
+        "page_layout_legacy_heritage_values_12": {
+            "value": "No automated sensor can detect the delicate balance between golden crispy garlic and roasted chili sweetness. Every batch is tasted by a family custodian.",
+            "label": "Description — No automated sensor can detect the delicate balance between …",
+            "group": "Taste With The Spoon",
+            "type": "textarea"
+        },
+        "page_layout_legacy_heritage_values_13": {
+            "value": "TENET IV",
+            "label": "Text — TENET IV",
+            "group": "Taste With The Spoon"
+        },
+        "page_layout_legacy_heritage_values_14": {
+            "value": "Clean Heart, Pure Oil",
+            "label": "Heading — Clean Heart, Pure Oil",
+            "group": "Clean Heart, Pure Oil"
+        },
+        "page_layout_legacy_heritage_values_15": {
+            "value": "Zero chemical preservatives. Zero synthetic red dyes. Zero industrial additives. If our children cannot eat it straight from the jar, it doesn't leave the kitchen.",
+            "label": "Description — Zero chemical preservatives. Zero synthetic red dyes. Zero i…",
+            "group": "Clean Heart, Pure Oil",
+            "type": "textarea"
+        },
+        "page_layout_legacy_heritage_values_16": {
+            "value": "The Family Heritage Custodian Pledge",
+            "label": "Heading — The Family Heritage Custodian Pledge",
+            "group": "The Family Heritage Custodian Pledge"
+        },
+        "page_layout_legacy_heritage_values_17": {
+            "value": "OFFICIAL FAMILY DECLARATION · VALLEY ESTABLISHED 1920",
+            "label": "Text — OFFICIAL FAMILY DECLARATION · VALLEY ESTABLISHED 1920",
+            "group": "The Family Heritage Custodian Pledge"
+        },
+        "page_layout_legacy_heritage_values_18": {
+            "value": "“To our patrons, food enthusiasts, and extended culinary family: Every jar that leaves our small kitchen carries four generations of family honor. We understand that in modern manufacturing, corners are cut to save pennies and speed up lines. We make this solemn promise: we will never surrender to electric dryers, never add artificial preservatives, and never trade a single century-old technique for convenience. Thank you for keeping our culinary flame burning bright at your family tables.”",
+            "label": "Description — “To our patrons, food enthusiasts, and extended culinary fam…",
+            "group": "The Family Heritage Custodian Pledge",
+            "type": "textarea"
+        },
+        "page_layout_legacy_heritage_values_19": {
+            "value": "— The Tran Family Lineage, 4th Generation Stewards of the Flame —",
+            "label": "Text — — The Tran Family Lineage, 4th Generation Stewards of the Fl…",
+            "group": "The Family Heritage Custodian Pledge"
+        }
+    },
+    "Our Legacy - Closing banner": {
+        "page_layout_legacy_show_cta": {
+            "value": "1",
+            "label": "Show this section",
+            "group": "Section settings",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        },
+        "page_layout_legacy_closing_banner_01": {
+            "value": "TASTE 100 YEARS OF TERROIR",
+            "label": "Text — TASTE 100 YEARS OF TERROIR",
+            "group": "The Family Heritage Custodian Pledge"
+        },
+        "page_layout_legacy_closing_banner_02": {
+            "value": "Bring A Century Of Heritage",
+            "label": "Heading — Bring A Century Of Heritage",
+            "group": "Bring A Century Of Heritage To Your Dining Table Today!"
+        },
+        "page_layout_legacy_closing_banner_03": {
+            "value": "To Your Dining Table Today!",
+            "label": "Text — To Your Dining Table Today!",
+            "group": "Bring A Century Of Heritage To Your Dining Table Today!"
+        },
+        "page_layout_legacy_closing_banner_04": {
+            "value": "Experience the unforgettable savory umami and genuine crispiness born from a century of patient solar curing. Enjoy our limited",
+            "label": "Description — Experience the unforgettable savory umami and genuine crispi…",
+            "group": "Bring A Century Of Heritage To Your Dining Table Today!",
+            "type": "textarea"
+        },
+        "page_layout_legacy_closing_banner_05": {
+            "value": "Buy 2 Get 1 Free",
+            "label": "Highlighted text — Buy 2 Get 1 Free",
+            "group": "Bring A Century Of Heritage To Your Dining Table Today!"
+        },
+        "page_layout_legacy_closing_banner_06": {
+            "value": "deal and",
+            "label": "Text — deal and",
+            "group": "Bring A Century Of Heritage To Your Dining Table Today!"
+        },
+        "page_layout_legacy_closing_banner_07": {
+            "value": "Explore The Heritage Pantry",
+            "label": "Text — Explore The Heritage Pantry",
+            "group": "Bring A Century Of Heritage To Your Dining Table Today!"
+        },
+        "page_layout_legacy_closing_banner_08": {
+            "value": "Read Our Kitchen Story (About Us)",
+            "label": "Text — Read Our Kitchen Story (About Us)",
+            "group": "Bring A Century Of Heritage To Your Dining Table Today!"
+        },
+        "page_layout_legacy_free_shipping": {
+            "value": "Free Shipping on orders over $50",
+            "label": "Shipping offer",
+            "group": "Bring A Century Of Heritage To Your Dining Table Today!"
+        },
+        "page_layout_legacy_cta_primary_link": {
+            "value": "/shop",
+            "label": "Primary button link",
+            "group": "Buttons"
+        },
+        "page_layout_legacy_cta_secondary_link": {
+            "value": "/about-us",
+            "label": "Secondary button link",
+            "group": "Buttons"
+        }
+    },
+    "Sale - Sale page": {
+        "page_layout_sale_sale_page_01": {
+            "value": "★ BEST SELLER ★",
+            "label": "Text — ★ BEST SELLER ★",
+            "group": "Sale page"
+        },
+        "page_layout_sale_sale_page_02": {
+            "value": "LIMITED OFFER",
+            "label": "Text — LIMITED OFFER",
+            "group": "Sale page"
+        },
+        "page_layout_sale_sale_page_03": {
+            "value": "No items in Big Sale.",
+            "label": "Description — No items in Big Sale.",
+            "group": "Sale page"
+        },
+        "page_layout_sale_sale_page_04": {
+            "value": "SPICIEST",
+            "label": "Text — SPICIEST",
+            "group": "Sale page"
+        },
+        "page_layout_sale_sale_page_05": {
+            "value": "DEALS",
+            "label": "Text — DEALS",
+            "group": "Sale page"
+        },
+        "page_layout_sale_sale_page_06": {
+            "value": "FLASH SALE",
+            "label": "Text — FLASH SALE",
+            "group": "Sale page"
+        },
+        "page_layout_sale_sale_page_07": {
+            "value": "h",
+            "label": "Text — h",
+            "group": "Sale page"
+        },
+        "page_layout_sale_sale_page_08": {
+            "value": "m",
+            "label": "Text — m",
+            "group": "Sale page"
+        },
+        "page_layout_sale_sale_page_09": {
+            "value": "s",
+            "label": "Text — s",
+            "group": "Sale page"
+        },
+        "page_layout_sale_sale_page_10": {
+            "value": "No flash sale items available today.",
+            "label": "Description — No flash sale items available today.",
+            "group": "Sale page"
+        },
+        "page_layout_sale_add_to_cart": {
+            "value": "ADD TO CART",
+            "label": "Add to cart button",
+            "group": "Product cards"
+        }
+    },
+    "Product Details - Product details": {
+        "page_layout_product_product_details_01": {
+            "value": "SALE",
+            "label": "Text — SALE",
+            "group": "Product details"
+        },
+        "page_layout_product_product_details_02": {
+            "value": "BEST SELLER",
+            "label": "Text — BEST SELLER",
+            "group": "Product details"
+        },
+        "page_layout_product_product_details_03": {
+            "value": "In Stock",
+            "label": "Text — In Stock",
+            "group": "Product details"
+        },
+        "page_layout_product_product_details_04": {
+            "value": "Out of stock",
+            "label": "Text — Out of stock",
+            "group": "Product details"
+        },
+        "page_layout_product_product_details_05": {
+            "value": "INGREDIENTS",
+            "label": "Text — INGREDIENTS",
+            "group": "Product details"
+        },
+        "page_layout_product_product_details_06": {
+            "value": "100% Natural, non-GMO spices. No artificial colors or preservatives. Made in a facility that also processes peanuts.",
+            "label": "Description — 100% Natural, non-GMO spices. No artificial colors or preser…",
+            "group": "Product details",
+            "type": "textarea"
+        },
+        "page_layout_product_product_details_07": {
+            "value": "HOW TO USE",
+            "label": "Text — HOW TO USE",
+            "group": "Product details"
+        },
+        "page_layout_product_product_details_08": {
+            "value": "Sprinkle generously on meat, poultry, or vegetables before cooking. Can also be used as a finishing salt.",
+            "label": "Description — Sprinkle generously on meat, poultry, or vegetables before c…",
+            "group": "Product details",
+            "type": "textarea"
+        },
+        "page_layout_product_product_details_09": {
+            "value": "SHIPPING & RETURNS",
+            "label": "Text — SHIPPING & RETURNS",
+            "group": "Product details"
+        },
+        "page_layout_product_product_details_10": {
+            "value": "YOU MIGHT ALSO LIKE",
+            "label": "Heading — YOU MIGHT ALSO LIKE",
+            "group": "Product details"
+        },
+        "page_layout_product_product_details_11": {
+            "value": "In Stock",
+            "label": "Text — In Stock",
+            "group": "Product details"
+        },
+        "page_layout_product_product_details_12": {
+            "value": "Out of stock",
+            "label": "Text — Out of stock",
+            "group": "Product details"
+        },
+        "page_layout_product_product_details_13": {
+            "value": "Add to Cart",
+            "label": "Text — Add to Cart",
+            "group": "Product details"
+        },
+        "page_layout_product_shipping_text": {
+            "value": "Free standard shipping on orders over $50. Returns accepted within 30 days of purchase for unopened items.",
+            "label": "Shipping notice",
+            "group": "Delivery details"
+        },
+        "page_layout_product_add_to_cart": {
+            "value": "ADD TO CART",
+            "label": "Add-to-cart button",
+            "group": "Purchase controls"
+        },
+        "page_layout_product_unavailable": {
+            "value": "OUT OF STOCK",
+            "label": "Unavailable button",
+            "group": "Purchase controls"
+        }
+    },
+    "FAQ - Questions and answers": {
+        "page_layout_faq_questions_and_answers_01": {
+            "value": "All Questions",
+            "label": "Button text — All Questions",
+            "group": "Category filters"
+        },
+        "page_layout_faq_questions_and_answers_02": {
+            "value": "Ordering & Consumer Law",
+            "label": "Button text — Ordering & Consumer Law",
+            "group": "Category filters"
+        },
+        "page_layout_faq_questions_and_answers_03": {
+            "value": "Food Standards & Allergens",
+            "label": "Button text — Food Standards & Allergens",
+            "group": "Category filters"
+        },
+        "page_layout_faq_questions_and_answers_04": {
+            "value": "Shipping & Refunds",
+            "label": "Button text — Shipping & Refunds",
+            "group": "Category filters"
+        },
+        "page_layout_faq_questions_and_answers_05": {
+            "value": "Privacy & Email",
+            "label": "Button text — Privacy & Email",
+            "group": "Category filters"
+        },
+        "page_layout_faq_questions_and_answers_06": {
+            "value": "Storage & Freshness",
+            "label": "Button text — Storage & Freshness",
+            "group": "Category filters"
+        },
+        "page_layout_faq_questions_and_answers_07": {
+            "value": "What guarantees protect my purchase under the Australian Consumer Law?",
+            "label": "Question",
+            "group": "Default question 1"
+        },
+        "page_layout_faq_questions_and_answers_11": {
+            "value": "Are all prices in Australian Dollars (AUD) and do they include GST?",
+            "label": "Question",
+            "group": "Default question 2"
+        },
+        "page_layout_faq_questions_and_answers_13": {
+            "value": "How does Unit Pricing work on your store?",
+            "label": "Question",
+            "group": "Default question 3"
+        },
+        "page_layout_faq_questions_and_answers_17": {
+            "value": "Are your chili products allergen-safe, vegan, or gluten-free?",
+            "label": "Question",
+            "group": "Default question 4"
+        },
+        "page_layout_faq_questions_and_answers_23": {
+            "value": "Where are your ingredients sourced and grown?",
+            "label": "Question",
+            "group": "Default question 5"
+        },
+        "page_layout_faq_questions_and_answers_27": {
+            "value": "How spicy are Dried Chili blends, and how is heat measured?",
+            "label": "Question",
+            "group": "Default question 6"
+        },
+        "page_layout_faq_questions_and_answers_29": {
+            "value": "What are your shipping times and delivery rates across Australia?",
+            "label": "Question",
+            "group": "Default question 7"
+        },
+        "page_layout_faq_questions_and_answers_30": {
+            "value": "Can I return an opened jar of chili if I change my mind?",
+            "label": "Question",
+            "group": "Default question 8"
+        },
+        "page_layout_faq_questions_and_answers_32": {
+            "value": "What if a jar arrives cracked, leaking, or broken in the mail?",
+            "label": "Question",
+            "group": "Default question 9"
+        },
+        "page_layout_faq_questions_and_answers_35": {
+            "value": "How is my personal information protected under the Privacy Act 1988?",
+            "label": "Question",
+            "group": "Default question 10"
+        },
+        "page_layout_faq_questions_and_answers_41": {
+            "value": "Will I receive spam emails, and how do I unsubscribe under the Spam Act 2003?",
+            "label": "Question",
+            "group": "Default question 11"
+        },
+        "page_layout_faq_questions_and_answers_47": {
+            "value": "How are your chili products prepared and kept food-safe?",
+            "label": "Question",
+            "group": "Default question 12"
+        },
+        "page_layout_faq_questions_and_answers_49": {
+            "value": "How should I store dried chilies to preserve peak aroma and shelf life?",
+            "label": "Question",
+            "group": "Default question 13"
+        },
+        "page_layout_faq_default_answer_01": {
+            "value": "As an Australian shopper, you are fully protected by the Australian Consumer Law. All our spices and chili blends come with automatic guarantees that cannot be excluded. You are entitled to products that are safe, of premium culinary quality, and accurately described. If your order ever arrives damaged, leaking, unsealed, or not as described, you have the right to an immediate replacement or a full refund.",
+            "label": "Answer",
+            "group": "Default question 1",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_02": {
+            "value": "Yes! All prices across our Australian store are displayed in Australian Dollars (AUD) with 10% Goods and Services Tax (GST) already included. What you see on our product pages is exactly what you pay at checkout with zero surprise surcharges. An official Australian Tax Invoice showing our ABN and the GST amount is emailed automatically with every order.",
+            "label": "Answer",
+            "group": "Default question 2",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_03": {
+            "value": "To help you easily compare value across different jar sizes and blends, we follow the Australian Unit Pricing Code. Every product listing displays both the total package price and the standard unit price (such as price per 100 grams), alongside certified metric net weights (strictly excluding the glass jar weight).",
+            "label": "Answer",
+            "group": "Default question 3",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_04": {
+            "value": "We take food safety and allergen transparency very seriously under the Australia New Zealand Food Standards Code. All ingredients and allergens are clearly declared in plain English on both our website and product labels. For example, our signature Shrimp Chilli clearly highlights dried shrimp (crustacea) and sesame. Meanwhile, our pure chili flakes and whole dried pods are 100% plant-based, gluten-free, and prepared with zero artificial colors or preservatives.",
+            "label": "Answer",
+            "group": "Default question 4",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_05": {
+            "value": "In accordance with Australia's Country of Origin Food Labelling rules, every jar and pouch displays clear origin information. For our handcrafted blends combining specialty imported peppers (such as Ghost Pepper, Bird's Eye, and Habanero) with fresh Australian garlic, shallots, and cold-pressed Australian oils, our packaging openly shows the percentage of Australian ingredients.",
+            "label": "Answer",
+            "group": "Default question 5",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_06": {
+            "value": "Our collection spans from mild, fruity, and aromatic (such as Ancho chili at 1,000–2,000 Scoville Heat Units) to scorching heat (like our Ghost Pepper and Carolina Reaper blends exceeding 800,000 SHU). Every product displays an easy-to-read 1-to-5 flame rating and Scoville estimate so you know exactly what level of heat you are getting into.",
+            "label": "Answer",
+            "group": "Default question 6",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_07": {
+            "value": "Orders placed Monday to Friday before 2:00 PM AEST are packed and dispatched within 24 to 48 hours. Standard Australia Post delivery takes 3 to 5 business days for metro areas (4 to 7 for regional), and Express Priority arrives in 1 to 2 business days. We provide Free Standard Shipping on all Australian orders of $50.00 AUD or more ($4.99 AUD under $50, or $9.99 AUD for Express).",
+            "label": "Answer",
+            "group": "Default question 7",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_08": {
+            "value": "We offer a 30-day return policy on any unopened jar or spice pouch with the factory tamper seal intact for a full product refund. Under Australian food safety laws and state food hygiene regulations (such as the NSW Food Act), we cannot accept returns on jars once opened, unsealed, or tasted, due to health and safety risks. However, this hygiene rule never affects your statutory rights: if a jar arrives broken, damaged, or defective, we will gladly replace it or issue a full refund immediately.",
+            "label": "Answer",
+            "group": "Default question 8",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_09": {
+            "value": "You are completely protected by our damage replacement guarantee. For your safety, do not mail broken glass back to us. Simply take a quick photo of the damaged package and email it to support@driedchili.com with your order number. We will dispatch a brand-new replacement via express post right away or give you a full 100% refund.",
+            "label": "Answer",
+            "group": "Default question 9",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_10": {
+            "value": "We respect your personal details under the Privacy Act 1988 and the Australian Privacy Principles. We only collect the necessary information to deliver your orders and manage your account. We never sell, rent, or trade your personal data to advertisers. Online payments are processed through secure, bank-level encrypted checkout partners (Stripe and PayPal), so your card numbers are never stored on our website.",
+            "label": "Answer",
+            "group": "Default question 10",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_11": {
+            "value": "We hate spam as much as you do. Under Australia's Spam Act 2003, we only send newsletters or special recipe discounts if you explicitly chose to opt in. Every marketing email includes a quick 1-click Unsubscribe link at the bottom, and you can opt out instantly anytime at no cost.",
+            "label": "Answer",
+            "group": "Default question 11",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_12": {
+            "value": "All our chili blends and sauces are produced in registered commercial food premises overseen by state food authorities and certified Food Safety Supervisors. We maintain strict hygiene protocols, routine temperature monitoring, and dedicated allergen separation to ensure every jar is clean, fresh, and safe.",
+            "label": "Answer",
+            "group": "Default question 12",
+            "type": "textarea"
+        },
+        "page_layout_faq_default_answer_13": {
+            "value": "Store your chili jars tightly sealed in a cool, dark, and dry pantry away from direct sunlight, stovetop heat, and humidity. Always use a clean, dry spoon to avoid introducing moisture into chili crisp jars. Sealed jars have an optimal Best Before shelf life of up to 18 to 24 months from the production date printed on the base.",
+            "label": "Answer",
+            "group": "Default question 13",
+            "type": "textarea"
+        }
+    },
+    "Privacy Policy - Policy content": {
+        "page_layout_privacy_policy_content_01": {
+            "value": "Honest Data Care",
+            "label": "Heading — Honest Data Care",
+            "group": "Honest Data Care"
+        },
+        "page_layout_privacy_policy_content_02": {
+            "value": "We only collect the essential details needed to deliver your delicious chili orders.",
+            "label": "Description — We only collect the essential details needed to deliver your…",
+            "group": "Honest Data Care"
+        },
+        "page_layout_privacy_policy_content_03": {
+            "value": "Never Sold to Advertisers",
+            "label": "Heading — Never Sold to Advertisers",
+            "group": "Never Sold to Advertisers"
+        },
+        "page_layout_privacy_policy_content_04": {
+            "value": "We never sell, rent, or trade your personal information to outside marketing firms.",
+            "label": "Description — We never sell, rent, or trade your personal information to o…",
+            "group": "Never Sold to Advertisers"
+        },
+        "page_layout_privacy_policy_content_05": {
+            "value": "You Are In Full Control",
+            "label": "Heading — You Are In Full Control",
+            "group": "You Are In Full Control"
+        },
+        "page_layout_privacy_policy_content_06": {
+            "value": "Easily view, edit, or ask us to remove your account details anytime you wish.",
+            "label": "Description — Easily view, edit, or ask us to remove your account details …",
+            "group": "You Are In Full Control"
+        },
+        "page_layout_privacy_policy_content_07": {
+            "value": "1. Our Promise to You",
+            "label": "Heading — 1. Our Promise to You",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_08": {
+            "value": "Welcome to",
+            "label": "Description — Welcome to",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_09": {
+            "value": "Dried Chili",
+            "label": "Highlighted text — Dried Chili",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_10": {
+            "value": "(operated by",
+            "label": "Text — (operated by",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_11": {
+            "value": "Jojo Little Kitchen",
+            "label": "Highlighted text — Jojo Little Kitchen",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_12": {
+            "value": "in\n                    Australia). We know that sharing your personal information requires trust, and we take that\n                    responsibility seriously.",
+            "label": "Text — in Australia). We know that sharing your personal informatio…",
+            "group": "1. Our Promise to You",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_13": {
+            "value": "This Privacy Policy explains clearly and simply how we collect, use, and protect your information\n                    when you visit our website, explore our artisan spices, or place an order. We operate in full\n                    compliance with Australia's",
+            "label": "Description — This Privacy Policy explains clearly and simply how we colle…",
+            "group": "1. Our Promise to You",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_14": {
+            "value": "Privacy Act 1988 (Cth)",
+            "label": "Highlighted text — Privacy Act 1988 (Cth)",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_15": {
+            "value": ", the",
+            "label": "Text — , the",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_16": {
+            "value": "Australian Privacy Principles",
+            "label": "Highlighted text — Australian Privacy Principles",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_17": {
+            "value": ", and the",
+            "label": "Text — , and the",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_18": {
+            "value": "Spam Act 2003",
+            "label": "Highlighted text — Spam Act 2003",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_19": {
+            "value": "—written here in straightforward words so you can easily understand your rights.",
+            "label": "Text — —written here in straightforward words so you can easily und…",
+            "group": "1. Our Promise to You"
+        },
+        "page_layout_privacy_policy_content_20": {
+            "value": "2. What Information We Collect & Why",
+            "label": "Heading — 2. What Information We Collect & Why",
+            "group": "2. What Information We Collect & Why"
+        },
+        "page_layout_privacy_policy_content_21": {
+            "value": "We only ask for details that are genuinely needed to give you a smooth, enjoyable shopping\n                    experience. This includes:",
+            "label": "Description — We only ask for details that are genuinely needed to give yo…",
+            "group": "2. What Information We Collect & Why",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_22": {
+            "value": "Your Delivery Details:",
+            "label": "Highlighted text — Your Delivery Details:",
+            "group": "2. What Information We Collect & Why"
+        },
+        "page_layout_privacy_policy_content_23": {
+            "value": "Your full name, delivery address, phone number, and\n                        email address so we can pack your spice order, hand it to Australia Post, and send you live\n                        parcel tracking.",
+            "label": "Text — Your full name, delivery address, phone number, and email ad…",
+            "group": "2. What Information We Collect & Why",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_24": {
+            "value": "Order & Purchase History:",
+            "label": "Highlighted text — Order & Purchase History:",
+            "group": "2. What Information We Collect & Why"
+        },
+        "page_layout_privacy_policy_content_25": {
+            "value": "What chili products you ordered, when you ordered\n                        them, and copies of your official Australian Tax Invoices.",
+            "label": "Text — What chili products you ordered, when you ordered them, and …",
+            "group": "2. What Information We Collect & Why",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_26": {
+            "value": "Safe Payment Information:",
+            "label": "Highlighted text — Safe Payment Information:",
+            "group": "2. What Information We Collect & Why"
+        },
+        "page_layout_privacy_policy_content_27": {
+            "value": "When you purchase online, your card details are\n                        processed directly and securely by certified payment services (Stripe or PayPal).",
+            "label": "Text — When you purchase online, your card details are processed di…",
+            "group": "2. What Information We Collect & Why",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_28": {
+            "value": "Dried\n                            Chili never sees or saves your credit card numbers on our website.",
+            "label": "Highlighted text — Dried Chili never sees or saves your credit card numbers on …",
+            "group": "2. What Information We Collect & Why"
+        },
+        "page_layout_privacy_policy_content_29": {
+            "value": "Customer Notes & Feedback:",
+            "label": "Highlighted text — Customer Notes & Feedback:",
+            "group": "2. What Information We Collect & Why"
+        },
+        "page_layout_privacy_policy_content_30": {
+            "value": "Any special delivery instructions (like gate codes)\n                        or questions you send to our support team so we can assist you quickly.",
+            "label": "Text — Any special delivery instructions (like gate codes) or quest…",
+            "group": "2. What Information We Collect & Why",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_31": {
+            "value": "Website Cookies:",
+            "label": "Highlighted text — Website Cookies:",
+            "group": "2. What Information We Collect & Why"
+        },
+        "page_layout_privacy_policy_content_32": {
+            "value": "Small, helpful files that remember what is inside your\n                        shopping cart as you browse our blends, keeping your session active.",
+            "label": "Text — Small, helpful files that remember what is inside your shopp…",
+            "group": "2. What Information We Collect & Why",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_33": {
+            "value": "3. How We Use Your Details",
+            "label": "Heading — 3. How We Use Your Details",
+            "group": "3. How We Use Your Details"
+        },
+        "page_layout_privacy_policy_content_34": {
+            "value": "We use your information exclusively to run our small-batch spice business and serve you well:",
+            "label": "Description — We use your information exclusively to run our small-batch s…",
+            "group": "3. How We Use Your Details"
+        },
+        "page_layout_privacy_policy_content_35": {
+            "value": "To prepare, safely pack, and dispatch your chili jars.",
+            "label": "Text — To prepare, safely pack, and dispatch your chili jars.",
+            "group": "3. How We Use Your Details"
+        },
+        "page_layout_privacy_policy_content_36": {
+            "value": "To email you order confirmations, tracking numbers, and tax invoices.",
+            "label": "Text — To email you order confirmations, tracking numbers, and tax …",
+            "group": "3. How We Use Your Details"
+        },
+        "page_layout_privacy_policy_content_37": {
+            "value": "To assist you with questions, recipe tips, replacements, or refunds.",
+            "label": "Text — To assist you with questions, recipe tips, replacements, or …",
+            "group": "3. How We Use Your Details"
+        },
+        "page_layout_privacy_policy_content_38": {
+            "value": "To keep our online store secure against payment fraud.",
+            "label": "Text — To keep our online store secure against payment fraud.",
+            "group": "3. How We Use Your Details"
+        },
+        "page_layout_privacy_policy_content_39": {
+            "value": "In the rare event of a product advisory or recall, to notify you promptly to protect your food\n                        safety.",
+            "label": "Text — In the rare event of a product advisory or recall, to notify…",
+            "group": "3. How We Use Your Details",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_40": {
+            "value": "4. Honest Email Communications & No Spam",
+            "label": "Heading — 4. Honest Email Communications & No Spam",
+            "group": "4. Honest Email Communications & No Spam"
+        },
+        "page_layout_privacy_policy_content_41": {
+            "value": "We hate unsolicited junk mail just as much as you do. Under Australia's",
+            "label": "Description — We hate unsolicited junk mail just as much as you do. Under …",
+            "group": "4. Honest Email Communications & No Spam"
+        },
+        "page_layout_privacy_policy_content_42": {
+            "value": "Spam Act\n                        2003",
+            "label": "Highlighted text — Spam Act 2003",
+            "group": "4. Honest Email Communications & No Spam"
+        },
+        "page_layout_privacy_policy_content_43": {
+            "value": ", we maintain a strict policy:",
+            "label": "Text — , we maintain a strict policy:",
+            "group": "4. Honest Email Communications & No Spam"
+        },
+        "page_layout_privacy_policy_content_44": {
+            "value": "We will",
+            "label": "Text — We will",
+            "group": "4. Honest Email Communications & No Spam"
+        },
+        "page_layout_privacy_policy_content_45": {
+            "value": "only",
+            "label": "Highlighted text — only",
+            "group": "4. Honest Email Communications & No Spam"
+        },
+        "page_layout_privacy_policy_content_46": {
+            "value": "send you newsletters, special discounts, or new seasonal harvest\n                        alerts if you explicitly signed up to receive them.",
+            "label": "Text — send you newsletters, special discounts, or new seasonal har…",
+            "group": "4. Honest Email Communications & No Spam",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_47": {
+            "value": "Every promotional email has an instant, free",
+            "label": "Text — Every promotional email has an instant, free",
+            "group": "4. Honest Email Communications & No Spam"
+        },
+        "page_layout_privacy_policy_content_48": {
+            "value": "1-click Unsubscribe link",
+            "label": "Highlighted text — 1-click Unsubscribe link",
+            "group": "4. Honest Email Communications & No Spam"
+        },
+        "page_layout_privacy_policy_content_49": {
+            "value": "right at\n                        the bottom. Click it anytime, and you will be removed from our marketing list within 5 business\n                        days.",
+            "label": "Text — right at the bottom. Click it anytime, and you will be remov…",
+            "group": "4. Honest Email Communications & No Spam",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_50": {
+            "value": "We will still email you important transactional updates about your active orders (like your\n                        receipt and tracking link) even if you unsubscribe from promotional newsletters.",
+            "label": "Text — We will still email you important transactional updates abou…",
+            "group": "4. Honest Email Communications & No Spam",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_51": {
+            "value": "5. Who We Share Information With",
+            "label": "Heading — 5. Who We Share Information With",
+            "group": "5. Who We Share Information With"
+        },
+        "page_layout_privacy_policy_content_52": {
+            "value": "We never sell, rent, or trade your personal details to outside companies for marketing. We only share\n                    the minimum necessary information with trusted partners who help us fulfill your order:",
+            "label": "Description — We never sell, rent, or trade your personal details to outsi…",
+            "group": "5. Who We Share Information With",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_53": {
+            "value": "Postal Carriers:",
+            "label": "Highlighted text — Postal Carriers:",
+            "group": "5. Who We Share Information With"
+        },
+        "page_layout_privacy_policy_content_54": {
+            "value": "Australia Post or express delivery couriers so they can drive\n                        the package to your front door.",
+            "label": "Text — Australia Post or express delivery couriers so they can driv…",
+            "group": "5. Who We Share Information With",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_55": {
+            "value": "Payment Gateways:",
+            "label": "Highlighted text — Payment Gateways:",
+            "group": "5. Who We Share Information With"
+        },
+        "page_layout_privacy_policy_content_56": {
+            "value": "Certified payment partners (Stripe, PayPal) to safely approve\n                        your payment.",
+            "label": "Text — Certified payment partners (Stripe, PayPal) to safely approv…",
+            "group": "5. Who We Share Information With"
+        },
+        "page_layout_privacy_policy_content_57": {
+            "value": "Cloud Infrastructure:",
+            "label": "Highlighted text — Cloud Infrastructure:",
+            "group": "5. Who We Share Information With"
+        },
+        "page_layout_privacy_policy_content_58": {
+            "value": "Secure, industry-leading hosting systems that keep our\n                        website running smoothly 24/7.",
+            "label": "Text — Secure, industry-leading hosting systems that keep our websi…",
+            "group": "5. Who We Share Information With",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_59": {
+            "value": "6. How We Protect Your Data",
+            "label": "Heading — 6. How We Protect Your Data",
+            "group": "6. How We Protect Your Data"
+        },
+        "page_layout_privacy_policy_content_60": {
+            "value": "We use modern, bank-standard security safeguards to protect your personal details. All web traffic on\n                    Dried Chili is protected with 256-bit SSL encryption (look for the padlock in your browser address\n                    bar). Access to order records is strictly restricted to team members who need it to pack your boxes\n                    or answer customer care requests.",
+            "label": "Description — We use modern, bank-standard security safeguards to protect …",
+            "group": "6. How We Protect Your Data",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_61": {
+            "value": "7. Managing Your Account & Your Privacy Rights",
+            "label": "Heading — 7. Managing Your Account & Your Privacy Rights",
+            "group": "7. Managing Your Account & Your Privacy Rights"
+        },
+        "page_layout_privacy_policy_content_62": {
+            "value": "You have full control over your personal records:",
+            "label": "Description — You have full control over your personal records:",
+            "group": "7. Managing Your Account & Your Privacy Rights"
+        },
+        "page_layout_privacy_policy_content_63": {
+            "value": "Update Your Details:",
+            "label": "Highlighted text — Update Your Details:",
+            "group": "7. Managing Your Account & Your Privacy Rights"
+        },
+        "page_layout_privacy_policy_content_64": {
+            "value": "You can log into your",
+            "label": "Text — You can log into your",
+            "group": "7. Managing Your Account & Your Privacy Rights"
+        },
+        "page_layout_privacy_policy_content_65": {
+            "value": "Account Dashboard",
+            "label": "Link text — Account Dashboard",
+            "group": "7. Managing Your Account & Your Privacy Rights"
+        },
+        "page_layout_privacy_policy_content_66": {
+            "value": "anytime to edit your shipping\n                        address, name, or password.",
+            "label": "Text — anytime to edit your shipping address, name, or password.",
+            "group": "7. Managing Your Account & Your Privacy Rights"
+        },
+        "page_layout_privacy_policy_content_67": {
+            "value": "Request Your Data or Account Deletion:",
+            "label": "Highlighted text — Request Your Data or Account Deletion:",
+            "group": "7. Managing Your Account & Your Privacy Rights"
+        },
+        "page_layout_privacy_policy_content_68": {
+            "value": "If you would like a copy of the personal\n                        information we hold for you, or if you want us to remove your account and delete your records,\n                        simply email our team at",
+            "label": "Text — If you would like a copy of the personal information we hold…",
+            "group": "7. Managing Your Account & Your Privacy Rights",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_69": {
+            "value": ". We\n                        will respond promptly within 30 days.",
+            "label": "Text — . We will respond promptly within 30 days.",
+            "group": "7. Managing Your Account & Your Privacy Rights"
+        },
+        "page_layout_privacy_policy_content_70": {
+            "value": "8. Questions, Feedback & Privacy Officer Contact",
+            "label": "Heading — 8. Questions, Feedback & Privacy Officer Contact",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_71": {
+            "value": "If you have any questions about how your information is handled, or if you feel something wasn't\n                    handled properly, please contact our team first so we can make it right:",
+            "label": "Description — If you have any questions about how your information is hand…",
+            "group": "8. Questions, Feedback & Privacy Officer Contact",
+            "type": "textarea"
+        },
+        "page_layout_privacy_policy_content_72": {
+            "value": "Business:",
+            "label": "Highlighted text — Business:",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_73": {
+            "value": "Dried Chili / Jojo Little Kitchen Pty Ltd",
+            "label": "Text — Dried Chili / Jojo Little Kitchen Pty Ltd",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_74": {
+            "value": "Email:",
+            "label": "Highlighted text — Email:",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_75": {
+            "value": "Mailing Address:",
+            "label": "Highlighted text — Mailing Address:",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_76": {
+            "value": "Privacy Care, Dried Chili, PO Box 412, Sydney NSW 2000,\n                        Australia",
+            "label": "Text — Privacy Care, Dried Chili, PO Box 412, Sydney NSW 2000, Aust…",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_77": {
+            "value": "Online Support:",
+            "label": "Highlighted text — Online Support:",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_78": {
+            "value": "Contact Support Form",
+            "label": "Link text — Contact Support Form",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_79": {
+            "value": "You also have the right under Australian law to contact the",
+            "label": "Description — You also have the right under Australian law to contact the",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_80": {
+            "value": "Office of the Australian Information Commissioner (OAIC)",
+            "label": "Highlighted text — Office of the Australian Information Commissioner (OAIC)",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_81": {
+            "value": "at",
+            "label": "Text — at",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_82": {
+            "value": "www.oaic.gov.au",
+            "label": "Link text — www.oaic.gov.au",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_policy_content_83": {
+            "value": "or by calling 1300 363 992.",
+            "label": "Text — or by calling 1300 363 992.",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        },
+        "page_layout_privacy_contact_email": {
+            "value": "privacy@driedchili.com",
+            "label": "Contact email",
+            "group": "8. Questions, Feedback & Privacy Officer Contact"
+        }
+    },
+    "Terms of Service - Terms content": {
+        "page_layout_terms_terms_content_01": {
+            "value": "No Hidden Surcharges",
+            "label": "Heading — No Hidden Surcharges",
+            "group": "No Hidden Surcharges"
+        },
+        "page_layout_terms_terms_content_02": {
+            "value": "All prices are in Australian Dollars with 10% GST included. What you see is what you pay.",
+            "label": "Description — All prices are in Australian Dollars with 10% GST included. …",
+            "group": "No Hidden Surcharges"
+        },
+        "page_layout_terms_terms_content_03": {
+            "value": "Automatic Quality Guarantees",
+            "label": "Heading — Automatic Quality Guarantees",
+            "group": "Automatic Quality Guarantees"
+        },
+        "page_layout_terms_terms_content_04": {
+            "value": "Full statutory protections under the Australian Consumer Law if anything goes wrong.",
+            "label": "Description — Full statutory protections under the Australian Consumer Law…",
+            "group": "Automatic Quality Guarantees"
+        },
+        "page_layout_terms_terms_content_05": {
+            "value": "Small-Batch Food Safety",
+            "label": "Heading — Small-Batch Food Safety",
+            "group": "Small-Batch Food Safety"
+        },
+        "page_layout_terms_terms_content_06": {
+            "value": "Crafted in licensed kitchens with clear allergen declarations and airtight tamper seals.",
+            "label": "Description — Crafted in licensed kitchens with clear allergen declaration…",
+            "group": "Small-Batch Food Safety"
+        },
+        "page_layout_terms_terms_content_07": {
+            "value": "1. Welcome to Dried Chili",
+            "label": "Heading — 1. Welcome to Dried Chili",
+            "group": "1. Welcome to Dried Chili"
+        },
+        "page_layout_terms_terms_content_08": {
+            "value": "Welcome to",
+            "label": "Description — Welcome to",
+            "group": "1. Welcome to Dried Chili"
+        },
+        "page_layout_terms_terms_content_09": {
+            "value": "Dried Chili",
+            "label": "Highlighted text — Dried Chili",
+            "group": "1. Welcome to Dried Chili"
+        },
+        "page_layout_terms_terms_content_10": {
+            "value": "(operated by",
+            "label": "Text — (operated by",
+            "group": "1. Welcome to Dried Chili"
+        },
+        "page_layout_terms_terms_content_11": {
+            "value": "Jojo Little Kitchen",
+            "label": "Highlighted text — Jojo Little Kitchen",
+            "group": "1. Welcome to Dried Chili"
+        },
+        "page_layout_terms_terms_content_12": {
+            "value": "in Australia). These Terms of Service outline how our store operates and what you can expect when ordering our small-batch culinary spices.",
+            "label": "Text — in Australia). These Terms of Service outline how our store …",
+            "group": "1. Welcome to Dried Chili",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_13": {
+            "value": "By exploring our website, setting up an account, or purchasing from our store, you agree to these friendly, straightforward terms, alongside our",
+            "label": "Description — By exploring our website, setting up an account, or purchasi…",
+            "group": "1. Welcome to Dried Chili",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_14": {
+            "value": "Privacy Policy",
+            "label": "Link text — Privacy Policy",
+            "group": "1. Welcome to Dried Chili"
+        },
+        "page_layout_terms_terms_content_15": {
+            "value": "and",
+            "label": "Text — and",
+            "group": "1. Welcome to Dried Chili"
+        },
+        "page_layout_terms_terms_content_16": {
+            "value": "Shipping & Refund Policy",
+            "label": "Link text — Shipping & Refund Policy",
+            "group": "1. Welcome to Dried Chili"
+        },
+        "page_layout_terms_terms_content_17": {
+            "value": ". These terms are governed by the laws of New South Wales and the Commonwealth of Australia.",
+            "label": "Text — . These terms are governed by the laws of New South Wales an…",
+            "group": "1. Welcome to Dried Chili"
+        },
+        "page_layout_terms_terms_content_18": {
+            "value": "2. Your Automatic Rights Under Australian Consumer Law",
+            "label": "Heading — 2. Your Automatic Rights Under Australian Consumer Law",
+            "group": "2. Your Automatic Rights Under Australian Consumer Law"
+        },
+        "page_layout_terms_terms_content_19": {
+            "value": "Your satisfaction and peace of mind come first. Under the",
+            "label": "Description — Your satisfaction and peace of mind come first. Under the",
+            "group": "2. Your Automatic Rights Under Australian Consumer Law"
+        },
+        "page_layout_terms_terms_content_20": {
+            "value": "Australian Consumer Law (ACL)",
+            "label": "Highlighted text — Australian Consumer Law (ACL)",
+            "group": "2. Your Automatic Rights Under Australian Consumer Law"
+        },
+        "page_layout_terms_terms_content_21": {
+            "value": ", all products you purchase from Dried Chili come with statutory consumer guarantees that cannot be excluded:",
+            "label": "Text — , all products you purchase from Dried Chili come with statu…",
+            "group": "2. Your Automatic Rights Under Australian Consumer Law",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_22": {
+            "value": "Our products must be of acceptable quality, safe for consumption, and free from defects.",
+            "label": "Text — Our products must be of acceptable quality, safe for consump…",
+            "group": "2. Your Automatic Rights Under Australian Consumer Law"
+        },
+        "page_layout_terms_terms_content_23": {
+            "value": "They must accurately match the descriptions and photos on our store.",
+            "label": "Text — They must accurately match the descriptions and photos on ou…",
+            "group": "2. Your Automatic Rights Under Australian Consumer Law"
+        },
+        "page_layout_terms_terms_content_24": {
+            "value": "They must be fit for their intended culinary purpose.",
+            "label": "Text — They must be fit for their intended culinary purpose.",
+            "group": "2. Your Automatic Rights Under Australian Consumer Law"
+        },
+        "page_layout_terms_terms_content_25": {
+            "value": "Nothing in these terms limits, removes, or weakens your statutory consumer rights. If a jar arrives broken, unsealed, spoiled, or defective, we will make it right with an immediate replacement or full refund.",
+            "label": "Description — Nothing in these terms limits, removes, or weakens your stat…",
+            "group": "2. Your Automatic Rights Under Australian Consumer Law",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_26": {
+            "value": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included",
+            "label": "Heading — 3. Clear Pricing: Australian Dollars (AUD) & 10% GST Include…",
+            "group": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included"
+        },
+        "page_layout_terms_terms_content_27": {
+            "value": "We believe in 100% price transparency with zero surprise fees in accordance with the",
+            "label": "Description — We believe in 100% price transparency with zero surprise fee…",
+            "group": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included"
+        },
+        "page_layout_terms_terms_content_28": {
+            "value": "A New Tax System (Goods and Services Tax) Act 1999",
+            "label": "Highlighted text — A New Tax System (Goods and Services Tax) Act 1999",
+            "group": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included"
+        },
+        "page_layout_terms_terms_content_29": {
+            "value": "and Section 48 of the Australian Consumer Law:",
+            "label": "Text — and Section 48 of the Australian Consumer Law:",
+            "group": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included"
+        },
+        "page_layout_terms_terms_content_30": {
+            "value": "Australian Dollars (AUD):",
+            "label": "Highlighted text — Australian Dollars (AUD):",
+            "group": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included"
+        },
+        "page_layout_terms_terms_content_31": {
+            "value": "Every product price and shipping rate is displayed in AUD.",
+            "label": "Text — Every product price and shipping rate is displayed in AUD.",
+            "group": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included"
+        },
+        "page_layout_terms_terms_content_32": {
+            "value": "GST Included:",
+            "label": "Highlighted text — GST Included:",
+            "group": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included"
+        },
+        "page_layout_terms_terms_content_33": {
+            "value": "All prices already include the 10% Australian Goods and Services Tax (GST). What you see on the product page is exactly what you pay at checkout.",
+            "label": "Text — All prices already include the 10% Australian Goods and Serv…",
+            "group": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_34": {
+            "value": "Tax Invoice Provided:",
+            "label": "Highlighted text — Tax Invoice Provided:",
+            "group": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included"
+        },
+        "page_layout_terms_terms_content_35": {
+            "value": "As soon as your order is confirmed, an official Australian Tax Invoice showing our Australian Business Number (ABN) and the exact GST component is emailed to you.",
+            "label": "Text — As soon as your order is confirmed, an official Australian T…",
+            "group": "3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_36": {
+            "value": "4. Net Weight & Easy Value Comparison (Unit Pricing Code)",
+            "label": "Heading — 4. Net Weight & Easy Value Comparison (Unit Pricing Code)",
+            "group": "4. Net Weight & Easy Value Comparison (Unit Pricing Code)"
+        },
+        "page_layout_terms_terms_content_37": {
+            "value": "We want you to know exactly what you are getting, adhering to Australia's",
+            "label": "Description — We want you to know exactly what you are getting, adhering t…",
+            "group": "4. Net Weight & Easy Value Comparison (Unit Pricing Code)"
+        },
+        "page_layout_terms_terms_content_38": {
+            "value": "Unit Pricing Code",
+            "label": "Highlighted text — Unit Pricing Code",
+            "group": "4. Net Weight & Easy Value Comparison (Unit Pricing Code)"
+        },
+        "page_layout_terms_terms_content_39": {
+            "value": "Every spice product clearly states its certified net weight (such as 100g, 180g, or 250g) in metric units, strictly excluding the weight of the glass jar or pouch.",
+            "label": "Text — Every spice product clearly states its certified net weight …",
+            "group": "4. Net Weight & Easy Value Comparison (Unit Pricing Code)",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_40": {
+            "value": "We display the standard",
+            "label": "Text — We display the standard",
+            "group": "4. Net Weight & Easy Value Comparison (Unit Pricing Code)"
+        },
+        "page_layout_terms_terms_content_41": {
+            "value": "Unit price (price per 100 grams)",
+            "label": "Highlighted text — Unit price (price per 100 grams)",
+            "group": "4. Net Weight & Easy Value Comparison (Unit Pricing Code)"
+        },
+        "page_layout_terms_terms_content_42": {
+            "value": "right next to the product price, making it easy to compare value across our range.",
+            "label": "Text — right next to the product price, making it easy to compare v…",
+            "group": "4. Net Weight & Easy Value Comparison (Unit Pricing Code)"
+        },
+        "page_layout_terms_terms_content_43": {
+            "value": "5. Small-Batch Food Safety & Clear Allergen Notices",
+            "label": "Heading — 5. Small-Batch Food Safety & Clear Allergen Notices",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices"
+        },
+        "page_layout_terms_terms_content_44": {
+            "value": "As passionate food artisans, food hygiene, safety, and allergen honesty are paramount. We strictly follow the",
+            "label": "Description — As passionate food artisans, food hygiene, safety, and aller…",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_45": {
+            "value": "Australia New Zealand Food Standards Code",
+            "label": "Highlighted text — Australia New Zealand Food Standards Code",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices"
+        },
+        "page_layout_terms_terms_content_46": {
+            "value": "and state health regulations:",
+            "label": "Text — and state health regulations:",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices"
+        },
+        "page_layout_terms_terms_content_47": {
+            "value": "Clear Allergen Warnings:",
+            "label": "Highlighted text — Clear Allergen Warnings:",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices"
+        },
+        "page_layout_terms_terms_content_48": {
+            "value": "We prominently declare any allergens on product listings and physical labels. For instance, our signature",
+            "label": "Text — We prominently declare any allergens on product listings and…",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_49": {
+            "value": "Shrimp Chilli",
+            "label": "Highlighted text — Shrimp Chilli",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices"
+        },
+        "page_layout_terms_terms_content_50": {
+            "value": "contains dried seafood (crustacea) and sesame seeds. Our pure single-origin dried chili flakes and whole pods are vegan, gluten-free, and prepared without artificial colorings or preservatives.",
+            "label": "Text — contains dried seafood (crustacea) and sesame seeds. Our pur…",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_51": {
+            "value": "Freshness & Shelf Life:",
+            "label": "Highlighted text — Freshness & Shelf Life:",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices"
+        },
+        "page_layout_terms_terms_content_52": {
+            "value": "Every jar features a clearly printed \"Best Before\" date and lot number. When stored sealed in a cool, dry pantry, our spices maintain peak aroma and crispness for up to 18 to 24 months.",
+            "label": "Text — Every jar features a clearly printed \"Best Before\" date and …",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_53": {
+            "value": "Licensed Kitchens:",
+            "label": "Highlighted text — Licensed Kitchens:",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices"
+        },
+        "page_layout_terms_terms_content_54": {
+            "value": "Our chili recipes are crafted in registered commercial food premises overseen by certified Food Safety Supervisors.",
+            "label": "Text — Our chili recipes are crafted in registered commercial food …",
+            "group": "5. Small-Batch Food Safety & Clear Allergen Notices",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_55": {
+            "value": "6. Honest Country of Origin Labelling",
+            "label": "Heading — 6. Honest Country of Origin Labelling",
+            "group": "6. Honest Country of Origin Labelling"
+        },
+        "page_layout_terms_terms_content_56": {
+            "value": "In accordance with Australia's",
+            "label": "Description — In accordance with Australia's",
+            "group": "6. Honest Country of Origin Labelling"
+        },
+        "page_layout_terms_terms_content_57": {
+            "value": "Country of Origin Food Labelling Information Standard 2016",
+            "label": "Highlighted text — Country of Origin Food Labelling Information Standard 2016",
+            "group": "6. Honest Country of Origin Labelling"
+        },
+        "page_layout_terms_terms_content_58": {
+            "value": ", our products state clearly where their ingredients are sourced. Where specialty imported peppers (such as Ghost Pepper, Bird's Eye, or Habanero) are blended with fresh Australian garlic, shallots, and cold-pressed Australian oils, our packaging openly shows the percentage of Australian ingredients.",
+            "label": "Text — , our products state clearly where their ingredients are sou…",
+            "group": "6. Honest Country of Origin Labelling",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_59": {
+            "value": "7. Ordering, Delivery & Safe Payments",
+            "label": "Heading — 7. Ordering, Delivery & Safe Payments",
+            "group": "7. Ordering, Delivery & Safe Payments"
+        },
+        "page_layout_terms_terms_content_60": {
+            "value": "Shopping on our store is secure and simple:",
+            "label": "Description — Shopping on our store is secure and simple:",
+            "group": "7. Ordering, Delivery & Safe Payments"
+        },
+        "page_layout_terms_terms_content_61": {
+            "value": "You can checkout quickly using major credit cards, Stripe, Apple Pay, or PayPal. All transactions are securely encrypted.",
+            "label": "Text — You can checkout quickly using major credit cards, Stripe, A…",
+            "group": "7. Ordering, Delivery & Safe Payments",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_62": {
+            "value": "Orders are typically dispatched from our fulfillment kitchen within 24 to 48 hours (Monday to Friday).",
+            "label": "Text — Orders are typically dispatched from our fulfillment kitchen…",
+            "group": "7. Ordering, Delivery & Safe Payments",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_63": {
+            "value": "You will receive a live Australia Post tracking number as soon as your box is scanned into the postal network.",
+            "label": "Text — You will receive a live Australia Post tracking number as so…",
+            "group": "7. Ordering, Delivery & Safe Payments",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_64": {
+            "value": "In the rare event of an unexpected inventory stockout, we will notify you right away and issue a prompt 100% refund.",
+            "label": "Text — In the rare event of an unexpected inventory stockout, we wi…",
+            "group": "7. Ordering, Delivery & Safe Payments",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_65": {
+            "value": "8. Enjoying Hot Spices Responsibly",
+            "label": "Heading — 8. Enjoying Hot Spices Responsibly",
+            "group": "8. Enjoying Hot Spices Responsibly"
+        },
+        "page_layout_terms_terms_content_66": {
+            "value": "Our chili products range from gentle, smoky table seasonings to extreme Scoville heats (including Carolina Reaper and Ghost Pepper):",
+            "label": "Description — Our chili products range from gentle, smoky table seasonings…",
+            "group": "8. Enjoying Hot Spices Responsibly",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_67": {
+            "value": "Please taste test in small quantities if you are trying a fiery blend for the first time.",
+            "label": "Text — Please taste test in small quantities if you are trying a fi…",
+            "group": "8. Enjoying Hot Spices Responsibly"
+        },
+        "page_layout_terms_terms_content_68": {
+            "value": "Always wash your hands thoroughly after handling potent dried peppers, and keep extremely spicy jars out of reach of young children and pets.",
+            "label": "Text — Always wash your hands thoroughly after handling potent drie…",
+            "group": "8. Enjoying Hot Spices Responsibly",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_69": {
+            "value": "9. Returns, Replacements & Hygiene Rules",
+            "label": "Heading — 9. Returns, Replacements & Hygiene Rules",
+            "group": "9. Returns, Replacements & Hygiene Rules"
+        },
+        "page_layout_terms_terms_content_70": {
+            "value": "Our returns process is fair and customer-friendly:",
+            "label": "Description — Our returns process is fair and customer-friendly:",
+            "group": "9. Returns, Replacements & Hygiene Rules"
+        },
+        "page_layout_terms_terms_content_71": {
+            "value": "Damaged or Defective Jars:",
+            "label": "Highlighted text — Damaged or Defective Jars:",
+            "group": "9. Returns, Replacements & Hygiene Rules"
+        },
+        "page_layout_terms_terms_content_72": {
+            "value": "If Australia Post mishandles your box and a jar arrives cracked, leaking, or with a broken seal, take a quick photo and email us. We will dispatch an immediate replacement or issue a full refund right away.",
+            "label": "Text — If Australia Post mishandles your box and a jar arrives crac…",
+            "group": "9. Returns, Replacements & Hygiene Rules",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_73": {
+            "value": "30-Day Change of Mind:",
+            "label": "Highlighted text — 30-Day Change of Mind:",
+            "group": "9. Returns, Replacements & Hygiene Rules"
+        },
+        "page_layout_terms_terms_content_74": {
+            "value": "We gladly accept returns on unopened jars with original factory safety seals intact within 30 days of delivery.",
+            "label": "Text — We gladly accept returns on unopened jars with original fact…",
+            "group": "9. Returns, Replacements & Hygiene Rules",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_75": {
+            "value": "Food Hygiene Exclusion:",
+            "label": "Highlighted text — Food Hygiene Exclusion:",
+            "group": "9. Returns, Replacements & Hygiene Rules"
+        },
+        "page_layout_terms_terms_content_76": {
+            "value": "Because food safety matters to everyone, state food health regulations mean we cannot accept returns on jars that have already been opened or tasted. This rule never affects your legal rights if the product arrives damaged or defective.",
+            "label": "Text — Because food safety matters to everyone, state food health r…",
+            "group": "9. Returns, Replacements & Hygiene Rules",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_77": {
+            "value": "10. Respectful Communications & Intellectual Property",
+            "label": "Heading — 10. Respectful Communications & Intellectual Property",
+            "group": "10. Respectful Communications & Intellectual Property"
+        },
+        "page_layout_terms_terms_content_78": {
+            "value": "Our recipes, culinary stories, graphics, and photos are the creative work of Dried Chili / Jojo Little Kitchen. Please don't copy or use them for commercial purposes without our permission.",
+            "label": "Description — Our recipes, culinary stories, graphics, and photos are the …",
+            "group": "10. Respectful Communications & Intellectual Property",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_79": {
+            "value": "When you subscribe to our newsletter, you can leave anytime with one click. We never send unsolicited spam.",
+            "label": "Description — When you subscribe to our newsletter, you can leave anytime …",
+            "group": "10. Respectful Communications & Intellectual Property",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_80": {
+            "value": "11. Getting in Touch & Friendly Customer Care",
+            "label": "Heading — 11. Getting in Touch & Friendly Customer Care",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        },
+        "page_layout_terms_terms_content_81": {
+            "value": "If you have any questions about an order, need culinary recipe advice, or want to discuss your purchase, our friendly Australian team is here to help:",
+            "label": "Description — If you have any questions about an order, need culinary reci…",
+            "group": "11. Getting in Touch & Friendly Customer Care",
+            "type": "textarea"
+        },
+        "page_layout_terms_terms_content_82": {
+            "value": "Company:",
+            "label": "Highlighted text — Company:",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        },
+        "page_layout_terms_terms_content_83": {
+            "value": "Dried Chili / Jojo Little Kitchen Pty Ltd",
+            "label": "Text — Dried Chili / Jojo Little Kitchen Pty Ltd",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        },
+        "page_layout_terms_terms_content_84": {
+            "value": "Email:",
+            "label": "Highlighted text — Email:",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        },
+        "page_layout_terms_terms_content_85": {
+            "value": "Phone:",
+            "label": "Highlighted text — Phone:",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        },
+        "page_layout_terms_terms_content_86": {
+            "value": "1800 244 547 (Mon–Fri, 9:00 AM – 5:00 PM AEST)",
+            "label": "Text — 1800 244 547 (Mon–Fri, 9:00 AM – 5:00 PM AEST)",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        },
+        "page_layout_terms_terms_content_87": {
+            "value": "Postal Address:",
+            "label": "Highlighted text — Postal Address:",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        },
+        "page_layout_terms_terms_content_88": {
+            "value": "Dried Chili Customer Care, PO Box 412, Sydney NSW 2000, Australia",
+            "label": "Text — Dried Chili Customer Care, PO Box 412, Sydney NSW 2000, Aust…",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        },
+        "page_layout_terms_terms_content_89": {
+            "value": "Online Help:",
+            "label": "Highlighted text — Online Help:",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        },
+        "page_layout_terms_terms_content_90": {
+            "value": "Online Contact Form",
+            "label": "Link text — Online Contact Form",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        },
+        "page_layout_terms_contact_email": {
+            "value": "support@driedchili.com",
+            "label": "Contact email",
+            "group": "11. Getting in Touch & Friendly Customer Care"
+        }
+    },
+    "Shipping & Refunds - Shipping and refunds content": {
+        "page_layout_shipping_shipping_and_refunds_content_01": {
+            "value": "Tracked Nationwide",
+            "label": "Heading — Tracked Nationwide",
+            "group": "Tracked Nationwide"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_02": {
+            "value": "Fast, reliable dispatch via Australia Post with live door-to-door tracking links.",
+            "label": "Description — Fast, reliable dispatch via Australia Post with live door-to…",
+            "group": "Tracked Nationwide"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_03": {
+            "value": "All Taxes Included",
+            "label": "Heading — All Taxes Included",
+            "group": "All Taxes Included"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_04": {
+            "value": "Prices in AUD with 10% GST included. Official tax invoice sent upon purchase.",
+            "label": "Description — Prices in AUD with 10% GST included. Official tax invoice se…",
+            "group": "All Taxes Included"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_05": {
+            "value": "Full Transit Protection",
+            "label": "Heading — Full Transit Protection",
+            "group": "Full Transit Protection"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_06": {
+            "value": "Arrived cracked or leaking? We will replace it immediately free of charge.",
+            "label": "Description — Arrived cracked or leaking? We will replace it immediately f…",
+            "group": "Full Transit Protection"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_07": {
+            "value": "Australian Consumer Guarantee",
+            "label": "Heading — Australian Consumer Guarantee",
+            "group": "Australian Consumer Guarantee"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_08": {
+            "value": "Our goods come with guarantees that cannot be excluded under the Australian Consumer Law.",
+            "label": "Highlighted text — Our goods come with guarantees that cannot be excluded under…",
+            "group": "Australian Consumer Guarantee"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_09": {
+            "value": "You are entitled to a replacement or refund for a Major Failure and compensation for any other reasonably foreseeable loss or damage. You are also entitled to have the goods repaired or replaced if the goods fail to be of acceptable quality and the failure does not amount to a Major Failure (Minor Failure).",
+            "label": "Text — You are entitled to a replacement or refund for a Major Fail…",
+            "group": "Australian Consumer Guarantee",
+            "type": "textarea"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_10": {
+            "value": "1. How We Pack & Dispatch Your Order",
+            "label": "Heading — 1. How We Pack & Dispatch Your Order",
+            "group": "1. How We Pack & Dispatch Your Order"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_11": {
+            "value": "We take pride in making sure your artisanal dried chilis reach you fresh, fragrant, and intact:",
+            "label": "Description — We take pride in making sure your artisanal dried chilis rea…",
+            "group": "1. How We Pack & Dispatch Your Order"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_12": {
+            "value": "Dispatch Time:",
+            "label": "Highlighted text — Dispatch Time:",
+            "group": "1. How We Pack & Dispatch Your Order"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_13": {
+            "value": "Orders placed Monday through Friday before",
+            "label": "Text — Orders placed Monday through Friday before",
+            "group": "1. How We Pack & Dispatch Your Order"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_14": {
+            "value": "2:00 PM AEST",
+            "label": "Highlighted text — 2:00 PM AEST",
+            "group": "1. How We Pack & Dispatch Your Order"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_15": {
+            "value": "are packed and handed to our couriers within",
+            "label": "Text — are packed and handed to our couriers within",
+            "group": "1. How We Pack & Dispatch Your Order"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_16": {
+            "value": "24 to 48 hours",
+            "label": "Highlighted text — 24 to 48 hours",
+            "group": "1. How We Pack & Dispatch Your Order"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_17": {
+            "value": ". Orders placed over the weekend or on public holidays are dispatched the next business day.",
+            "label": "Text — . Orders placed over the weekend or on public holidays are d…",
+            "group": "1. How We Pack & Dispatch Your Order"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_18": {
+            "value": "Protective Packaging:",
+            "label": "Highlighted text — Protective Packaging:",
+            "group": "1. How We Pack & Dispatch Your Order"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_19": {
+            "value": "Glass jars are individually cushioned in shock-absorbing wrapping and sealed with airtight, tamper-evident security bands to keep aroma locked in and prevent transit damage.",
+            "label": "Text — Glass jars are individually cushioned in shock-absorbing wra…",
+            "group": "1. How We Pack & Dispatch Your Order",
+            "type": "textarea"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_20": {
+            "value": "Live Tracking:",
+            "label": "Highlighted text — Live Tracking:",
+            "group": "1. How We Pack & Dispatch Your Order"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_21": {
+            "value": "As soon as your order leaves our kitchen, you'll receive an automated email with your Australia Post tracking link so you can follow its journey.",
+            "label": "Text — As soon as your order leaves our kitchen, you'll receive an …",
+            "group": "1. How We Pack & Dispatch Your Order",
+            "type": "textarea"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_22": {
+            "value": "2. Domestic Australian Delivery Rates (AUD, GST Included)",
+            "label": "Heading — 2. Domestic Australian Delivery Rates (AUD, GST Included)",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_23": {
+            "value": "In accordance with the",
+            "label": "Description — In accordance with the",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_24": {
+            "value": "GST Act 1999",
+            "label": "Highlighted text — GST Act 1999",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_25": {
+            "value": ", all shipping rates are quoted in Australian Dollars (AUD) and include 10% Australian GST:",
+            "label": "Text — , all shipping rates are quoted in Australian Dollars (AUD) …",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_26": {
+            "value": "Delivery Option",
+            "label": "Text — Delivery Option",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_27": {
+            "value": "Estimated Delivery Time",
+            "label": "Text — Estimated Delivery Time",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_28": {
+            "value": "Order Value",
+            "label": "Text — Order Value",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_29": {
+            "value": "Shipping Cost",
+            "label": "Text — Shipping Cost",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_30": {
+            "value": "Standard Australia Post",
+            "label": "Highlighted text — Standard Australia Post",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_31": {
+            "value": "3–5 business days (Metro)",
+            "label": "Text — 3–5 business days (Metro)",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_32": {
+            "value": "4–7 business days (Regional)",
+            "label": "Text — 4–7 business days (Regional)",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_33": {
+            "value": "FREE",
+            "label": "Text — FREE",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_34": {
+            "value": "Standard Australia Post",
+            "label": "Highlighted text — Standard Australia Post",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_35": {
+            "value": "3–5 business days (Metro)",
+            "label": "Text — 3–5 business days (Metro)",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_36": {
+            "value": "4–7 business days (Regional)",
+            "label": "Text — 4–7 business days (Regional)",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_37": {
+            "value": "Express Priority Delivery",
+            "label": "Highlighted text — Express Priority Delivery",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_38": {
+            "value": "1–2 business days (National network)",
+            "label": "Text — 1–2 business days (National network)",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_39": {
+            "value": "All order values",
+            "label": "Text — All order values",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_40": {
+            "value": "3. Worldwide Shipping",
+            "label": "Heading — 3. Worldwide Shipping",
+            "group": "3. Worldwide Shipping"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_41": {
+            "value": "We love sending our spicy blends to heat lovers across the globe! We ship to over 50 countries via DHL Express and FedEx International:",
+            "label": "Description — We love sending our spicy blends to heat lovers across the g…",
+            "group": "3. Worldwide Shipping",
+            "type": "textarea"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_42": {
+            "value": "Delivery times typically range between",
+            "label": "Text — Delivery times typically range between",
+            "group": "3. Worldwide Shipping"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_43": {
+            "value": "7 to 14 business days",
+            "label": "Highlighted text — 7 to 14 business days",
+            "group": "3. Worldwide Shipping"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_44": {
+            "value": "depending on destination customs clearance.",
+            "label": "Text — depending on destination customs clearance.",
+            "group": "3. Worldwide Shipping"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_45": {
+            "value": "Tax-Free Export:",
+            "label": "Highlighted text — Tax-Free Export:",
+            "group": "3. Worldwide Shipping"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_46": {
+            "value": "Australian GST is automatically deducted at checkout once your overseas delivery address is confirmed. Any local import duties or customs tariffs in your destination country are the responsibility of the recipient.",
+            "label": "Text — Australian GST is automatically deducted at checkout once yo…",
+            "group": "3. Worldwide Shipping",
+            "type": "textarea"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_47": {
+            "value": "4. What If a Jar Arrives Damaged, Leaking, or Broken?",
+            "label": "Heading — 4. What If a Jar Arrives Damaged, Leaking, or Broken?",
+            "group": "4. What If a Jar Arrives Damaged, Leaking, or Broken?"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_48": {
+            "value": "While postal accidents are rare, you are completely protected. If your parcel arrives damaged in transit, with broken glass, or with a broken seal:",
+            "label": "Description — While postal accidents are rare, you are completely protecte…",
+            "group": "4. What If a Jar Arrives Damaged, Leaking, or Broken?",
+            "type": "textarea"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_49": {
+            "value": "No need to return broken glass:",
+            "label": "Highlighted text — No need to return broken glass:",
+            "group": "4. What If a Jar Arrives Damaged, Leaking, or Broken?"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_50": {
+            "value": "For your safety, please do not mail sharp or broken glass back to us.",
+            "label": "Text — For your safety, please do not mail sharp or broken glass ba…",
+            "group": "4. What If a Jar Arrives Damaged, Leaking, or Broken?"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_51": {
+            "value": "Quick resolution:",
+            "label": "Highlighted text — Quick resolution:",
+            "group": "4. What If a Jar Arrives Damaged, Leaking, or Broken?"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_52": {
+            "value": "Take a clear photo of the damaged jar and email it to",
+            "label": "Text — Take a clear photo of the damaged jar and email it to",
+            "group": "4. What If a Jar Arrives Damaged, Leaking, or Broken?"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_53": {
+            "value": "with your order number.",
+            "label": "Text — with your order number.",
+            "group": "4. What If a Jar Arrives Damaged, Leaking, or Broken?"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_54": {
+            "value": "Your choice of remedy:",
+            "label": "Highlighted text — Your choice of remedy:",
+            "group": "4. What If a Jar Arrives Damaged, Leaking, or Broken?"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_55": {
+            "value": "We will dispatch an immediate replacement via express post at no extra cost, or issue an instant 100% full refund (including any delivery fees paid).",
+            "label": "Text — We will dispatch an immediate replacement via express post a…",
+            "group": "4. What If a Jar Arrives Damaged, Leaking, or Broken?",
+            "type": "textarea"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_56": {
+            "value": "5. 30-Day Change-of-Mind Policy",
+            "label": "Heading — 5. 30-Day Change-of-Mind Policy",
+            "group": "5. 30-Day Change-of-Mind Policy"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_57": {
+            "value": "We want you to be confident in your purchase:",
+            "label": "Description — We want you to be confident in your purchase:",
+            "group": "5. 30-Day Change-of-Mind Policy"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_58": {
+            "value": "Unopened Jars:",
+            "label": "Highlighted text — Unopened Jars:",
+            "group": "5. 30-Day Change-of-Mind Policy"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_59": {
+            "value": "If you change your mind, you can return any unopened jar or spice pouch with the factory tamper seal intact within",
+            "label": "Text — If you change your mind, you can return any unopened jar or …",
+            "group": "5. 30-Day Change-of-Mind Policy",
+            "type": "textarea"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_60": {
+            "value": "30 days",
+            "label": "Highlighted text — 30 days",
+            "group": "5. 30-Day Change-of-Mind Policy"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_61": {
+            "value": "of delivery for a full refund of the product purchase price.",
+            "label": "Text — of delivery for a full refund of the product purchase price.",
+            "group": "5. 30-Day Change-of-Mind Policy"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_62": {
+            "value": "Food Hygiene Safety:",
+            "label": "Highlighted text — Food Hygiene Safety:",
+            "group": "5. 30-Day Change-of-Mind Policy"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_63": {
+            "value": "In line with the",
+            "label": "Text — In line with the",
+            "group": "5. 30-Day Change-of-Mind Policy"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_64": {
+            "value": "Australia New Zealand Food Standards Code",
+            "label": "Highlighted text — Australia New Zealand Food Standards Code",
+            "group": "5. 30-Day Change-of-Mind Policy"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_65": {
+            "value": "and state food safety hygiene regulations, we cannot accept returns on jars that have already been opened, unsealed, or tasted. This rule never affects your consumer rights if the item arrived damaged or spoiled.",
+            "label": "Text — and state food safety hygiene regulations, we cannot accept …",
+            "group": "5. 30-Day Change-of-Mind Policy",
+            "type": "textarea"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_66": {
+            "value": "6. How to Request a Return or Replacement",
+            "label": "Heading — 6. How to Request a Return or Replacement",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_67": {
+            "value": "Contact Our Team:",
+            "label": "Highlighted text — Contact Our Team:",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_68": {
+            "value": "Send a quick email to",
+            "label": "Text — Send a quick email to",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_69": {
+            "value": "with your order number and photo (if an item arrived damaged).",
+            "label": "Text — with your order number and photo (if an item arrived damaged…",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_70": {
+            "value": "Fast Assessment:",
+            "label": "Highlighted text — Fast Assessment:",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_71": {
+            "value": "Our Australian customer support team will reply within",
+            "label": "Text — Our Australian customer support team will reply within",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_72": {
+            "value": "24 business hours",
+            "label": "Highlighted text — 24 business hours",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_73": {
+            "value": "with confirmation and return instructions.",
+            "label": "Text — with confirmation and return instructions.",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_74": {
+            "value": "Replacement or Refund:",
+            "label": "Highlighted text — Replacement or Refund:",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_75": {
+            "value": "Your replacement will be dispatched immediately, or your refund will be returned to your original payment method (card, Stripe, or PayPal) within",
+            "label": "Text — Your replacement will be dispatched immediately, or your ref…",
+            "group": "6. How to Request a Return or Replacement",
+            "type": "textarea"
+        },
+        "page_layout_shipping_shipping_and_refunds_content_76": {
+            "value": "3 to 5 business days",
+            "label": "Highlighted text — 3 to 5 business days",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_contact_email": {
+            "value": "support@driedchili.com",
+            "label": "Contact email",
+            "group": "6. How to Request a Return or Replacement"
+        },
+        "page_layout_shipping_rate_1": {
+            "value": "Orders $50.00 AUD and above",
+            "label": "Shipping rate 1",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_rate_2": {
+            "value": "Orders under $50.00 AUD",
+            "label": "Shipping rate 2",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_rate_3": {
+            "value": "$4.99 AUD",
+            "label": "Shipping rate 3",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        },
+        "page_layout_shipping_rate_4": {
+            "value": "$9.99 AUD",
+            "label": "Shipping rate 4",
+            "group": "2. Domestic Australian Delivery Rates (AUD, GST Included)"
+        }
+    },
+    "FAQ - Display settings": {
+        "page_layout_faq_show_hero": {
+            "value": "1",
+            "label": "Show opening banner",
+            "group": "Visibility",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        },
+        "page_layout_faq_show_content": {
+            "value": "1",
+            "label": "Show main page content",
+            "group": "Visibility",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        }
+    },
+    "Privacy Policy - Display settings": {
+        "page_layout_privacy_show_hero": {
+            "value": "1",
+            "label": "Show opening banner",
+            "group": "Visibility",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        },
+        "page_layout_privacy_show_content": {
+            "value": "1",
+            "label": "Show main page content",
+            "group": "Visibility",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        }
+    },
+    "Terms of Service - Display settings": {
+        "page_layout_terms_show_hero": {
+            "value": "1",
+            "label": "Show opening banner",
+            "group": "Visibility",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        },
+        "page_layout_terms_show_content": {
+            "value": "1",
+            "label": "Show main page content",
+            "group": "Visibility",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        }
+    },
+    "Shipping & Refunds - Display settings": {
+        "page_layout_shipping_show_hero": {
+            "value": "1",
+            "label": "Show opening banner",
+            "group": "Visibility",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        },
+        "page_layout_shipping_show_content": {
+            "value": "1",
+            "label": "Show main page content",
+            "group": "Visibility",
+            "type": "select",
+            "options": {
+                "1": "Show",
+                "0": "Hide"
+            }
+        }
+    },
+    "FAQ - Support": {
+        "page_layout_faq_support_title": {
+            "value": "Still have questions?",
+            "label": "Support heading",
+            "group": "Support"
+        },
+        "page_layout_faq_support_desc": {
+            "value": "Our team is here to help.",
+            "label": "Support description",
+            "group": "Support"
+        },
+        "page_layout_faq_support_contact_text": {
+            "value": "Contact Support",
+            "label": "Contact button text",
+            "group": "Support"
+        },
+        "page_layout_faq_support_contact_link": {
+            "value": "/contact",
+            "label": "Contact button link",
+            "group": "Support"
+        },
+        "page_layout_faq_support_email_text": {
+            "value": "Email Customer Care",
+            "label": "Email button text",
+            "group": "Support"
+        },
+        "page_layout_faq_support_email": {
+            "value": "support@driedchili.com",
+            "label": "Support email address",
+            "group": "Support"
+        }
+    }
+}

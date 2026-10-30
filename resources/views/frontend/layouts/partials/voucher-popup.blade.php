@@ -18,7 +18,7 @@
         <div class="newsletter-split">
             <div class="newsletter-image">
                 <!-- Fallback to an existing image from the source code -->
-                <img src="{{ asset('images/story_spices.jpg') }}" alt="Dried Chilli Spices">
+                <img src="{{ asset('images/story_spices-optimized.webp') }}" alt="Dried Chilli Spices" width="1024" height="1024" loading="lazy" decoding="async">
             </div>
             <div class="newsletter-form-side">
                 <h2>GET 15% OFF EVERYTHING</h2>

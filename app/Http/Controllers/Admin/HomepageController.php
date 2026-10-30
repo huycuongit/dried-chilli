@@ -13,9 +13,10 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        $sections = json_decode(file_get_contents(config_path('nafu-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
+        $sections = PageContentGroups::sections();
         $values = app(SystemSettings::class)->all();
-        return view('admin.homepage', compact('sections', 'values'));
+        $faqs = request()->query('page') === 'FAQ' ? \App\Models\Faq::orderBy('sort_order')->orderBy('id')->get() : collect();
+        return view('admin.homepage', compact('sections', 'values', 'faqs'));
     }
 
     private function savePageContent(Request $request, array $sections): void
@@ -28,7 +29,8 @@ class HomepageController extends Controller
                 if (preg_match('/\.(css|js)(\?.*)?$/i', $field['value'] ?? '')) {
                     continue;
                 }
-                $max = str_contains($key, '_image_') ? 7500000 :
+                $isImage = ($field['type'] ?? null) === 'image' || (str_contains($key, '_image') && !str_contains($key, '_alt_') && !str_contains($key, '_description'));
+                $max = $isImage ? 7500000 :
                     ((str_contains($key, '_content') || str_contains($key, '_text') || str_contains($key, '_editor') || str_contains($key, '_desc')) ? 1000000 : 50000);
                 $rules['content.' . $key] = ['present', 'nullable', 'string', 'max:' . $max];
             }
@@ -38,7 +40,7 @@ class HomepageController extends Controller
             if (!isset($rules['content.' . $key])) {
                 continue;
             }
-            if (str_contains($key, '_image_') && str_starts_with((string) $value, 'data:image/')) {
+            if (str_contains($key, '_image') && !str_contains($key, '_alt_') && !str_contains($key, '_description') && str_starts_with((string) $value, 'data:image/')) {
                 $value = \App\Support\Base64ImageStore::store($value, 'page-images');
             }
             System::updateOrCreate(['key' => 'nafu_home_' . $key], ['content' => $value ?? '']);
@@ -46,27 +48,55 @@ class HomepageController extends Controller
         app(SystemSettings::class)->forget();
     }
 
+    private function saveEditor(Request $request, array $sections): void
+    {
+        $faqEntries = [];
+        if ($request->input('selected_page') === 'FAQ') {
+            $faqEntries = $request->validate([
+                'faq_entries' => ['nullable', 'array'],
+                'faq_entries.*.id' => ['nullable', 'integer', 'distinct', 'exists:faqs,id'],
+                'faq_entries.*.question' => ['required', 'string', 'max:500'],
+                'faq_entries.*.answer' => ['required', 'string', 'max:20000'],
+                'faq_entries.*.is_active' => ['required', 'boolean'],
+                'faq_entries.*.sort_order' => ['required', 'integer', 'min:0', 'max:100000'],
+                'faq_entries.*.delete' => ['nullable', 'boolean'],
+            ])['faq_entries'] ?? [];
+        }
+        \Illuminate\Support\Facades\DB::transaction(function () use ($request, $sections, $faqEntries) {
+            $this->savePageContent($request, $sections);
+            foreach ($faqEntries as $entry) {
+                if (!empty($entry['delete'])) {
+                    if (!empty($entry['id'])) \App\Models\Faq::whereKey($entry['id'])->delete();
+                    continue;
+                }
+                $faq = !empty($entry['id']) ? \App\Models\Faq::findOrFail($entry['id']) : new \App\Models\Faq();
+                $faq->fill(collect($entry)->only(['question', 'answer', 'is_active', 'sort_order'])->all())->save();
+            }
+        });
+    }
+
     public function update(Request $request)
     {
-        $sections = json_decode(file_get_contents(config_path('nafu-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
-        $this->savePageContent($request, $sections);
+        $this->saveEditor($request, PageContentGroups::sections());
         return back()->with('success', 'Page updated successfully.');
     }
 
     public function addSection(Request $request)
     {
-        $sections = json_decode(file_get_contents(config_path('nafu-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
-        $this->savePageContent($request, $sections);
-
         $type = $request->input('type');
         $page = $request->input('page', 'About Us');
         $validTypes = ['text-image', 'card'];
-        if (!in_array($type, $validTypes)) {
+        if ($page !== $request->input('selected_page')) {
+            return back()->with('error', 'The selected page does not match the section.');
+        }
+        if (!in_array($type, $validTypes) || !in_array($page, PageContentGroups::CUSTOM_PAGES, true)) {
             return back()->with('error', 'Invalid section type selected.');
         }
 
+        $this->saveEditor($request, PageContentGroups::sections());
+
         $configPath = config_path('nafu-home-content.json');
-        $json = json_decode(file_get_contents($configPath), true, 512, JSON_THROW_ON_ERROR);
+        $json = PageContentGroups::customPageSections($page);
 
         // Find next section index for this page
         $nextIndex = 1;
@@ -173,7 +203,8 @@ class HomepageController extends Controller
             $newJson[$newSectionKey] = $newSectionData;
         }
 
-        file_put_contents($configPath, json_encode($newJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        System::updateOrCreate(['key' => PageContentGroups::customSchemaKey($page)], ['content' => json_encode($newJson, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR)]);
+        app(SystemSettings::class)->forget();
         return back()->with('success', "Section {$nextIndex} added successfully!");
     }
     public function deleteSection(Request $request)
@@ -184,7 +215,9 @@ class HomepageController extends Controller
         }
 
         $configPath = config_path('nafu-home-content.json');
-        $json = json_decode(file_get_contents($configPath), true, 512, JSON_THROW_ON_ERROR);
+        $page = collect(PageContentGroups::CUSTOM_PAGES)->first(fn ($candidate) => str_starts_with($sectionKey, $candidate . ' - Section '));
+        if (!$page) return back()->with('error', 'Invalid section to delete.');
+        $json = PageContentGroups::customPageSections($page);
 
         if (!isset($json[$sectionKey])) {
             return back()->with('error', 'Section not found.');
@@ -192,9 +225,12 @@ class HomepageController extends Controller
 
         $fields = $json[$sectionKey];
         unset($json[$sectionKey]);
-        file_put_contents($configPath, json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        System::updateOrCreate(['key' => PageContentGroups::customSchemaKey($page)], ['content' => json_encode($json, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR)]);
 
         $dbKeys = array_map(fn($k) => 'nafu_home_' . $k, array_keys($fields));
+        foreach (array_keys($fields) as $key) {
+            if (str_ends_with($key, '_active')) $dbKeys[] = 'nafu_home_' . substr($key, 0, -7) . '_published';
+        }
         \App\Models\System::whereIn('key', $dbKeys)->delete();
         app(SystemSettings::class)->forget();
 

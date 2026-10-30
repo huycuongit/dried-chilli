@@ -5,6 +5,16 @@
 <meta name="description" content="Dried Chili shipping and refund policy. Fast tracked delivery across Australia, all-inclusive AUD rates with GST, and our worry-free replacement guarantee.">
 @endsection
 
+@php
+    $pageLayoutGroups = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
+    $pageLayoutFields = collect($pageLayoutGroups)->collapse()->all();
+    $pageLayoutValue = static fn (string $key) => \App\Support\AboutPageContent::value($key, $pageLayoutFields, $systemSettings);
+    $pageLayoutLink = static function (string $key) use ($pageLayoutValue) {
+        $link = trim($pageLayoutValue($key));
+        return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
+    };
+@endphp
+
 @section('full-content')
 @php
     $sys = app(\App\Support\SystemSettings::class);
@@ -31,6 +41,7 @@
 
 <main class="page-content legal-page bg-cream">
     <!-- Hero Section -->
+    @if($pageLayoutValue('page_layout_shipping_show_hero') === '1')
     <section class="about-hero-section legal-hero">
         <div class="container about-hero-container">
             <div class="about-hero-badge">
@@ -81,8 +92,10 @@
             </div>
         </div>
     </section>
+    @endif
 
     <!-- Document Section -->
+    @if($pageLayoutValue('page_layout_shipping_show_content') === '1')
     <section class="legal-document">
         <div class="container">
             <div class="document-wrapper shadow-lg">
@@ -101,8 +114,8 @@
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>Tracked Nationwide</h4>
-                            <p>Fast, reliable dispatch via Australia Post with live door-to-door tracking links.</p>
+                            <h4>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_01') }}</h4>
+                            <p>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_02') }}</p>
                         </div>
                     </div>
                     <div class="highlight-item">
@@ -114,8 +127,8 @@
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>All Taxes Included</h4>
-                            <p>Prices in AUD with 10% GST included. Official tax invoice sent upon purchase.</p>
+                            <h4>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_03') }}</h4>
+                            <p>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_04') }}</p>
                         </div>
                     </div>
                     <div class="highlight-item">
@@ -127,8 +140,8 @@
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>Full Transit Protection</h4>
-                            <p>Arrived cracked or leaking? We will replace it immediately free of charge.</p>
+                            <h4>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_05') }}</h4>
+                            <p>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_06') }}</p>
                         </div>
                     </div>
                 </div>
@@ -139,86 +152,88 @@
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
                     </div>
                     <div class="statutory-notice-body">
-                        <h4>Australian Consumer Guarantee</h4>
-                        <p><strong>Our goods come with guarantees that cannot be excluded under the Australian Consumer Law.</strong> You are entitled to a replacement or refund for a Major Failure and compensation for any other reasonably foreseeable loss or damage. You are also entitled to have the goods repaired or replaced if the goods fail to be of acceptable quality and the failure does not amount to a Major Failure (Minor Failure).</p>
+                        <h4>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_07') }}</h4>
+                        <p><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_08') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_09') }}</p>
                     </div>
                 </div>
 
-                <h2>1. How We Pack & Dispatch Your Order</h2>
-                <p>We take pride in making sure your artisanal dried chilis reach you fresh, fragrant, and intact:</p>
+                <h2>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_10') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_11') }}</p>
                 <ul>
-                    <li><strong>Dispatch Time:</strong> Orders placed Monday through Friday before <strong>2:00 PM AEST</strong> are packed and handed to our couriers within <strong>24 to 48 hours</strong>. Orders placed over the weekend or on public holidays are dispatched the next business day.</li>
-                    <li><strong>Protective Packaging:</strong> Glass jars are individually cushioned in shock-absorbing wrapping and sealed with airtight, tamper-evident security bands to keep aroma locked in and prevent transit damage.</li>
-                    <li><strong>Live Tracking:</strong> As soon as your order leaves our kitchen, you'll receive an automated email with your Australia Post tracking link so you can follow its journey.</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_12') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_13') }} <strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_14') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_15') }} <strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_16') }}</strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_17') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_18') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_19') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_20') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_21') }}</li>
                 </ul>
 
-                <h2>2. Domestic Australian Delivery Rates (AUD, GST Included)</h2>
-                <p>In accordance with the <strong>GST Act 1999</strong>, all shipping rates are quoted in Australian Dollars (AUD) and include 10% Australian GST:</p>
+                <h2>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_22') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_23') }} <strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_24') }}</strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_25') }}</p>
                 <div class="table-responsive">
                     <table class="shipping-table">
                         <thead>
                             <tr>
-                                <th>Delivery Option</th>
-                                <th>Estimated Delivery Time</th>
-                                <th>Order Value</th>
-                                <th>Shipping Cost</th>
+                                <th>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_26') }}</th>
+                                <th>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_27') }}</th>
+                                <th>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_28') }}</th>
+                                <th>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_29') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Standard Australia Post</strong></td>
-                                <td>3–5 business days (Metro)<br>4–7 business days (Regional)</td>
-                                <td>Orders $50.00 AUD and above</td>
-                                <td><span class="badge-free">FREE</span></td>
+                                <td><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_30') }}</strong></td>
+                                <td>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_31') }}<br>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_32') }}</td>
+                                <td>{{ $pageLayoutValue('page_layout_shipping_rate_1') }}</td>
+                                <td><span class="badge-free">{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_33') }}</span></td>
                             </tr>
                             <tr>
-                                <td><strong>Standard Australia Post</strong></td>
-                                <td>3–5 business days (Metro)<br>4–7 business days (Regional)</td>
-                                <td>Orders under $50.00 AUD</td>
-                                <td>$4.99 AUD</td>
+                                <td><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_34') }}</strong></td>
+                                <td>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_35') }}<br>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_36') }}</td>
+                                <td>{{ $pageLayoutValue('page_layout_shipping_rate_2') }}</td>
+                                <td>{{ $pageLayoutValue('page_layout_shipping_rate_3') }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Express Priority Delivery</strong></td>
-                                <td>1–2 business days (National network)</td>
-                                <td>All order values</td>
-                                <td>$9.99 AUD</td>
+                                <td><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_37') }}</strong></td>
+                                <td>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_38') }}</td>
+                                <td>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_39') }}</td>
+                                <td>{{ $pageLayoutValue('page_layout_shipping_rate_4') }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <h2>3. Worldwide Shipping</h2>
-                <p>We love sending our spicy blends to heat lovers across the globe! We ship to over 50 countries via DHL Express and FedEx International:</p>
+                <h2>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_40') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_41') }}</p>
                 <ul>
-                    <li>Delivery times typically range between <strong>7 to 14 business days</strong> depending on destination customs clearance.</li>
-                    <li><strong>Tax-Free Export:</strong> Australian GST is automatically deducted at checkout once your overseas delivery address is confirmed. Any local import duties or customs tariffs in your destination country are the responsibility of the recipient.</li>
+                    <li>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_42') }} <strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_43') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_44') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_45') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_46') }}</li>
                 </ul>
 
-                <h2>4. What If a Jar Arrives Damaged, Leaking, or Broken?</h2>
-                <p>While postal accidents are rare, you are completely protected. If your parcel arrives damaged in transit, with broken glass, or with a broken seal:</p>
+                <h2>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_47') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_48') }}</p>
                 <ul>
-                    <li><strong>No need to return broken glass:</strong> For your safety, please do not mail sharp or broken glass back to us.</li>
-                    <li><strong>Quick resolution:</strong> Take a clear photo of the damaged jar and email it to <a href="mailto:support@driedchili.com">support@driedchili.com</a> with your order number.</li>
-                    <li><strong>Your choice of remedy:</strong> We will dispatch an immediate replacement via express post at no extra cost, or issue an instant 100% full refund (including any delivery fees paid).</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_49') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_50') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_51') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_52') }} <a href="mailto:{{ $pageLayoutValue('page_layout_shipping_contact_email') }}">{{ $pageLayoutValue('page_layout_shipping_contact_email') }}</a> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_53') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_54') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_55') }}</li>
                 </ul>
 
-                <h2>5. 30-Day Change-of-Mind Policy</h2>
-                <p>We want you to be confident in your purchase:</p>
+                <h2>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_56') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_57') }}</p>
                 <ul>
-                    <li><strong>Unopened Jars:</strong> If you change your mind, you can return any unopened jar or spice pouch with the factory tamper seal intact within <strong>30 days</strong> of delivery for a full refund of the product purchase price.</li>
-                    <li><strong>Food Hygiene Safety:</strong> In line with the <strong>Australia New Zealand Food Standards Code</strong> and state food safety hygiene regulations, we cannot accept returns on jars that have already been opened, unsealed, or tasted. This rule never affects your consumer rights if the item arrived damaged or spoiled.</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_58') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_59') }} <strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_60') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_61') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_62') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_63') }} <strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_64') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_65') }}</li>
                 </ul>
 
-                <h2>6. How to Request a Return or Replacement</h2>
+                <h2>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_66') }}</h2>
                 <ol class="shipping-steps">
-                    <li><strong>Contact Our Team:</strong> Send a quick email to <a href="mailto:support@driedchili.com">support@driedchili.com</a> with your order number and photo (if an item arrived damaged).</li>
-                    <li><strong>Fast Assessment:</strong> Our Australian customer support team will reply within <strong>24 business hours</strong> with confirmation and return instructions.</li>
-                    <li><strong>Replacement or Refund:</strong> Your replacement will be dispatched immediately, or your refund will be returned to your original payment method (card, Stripe, or PayPal) within <strong>3 to 5 business days</strong>.</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_67') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_68') }} <a href="mailto:{{ $pageLayoutValue('page_layout_shipping_contact_email') }}">{{ $pageLayoutValue('page_layout_shipping_contact_email') }}</a> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_69') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_70') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_71') }} <strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_72') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_73') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_74') }}</strong> {{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_75') }} <strong>{{ $pageLayoutValue('page_layout_shipping_shipping_and_refunds_content_76') }}</strong>.</li>
                 </ol>
 
             </div>
         </div>
     </section>
+    @endif
+@include('frontend.layouts.partials.custom-page-sections', ['customPageName' => 'Shipping & Refunds'])
 </main>
 
 <style>

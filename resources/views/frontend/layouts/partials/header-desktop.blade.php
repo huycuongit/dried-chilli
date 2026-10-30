@@ -24,7 +24,7 @@
         <!-- Center Section: Brand Logo -->
         <div class="header-center brand-logo-wrapper">
             <a class="brand-logo" href="{{ page_route('home') }}" aria-label="Dried Chili Home">
-                <img src="{{ asset('images/logo_dried.webp') }}" alt="Dried Chili Logo" class="logo-img" width="160" height="65" fetchpriority="high">
+                <img src="{{ asset('images/logo_dried-360.webp') }}" alt="Dried Chili Logo" class="logo-img" width="160" height="65">
             </a>
         </div>
         

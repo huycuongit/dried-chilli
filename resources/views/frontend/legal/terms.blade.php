@@ -5,6 +5,16 @@
 <meta name="description" content="Read Dried Chili's terms of service. Clear, friendly policies on AUD pricing inclusive of GST, Australian Consumer Law guarantees, food safety, and customer care.">
 @endsection
 
+@php
+    $pageLayoutGroups = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
+    $pageLayoutFields = collect($pageLayoutGroups)->collapse()->all();
+    $pageLayoutValue = static fn (string $key) => \App\Support\AboutPageContent::value($key, $pageLayoutFields, $systemSettings);
+    $pageLayoutLink = static function (string $key) use ($pageLayoutValue) {
+        $link = trim($pageLayoutValue($key));
+        return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
+    };
+@endphp
+
 @section('full-content')
 @php
     $sys = app(\App\Support\SystemSettings::class);
@@ -31,6 +41,7 @@
 
 <main class="page-content legal-page bg-cream">
     <!-- Hero Section -->
+    @if($pageLayoutValue('page_layout_terms_show_hero') === '1')
     <section class="about-hero-section legal-hero">
         <div class="container about-hero-container">
             <div class="about-hero-badge">
@@ -81,8 +92,10 @@
             </div>
         </div>
     </section>
+    @endif
 
     <!-- Document Section -->
+    @if($pageLayoutValue('page_layout_terms_show_content') === '1')
     <section class="legal-document">
         <div class="container">
             <div class="document-wrapper shadow-lg">
@@ -100,8 +113,8 @@
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>No Hidden Surcharges</h4>
-                            <p>All prices are in Australian Dollars with 10% GST included. What you see is what you pay.</p>
+                            <h4>{{ $pageLayoutValue('page_layout_terms_terms_content_01') }}</h4>
+                            <p>{{ $pageLayoutValue('page_layout_terms_terms_content_02') }}</p>
                         </div>
                     </div>
                     <div class="highlight-item">
@@ -112,8 +125,8 @@
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>Automatic Quality Guarantees</h4>
-                            <p>Full statutory protections under the Australian Consumer Law if anything goes wrong.</p>
+                            <h4>{{ $pageLayoutValue('page_layout_terms_terms_content_03') }}</h4>
+                            <p>{{ $pageLayoutValue('page_layout_terms_terms_content_04') }}</p>
                         </div>
                     </div>
                     <div class="highlight-item">
@@ -125,92 +138,94 @@
                             </svg>
                         </div>
                         <div class="highlight-text">
-                            <h4>Small-Batch Food Safety</h4>
-                            <p>Crafted in licensed kitchens with clear allergen declarations and airtight tamper seals.</p>
+                            <h4>{{ $pageLayoutValue('page_layout_terms_terms_content_05') }}</h4>
+                            <p>{{ $pageLayoutValue('page_layout_terms_terms_content_06') }}</p>
                         </div>
                     </div>
                 </div>
 
-                <h2>1. Welcome to Dried Chili</h2>
-                <p>Welcome to <strong>Dried Chili</strong> (operated by <strong>Jojo Little Kitchen</strong> in Australia). These Terms of Service outline how our store operates and what you can expect when ordering our small-batch culinary spices.</p>
-                <p>By exploring our website, setting up an account, or purchasing from our store, you agree to these friendly, straightforward terms, alongside our <a href="{{ route('page.privacy') }}">Privacy Policy</a> and <a href="{{ route('page.shipping') }}">Shipping & Refund Policy</a>. These terms are governed by the laws of New South Wales and the Commonwealth of Australia.</p>
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_07') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_08') }} <strong>{{ $pageLayoutValue('page_layout_terms_terms_content_09') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_10') }} <strong>{{ $pageLayoutValue('page_layout_terms_terms_content_11') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_12') }}</p>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_13') }} <a href="{{ route('page.privacy') }}">{{ $pageLayoutValue('page_layout_terms_terms_content_14') }}</a> {{ $pageLayoutValue('page_layout_terms_terms_content_15') }} <a href="{{ route('page.shipping') }}">{{ $pageLayoutValue('page_layout_terms_terms_content_16') }}</a>{{ $pageLayoutValue('page_layout_terms_terms_content_17') }}</p>
 
-                <h2>2. Your Automatic Rights Under Australian Consumer Law</h2>
-                <p>Your satisfaction and peace of mind come first. Under the <strong>Australian Consumer Law (ACL)</strong>, all products you purchase from Dried Chili come with statutory consumer guarantees that cannot be excluded:</p>
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_18') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_19') }} <strong>{{ $pageLayoutValue('page_layout_terms_terms_content_20') }}</strong>{{ $pageLayoutValue('page_layout_terms_terms_content_21') }}</p>
                 <ul>
-                    <li>Our products must be of acceptable quality, safe for consumption, and free from defects.</li>
-                    <li>They must accurately match the descriptions and photos on our store.</li>
-                    <li>They must be fit for their intended culinary purpose.</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_22') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_23') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_24') }}</li>
                 </ul>
-                <p>Nothing in these terms limits, removes, or weakens your statutory consumer rights. If a jar arrives broken, unsealed, spoiled, or defective, we will make it right with an immediate replacement or full refund.</p>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_25') }}</p>
 
-                <h2>3. Clear Pricing: Australian Dollars (AUD) & 10% GST Included</h2>
-                <p>We believe in 100% price transparency with zero surprise fees in accordance with the <strong>A New Tax System (Goods and Services Tax) Act 1999</strong> and Section 48 of the Australian Consumer Law:</p>
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_26') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_27') }} <strong>{{ $pageLayoutValue('page_layout_terms_terms_content_28') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_29') }}</p>
                 <ul>
-                    <li><strong>Australian Dollars (AUD):</strong> Every product price and shipping rate is displayed in AUD.</li>
-                    <li><strong>GST Included:</strong> All prices already include the 10% Australian Goods and Services Tax (GST). What you see on the product page is exactly what you pay at checkout.</li>
-                    <li><strong>Tax Invoice Provided:</strong> As soon as your order is confirmed, an official Australian Tax Invoice showing our Australian Business Number (ABN) and the exact GST component is emailed to you.</li>
-                </ul>
-
-                <h2>4. Net Weight & Easy Value Comparison (Unit Pricing Code)</h2>
-                <p>We want you to know exactly what you are getting, adhering to Australia's <strong>Unit Pricing Code</strong>:</p>
-                <ul>
-                    <li>Every spice product clearly states its certified net weight (such as 100g, 180g, or 250g) in metric units, strictly excluding the weight of the glass jar or pouch.</li>
-                    <li>We display the standard <strong>Unit price (price per 100 grams)</strong> right next to the product price, making it easy to compare value across our range.</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_30') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_31') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_32') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_33') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_34') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_35') }}</li>
                 </ul>
 
-                <h2>5. Small-Batch Food Safety & Clear Allergen Notices</h2>
-                <p>As passionate food artisans, food hygiene, safety, and allergen honesty are paramount. We strictly follow the <strong>Australia New Zealand Food Standards Code</strong> and state health regulations:</p>
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_36') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_37') }} <strong>{{ $pageLayoutValue('page_layout_terms_terms_content_38') }}</strong>:</p>
                 <ul>
-                    <li><strong>Clear Allergen Warnings:</strong> We prominently declare any allergens on product listings and physical labels. For instance, our signature <strong>Shrimp Chilli</strong> contains dried seafood (crustacea) and sesame seeds. Our pure single-origin dried chili flakes and whole pods are vegan, gluten-free, and prepared without artificial colorings or preservatives.</li>
-                    <li><strong>Freshness & Shelf Life:</strong> Every jar features a clearly printed "Best Before" date and lot number. When stored sealed in a cool, dry pantry, our spices maintain peak aroma and crispness for up to 18 to 24 months.</li>
-                    <li><strong>Licensed Kitchens:</strong> Our chili recipes are crafted in registered commercial food premises overseen by certified Food Safety Supervisors.</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_39') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_40') }} <strong>{{ $pageLayoutValue('page_layout_terms_terms_content_41') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_42') }}</li>
                 </ul>
 
-                <h2>6. Honest Country of Origin Labelling</h2>
-                <p>In accordance with Australia's <strong>Country of Origin Food Labelling Information Standard 2016</strong>, our products state clearly where their ingredients are sourced. Where specialty imported peppers (such as Ghost Pepper, Bird's Eye, or Habanero) are blended with fresh Australian garlic, shallots, and cold-pressed Australian oils, our packaging openly shows the percentage of Australian ingredients.</p>
-
-                <h2>7. Ordering, Delivery & Safe Payments</h2>
-                <p>Shopping on our store is secure and simple:</p>
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_43') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_44') }} <strong>{{ $pageLayoutValue('page_layout_terms_terms_content_45') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_46') }}</p>
                 <ul>
-                    <li>You can checkout quickly using major credit cards, Stripe, Apple Pay, or PayPal. All transactions are securely encrypted.</li>
-                    <li>Orders are typically dispatched from our fulfillment kitchen within 24 to 48 hours (Monday to Friday).</li>
-                    <li>You will receive a live Australia Post tracking number as soon as your box is scanned into the postal network.</li>
-                    <li>In the rare event of an unexpected inventory stockout, we will notify you right away and issue a prompt 100% refund.</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_47') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_48') }} <strong>{{ $pageLayoutValue('page_layout_terms_terms_content_49') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_50') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_51') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_52') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_53') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_54') }}</li>
                 </ul>
 
-                <h2>8. Enjoying Hot Spices Responsibly</h2>
-                <p>Our chili products range from gentle, smoky table seasonings to extreme Scoville heats (including Carolina Reaper and Ghost Pepper):</p>
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_55') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_56') }} <strong>{{ $pageLayoutValue('page_layout_terms_terms_content_57') }}</strong>{{ $pageLayoutValue('page_layout_terms_terms_content_58') }}</p>
+
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_59') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_60') }}</p>
                 <ul>
-                    <li>Please taste test in small quantities if you are trying a fiery blend for the first time.</li>
-                    <li>Always wash your hands thoroughly after handling potent dried peppers, and keep extremely spicy jars out of reach of young children and pets.</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_61') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_62') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_63') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_64') }}</li>
                 </ul>
 
-                <h2>9. Returns, Replacements & Hygiene Rules</h2>
-                <p>Our returns process is fair and customer-friendly:</p>
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_65') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_66') }}</p>
                 <ul>
-                    <li><strong>Damaged or Defective Jars:</strong> If Australia Post mishandles your box and a jar arrives cracked, leaking, or with a broken seal, take a quick photo and email us. We will dispatch an immediate replacement or issue a full refund right away.</li>
-                    <li><strong>30-Day Change of Mind:</strong> We gladly accept returns on unopened jars with original factory safety seals intact within 30 days of delivery.</li>
-                    <li><strong>Food Hygiene Exclusion:</strong> Because food safety matters to everyone, state food health regulations mean we cannot accept returns on jars that have already been opened or tasted. This rule never affects your legal rights if the product arrives damaged or defective.</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_67') }}</li>
+                    <li>{{ $pageLayoutValue('page_layout_terms_terms_content_68') }}</li>
                 </ul>
 
-                <h2>10. Respectful Communications & Intellectual Property</h2>
-                <p>Our recipes, culinary stories, graphics, and photos are the creative work of Dried Chili / Jojo Little Kitchen. Please don't copy or use them for commercial purposes without our permission.</p>
-                <p>When you subscribe to our newsletter, you can leave anytime with one click. We never send unsolicited spam.</p>
-
-                <h2>11. Getting in Touch & Friendly Customer Care</h2>
-                <p>If you have any questions about an order, need culinary recipe advice, or want to discuss your purchase, our friendly Australian team is here to help:</p>
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_69') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_70') }}</p>
                 <ul>
-                    <li><strong>Company:</strong> Dried Chili / Jojo Little Kitchen Pty Ltd</li>
-                    <li><strong>Email:</strong> <a href="mailto:support@driedchili.com">support@driedchili.com</a></li>
-                    <li><strong>Phone:</strong> 1800 244 547 (Mon–Fri, 9:00 AM – 5:00 PM AEST)</li>
-                    <li><strong>Postal Address:</strong> Dried Chili Customer Care, PO Box 412, Sydney NSW 2000, Australia</li>
-                    <li><strong>Online Help:</strong> <a href="{{ route('contact.page') }}">Online Contact Form</a></li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_71') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_72') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_73') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_74') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_75') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_76') }}</li>
+                </ul>
+
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_77') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_78') }}</p>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_79') }}</p>
+
+                <h2>{{ $pageLayoutValue('page_layout_terms_terms_content_80') }}</h2>
+                <p>{{ $pageLayoutValue('page_layout_terms_terms_content_81') }}</p>
+                <ul>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_82') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_83') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_84') }}</strong> <a href="mailto:{{ $pageLayoutValue('page_layout_terms_contact_email') }}">{{ $pageLayoutValue('page_layout_terms_contact_email') }}</a></li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_85') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_86') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_87') }}</strong> {{ $pageLayoutValue('page_layout_terms_terms_content_88') }}</li>
+                    <li><strong>{{ $pageLayoutValue('page_layout_terms_terms_content_89') }}</strong> <a href="{{ route('contact.page') }}">{{ $pageLayoutValue('page_layout_terms_terms_content_90') }}</a></li>
                 </ul>
 
             </div>
         </div>
     </section>
+    @endif
+@include('frontend.layouts.partials.custom-page-sections', ['customPageName' => 'Terms of Service'])
 </main>
 
 <style>

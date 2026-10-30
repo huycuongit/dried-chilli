@@ -7,24 +7,35 @@
 <link rel="stylesheet" href="{{ asset('assets/css/about.css') }}?v={{ time() }}">
 @endpush
 
+@php
+    $pageLayoutGroups = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
+    $pageLayoutFields = collect($pageLayoutGroups)->collapse()->all();
+    $pageLayoutValue = static fn (string $key) => \App\Support\AboutPageContent::value($key, $pageLayoutFields, $systemSettings);
+    $pageLayoutLink = static function (string $key) use ($pageLayoutValue) {
+        $link = trim($pageLayoutValue($key));
+        return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
+    };
+@endphp
+
 @section('full-content')
 <main class="page-content about-page legacy-page">
 
     <!-- HERO SECTION: Vintage Terroir, Refined & Strictly 650px on Desktop -->
+    @if($pageLayoutValue('page_layout_legacy_show_hero') === '1')
     <section class="about-hero-section legacy-hero">
         <div class="container about-hero-container">
             <div class="about-hero-badge legacy-hero-badge">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                <span>ESTABLISHED 1920 · 4 GENERATIONS OF TERROIR & CRAFT</span>
+                <span>{{ $pageLayoutValue('page_layout_legacy_opening_banner_01') }}</span>
             </div>
             
             <h1 class="about-hero-title">
-                A Century of Terroir<br>
-                <span class="highlight-gold">Roots That Run Deep</span>
+                {{ $pageLayoutValue('page_layout_legacy_opening_banner_02') }}<br>
+                <span class="highlight-gold">{{ $pageLayoutValue('page_layout_legacy_opening_banner_03') }}</span>
             </h1>
             
             <p class="about-hero-desc">
-                Before the jars, before the modern kitchen — there was a sun-drenched valley, heirloom seeds preserved across four generations, and an unshakeable refusal to let machines replace patience.
+                {{ $pageLayoutValue('page_layout_legacy_opening_banner_04') }}
             </p>
 
             <!-- 3 Brighter Highlight Clusters -->
@@ -34,8 +45,8 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
                     </div>
                     <div class="cluster-text">
-                        <strong>1920 Established</strong>
-                        <span>Century Terroir</span>
+                        <strong>{{ $pageLayoutValue('page_layout_legacy_opening_banner_05') }}</strong>
+                        <span>{{ $pageLayoutValue('page_layout_legacy_opening_banner_06') }}</span>
                     </div>
                 </div>
 
@@ -44,8 +55,8 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
                     <div class="cluster-text">
-                        <strong>4th Generation</strong>
-                        <span>Family Lineage</span>
+                        <strong>{{ $pageLayoutValue('page_layout_legacy_opening_banner_07') }}</strong>
+                        <span>{{ $pageLayoutValue('page_layout_legacy_opening_banner_08') }}</span>
                     </div>
                 </div>
 
@@ -54,42 +65,52 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
                     </div>
                     <div class="cluster-text">
-                        <strong>21-Day Sun-Cured</strong>
-                        <span>Pure Sunshine</span>
+                        <strong>{{ $pageLayoutValue('page_layout_legacy_opening_banner_09') }}</strong>
+                        <span>{{ $pageLayoutValue('page_layout_legacy_opening_banner_10') }}</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
 
     <!-- NAVIGATION ANCHORS (Quick Jump Bar) -->
     <nav class="about-quick-nav">
         <div class="container quick-nav-flex">
+            @if($pageLayoutValue('page_layout_legacy_show_origin') === '1')
             <a href="#origin-valley" class="quick-nav-item">
                 <span class="nav-step">01</span>
-                <span class="nav-label">The Origin Valley</span>
+                <span class="nav-label">{{ $pageLayoutValue('page_layout_legacy_quick_links_01') }}</span>
             </a>
+            @endif
             <div class="quick-nav-divider"></div>
+            @if($pageLayoutValue('page_layout_legacy_show_timeline') === '1')
             <a href="#century-chronicle" class="quick-nav-item">
                 <span class="nav-step">02</span>
-                <span class="nav-label">Century Chronicle</span>
+                <span class="nav-label">{{ $pageLayoutValue('page_layout_legacy_quick_links_02') }}</span>
             </a>
+            @endif
             <div class="quick-nav-divider"></div>
+            @if($pageLayoutValue('page_layout_legacy_show_sun') === '1')
             <a href="#sun-vs-machine" class="quick-nav-item">
                 <span class="nav-step">03</span>
-                <span class="nav-label">Sun vs. Machine</span>
+                <span class="nav-label">{{ $pageLayoutValue('page_layout_legacy_quick_links_03') }}</span>
             </a>
+            @endif
             <div class="quick-nav-divider"></div>
+            @if($pageLayoutValue('page_layout_legacy_show_heritage') === '1')
             <a href="#heritage-code" class="quick-nav-item">
                 <span class="nav-step">04</span>
-                <span class="nav-label">The Founder's Code</span>
+                <span class="nav-label">{{ $pageLayoutValue('page_layout_legacy_quick_links_04') }}</span>
             </a>
+            @endif
         </div>
     </nav>
 
     <!-- ========================================================================= -->
     <!-- PILLAR 1: THE ORIGIN VALLEY & HEIRLOOM SOIL -->
     <!-- ========================================================================= -->
+    @if($pageLayoutValue('page_layout_legacy_show_origin') === '1')
     <section id="origin-valley" class="about-pillar-section bg-cream">
         <div class="container">
             <div class="pillar-grid align-center">
@@ -98,21 +119,21 @@
                 <div class="pillar-content">
                     <div class="pillar-tag">
                         <span class="tag-number">01</span>
-                        <span class="tag-text">SACRED SOIL · THE ORIGIN VALLEY</span>
+                        <span class="tag-text">{{ $pageLayoutValue('page_layout_legacy_origin_valley_01') }}</span>
                     </div>
                     <h2 class="pillar-heading">
-                        Where Mountain Sun Meets 
+                        {{ $pageLayoutValue('page_layout_legacy_origin_valley_02') }} 
                     </h2>
                     
                     <div class="pillar-body">
                         <p class="lead-text">
-                            <strong>It all began in 1920</strong> in a secluded highland valley nestled between volcanic mountain ridges. The soil was rich with dark organic loam, crisp alpine breezes cooled the hills at dusk, and pure sunshine poured uninhibited for over 300 days a year.
+                            <strong>{{ $pageLayoutValue('page_layout_legacy_origin_valley_03') }}</strong> {{ $pageLayoutValue('page_layout_legacy_origin_valley_04') }}
                         </p>
                         <p>
-                            Our great-grandfather recognized this rare microclimate: sharp day-night temperature swings stress the chili plants just enough to concentrate their natural capsicum oils. The result is thin-skinned pods bursting with floral aromatics, deep fruit sugars, and clean warmth that never stings the throat.
+                            {{ $pageLayoutValue('page_layout_legacy_origin_valley_05') }}
                         </p>
                         <p>
-                            While commercial agriculture continuously crossbreeds hybrid varieties for transport durability, our family has hand-saved the exact same heirloom seeds generation after generation. When you taste our chili, you are tasting unchanged 1920 botanical genetics.
+                            {{ $pageLayoutValue('page_layout_legacy_origin_valley_06') }}
                         </p>
                     </div>
 
@@ -123,8 +144,8 @@
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
                             </div>
                             <div class="feat-details">
-                                <h4>Highland Valley Microclimate</h4>
-                                <p>Volcanic soil and sharp day-night temperature swings nurture intense essential capsicum oils and caramelized natural sweetness.</p>
+                                <h4>{{ $pageLayoutValue('page_layout_legacy_origin_valley_07') }}</h4>
+                                <p>{{ $pageLayoutValue('page_layout_legacy_origin_valley_08') }}</p>
                             </div>
                         </div>
                         <div class="identity-feat-item">
@@ -132,8 +153,8 @@
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4.1 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>
                             </div>
                             <div class="feat-details">
-                                <h4>Protected Heirloom Lineage</h4>
-                                <p>Uncrossed seeds collected by hand every harvest season for over a century — 100% non-GMO and free from laboratory hybridization.</p>
+                                <h4>{{ $pageLayoutValue('page_layout_legacy_origin_valley_09') }}</h4>
+                                <p>{{ $pageLayoutValue('page_layout_legacy_origin_valley_10') }}</p>
                             </div>
                         </div>
                     </div>
@@ -143,23 +164,25 @@
                 <div class="pillar-visual">
                     <div class="visual-card-wrapper">
                         <div class="visual-card-main">
-                            <img src="{{ asset('images/legacy_farm.jpg') }}" alt="Our Ancestral Chili Farm" class="card-img-large">
+                            @if($pageLayoutValue('page_layout_legacy_image_farm') !== '')<img src="{{ asset($pageLayoutValue('page_layout_legacy_image_farm')) }}" alt="Our Ancestral Chili Farm" class="card-img-large">@endif
                         </div>
                         <div class="visual-card-quote">
                             <p class="quote-text">
-                                “Nature dictates our schedule. We simply listen and craft the finest spices the earth can offer.”
+                                {{ $pageLayoutValue('page_layout_legacy_origin_valley_11') }}
                             </p>
-                            <span class="quote-author">— The Tran Family Patriarch, Circa 1920 —</span>
+                            <span class="quote-author">{{ $pageLayoutValue('page_layout_legacy_origin_valley_12') }}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
 
     <!-- ========================================================================= -->
     <!-- PILLAR 2: THE CENTURY CHRONICLE (INTERACTIVE HERITAGE TIMELINE) -->
     <!-- ========================================================================= -->
+    @if($pageLayoutValue('page_layout_legacy_show_timeline') === '1')
     <section id="century-chronicle" class="about-pillar-section bg-alt">
         <div class="container">
             
@@ -167,14 +190,14 @@
             <div class="section-center-head">
                 <div class="pillar-tag center-tag">
                     <span class="tag-number">02</span>
-                    <span class="tag-text">THE CENTURY CHRONICLE · 1920 TO PRESENT</span>
+                    <span class="tag-text">{{ $pageLayoutValue('page_layout_legacy_family_timeline_01') }}</span>
                 </div>
                 <h2 class="pillar-heading">
-                    A 100-Year Family Lineage <br class="d-none d-md-block">
-                    Of Unbroken Artisanal Craft
+                    {{ $pageLayoutValue('page_layout_legacy_family_timeline_02') }} <br class="d-none d-md-block">
+                    {{ $pageLayoutValue('page_layout_legacy_family_timeline_03') }}
                 </h2>
                 <p class="section-subtitle">
-                    Trace our journey from a humble valley kitchen hearth to modern culinary pantries worldwide — century by century, harvest by harvest.
+                    {{ $pageLayoutValue('page_layout_legacy_family_timeline_04') }}
                 </p>
             </div>
 
@@ -187,11 +210,11 @@
                     <div class="timeline-content-card">
                         <span class="timeline-year-tag">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            1920 · THE FIRST SEED
+                            {{ $pageLayoutValue('page_layout_legacy_family_timeline_05') }}
                         </span>
-                        <h3 class="timeline-title">The Farmhouse Hearth</h3>
+                        <h3 class="timeline-title">{{ $pageLayoutValue('page_layout_legacy_family_timeline_06') }}</h3>
                         <p class="timeline-desc">
-                            Our great-grandfather planted the valley's first heirloom chili crop. Roasting pods over wood embers with crispy garlic and aromatic spices, he began sharing jars with traveling merchants and village cooks.
+                            {{ $pageLayoutValue('page_layout_legacy_family_timeline_07') }}
                         </p>
                     </div>
                 </div>
@@ -202,11 +225,11 @@
                     <div class="timeline-content-card">
                         <span class="timeline-year-tag">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/></svg>
-                            1958 · SOLAR TERRACES
+                            {{ $pageLayoutValue('page_layout_legacy_family_timeline_08') }}
                         </span>
-                        <h3 class="timeline-title">The Raised Bamboo Decks</h3>
+                        <h3 class="timeline-title">{{ $pageLayoutValue('page_layout_legacy_family_timeline_09') }}</h3>
                         <p class="timeline-desc">
-                            The second generation engineered elevated bamboo drying terraces along the hillsides. This allowed alpine breezes to circulate beneath the chillies, perfecting our signature 21-day solar curing method.
+                            {{ $pageLayoutValue('page_layout_legacy_family_timeline_10') }}
                         </p>
                     </div>
                 </div>
@@ -217,11 +240,11 @@
                     <div class="timeline-content-card">
                         <span class="timeline-year-tag">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            1994 · THE HEIRS' PLEDGE
+                            {{ $pageLayoutValue('page_layout_legacy_family_timeline_11') }}
                         </span>
-                        <h3 class="timeline-title">Resisting The Machine Age</h3>
+                        <h3 class="timeline-title">{{ $pageLayoutValue('page_layout_legacy_family_timeline_12') }}</h3>
                         <p class="timeline-desc">
-                            When commercial factories adopted high-speed electrical dehydrators, our elders gathered and took an oath: we would never mechanize sun curing, even if it meant remaining small and unhurried.
+                            {{ $pageLayoutValue('page_layout_legacy_family_timeline_13') }}
                         </p>
                     </div>
                 </div>
@@ -232,11 +255,11 @@
                     <div class="timeline-content-card">
                         <span class="timeline-year-tag">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            TODAY · 4TH GENERATION
+                            {{ $pageLayoutValue('page_layout_legacy_family_timeline_14') }}
                         </span>
-                        <h3 class="timeline-title">The Modern Artisanal Table</h3>
+                        <h3 class="timeline-title">{{ $pageLayoutValue('page_layout_legacy_family_timeline_15') }}</h3>
                         <p class="timeline-desc">
-                            Today, under the Jojo Little Kitchen banner, the 4th generation brings this hundred-year heritage to over 150,000 food lovers globally, still crafting every batch under 200 jars.
+                            {{ $pageLayoutValue('page_layout_legacy_family_timeline_16') }}
                         </p>
                     </div>
                 </div>
@@ -245,24 +268,26 @@
 
         </div>
     </section>
+    @endif
 
     <!-- ========================================================================= -->
     <!-- PILLAR 3: THE METHOD CONTRAST (SUN-CURING VS. MACHINE DEHYDRATION) -->
     <!-- ========================================================================= -->
+    @if($pageLayoutValue('page_layout_legacy_show_sun') === '1')
     <section id="sun-vs-machine" class="about-pillar-section bg-cream">
         <div class="container">
             
             <div class="section-center-head">
                 <div class="pillar-tag center-tag">
                     <span class="tag-number">03</span>
-                    <span class="tag-text">THE ARTISANAL ADVANTAGE · SUN VS MACHINE</span>
+                    <span class="tag-text">{{ $pageLayoutValue('page_layout_legacy_sun_drying_01') }}</span>
                 </div>
                 <h2 class="pillar-heading">
-                    Why 21 Days In The Sun <br class="d-none d-md-block">
-                    Cannot Be Replaced By A 3-Hour Machine
+                    {{ $pageLayoutValue('page_layout_legacy_sun_drying_02') }} <br class="d-none d-md-block">
+                    {{ $pageLayoutValue('page_layout_legacy_sun_drying_03') }}
                 </h2>
                 <p class="section-subtitle">
-                    A clear, uncompromising comparison between ancestral solar curing and modern industrial shortcut processing.
+                    {{ $pageLayoutValue('page_layout_legacy_sun_drying_04') }}
                 </p>
             </div>
 
@@ -273,37 +298,37 @@
                 <div class="contrast-card craft-card">
                     <span class="contrast-badge craft-badge">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        OUR ANCESTRAL WAY
+                        {{ $pageLayoutValue('page_layout_legacy_sun_drying_05') }}
                     </span>
-                    <h3 class="contrast-heading">21-Day Natural Solar Curing</h3>
+                    <h3 class="contrast-heading">{{ $pageLayoutValue('page_layout_legacy_sun_drying_06') }}</h3>
                     
                     <ul class="contrast-list">
                         <li class="contrast-list-item">
                             <svg class="contrast-icon craft-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                             <div>
-                                <strong>Caramelized Natural Sugars:</strong>
-                                14 to 21 days of gentle sun exposure allows organic fruit sugars to concentrate into deep, savory umami without scorching.
+                                <strong>{{ $pageLayoutValue('page_layout_legacy_sun_drying_07') }}</strong>
+                                {{ $pageLayoutValue('page_layout_legacy_sun_drying_08') }}
                             </div>
                         </li>
                         <li class="contrast-list-item">
                             <svg class="contrast-icon craft-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                             <div>
-                                <strong>Preserved Volatile Essential Oils:</strong>
-                                Ambient solar warmth preserves delicate floral terpenes and capsaicin aromatic compounds that high heat destroys.
+                                <strong>{{ $pageLayoutValue('page_layout_legacy_sun_drying_09') }}</strong>
+                                {{ $pageLayoutValue('page_layout_legacy_sun_drying_10') }}
                             </div>
                         </li>
                         <li class="contrast-list-item">
                             <svg class="contrast-icon craft-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                             <div>
-                                <strong>Crisp, Crunchy Flake Texture:</strong>
-                                Coarse stone grinding yields airy, light chili flakes that stay crisp inside oil instead of turning soggy.
+                                <strong>{{ $pageLayoutValue('page_layout_legacy_sun_drying_11') }}</strong>
+                                {{ $pageLayoutValue('page_layout_legacy_sun_drying_12') }}
                             </div>
                         </li>
                         <li class="contrast-list-item">
                             <svg class="contrast-icon craft-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                             <div>
-                                <strong>100% Pure Natural Ruby Color:</strong>
-                                Glowing deep crimson derived exclusively from sun-ripened chillies — zero synthetic food coloring.
+                                <strong>{{ $pageLayoutValue('page_layout_legacy_sun_drying_13') }}</strong>
+                                {{ $pageLayoutValue('page_layout_legacy_sun_drying_14') }}
                             </div>
                         </li>
                     </ul>
@@ -313,37 +338,37 @@
                 <div class="contrast-card factory-card">
                     <span class="contrast-badge factory-badge">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                        MASS INDUSTRIAL FACTORIES
+                        {{ $pageLayoutValue('page_layout_legacy_sun_drying_15') }}
                     </span>
-                    <h3 class="contrast-heading">3-Hour Forced Dehydration</h3>
+                    <h3 class="contrast-heading">{{ $pageLayoutValue('page_layout_legacy_sun_drying_16') }}</h3>
                     
                     <ul class="contrast-list">
                         <li class="contrast-list-item">
                             <svg class="contrast-icon factory-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
                             <div>
-                                <strong>Scorched Bitter Sugars:</strong>
-                                180°C forced industrial blowers burn delicate fruit sugars, leaving a harsh, acrid bitter aftertaste in your mouth.
+                                <strong>{{ $pageLayoutValue('page_layout_legacy_sun_drying_17') }}</strong>
+                                {{ $pageLayoutValue('page_layout_legacy_sun_drying_18') }}
                             </div>
                         </li>
                         <li class="contrast-list-item">
                             <svg class="contrast-icon factory-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
                             <div>
-                                <strong>Evaporated Aromatics:</strong>
-                                Intense machine heat boils away the fragrant volatile oils, resulting in a flat, pungent sting without complexity.
+                                <strong>{{ $pageLayoutValue('page_layout_legacy_sun_drying_19') }}</strong>
+                                {{ $pageLayoutValue('page_layout_legacy_sun_drying_20') }}
                             </div>
                         </li>
                         <li class="contrast-list-item">
                             <svg class="contrast-icon factory-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
                             <div>
-                                <strong>Soggy Powdery Sludge:</strong>
-                                High-speed industrial metal crushers pulverize chillies into powdery dust that absorbs oil and turns gummy.
+                                <strong>{{ $pageLayoutValue('page_layout_legacy_sun_drying_21') }}</strong>
+                                {{ $pageLayoutValue('page_layout_legacy_sun_drying_22') }}
                             </div>
                         </li>
                         <li class="contrast-list-item">
                             <svg class="contrast-icon factory-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
                             <div>
-                                <strong>Chemical Preservatives & Dyes:</strong>
-                                Heavy reliance on sodium benzoate, artificial red colorants, and anti-caking agents to mimic freshness.
+                                <strong>{{ $pageLayoutValue('page_layout_legacy_sun_drying_23') }}</strong>
+                                {{ $pageLayoutValue('page_layout_legacy_sun_drying_24') }}
                             </div>
                         </li>
                     </ul>
@@ -353,23 +378,25 @@
 
         </div>
     </section>
+    @endif
 
     <!-- ========================================================================= -->
     <!-- PILLAR 4: THE FOUR TENETS & FOUNDER'S PLEDGE -->
     <!-- ========================================================================= -->
+    @if($pageLayoutValue('page_layout_legacy_show_heritage') === '1')
     <section id="heritage-code" class="about-pillar-section bg-alt">
         <div class="container">
             
             <div class="section-center-head">
                 <div class="pillar-tag center-tag">
                     <span class="tag-number">04</span>
-                    <span class="tag-text">TIME-HONORED CODE · THE FOUR TENETS</span>
+                    <span class="tag-text">{{ $pageLayoutValue('page_layout_legacy_heritage_values_01') }}</span>
                 </div>
                 <h2 class="pillar-heading">
-                    The Four Generational Golden Rules
+                    {{ $pageLayoutValue('page_layout_legacy_heritage_values_02') }}
                 </h2>
                 <p class="section-subtitle">
-                    Recorded in family logs in 1920, strictly observed by every family custodian who steps before the kitchen hearth.
+                    {{ $pageLayoutValue('page_layout_legacy_heritage_values_03') }}
                 </p>
             </div>
 
@@ -381,11 +408,11 @@
                         <div class="lucide-icon-box">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>
                         </div>
-                        <span class="trust-number-badge">TENET I</span>
+                        <span class="trust-number-badge">{{ $pageLayoutValue('page_layout_legacy_heritage_values_04') }}</span>
                     </div>
-                    <h3 class="trust-card-title">Never Rush The Sun</h3>
+                    <h3 class="trust-card-title">{{ $pageLayoutValue('page_layout_legacy_heritage_values_05') }}</h3>
                     <p class="trust-card-desc">
-                        Nature sets our harvest calendar. We never harvest early and never force dehydration. If a batch requires 24 days instead of 21, it stays in the sun.
+                        {{ $pageLayoutValue('page_layout_legacy_heritage_values_06') }}
                     </p>
                 </div>
 
@@ -394,11 +421,11 @@
                         <div class="lucide-icon-box">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/></svg>
                         </div>
-                        <span class="trust-number-badge">TENET II</span>
+                        <span class="trust-number-badge">{{ $pageLayoutValue('page_layout_legacy_heritage_values_07') }}</span>
                     </div>
-                    <h3 class="trust-card-title">Soil Comes First</h3>
+                    <h3 class="trust-card-title">{{ $pageLayoutValue('page_layout_legacy_heritage_values_08') }}</h3>
                     <p class="trust-card-desc">
-                        A robust chili pod can only come from nutrient-rich living soil. We feed our fields with clean organic compost and never use synthetic chemical boosters.
+                        {{ $pageLayoutValue('page_layout_legacy_heritage_values_09') }}
                     </p>
                 </div>
 
@@ -407,11 +434,11 @@
                         <div class="lucide-icon-box">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                         </div>
-                        <span class="trust-number-badge">TENET III</span>
+                        <span class="trust-number-badge">{{ $pageLayoutValue('page_layout_legacy_heritage_values_10') }}</span>
                     </div>
-                    <h3 class="trust-card-title">Taste With The Spoon</h3>
+                    <h3 class="trust-card-title">{{ $pageLayoutValue('page_layout_legacy_heritage_values_11') }}</h3>
                     <p class="trust-card-desc">
-                        No automated sensor can detect the delicate balance between golden crispy garlic and roasted chili sweetness. Every batch is tasted by a family custodian.
+                        {{ $pageLayoutValue('page_layout_legacy_heritage_values_12') }}
                     </p>
                 </div>
 
@@ -420,11 +447,11 @@
                         <div class="lucide-icon-box">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </div>
-                        <span class="trust-number-badge">TENET IV</span>
+                        <span class="trust-number-badge">{{ $pageLayoutValue('page_layout_legacy_heritage_values_13') }}</span>
                     </div>
-                    <h3 class="trust-card-title">Clean Heart, Pure Oil</h3>
+                    <h3 class="trust-card-title">{{ $pageLayoutValue('page_layout_legacy_heritage_values_14') }}</h3>
                     <p class="trust-card-desc">
-                        Zero chemical preservatives. Zero synthetic red dyes. Zero industrial additives. If our children cannot eat it straight from the jar, it doesn't leave the kitchen.
+                        {{ $pageLayoutValue('page_layout_legacy_heritage_values_15') }}
                     </p>
                 </div>
 
@@ -437,53 +464,57 @@
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     </div>
                     <div class="manifesto-title">
-                        <h3>The Family Heritage Custodian Pledge</h3>
-                        <span>OFFICIAL FAMILY DECLARATION · VALLEY ESTABLISHED 1920</span>
+                        <h3>{{ $pageLayoutValue('page_layout_legacy_heritage_values_16') }}</h3>
+                        <span>{{ $pageLayoutValue('page_layout_legacy_heritage_values_17') }}</span>
                     </div>
                 </div>
 
                 <p class="manifesto-body">
-                    “To our patrons, food enthusiasts, and extended culinary family: Every jar that leaves our small kitchen carries four generations of family honor. We understand that in modern manufacturing, corners are cut to save pennies and speed up lines. We make this solemn promise: we will never surrender to electric dryers, never add artificial preservatives, and never trade a single century-old technique for convenience. Thank you for keeping our culinary flame burning bright at your family tables.”
+                    {{ $pageLayoutValue('page_layout_legacy_heritage_values_18') }}
                 </p>
 
                 <div class="manifesto-signature">
-                    <span>— The Tran Family Lineage, 4th Generation Stewards of the Flame —</span>
+                    <span>{{ $pageLayoutValue('page_layout_legacy_heritage_values_19') }}</span>
                 </div>
             </div>
 
         </div>
     </section>
+    @endif
 
     <!-- ========================================================================= -->
     <!-- CALL TO ACTION (TASTE THE HERITAGE) -->
     <!-- ========================================================================= -->
+    @if($pageLayoutValue('page_layout_legacy_show_cta') === '1')
     <section class="about-cta-section">
         <div class="container">
             <div class="cta-inner-card">
                 <div class="cta-content">
                     <span class="cta-mini-pill">
-                        TASTE 100 YEARS OF TERROIR
+                        {{ $pageLayoutValue('page_layout_legacy_closing_banner_01') }}
                     </span>
                     <h2 class="cta-title">
-                        Bring A Century Of Heritage <br class="d-none d-md-block">
-                        To Your Dining Table Today!
+                        {{ $pageLayoutValue('page_layout_legacy_closing_banner_02') }} <br class="d-none d-md-block">
+                        {{ $pageLayoutValue('page_layout_legacy_closing_banner_03') }}
                     </h2>
                     <p class="cta-desc">
-                        Experience the unforgettable savory umami and genuine crispiness born from a century of patient solar curing. Enjoy our limited <strong>Buy 2 Get 1 Free</strong> deal and <strong>Free Shipping on orders over $50</strong>.
+                        {{ $pageLayoutValue('page_layout_legacy_closing_banner_04') }} <strong>{{ $pageLayoutValue('page_layout_legacy_closing_banner_05') }}</strong> {{ $pageLayoutValue('page_layout_legacy_closing_banner_06') }} <strong>{{ $pageLayoutValue('page_layout_legacy_free_shipping') }}</strong>.
                     </p>
                     <div class="cta-actions">
-                        <a href="/shop" class="btn-cta-primary">
-                            <span>Explore The Heritage Pantry</span>
+                        <a href="{{ $pageLayoutLink('page_layout_legacy_cta_primary_link') }}" class="btn-cta-primary">
+                            <span>{{ $pageLayoutValue('page_layout_legacy_closing_banner_07') }}</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </a>
-                        <a href="/about-us" class="btn-cta-secondary">
-                            <span>Read Our Kitchen Story (About Us)</span>
+                        <a href="{{ $pageLayoutLink('page_layout_legacy_cta_secondary_link') }}" class="btn-cta-secondary">
+                            <span>{{ $pageLayoutValue('page_layout_legacy_closing_banner_08') }}</span>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
 
+@include('frontend.layouts.partials.custom-page-sections', ['customPageName' => 'Our Legacy'])
 </main>
 @endsection
