@@ -15,27 +15,6 @@
     <div class="cart-bg-glow"></div>
     <div class="container cart-container">
 
-        @if(session('error'))
-            <div class="cart-flash-alert alert-error" style="display: flex; align-items: center; gap: 0.75rem; background: #FFF1F0; border: 1px solid #FFA39E; color: #CF1322; padding: 1rem 1.25rem; border-radius: 14px; margin-bottom: 1.5rem; font-size: 0.95rem; font-weight: 500; box-shadow: 0 4px 12px rgba(207, 19, 34, 0.06);">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-                <span>{{ session('error') }}</span>
-            </div>
-        @endif
-
-        @if(session('success'))
-            <div class="cart-flash-alert alert-success" style="display: flex; align-items: center; gap: 0.75rem; background: #F6FFED; border: 1px solid #B7EB8F; color: #389E0D; padding: 1rem 1.25rem; border-radius: 14px; margin-bottom: 1.5rem; font-size: 0.95rem; font-weight: 500; box-shadow: 0 4px 12px rgba(56, 158, 13, 0.06);">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                <span>{{ session('success') }}</span>
-            </div>
-        @endif
-
         <!-- Cart Top Navigation & Header -->
         <header class="cart-header-section">
             <div class="cart-breadcrumbs">

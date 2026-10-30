@@ -5,16 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Cart;
-use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\Inventory;
-use App\Models\Bundle;
-use App\Models\Coupon;
-use App\Services\PayPalService;
+use App\Models\PaymentAttempt;
+use App\Support\Payments\CheckoutPaymentService;
+use App\Support\Shop\CartCheckout;
+use App\Support\Shop\CheckoutException;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+use UnexpectedValueException;
 
 class CheckoutController extends Controller
 {
@@ -33,16 +29,7 @@ class CheckoutController extends Controller
             'coupon_code' => 'nullable|string|max:50'
         ]);
 
-        $userId = Auth::id();
-        $sessionId = $request->header('Session-Id') ?? session()->getId();
-
-        $cart = Cart::with(['items.product', 'items.bundle'])->where(function ($query) use ($userId, $sessionId) {
-            if ($userId) {
-                $query->where('user_id', $userId);
-            } else {
-                $query->where('session_id', $sessionId);
-            }
-        })->first();
+        $cart = CartCheckout::findCart($request);
 
         if (!$cart || $cart->items->isEmpty()) {
             return response()->json(['error' => 'Cart is empty. Please add items before checking out.'], 400);
@@ -60,42 +47,14 @@ class CheckoutController extends Controller
                 ]);
             });
 
-            $redirectUrl = null;
+            // Clear the applied coupon session
+            session()->forget('applied_coupon');
 
-            if ($request->payment_method === 'paypal') {
-                $paypalService = app(PayPalService::class);
-                $returnUrl = route('api.checkout.paypal.success', ['order_id' => $order->id]);
-                $cancelUrl = route('api.checkout.paypal.cancel', ['order_id' => $order->id]);
-                $paypalOrder = $paypalService->createOrder($finalTotal, $order->id, $returnUrl, $cancelUrl);
-
-                $order->transaction_id = $paypalOrder['paypal_order_id'];
-                $order->save();
-
-                $redirectUrl = $paypalOrder['approve_url'];
-            } else {
-                // Clear the cart & applied coupon session for COD and non-PayPal methods
-                $cart->items()->delete();
-                session()->forget('applied_coupon');
-                session(['last_order_id' => $order->id]);
-            }
-
-            DB::commit();
-
-            $token = hash('sha256', $order->id . $order->created_at . config('app.key'));
-            $successUrl = route('checkout.success', ['id' => $order->id, 'token' => $token]);
-
-            $responseData = [
-                'message' => $redirectUrl ? 'Order placed. Redirecting to PayPal...' : 'Order placed successfully',
+            return response()->json([
+                'message' => 'Order placed successfully',
                 'order_id' => $order->id,
-                'total' => $finalTotal,
-                'success_url' => $successUrl,
-            ];
-
-            if ($redirectUrl) {
-                $responseData['redirect_url'] = $redirectUrl;
-            }
-
-            return response()->json($responseData, 200);
+                'total' => $order->total_amount
+            ], 200);
 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
@@ -123,66 +82,18 @@ class CheckoutController extends Controller
      */
     public function capturePayPal(Request $request, CheckoutPaymentService $payments, string $payment)
     {
-        $token = $request->query('token');
-        $orderId = $request->query('order_id');
+        $data = $request->validate(['paypalOrderId' => 'required|string|max:255']);
 
-        if (!$orderId) {
-            return redirect()->route('page.cart')->with('error', 'Order ID is missing.');
-        }
+        return response()->json($payments->capturePayPal($this->ownedAttempt($request, $payment), $data['paypalOrderId']));
+    }
 
-        $order = Order::find($orderId);
-        if (!$order) {
-            return redirect()->route('page.cart')->with('error', 'Order not found.');
-        }
-
-        try {
-            $paypalService = app(PayPalService::class);
-            $result = $paypalService->capturePayment($token);
-
-            if (($result['status'] ?? '') === 'COMPLETED') {
-                $order->payment_status = 'paid';
-                $order->status = 'processing';
-                if (!empty($result['transaction_id'])) {
-                    $order->transaction_id = $result['transaction_id'];
-                }
-                $order->save();
-
-                // Clear the customer's cart session
-                $userId = Auth::id();
-                $sessionId = $request->header('Session-Id') ?? session()->getId();
-
-                $cart = Cart::where(function ($query) use ($userId, $sessionId) {
-                    if ($userId) {
-                        $query->where('user_id', $userId);
-                    } else {
-                        $query->where('session_id', $sessionId);
-                    }
-                })->first();
-
-                if ($cart) {
-                    $cart->items()->delete();
-                }
-                session()->forget('applied_coupon');
-                session(['last_order_id' => $order->id]);
-
-                $token = hash('sha256', $order->id . $order->created_at . config('app.key'));
-
-                return redirect()->route('checkout.success', ['id' => $order->id, 'token' => $token])
-                    ->with('success', 'PayPal payment completed successfully!');
-            }
-
-            $order->payment_status = 'failed';
-            $order->save();
-
-            return redirect()->route('page.cart')->with('error', 'PayPal payment capture was not completed.');
-
-        } catch (\Exception $e) {
-            Log::error('PayPal capture error: ' . $e->getMessage());
-            $order->payment_status = 'failed';
-            $order->save();
-
-            return redirect()->route('page.cart')->with('error', 'Payment failed: ' . $e->getMessage());
-        }
+    /**
+     * Payment status polled by the checkout page after card confirmation or redirect.
+     */
+    public function paymentStatus(Request $request, CheckoutPaymentService $payments, string $payment)
+    {
+        return response()->json($payments->publicStatus($this->ownedAttempt($request, $payment)))
+            ->header('Cache-Control', 'private, no-store, max-age=0');
     }
 
     /**
@@ -204,40 +115,31 @@ class CheckoutController extends Controller
 
     private function startPayment(Request $request, CheckoutPaymentService $payments, string $provider)
     {
-        $orderId = $request->query('order_id');
+        $data = $request->validate([
+            'shipping_address' => 'required|string|max:1000',
+            'coupon_code' => 'nullable|string|max:50',
+        ]);
 
-        if ($orderId) {
-            $order = Order::with('items')->find($orderId);
-            if ($order && $order->payment_status !== 'cancelled') {
-                DB::beginTransaction();
-                try {
-                    $order->payment_status = 'cancelled';
-                    $order->status = 'cancelled';
-                    $order->save();
-
-                    // Restore reserved inventory quantity
-                    foreach ($order->items as $item) {
-                        if ($item->product_id) {
-                            $inventory = Inventory::where('product_id', $item->product_id)
-                                                  ->where('variant_id', $item->variant_id)
-                                                  ->lockForUpdate()
-                                                  ->first();
-
-                            if ($inventory) {
-                                $inventory->quantity += $item->quantity;
-                                $inventory->save();
-                            }
-                        }
-                    }
-
-                    DB::commit();
-                } catch (\Exception $e) {
-                    DB::rollBack();
-                    Log::error('PayPal cancel inventory rollback error: ' . $e->getMessage());
-                }
-            }
+        $cart = CartCheckout::findCart($request);
+        if (!$cart || $cart->items->isEmpty()) {
+            return response()->json(['error' => 'Cart is empty. Please add items before checking out.'], 400);
         }
 
-        return redirect()->route('page.cart')->with('error', 'PayPal payment was cancelled. Your items are still in your cart.');
+        try {
+            return response()->json($payments->startAttempt(
+                $cart, $provider, (string) $request->header('Idempotency-Key'), $data['shipping_address'], $data['coupon_code'] ?? null
+            ), 201);
+        } catch (CheckoutException $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /** A payment attempt is only visible to the cart (session or signed-in user) that started it. */
+    private function ownedAttempt(Request $request, string $payment): PaymentAttempt
+    {
+        $cart = CartCheckout::findCart($request);
+        abort_unless($cart, 404, 'Payment not found.');
+
+        return PaymentAttempt::where('cart_id', $cart->id)->findOrFail($payment);
     }
 }

@@ -773,40 +773,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const result = await response.json();
 
                 if (response.ok) {
-                    if (result.redirect_url) {
-                        window.location.href = result.redirect_url;
-                        return;
-                    }
-
-                    // Success Modal Display
-                    const modal = document.getElementById('checkout-success-modal');
-                    const modalOrderId = document.getElementById('modal-order-id');
-                    const modalPaymentMethod = document.getElementById('modal-payment-method');
-                    const modalOrderTotal = document.getElementById('modal-order-total');
-                    const modalShippingSummary = document.getElementById('modal-shipping-summary');
-                    const currentTotal = document.getElementById('cart-total')?.textContent || '$0.00';
-
-                    if (modalOrderId) modalOrderId.textContent = `#ORD-${result.order_id || 'SUCCESS'}`;
-                    if (modalPaymentMethod) modalPaymentMethod.textContent = paymentMethod === 'paypal' ? 'PayPal / Credit Card' : 'Cash on Delivery (COD)';
-                    if (modalOrderTotal) modalOrderTotal.textContent = currentTotal;
-                    if (modalShippingSummary) modalShippingSummary.textContent = `${name} • ${phone} • ${street}, ${city}`;
-
-                    if (result.success_url) {
-                        const viewOrderLink = modal?.querySelector('.btn-primary-success');
-                        if (viewOrderLink) {
-                            viewOrderLink.href = result.success_url;
-                            viewOrderLink.textContent = 'View Order Receipt';
-                        }
-                    }
-
-                    if (modal) {
-                        modal.style.display = 'flex';
-                    }
-
-                    // Clear and refresh cart state
-                    mockCartState = { items: [] };
-                    fetchCart();
-
+                    showCheckoutSuccess(result.order_id, paymentMethod, details);
+                    confirmCheckoutBtn.disabled = false;
+                    confirmCheckoutBtn.innerHTML = originalBtnHtml;
                 } else {
                     if (alertBox) {
                         alertBox.className = 'checkout-alert alert-danger';
@@ -831,6 +800,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     fetchCart();
     attachAddToCartListeners();
+
+    // Auto-open checkout if navigated with ?step=checkout or #checkout
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('step') === 'checkout' || window.location.hash === '#checkout') {
+        switchToCheckoutView();
+    }
 
     // Coupon logic
     const applyCouponBtn = document.getElementById('apply-coupon-btn');

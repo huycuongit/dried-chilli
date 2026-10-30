@@ -1,0 +1,17 @@
+@import url('../admin/vendor/libs/quill/typography.css');
+.ql-content .ql-align-center { text-align:center; }
+.ql-content .ql-align-right { text-align:right; }
+.ql-content .ql-align-justify { text-align:justify; }
+.ql-content .ql-direction-rtl { direction:rtl; }
+.ql-content .ql-font-serif { font-family:Georgia,"Times New Roman",serif; }
+.ql-content .ql-font-monospace { font-family:Consolas,Menlo,monospace; }
+.ql-content .ql-size-small { font-size:.75em; }
+.ql-content .ql-size-large { font-size:1.5em; }
+.ql-content .ql-size-huge { font-size:2.5em; }
+.ql-content img { max-width:100%;height:auto; }
+.ql-content iframe.ql-video { display:block;width:min(100%,640px);height:auto;aspect-ratio:16/9;border:0; }
+.ql-content iframe.ql-align-center { margin-inline:auto; }
+.ql-content iframe.ql-align-right { margin-left:auto; }
+.ql-content pre { white-space:pre-wrap;overflow-wrap:anywhere;padding:18px;border-radius:8px;background:#20211e;color:#fff;font:14px/1.6 Consolas,monospace; }
+.ql-content blockquote { border-left:4px solid #323f22;margin:20px 0;padding-left:20px; }
+.ql-content .ql-formula { display:inline-block; }

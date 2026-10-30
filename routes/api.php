@@ -25,8 +25,14 @@ Route::prefix('coupon')->group(function () {
 });
 
 Route::post('checkout', [CheckoutController::class, 'process']);
-Route::get('checkout/paypal/success', [CheckoutController::class, 'paypalSuccess'])->middleware('web')->name('api.checkout.paypal.success');
-Route::get('checkout/paypal/cancel', [CheckoutController::class, 'paypalCancel'])->middleware('web')->name('api.checkout.paypal.cancel');
+// Online payments (same flow as jojo-be): the order is created only after payment is confirmed.
+Route::prefix('checkout')->where(['payment' => '[0-9a-f-]{36}'])->group(function () {
+    Route::post('stripe', [CheckoutController::class, 'createStripe'])->name('api.checkout.stripe');
+    Route::post('paypal', [CheckoutController::class, 'createPayPal'])->name('api.checkout.paypal');
+    Route::post('paypal/{payment}/capture', [CheckoutController::class, 'capturePayPal'])->name('api.checkout.paypal.capture');
+    Route::get('payments/{payment}', [CheckoutController::class, 'paymentStatus'])->name('api.checkout.payment');
+});
+Route::post('payments/stripe/webhook', [CheckoutController::class, 'stripeWebhook'])->name('api.payments.stripe.webhook');
 
 Route::get('orders', [OrderController::class, 'index']);
 Route::put('orders/{id}/status', [OrderController::class, 'updateStatus']);

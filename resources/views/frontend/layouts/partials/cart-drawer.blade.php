@@ -46,7 +46,7 @@
         </div>
 
         <p class="shipping-calc-text">Shipping & taxes calculated at checkout.</p>
-        <a href="/checkout" class="cart-drawer-checkout" id="drawer-checkout-btn">Checkout</a>
+        <a href="/cart?step=checkout" class="cart-drawer-checkout" id="drawer-checkout-btn">Checkout</a>
         <a href="/cart" class="view-full-cart">View full cart</a>
     </div>
 </div>

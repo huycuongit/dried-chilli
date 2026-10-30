@@ -64,6 +64,7 @@ Route::get('/{language}/{path?}', function ($language, $path = null) {
 })->where(['language' => 'en|vi', 'path' => '.*']);
 
 Route::redirect('/home', '/', 301);
+Route::redirect('/checkout', '/cart', 301);
 Route::redirect('/dich-vu/{slug?}', '/shop', 301)->name('service.detail');
 Route::redirect('/dashboard', '/', 301)->name('page.index');
 
@@ -82,7 +83,6 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/shop/{slug}', [HomeController::class, 'productDetail'])->name('page.product');
     Route::get('/sale', [SaleController::class, 'index'])->name('page.sale');
     Route::view('/cart', 'frontend.cart')->name('page.cart');
-    Route::get('/checkout/success/{id}', [\App\Http\Controllers\CheckoutWebController::class, 'success'])->name('checkout.success');
     Route::get('/about-us', [HomeController::class, 'about'])->name('page.about');
     Route::get('/our-legacy', [HomeController::class, 'legacy'])->name('page.legacy');
     Route::get('/faq', [\App\Http\Controllers\LegalController::class, 'faq'])->name('page.faq');

@@ -1,0 +1,25 @@
+# FEB Digi — Web Design and Development Studio
+
+> FEB designs and builds fast, conversion-focused websites and scalable web platforms for businesses.
+
+## Main pages
+
+- [Homepage](https://febdigi.com/): Overview of FEB, services, process, selected projects, and contact options.
+- [Selected projects](https://febdigi.com/#work): Websites and web platforms delivered by FEB.
+- [Services](https://febdigi.com/#services): Business websites, e-commerce solutions, custom web applications, and booking systems.
+- [Process](https://febdigi.com/#process): FEB's proposal, wireframe, design, and development workflow.
+- [Blog](https://febdigi.com/#blog): Articles and practical insights about websites and digital growth.
+- [Contact FEB](https://febdigi.com/#contact): Start a website or web-platform project with FEB.
+
+## Languages
+
+The website is available in English and Vietnamese. The language switcher in the header changes the visible page content.
+
+## Crawling resources
+
+- [XML sitemap](https://febdigi.com/sitemap.xml)
+- [Robots policy](https://febdigi.com/robots.txt)
+
+## Usage guidance
+
+Public website content may be crawled for search, discovery, citation, and answering questions about FEB's services. Project images and brand assets remain the property of FEB or their respective owners.
