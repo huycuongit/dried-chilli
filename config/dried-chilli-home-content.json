@@ -49,19 +49,19 @@
             "label": "4.9 / 5 · 76 reviews"
         },
         "home_image_13": {
-            "value": "assets/nafu/mrfix-home2.css",
+            "value": "assets/dried-chilli/mrfix-home2.css",
             "label": "Image path"
         },
         "home_image_14": {
-            "value": "assets/nafu/support-avatar.png",
+            "value": "assets/dried-chilli/support-avatar.png",
             "label": "Image path"
         },
         "home_image_15": {
-            "value": "assets/nafu/hero-handyman.avif",
+            "value": "assets/dried-chilli/hero-handyman.avif",
             "label": "Image path"
         },
         "home_image_16": {
-            "value": "assets/nafu/nafu-home.js",
+            "value": "assets/dried-chilli/nafu-home.js",
             "label": "Image path"
         }
     },
@@ -295,47 +295,47 @@
             "label": "Oops! Something went wrong while submitting the form."
         },
         "nafu_home_sections_image_58": {
-            "value": "assets/nafu/67ee7fac64a065125f1e5174_c98af9e8f3c3cd36c97b453bd131f3a3_single-image-02.avif",
+            "value": "assets/dried-chilli/67ee7fac64a065125f1e5174_c98af9e8f3c3cd36c97b453bd131f3a3_single-image-02.avif",
             "label": "Image path"
         },
         "nafu_home_sections_image_59": {
-            "value": "assets/nafu/67ee7faa51cc7312f8341081_7abc69a7401579eaeeff88c9f9b9bb53_single-image-03.png",
+            "value": "assets/dried-chilli/67ee7faa51cc7312f8341081_7abc69a7401579eaeeff88c9f9b9bb53_single-image-03.png",
             "label": "Image path"
         },
         "nafu_home_sections_image_60": {
-            "value": "assets/nafu/683ae87fcb9ea083f2cefef5_email -white.svg",
+            "value": "assets/dried-chilli/683ae87fcb9ea083f2cefef5_email -white.svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_61": {
-            "value": "assets/nafu/683ae87f774ed8e134537a42_phone-call -white.svg",
+            "value": "assets/dried-chilli/683ae87f774ed8e134537a42_phone-call -white.svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_62": {
-            "value": "assets/nafu/67ef6a36839fca685b93dfbe_66ef398ea4b08e3097fa3e50c3683e64_single-image-04.png",
+            "value": "assets/dried-chilli/67ef6a36839fca685b93dfbe_66ef398ea4b08e3097fa3e50c3683e64_single-image-04.png",
             "label": "Image path"
         },
         "nafu_home_sections_image_63": {
-            "value": "assets/nafu/67ef6a361858aa5d3ae40c91_4f976330b42a653f1677245a89e88032_single-image-05.png",
+            "value": "assets/dried-chilli/67ef6a361858aa5d3ae40c91_4f976330b42a653f1677245a89e88032_single-image-05.png",
             "label": "Image path"
         },
         "nafu_home_sections_image_64": {
-            "value": "assets/nafu/683995d214338209f9d5e446_footer-client (2).svg",
+            "value": "assets/dried-chilli/683995d214338209f9d5e446_footer-client (2).svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_65": {
-            "value": "assets/nafu/683995d694f98209394381b5_footer-client (3).svg",
+            "value": "assets/dried-chilli/683995d694f98209394381b5_footer-client (3).svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_66": {
-            "value": "assets/nafu/683995d2cd40ea35bc32d216_footer-client (4).svg",
+            "value": "assets/dried-chilli/683995d2cd40ea35bc32d216_footer-client (4).svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_67": {
-            "value": "assets/nafu/683995d614fee9710d877c7f_footer-client (1).svg",
+            "value": "assets/dried-chilli/683995d614fee9710d877c7f_footer-client (1).svg",
             "label": "Image path"
         },
         "nafu_home_sections_image_68": {
-            "value": "assets/nafu/683a88de78bfb92194f9b472_email-phishing-hook.avif",
+            "value": "assets/dried-chilli/683a88de78bfb92194f9b472_email-phishing-hook.avif",
             "label": "Image path"
         }
     },
@@ -593,16 +593,16 @@
             "label": "SEO: Our services | Nafu Home Care"
         },
         "page_services_image_13": {
-            "value": "assets/nafu/blog-handyman.gif",
-            "label": "Image path: assets/nafu/blog-handyman.gif"
+            "value": "assets/dried-chilli/blog-handyman.gif",
+            "label": "Image path: assets/dried-chilli/blog-handyman.gif"
         },
         "page_services_image_14": {
-            "value": "assets/nafu/services-circle.png",
-            "label": "Image path: assets/nafu/services-circle.png"
+            "value": "assets/dried-chilli/services-circle.png",
+            "label": "Image path: assets/dried-chilli/services-circle.png"
         },
         "page_services_image_15": {
-            "value": "assets/nafu/services-cta.avif",
-            "label": "Image path: assets/nafu/services-cta.avif"
+            "value": "assets/dried-chilli/services-cta.avif",
+            "label": "Image path: assets/dried-chilli/services-cta.avif"
         }
     },
     "Service Details": {
@@ -619,7 +619,7 @@
             "label": "Contact button label"
         },
         "page_service_details_image_6": {
-            "value": "assets/nafu/blog-handyman.gif",
+            "value": "assets/dried-chilli/blog-handyman.gif",
             "label": "Shared hero illustration"
         }
     },
@@ -689,8 +689,8 @@
             "label": "SEO: Reliable apartment repairs, painting, flooring and property maintenance completed across Melbourne."
         },
         "page_projects_image_23": {
-            "value": "assets/nafu/blog-handyman.gif",
-            "label": "Image path: assets/nafu/blog-handyman.gif"
+            "value": "assets/dried-chilli/blog-handyman.gif",
+            "label": "Image path: assets/dried-chilli/blog-handyman.gif"
         }
     },
     "Project Details": {
@@ -759,34 +759,34 @@
             "label": "Talk to our team"
         },
         "page_project_details_image_29": {
-            "value": "assets/nafu/blog-handyman.gif",
-            "label": "Image path: assets/nafu/682ade1088e04d40f8534321_project-0 (1).avif"
+            "value": "assets/dried-chilli/blog-handyman.gif",
+            "label": "Image path: assets/dried-chilli/682ade1088e04d40f8534321_project-0 (1).avif"
         },
         "page_project_details_image_30": {
-            "value": "assets/nafu/682aef9310703914675fd085_project-img (4).avif",
-            "label": "Image path: assets/nafu/682aef9310703914675fd085_project-img (4).avif"
+            "value": "assets/dried-chilli/682aef9310703914675fd085_project-img (4).avif",
+            "label": "Image path: assets/dried-chilli/682aef9310703914675fd085_project-img (4).avif"
         },
         "page_project_details_image_31": {
-            "value": "assets/nafu/682aefe6a46d07cc1744fa9d_project-img (3).avif",
-            "label": "Image path: assets/nafu/682aefe6a46d07cc1744fa9d_project-img (3).avif"
+            "value": "assets/dried-chilli/682aefe6a46d07cc1744fa9d_project-img (3).avif",
+            "label": "Image path: assets/dried-chilli/682aefe6a46d07cc1744fa9d_project-img (3).avif"
         },
         "page_project_details_image_32": {
-            "value": "assets/nafu/682ade1088e04d40f8534321_project-0 (1).avif",
-            "label": "Image path: assets/nafu/682ade1088e04d40f8534321_project-0 (1).avif"
+            "value": "assets/dried-chilli/682ade1088e04d40f8534321_project-0 (1).avif",
+            "label": "Image path: assets/dried-chilli/682ade1088e04d40f8534321_project-0 (1).avif"
         },
         "page_project_details_image_33": {
-            "value": "assets/nafu/682aef9310703914675fd085_project-img (4).avif",
-            "label": "Image path: assets/nafu/682aef9310703914675fd085_project-img (4).avif"
+            "value": "assets/dried-chilli/682aef9310703914675fd085_project-img (4).avif",
+            "label": "Image path: assets/dried-chilli/682aef9310703914675fd085_project-img (4).avif"
         }
     },
     "News": {
         "page_news_image_4": {
-            "value": "assets/nafu/blog-handyman.gif",
-            "label": "Image path: assets/nafu/blog-handyman.gif"
+            "value": "assets/dried-chilli/blog-handyman.gif",
+            "label": "Image path: assets/dried-chilli/blog-handyman.gif"
         },
         "page_news_image_5": {
-            "value": "assets/nafu/682ad431addb8bf5a550e766_blog (2).avif",
-            "label": "Image path: assets/nafu/682ad431addb8bf5a550e766_blog (2).avif"
+            "value": "assets/dried-chilli/682ad431addb8bf5a550e766_blog (2).avif",
+            "label": "Image path: assets/dried-chilli/682ad431addb8bf5a550e766_blog (2).avif"
         },
         "news_heading": {
             "value": "Reliable handyman for every home project",
@@ -831,20 +831,20 @@
             "label": "← All articles"
         },
         "page_news_details_image_9": {
-            "value": "assets/nafu/blog-detail-landscaping.avif",
-            "label": "Image path: assets/nafu/blog-detail-landscaping.avif"
+            "value": "assets/dried-chilli/blog-detail-landscaping.avif",
+            "label": "Image path: assets/dried-chilli/blog-detail-landscaping.avif"
         },
         "page_news_details_image_10": {
-            "value": "assets/nafu/blog-detail-landscaping.avif",
-            "label": "Image path: assets/nafu/blog-detail-landscaping.avif"
+            "value": "assets/dried-chilli/blog-detail-landscaping.avif",
+            "label": "Image path: assets/dried-chilli/blog-detail-landscaping.avif"
         },
         "page_news_details_image_11": {
-            "value": "assets/nafu/blog-handyman.gif",
-            "label": "Image path: assets/nafu/blog-handyman.gif"
+            "value": "assets/dried-chilli/blog-handyman.gif",
+            "label": "Image path: assets/dried-chilli/blog-handyman.gif"
         },
         "page_news_details_image_12": {
-            "value": "assets/nafu/blog-detail-secondary.avif",
-            "label": "Image path: assets/nafu/blog-detail-secondary.avif"
+            "value": "assets/dried-chilli/blog-detail-secondary.avif",
+            "label": "Image path: assets/dried-chilli/blog-detail-secondary.avif"
         }
     },
     "Contact": {

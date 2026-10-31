@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
 
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -25,28 +24,18 @@ use App\Http\Controllers\Admin\ServiceContractController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Artisan
-Route::get('reset-systems-cache-admin', function () {
-    Artisan::call('config:clear');
-    Artisan::call('config:cache');
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    Artisan::call('route:clear');
-    return "<h1>All Config Cache Clear Successfully.</h1>";
-});
-
 // Routers for Auth Admin
 $finalString = 'dried-chili';
 Route::get('/', fn() => redirect()->route('admin.login'));
 Route::match(['get', 'post'], 'logout', [LoginController::class, 'logout'])->name('admin.logout');
 Route::get($finalString, [LoginController::class, 'login'])->name('admin.login');
 Route::get($finalString . 'login' . $finalString, [LoginController::class, 'login']);
-Route::post($finalString, [LoginController::class, 'postlogin'])->name('admin.save.login');
-Route::post($finalString . 'login' . $finalString, [LoginController::class, 'postlogin']);
+Route::post($finalString, [LoginController::class, 'postlogin'])->middleware('throttle:10,1')->name('admin.save.login');
+Route::post($finalString . 'login' . $finalString, [LoginController::class, 'postlogin'])->middleware('throttle:10,1');
 Route::get('login', [LoginController::class, 'login']);
-Route::post('login', [LoginController::class, 'postlogin']);
+Route::post('login', [LoginController::class, 'postlogin'])->middleware('throttle:10,1');
 Route::get('admin/login', [LoginController::class, 'login']);
-Route::post('admin/login', [LoginController::class, 'postlogin']);
+Route::post('admin/login', [LoginController::class, 'postlogin'])->middleware('throttle:10,1');
 
 
 // Routers for authadmin
@@ -136,8 +125,6 @@ Route::group(['middleware' => 'authadmin'], function () {
             Route::get('ecom-inventory/datatables', [\App\Http\Controllers\Admin\EcomInventoryController::class, 'datatables'])->name('admin.ecom_inventory.datatables');
             Route::resource('ecom-inventory', \App\Http\Controllers\Admin\EcomInventoryController::class)->names('admin.ecom_inventory');
             
-            Route::get('ecom-bundles/datatables', [\App\Http\Controllers\Admin\EcomBundleController::class, 'datatables'])->name('admin.ecom_bundles.datatables');
-            Route::resource('ecom-bundles', \App\Http\Controllers\Admin\EcomBundleController::class)->names('admin.ecom_bundles');
             
             Route::resource('ecom-legal', \App\Http\Controllers\Admin\EcomLegalController::class)->names('admin.ecom_legal');
             

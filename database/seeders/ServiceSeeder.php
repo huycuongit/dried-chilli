@@ -61,7 +61,7 @@ class ServiceSeeder extends Seeder
                 'end-of-lease' => 'services-handover.avif',
                 'property-managers' => 'services-property.avif',
             ];
-            $image = 'assets/nafu/' . $images[$service['slug']];
+            $image = 'assets/dried-chilli/' . $images[$service['slug']];
             $existing = DB::table('services')->where('slug', $service['slug'])->first();
 
             if (!$existing) {
@@ -147,12 +147,12 @@ class ServiceSeeder extends Seeder
         $html .= str_replace('</ul>', '<li>' . e($detail['benefit']) . '</li></ul>', $service['content']);
         foreach ($detail['images'] as $index => $image) {
             $part = $index === 0 ? 'gallery-left' : 'gallery-right';
-            $html .= '<p data-service-part="' . $part . '"><img src="' . e(asset('assets/nafu/' . $image)) . '" alt="' . e($service['name'] . ' by Nafu') . '"></p>';
+            $html .= '<p data-service-part="' . $part . '"><img src="' . e(asset('assets/dried-chilli/' . $image)) . '" alt="' . e($service['name'] . ' by Nafu') . '"></p>';
         }
         // Native Quill blocks stay editable; the presentation stylesheet groups them into columns.
         foreach ($detail['steps'] as $index => $step) {
             $number = $index + 1;
-            $html .= '<p data-service-part="icon-' . $number . '"><img src="' . e(asset('assets/nafu/service-work-' . $number . '.svg')) . '" alt=""></p>';
+            $html .= '<p data-service-part="icon-' . $number . '"><img src="' . e(asset('assets/dried-chilli/service-work-' . $number . '.svg')) . '" alt=""></p>';
         }
         foreach ($detail['steps'] as $index => $step) {
             $html .= '<h3 data-service-part="title-' . ($index + 1) . '">' . e($step[0]) . '</h3>';

@@ -8,6 +8,7 @@ use App\Support\SystemSettings;
 use App\Support\PageContentGroups;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class HomepageController extends Controller
 {
@@ -19,7 +20,7 @@ class HomepageController extends Controller
         return view('admin.homepage', compact('sections', 'values', 'faqs'));
     }
 
-    private function savePageContent(Request $request, array $sections): void
+    private function preparePageContent(Request $request, array $sections): array
     {
         $pages = PageContentGroups::fromSections($sections);
         $page = $request->validate(['selected_page' => ['required', 'string', Rule::in(array_keys($pages))]])['selected_page'];
@@ -36,6 +37,8 @@ class HomepageController extends Controller
             }
         }
         $content = $request->validate($rules)['content'];
+        $rows = [];
+        $timestamp = now();
         foreach ($content as $key => $value) {
             if (!isset($rules['content.' . $key])) {
                 continue;
@@ -43,9 +46,10 @@ class HomepageController extends Controller
             if (str_contains($key, '_image') && !str_contains($key, '_alt_') && !str_contains($key, '_description') && str_starts_with((string) $value, 'data:image/')) {
                 $value = \App\Support\Base64ImageStore::store($value, 'page-images');
             }
-            System::updateOrCreate(['key' => 'nafu_home_' . $key], ['content' => $value ?? '']);
+            $rows[] = ['key' => 'nafu_home_' . $key, 'content' => $value ?? '', 'created_at' => $timestamp, 'updated_at' => $timestamp];
         }
-        app(SystemSettings::class)->forget();
+        usort($rows, fn ($left, $right) => strcmp($left['key'], $right['key']));
+        return $rows;
     }
 
     private function saveEditor(Request $request, array $sections): void
@@ -62,8 +66,12 @@ class HomepageController extends Controller
                 'faq_entries.*.delete' => ['nullable', 'boolean'],
             ])['faq_entries'] ?? [];
         }
-        \Illuminate\Support\Facades\DB::transaction(function () use ($request, $sections, $faqEntries) {
-            $this->savePageContent($request, $sections);
+        $rows = $this->preparePageContent($request, $sections);
+        $preparedContent = [];
+        foreach ($rows as $row) $preparedContent[substr($row['key'], strlen('nafu_home_'))] = $row['content'];
+        $request->merge(['content' => $preparedContent]);
+        \Illuminate\Support\Facades\DB::transaction(function () use ($rows, $faqEntries) {
+            if ($rows) System::upsert($rows, ['key'], ['content', 'updated_at']);
             foreach ($faqEntries as $entry) {
                 if (!empty($entry['delete'])) {
                     if (!empty($entry['id'])) \App\Models\Faq::whereKey($entry['id'])->delete();
@@ -72,13 +80,24 @@ class HomepageController extends Controller
                 $faq = !empty($entry['id']) ? \App\Models\Faq::findOrFail($entry['id']) : new \App\Models\Faq();
                 $faq->fill(collect($entry)->only(['question', 'answer', 'is_active', 'sort_order'])->all())->save();
             }
-        });
+        }, 3);
+        app(SystemSettings::class)->forget();
     }
 
     public function update(Request $request)
     {
-        $this->saveEditor($request, PageContentGroups::sections());
+        try {
+            $this->saveEditor($request, PageContentGroups::sections());
+        } catch (QueryException $exception) {
+            if (!$this->isLockConflict($exception)) throw $exception;
+            return back()->withInput($request->except('_token'))->with('error', 'The page is being updated by another request. Please try saving again.');
+        }
         return back()->with('success', 'Page updated successfully.');
+    }
+
+    private function isLockConflict(QueryException $exception): bool
+    {
+        return (string) $exception->getCode() === '40001' || in_array((int) ($exception->errorInfo[1] ?? 0), [1205, 1213], true);
     }
 
     public function addSection(Request $request)
@@ -93,9 +112,14 @@ class HomepageController extends Controller
             return back()->with('error', 'Invalid section type selected.');
         }
 
-        $this->saveEditor($request, PageContentGroups::sections());
+        try {
+            $this->saveEditor($request, PageContentGroups::sections());
+        } catch (QueryException $exception) {
+            if (!$this->isLockConflict($exception)) throw $exception;
+            return back()->withInput($request->except('_token'))->with('error', 'The page is being updated by another request. Please try saving again.');
+        }
 
-        $configPath = config_path('nafu-home-content.json');
+        $configPath = config_path('dried-chilli-home-content.json');
         $json = PageContentGroups::customPageSections($page);
 
         // Find next section index for this page
@@ -214,7 +238,7 @@ class HomepageController extends Controller
             return back()->with('error', 'Invalid section to delete.');
         }
 
-        $configPath = config_path('nafu-home-content.json');
+        $configPath = config_path('dried-chilli-home-content.json');
         $page = collect(PageContentGroups::CUSTOM_PAGES)->first(fn ($candidate) => str_starts_with($sectionKey, $candidate . ' - Section '));
         if (!$page) return back()->with('error', 'Invalid section to delete.');
         $json = PageContentGroups::customPageSections($page);

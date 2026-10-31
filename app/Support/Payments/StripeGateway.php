@@ -29,6 +29,16 @@ class StripeGateway
         return $this->toResult($this->request('get', '/payment_intents/' . rawurlencode($providerPaymentId)));
     }
 
+    public function refundIntent(string $paymentIntentId, string $attemptId): array
+    {
+        return $this->request('post', '/refunds', ['payment_intent' => $paymentIntentId], 'shop-refund:' . $attemptId);
+    }
+
+    public function retrieveRefund(string $refundId): array
+    {
+        return $this->request('get', '/refunds/' . rawurlencode($refundId));
+    }
+
     public function parseWebhook(string $rawBody, string $signature): array
     {
         StripeSignature::verify($rawBody, $signature, (string) config('services.stripe.webhook_secret'));
@@ -42,7 +52,7 @@ class StripeGateway
         return [
             'event_id' => $event['id'],
             'type' => $event['type'],
-            'provider_created_at' => isset($event['created']) ? date('Y-m-d H:i:s', (int) $event['created']) : null,
+            'provider_created_at' => isset($event['created']) ? gmdate('Y-m-d H:i:s', (int) $event['created']) : null,
             'intent' => [
                 'id' => $intent['id'] ?? null,
                 'status' => $intent['status'] ?? null,

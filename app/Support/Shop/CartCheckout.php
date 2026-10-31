@@ -9,7 +9,6 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Prices a cart and turns a priced snapshot into an order.
@@ -28,8 +27,10 @@ class CartCheckout
         $userId = self::userId();
         $sessionId = $request->header('Session-Id') ?? session()->getId();
 
-        return Cart::with(['items.product', 'items.bundle'])->where(function ($query) use ($userId, $sessionId) {
-            if ($userId) {
+        return Cart::with(['items.product', 'items.variant', 'items.bundle'])->where(function ($query) use ($request, $userId, $sessionId) {
+            if ($request->header('Session-Id')) {
+                $query->where('session_id', $sessionId);
+            } elseif ($userId) {
                 $query->where('user_id', $userId);
             } else {
                 $query->where('session_id', $sessionId);
@@ -49,9 +50,12 @@ class CartCheckout
 
         $subtotal = 0;
         $items = [];
-        foreach ($cart->items as $item) {
-            $subtotal += $item->price * $item->quantity;
-
+        $cartItems = $cart->items->all();
+        if ($lock) usort($cartItems, fn ($a, $b) => [$a->product_id, $a->variant_id ?? 0] <=> [$b->product_id, $b->variant_id ?? 0]);
+        foreach ($cartItems as $item) {
+            if ($item->bundle_id) {
+                throw new CheckoutException('Bundles are no longer available. Please remove the bundle from your cart.');
+            }
             if ($item->product_id) {
                 $inventory = Inventory::where('product_id', $item->product_id)->where('variant_id', $item->variant_id);
                 $inventory = ($lock ? $inventory->lockForUpdate() : $inventory)->first();
@@ -61,13 +65,19 @@ class CartCheckout
                 }
             }
 
+            if (!$item->product || !$item->product->is_active) {
+                throw new CheckoutException('A product in your cart is no longer available.');
+            }
+            $price = CartItemPricing::price($item);
+            $subtotal += $price * $item->quantity;
+
             $items[] = [
                 'cart_item_id' => $item->id,
                 'product_id' => $item->product_id,
                 'bundle_id' => $item->bundle_id,
                 'variant_id' => $item->variant_id,
                 'quantity' => (int) $item->quantity,
-                'price' => (float) $item->price,
+                'price' => $price,
             ];
         }
 
@@ -80,9 +90,11 @@ class CartCheckout
                     $q->whereNull('expires_at')->orWhere('expires_at', '>', now());
                 });
             $coupon = ($lock ? $coupon->lockForUpdate() : $coupon)->first();
+            if (!$coupon) throw new CheckoutException('This coupon is invalid, inactive, or expired.');
+            if ($subtotal < $coupon->min_order_amount) throw new CheckoutException('Your cart no longer meets the minimum amount for this coupon.');
 
-            if ($coupon && $subtotal >= $coupon->min_order_amount) {
-                if ($coupon->usage_limit && $coupon->used_count >= $coupon->usage_limit) {
+            if ($coupon) {
+                if ($coupon->usage_limit !== null && $coupon->used_count >= $coupon->usage_limit) {
                     throw new CheckoutException('Coupon usage limit has been reached.');
                 }
                 if ($coupon->type === 'fixed') {
@@ -110,30 +122,45 @@ class CartCheckout
     /**
      * Creates the order from a priced snapshot: takes stock, counts the coupon use, copies the
      * items and removes them from the cart. Must run inside a transaction.
-     * A paid order is always created, even if stock ran out after payment (logged for staff).
+     * All inventory rows are checked before any stock is deducted.
      */
     public static function place(array $priced, array $orderAttributes, bool $paid = false): Order
     {
+        $quantities = [];
         foreach ($priced['items'] as $item) {
+            if (!$item['product_id']) continue;
+            $key = $item['product_id'] . ':' . ($item['variant_id'] ?? '');
+            if (!isset($quantities[$key])) $quantities[$key] = ['product_id' => $item['product_id'], 'variant_id' => $item['variant_id'], 'quantity' => 0];
+            $quantities[$key]['quantity'] += (int) $item['quantity'];
+        }
+        $items = array_values($quantities);
+        usort($items, fn ($a, $b) => [$a['product_id'], $a['variant_id'] ?? 0] <=> [$b['product_id'], $b['variant_id'] ?? 0]);
+        $inventories = [];
+        foreach ($items as $item) {
             if (!$item['product_id']) continue;
             $inventory = Inventory::where('product_id', $item['product_id'])
                 ->where('variant_id', $item['variant_id'])->lockForUpdate()->first();
             if (!$inventory || $inventory->quantity < $item['quantity']) {
-                if (!$paid) throw new CheckoutException("Product #{$item['product_id']} is out of stock or exceeds available quantity.");
-                Log::warning('Paid order oversold product stock', ['product_id' => $item['product_id'], 'variant_id' => $item['variant_id']]);
+                throw new CheckoutException("Product #{$item['product_id']} is out of stock or exceeds available quantity.");
             }
-            if ($inventory) {
-                $inventory->quantity = max(0, $inventory->quantity - $item['quantity']);
-                $inventory->save();
+            $inventories[] = [$inventory, $item['quantity']];
+        }
+        $coupon = null;
+        if ($priced['coupon_code']) {
+            $coupon = Coupon::where('code', $priced['coupon_code'])->lockForUpdate()->first();
+            if (!$coupon || ($coupon->usage_limit !== null && $coupon->used_count >= $coupon->usage_limit)) {
+                throw new CouponUnavailableException('This coupon is no longer available. Please review your cart.');
             }
         }
 
-        if ($priced['coupon_code']) {
-            $coupon = Coupon::where('code', $priced['coupon_code'])->lockForUpdate()->first();
-            if ($coupon) {
-                $coupon->used_count += 1;
-                $coupon->save();
-            }
+        foreach ($inventories as [$inventory, $quantity]) {
+            $inventory->quantity -= $quantity;
+            $inventory->save();
+        }
+
+        if ($coupon) {
+            $coupon->used_count += 1;
+            $coupon->save();
         }
 
         $order = Order::create($orderAttributes + [

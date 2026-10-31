@@ -9,7 +9,7 @@ class HomepageSeeder extends Seeder
 {
     public function run(): void
     {
-        $sections = json_decode(file_get_contents(config_path('nafu-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
+        $sections = json_decode(file_get_contents(config_path('dried-chilli-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
         foreach ($sections as $fields) {
             foreach ($fields as $key => $field) {
                 if (!DB::table('systems')->where('key', 'nafu_home_'.$key)->exists()) {

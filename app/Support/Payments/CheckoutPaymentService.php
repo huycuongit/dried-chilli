@@ -3,12 +3,17 @@
 namespace App\Support\Payments;
 
 use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\PaymentAttempt;
 use App\Support\Shop\CartCheckout;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use App\Support\Shop\CheckoutException;
+use App\Support\Shop\CouponUnavailableException;
+use App\Support\Shop\CartItemPricing;
+use Carbon\Carbon;
 
 /**
  * Same flow as jojo-be PaymentsService (pay before order):
@@ -29,11 +34,13 @@ class CheckoutPaymentService
 
     private StripeGateway $stripe;
     private PayPalGateway $paypal;
+    private RefundService $refunds;
 
-    public function __construct(StripeGateway $stripe, PayPalGateway $paypal)
+    public function __construct(StripeGateway $stripe, PayPalGateway $paypal, RefundService $refunds)
     {
         $this->stripe = $stripe;
         $this->paypal = $paypal;
+        $this->refunds = $refunds;
     }
 
     public static function currency(): string
@@ -58,17 +65,27 @@ class CheckoutPaymentService
         return (bool) config('services.paypal.enabled') && config('services.paypal.client_id') && config('services.paypal.client_secret');
     }
 
-    public function startAttempt(Cart $cart, string $provider, string $idempotencyKey, string $shippingAddress, ?string $couponCode): array
+    public function startAttempt(Cart $cart, string $provider, string $idempotencyKey, string $shippingAddress, ?string $couponCode, Carbon $checkoutExpires, float $expectedTotal): array
     {
         if ($provider === PaymentAttempt::STRIPE && !self::stripeEnabled()) abort(503, 'Card payment is temporarily unavailable.');
         if ($provider === PaymentAttempt::PAYPAL && !self::paypalEnabled()) abort(503, 'PayPal is temporarily unavailable.');
         abort_unless(preg_match('/^[a-zA-Z0-9_-]{8,80}$/', $idempotencyKey), 400, 'Valid idempotency key required.');
 
         $existing = $this->findByKey($cart, $idempotencyKey);
-        if ($existing) return $this->resume($existing);
+        if ($existing) {
+            abort_if($existing->provider !== $provider || $existing->shipping_address !== $shippingAddress ||
+                (int) round((float) $existing->total_amount * 100) !== (int) round($expectedTotal * 100),
+                409, 'Checkout details changed. Please start a new payment.');
+            return $this->resume($existing);
+        }
 
         // The server always prices the cart; client totals are display-only.
         $priced = CartCheckout::price($cart, $couponCode);
+        if ((int) round($priced['total'] * 100) !== (int) round($expectedTotal * 100)) throw new CheckoutException('Your cart total has changed. Please review the updated total before paying.');
+        foreach ($cart->items as $item) {
+            $nextChange = CartItemPricing::nextPriceChange($item);
+            if ($nextChange && Carbon::parse($nextChange)->lt($checkoutExpires)) $checkoutExpires = Carbon::parse($nextChange);
+        }
         abort_if($priced['total'] <= 0, 400, 'This order has nothing to pay online.');
         $currency = self::currency();
 
@@ -86,11 +103,15 @@ class CheckoutPaymentService
                     : PaymentMoney::stripeMinor($priced['total'], $currency),
                 'shipping_address' => $shippingAddress,
                 'cart_snapshot' => $priced,
+                'expires_at' => $checkoutExpires,
             ]);
         } catch (QueryException $e) {
             if (!$this->isUniqueConflict($e)) throw $e;
             $attempt = $this->findByKey($cart, $idempotencyKey);
             if (!$attempt) throw $e;
+            abort_if($attempt->provider !== $provider || $attempt->shipping_address !== $shippingAddress ||
+                (int) round((float) $attempt->total_amount * 100) !== (int) round($expectedTotal * 100),
+                409, 'Checkout details changed. Please start a new payment.');
         }
 
         return $this->resume($attempt);
@@ -99,30 +120,57 @@ class CheckoutPaymentService
     public function capturePayPal(PaymentAttempt $attempt, string $paypalOrderId): array
     {
         abort_if($attempt->provider !== PaymentAttempt::PAYPAL || $attempt->provider_payment_id !== $paypalOrderId, 404, 'PayPal payment not found.');
-        if ($attempt->status === PaymentAttempt::PAID) return $this->publicStatus($attempt);
+        if (in_array($attempt->status, [PaymentAttempt::PAID, PaymentAttempt::REFUND_PENDING, PaymentAttempt::REFUNDED], true)) return $this->publicStatus($attempt);
+        if ($attempt->expires_at && $attempt->expires_at->isPast()) {
+            $capture = $this->paypal->retrieveOrderCapture($paypalOrderId);
+            abort_unless($capture, 410, 'This checkout has expired. Please start again.');
+        } else {
+            $capture = $this->paypal->captureOrder($paypalOrderId);
+        }
+        $this->finalizePayPalCapture($attempt, $capture);
+        return $this->publicStatus($attempt->fresh());
+    }
 
-        $capture = $this->paypal->captureOrder($paypalOrderId);
-        if (
-            $capture['id'] !== $paypalOrderId ||
-            $capture['status'] !== 'COMPLETED' ||
-            $capture['amount_minor'] !== $attempt->amount_minor ||
-            strtoupper($capture['currency']) !== $attempt->currency
-        ) {
+    public function reconcilePayPal(PaymentAttempt $attempt): void
+    {
+        if ($attempt->provider !== PaymentAttempt::PAYPAL || !$attempt->provider_payment_id ||
+            !in_array($attempt->status, [PaymentAttempt::PENDING, PaymentAttempt::PROCESSING, PaymentAttempt::EXPIRED], true)) return;
+        PaymentAttempt::whereKey($attempt->id)->update(['paypal_checked_at' => now()]);
+        $capture = $this->paypal->retrieveOrderCapture($attempt->provider_payment_id);
+        if ($capture) {
+            $this->finalizePayPalCapture($attempt, $capture);
+        } elseif ($attempt->expires_at && $attempt->expires_at->isPast()) {
+            PaymentAttempt::whereKey($attempt->id)->whereIn('status', [PaymentAttempt::PENDING, PaymentAttempt::PROCESSING])
+                ->update(['status' => PaymentAttempt::EXPIRED]);
+        }
+    }
+
+    private function finalizePayPalCapture(PaymentAttempt $attempt, array $capture): void
+    {
+        if ($capture['id'] !== $attempt->provider_payment_id || $capture['status'] !== 'COMPLETED' || empty($capture['capture_id'])) {
             Log::warning('PayPal capture does not match the payment attempt', ['attempt' => $attempt->id, 'capture' => $capture]);
             abort(400, 'PayPal payment does not match this order.');
         }
-
-        DB::transaction(fn () => $this->fulfillPaidAttempt($attempt->id));
-
-        return $this->publicStatus($attempt->fresh());
+        if ($capture['amount_minor'] !== $attempt->amount_minor || strtoupper($capture['currency']) !== $attempt->currency) {
+            DB::transaction(function () use ($attempt, $capture) {
+                $locked = PaymentAttempt::whereKey($attempt->id)->lockForUpdate()->firstOrFail();
+                if (!$locked->order_id && !in_array($locked->status, [PaymentAttempt::REFUND_PENDING, PaymentAttempt::REFUNDED], true)) {
+                    $locked->fill(['provider_capture_id' => $capture['capture_id'], 'status' => PaymentAttempt::REFUND_PENDING, 'failure_code' => 'payment_mismatch', 'paid_at' => now()])->save();
+                }
+            });
+        } else {
+            DB::transaction(fn () => $this->fulfillPaidAttempt($attempt->id, $capture['capture_id'], $capture['captured_at'] ?? null));
+        }
+        $this->refunds->retry($attempt->id);
     }
 
     public function handleStripeWebhook(string $rawBody, string $signature): void
     {
         $event = $this->stripe->parseWebhook($rawBody, $signature);
 
+        $refundAttemptId = null;
         try {
-            DB::transaction(function () use ($event) {
+            DB::transaction(function () use ($event, &$refundAttemptId) {
                 if (DB::table('stripe_webhook_events')->where('id', $event['event_id'])->exists()) return;
                 DB::table('stripe_webhook_events')->insert([
                     'id' => $event['event_id'],
@@ -139,22 +187,29 @@ class CheckoutPaymentService
                 $attempt = PaymentAttempt::whereKey($attemptId)->lockForUpdate()->first();
                 abort_unless($attempt && $attempt->provider === PaymentAttempt::STRIPE, 400, 'Stripe payment attempt was not found');
                 if (
-                    $intent['amount_minor'] !== $attempt->amount_minor ||
-                    strtoupper($intent['currency']) !== $attempt->currency ||
                     ($intent['metadata']['cartId'] ?? null) !== (string) $attempt->cart_id ||
                     ($attempt->provider_payment_id && $attempt->provider_payment_id !== $intent['id'])
                 ) {
                     abort(400, 'Stripe payment details do not match the attempt');
                 }
                 if (!$attempt->provider_payment_id) $attempt->provider_payment_id = $intent['id'];
+                if ($intent['amount_minor'] !== $attempt->amount_minor || strtoupper($intent['currency']) !== $attempt->currency) {
+                    if ($event['type'] !== 'payment_intent.succeeded') abort(400, 'Stripe payment details do not match the attempt');
+                    if (!$attempt->order_id && !in_array($attempt->status, [PaymentAttempt::REFUND_PENDING, PaymentAttempt::REFUNDED], true)) {
+                        $attempt->fill(['status' => PaymentAttempt::REFUND_PENDING, 'failure_code' => 'payment_mismatch', 'paid_at' => now()])->save();
+                    }
+                    $refundAttemptId = $attempt->id;
+                    return $markProcessed();
+                }
 
                 if ($event['type'] === 'payment_intent.processing') {
-                    if ($attempt->status !== PaymentAttempt::PAID) $attempt->status = PaymentAttempt::PROCESSING;
+                    if (!in_array($attempt->status, [PaymentAttempt::PAID, PaymentAttempt::REFUND_PENDING, PaymentAttempt::REFUNDED], true)) $attempt->status = PaymentAttempt::PROCESSING;
                     $attempt->save();
                 } elseif ($event['type'] === 'payment_intent.succeeded') {
                     $attempt->save();
-                    $this->fulfillPaidAttempt($attempt->id);
-                } elseif ($attempt->status !== PaymentAttempt::PAID) {
+                    $this->fulfillPaidAttempt($attempt->id, null, $event['provider_created_at'] ? $event['provider_created_at'] . ' UTC' : null);
+                    $refundAttemptId = $attempt->id;
+                } elseif (!in_array($attempt->status, [PaymentAttempt::PAID, PaymentAttempt::REFUND_PENDING, PaymentAttempt::REFUNDED], true)) {
                     $attempt->fill([
                         'status' => PaymentAttempt::FAILED,
                         'failure_code' => $intent['failure_code'] ? mb_substr($intent['failure_code'], 0, 80) : null,
@@ -165,13 +220,22 @@ class CheckoutPaymentService
                 $markProcessed();
             });
         } catch (QueryException $e) {
-            // A concurrent delivery of the same event already recorded it.
-            if (!$this->isUniqueConflict($e)) throw $e;
+            // Only acknowledge a duplicate after the exact event was processed.
+            if (!$this->isUniqueConflict($e) || !DB::table('stripe_webhook_events')->where('id', $event['event_id'])->whereNotNull('processed_at')->exists()) throw $e;
         }
+        if ($refundAttemptId) $this->refunds->retry($refundAttemptId);
     }
 
     public function publicStatus(PaymentAttempt $attempt): array
     {
+        $refundReason = [
+            'out_of_stock' => 'the product is out of stock',
+            'checkout_expired' => 'the checkout expired',
+            'cart_changed' => 'the cart changed before the payment was confirmed',
+            'order_cancelled' => 'the order was cancelled',
+            'payment_mismatch' => 'the payment details did not match the order',
+            'coupon_unavailable' => 'the coupon is no longer available',
+        ][$attempt->failure_code] ?? 'the order could not be completed';
         return [
             'paymentAttemptId' => $attempt->id,
             'provider' => $attempt->provider,
@@ -180,25 +244,64 @@ class CheckoutPaymentService
             'total' => (float) $attempt->total_amount,
             'orderId' => $attempt->order_id,
             'failureMessage' => $attempt->status === PaymentAttempt::FAILED ? $attempt->failure_message : null,
+            'expiresAt' => $attempt->expires_at ? $attempt->expires_at->toIso8601String() : null,
+            'refundMessage' => $attempt->status === PaymentAttempt::REFUNDED
+                ? 'Your payment was refunded because ' . $refundReason . '.'
+                : ($attempt->status === PaymentAttempt::REFUND_PENDING
+                    ? ($attempt->refund_last_error ? 'Your refund needs further processing. Please contact support if it does not complete.' : 'Your payment is being refunded because ' . $refundReason . '.')
+                    : null),
         ];
     }
 
     /** Must run inside a transaction. Creates the order exactly once from the paid snapshot. */
-    private function fulfillPaidAttempt(string $attemptId): void
+    private function fulfillPaidAttempt(string $attemptId, ?string $captureId = null, ?string $paidAt = null): void
     {
         $attempt = PaymentAttempt::whereKey($attemptId)->lockForUpdate()->firstOrFail();
-        if ($attempt->order_id) return;
+        if ($attempt->order_id || in_array($attempt->status, [PaymentAttempt::REFUND_PENDING, PaymentAttempt::REFUNDED], true)) return;
 
-        $order = CartCheckout::place($attempt->cart_snapshot, [
-            'user_id' => $attempt->user_id,
-            'shipping_address' => $attempt->shipping_address,
-            'payment_method' => $attempt->provider,
-            'payment_status' => 'paid',
-        ], true);
+        $paidTime = ($paidAt ? Carbon::parse($paidAt) : now())->setTimezone(config('app.timezone'));
+        $attempt->provider_capture_id = $captureId;
+        if ($attempt->expires_at && $paidTime->gte($attempt->expires_at)) {
+            $attempt->fill(['status' => PaymentAttempt::REFUND_PENDING, 'failure_code' => 'checkout_expired', 'paid_at' => $paidTime])->save();
+            return;
+        }
+
+        $cart = Cart::whereKey($attempt->cart_id)->lockForUpdate()->first();
+        $snapshotItems = $attempt->cart_snapshot['items'] ?? [];
+        $cartItems = CartItem::where('cart_id', $attempt->cart_id)
+            ->whereIn('id', array_column($snapshotItems, 'cart_item_id'))->lockForUpdate()->get()->keyBy('id');
+        foreach ($snapshotItems as $snapshot) {
+            $item = $cartItems->get($snapshot['cart_item_id']);
+            if (!$item || (int) $item->quantity !== (int) $snapshot['quantity'] ||
+                (int) $item->product_id !== (int) $snapshot['product_id'] ||
+                (string) $item->variant_id !== (string) $snapshot['variant_id']) {
+                $cart = null;
+                break;
+            }
+        }
+        if (!$cart || !$snapshotItems) {
+            $attempt->fill(['status' => PaymentAttempt::REFUND_PENDING, 'failure_code' => 'cart_changed', 'paid_at' => $paidTime])->save();
+            return;
+        }
+
+        try {
+            $order = CartCheckout::place($attempt->cart_snapshot, [
+                'user_id' => $attempt->user_id,
+                'shipping_address' => $attempt->shipping_address,
+                'payment_method' => $attempt->provider,
+                'payment_status' => 'paid',
+            ], true);
+        } catch (CouponUnavailableException $exception) {
+            $attempt->fill(['status' => PaymentAttempt::REFUND_PENDING, 'failure_code' => 'coupon_unavailable', 'paid_at' => $paidTime])->save();
+            return;
+        } catch (CheckoutException $exception) {
+            $attempt->fill(['status' => PaymentAttempt::REFUND_PENDING, 'failure_code' => 'out_of_stock', 'paid_at' => $paidTime])->save();
+            return;
+        }
 
         $attempt->fill([
             'status' => PaymentAttempt::PAID,
-            'paid_at' => now(),
+            'paid_at' => $paidTime,
             'order_id' => $order->id,
             'failure_code' => null,
             'failure_message' => null,
@@ -212,6 +315,8 @@ class CheckoutPaymentService
 
     private function resume(PaymentAttempt $attempt): array
     {
+        if (in_array($attempt->status, [PaymentAttempt::PAID, PaymentAttempt::REFUND_PENDING, PaymentAttempt::REFUNDED, PaymentAttempt::FAILED], true)) return $this->publicStatus($attempt);
+        abort_if($attempt->expires_at && $attempt->expires_at->isPast(), 410, 'This checkout has expired. Please start again.');
         $description = config('app.name') . ' order';
 
         if ($attempt->provider === PaymentAttempt::PAYPAL) {

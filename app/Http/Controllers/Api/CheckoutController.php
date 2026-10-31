@@ -11,9 +11,40 @@ use App\Support\Shop\CartCheckout;
 use App\Support\Shop\CheckoutException;
 use Illuminate\Support\Facades\DB;
 use UnexpectedValueException;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
+use App\Models\Cart;
 
 class CheckoutController extends Controller
 {
+    public function startSession(Request $request)
+    {
+        $cart = CartCheckout::findCart($request);
+        if (!$cart || $cart->items->isEmpty()) return response()->json(['message' => 'Your cart is empty. Please add items before checking out.'], 422);
+        $token = (string) Str::uuid();
+        $expires = now()->addMinutes(15);
+        $request->session()->put('checkout_session', ['token' => $token, 'cart_id' => $cart->id, 'expires_at' => $expires->toIso8601String()]);
+        return response()->json(['checkoutToken' => $token, 'expiresAt' => $expires->toIso8601String()]);
+    }
+
+    private function checkoutExpiry(Request $request, Cart $cart): Carbon
+    {
+        $session = $request->session()->get('checkout_session');
+        $token = (string) $request->header('Checkout-Token');
+        abort_unless(is_array($session) && isset($session['token'], $session['cart_id'], $session['expires_at']) &&
+            $token !== '' && hash_equals($session['token'], $token) && (int) $session['cart_id'] === (int) $cart->id,
+            410, 'This checkout is no longer valid. Please return to your cart and start again.');
+        $expires = Carbon::parse($session['expires_at']);
+        abort_if($expires->lte(now()), 410, 'This checkout has expired. Please return to your cart and start again.');
+        return $expires;
+    }
+
+    private function assertExpectedTotal(array $priced, $expected): void
+    {
+        if ((int) round($priced['total'] * 100) !== (int) round((float) $expected * 100)) {
+            throw new CheckoutException('Your cart total has changed. Please review the updated total before paying.');
+        }
+    }
     /**
      * Process an offline-payment (COD / bank transfer) order from the current cart session.
      * Card and PayPal orders go through the payment endpoints below and are created only once paid.
@@ -26,18 +57,27 @@ class CheckoutController extends Controller
         $request->validate([
             'shipping_address' => 'required|string|max:1000',
             'payment_method' => 'required|string|in:cod,bank_transfer',
-            'coupon_code' => 'nullable|string|max:50'
+            'coupon_code' => 'nullable|string|max:50',
+            'expected_total' => 'required|numeric|min:0',
         ]);
+
+        if ($request->payment_method === 'bank_transfer') {
+            return response()->json(['message' => 'Bank transfer is temporarily unavailable. Please choose another payment method.'], 503);
+        }
 
         $cart = CartCheckout::findCart($request);
 
         if (!$cart || $cart->items->isEmpty()) {
-            return response()->json(['error' => 'Cart is empty. Please add items before checking out.'], 400);
+            return response()->json(['message' => 'Your cart is empty. Please add items before checking out.'], 422);
         }
+        $this->checkoutExpiry($request, $cart);
 
         try {
             $order = DB::transaction(function () use ($request, $cart) {
-                $priced = CartCheckout::price($cart, $request->coupon_code ?? session('applied_coupon.code'), true);
+                $lockedCart = Cart::whereKey($cart->id)->lockForUpdate()->firstOrFail();
+                $lockedCart->load(['items.product', 'items.variant', 'items.bundle']);
+                $priced = CartCheckout::price($lockedCart, $request->coupon_code ?? session('applied_coupon.code'), true);
+                $this->assertExpectedTotal($priced, $request->expected_total);
 
                 return CartCheckout::place($priced, [
                     'user_id' => CartCheckout::userId(),
@@ -56,8 +96,8 @@ class CheckoutController extends Controller
                 'total' => $order->total_amount
             ], 200);
 
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
+        } catch (CheckoutException $e) {
+            return response()->json(['message' => $e->getMessage()], 422);
         }
     }
 
@@ -118,19 +158,21 @@ class CheckoutController extends Controller
         $data = $request->validate([
             'shipping_address' => 'required|string|max:1000',
             'coupon_code' => 'nullable|string|max:50',
+            'expected_total' => 'required|numeric|min:0',
         ]);
 
         $cart = CartCheckout::findCart($request);
         if (!$cart || $cart->items->isEmpty()) {
-            return response()->json(['error' => 'Cart is empty. Please add items before checking out.'], 400);
+            return response()->json(['message' => 'Your cart is empty. Please add items before checking out.'], 422);
         }
+        $expires = $this->checkoutExpiry($request, $cart);
 
         try {
             return response()->json($payments->startAttempt(
-                $cart, $provider, (string) $request->header('Idempotency-Key'), $data['shipping_address'], $data['coupon_code'] ?? null
+                $cart, $provider, (string) $request->header('Idempotency-Key'), $data['shipping_address'], $data['coupon_code'] ?? null, $expires, (float) $data['expected_total']
             ), 201);
         } catch (CheckoutException $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
+            return response()->json(['message' => $e->getMessage()], 422);
         }
     }
 

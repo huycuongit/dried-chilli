@@ -9,6 +9,19 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         @include('admin.layouts.partials.messages')
 
+        @if($pendingRefunds->total())
+            <div class="card mb-4">
+                <div class="card-header"><h5 class="mb-1">Refunds requiring confirmation</h5><p class="mb-0">These payments have not yet been confirmed refunded by the payment provider. Failed refunds require investigation.</p></div>
+                <div class="table-responsive"><table class="table">
+                    <thead><tr><th>Payment</th><th>Provider</th><th>Amount</th><th>Reason</th><th>Provider status</th><th>Last error</th></tr></thead>
+                    <tbody>@foreach($pendingRefunds as $refund)
+                        <tr><td>{{ $refund->id }}</td><td>{{ strtoupper($refund->provider) }}</td><td>{{ $refund->currency }} {{ $refund->total_amount }}</td><td>{{ $refund->failure_code }}</td><td>{{ $refund->refund_status ?? 'Not confirmed' }}</td><td>{{ $refund->refund_last_error ?? '—' }}</td></tr>
+                    @endforeach</tbody>
+                </table></div>
+                <div class="card-body">{{ $pendingRefunds->links() }}</div>
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-header border-bottom">
                 <h5 class="card-title mb-0">E-Commerce Orders</h5>
@@ -26,6 +39,7 @@
                             <th>Order ID</th>
                             <th>Total Amount</th>
                             <th>Status</th>
+                            <th>Payment Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -54,6 +68,7 @@
                     { data: 'id', name: 'id' },
                     { data: 'total_amount', name: 'total_amount' },
                     { data: 'status', name: 'status' },
+                    { data: 'payment_status', name: 'payment_status' },
                     { data: 'action', orderable: false, searchable: false }
                 ],
                 paging: true,

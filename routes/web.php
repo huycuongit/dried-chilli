@@ -2,32 +2,19 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SaleController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\ServiceController;
 
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\ServiceContractController;
-
-// Clear cache artisan
-Route::get('reset-systems-cache', function () {
-    Artisan::call('config:clear');
-    Artisan::call('config:cache');
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    Artisan::call('route:clear');
-    return "<h1>All Config Cache Clear Successfully.</h1>";
-});
 
 // Model Contacts
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
 
-Route::post('/submit-login', [AuthController::class, 'submitLogin'])->name('auth.submitLogin');
+Route::post('/submit-login', [AuthController::class, 'submitLogin'])->middleware('throttle:10,1')->name('auth.submitLogin');
 Route::get('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/submit-register', [AuthController::class, 'submitRegister'])->name('auth.submitRegister');
 Route::get('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
@@ -35,9 +22,11 @@ Route::get('/dang-ky', [AuthController::class, 'register'])->name('auth.register
 // Careers
 // Ckfinder connects  
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
+    ->middleware('authadmin')
     ->name('ckfinder_connector');
 
 Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
+    ->middleware('authadmin')
     ->name('ckfinder_browser');
 
 //news
@@ -105,8 +94,6 @@ Route::middleware(['auth:web'])->group(function () {
 });
 
 // Routes moved to locale group
-
-use App\Http\Controllers\LegalController;
 
 // Keep this fallback last.
 Route::get('/{slug}', fn () => redirect('/', 301))->name('page.slug');

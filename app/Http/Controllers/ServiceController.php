@@ -45,7 +45,7 @@ class ServiceController extends Controller
             ->values()
             ->all();
 
-        $fallback = config('nafu-services.'.$service->slug, []);
+        $fallback = config('dried-chilli-services.'.$service->slug, []);
 
         if (empty($items) && $service->description) {
             $items = [Str::limit(strip_tags($service->description), 100)];

@@ -10,5 +10,4 @@ Disallow: /submit-register
 Allow: /
 Allow: /assets/
 
-Sitemap: https://driedchili.com/sitemap.xml
-Sitemap: /sitemap.xml
+Sitemap: https://jojolittlemarket.com/sitemap.xml

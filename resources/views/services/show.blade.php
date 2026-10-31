@@ -4,11 +4,11 @@
     $quoteUrl = page_route('home', ['service' => $slug]) . '#contact-modal';
 @endphp
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/nafu-service-content.css') }}?v=20260919-1">
-<link rel="stylesheet" href="{{ asset('assets/nafu/mrfix-home2.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/nafu-home.css') }}?v=20260918-2">
-<link rel="stylesheet" href="{{ asset('assets/css/nafu-blog.css') }}?v=20260918-1">
-<link rel="stylesheet" href="{{ asset('assets/css/nafu-services.css') }}?v=20260918-2">
+<link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-service-content.css') }}?v=20260919-1">
+<link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-home.css') }}?v=20260918-2">
+<link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-blog.css') }}?v=20260918-1">
+<link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-services.css') }}?v=20260918-2">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap">
 @endpush
 @section('meta')

@@ -29,6 +29,13 @@ class Base64ImageStore
         });
         $path = trim($directory, '/') . '/' . Str::uuid() . '.webp';
         Storage::disk('public')->put($path, (string) $image->encode('webp', 84));
+        if (trim($directory, '/') === 'page-images') {
+            try {
+                ResponsivePageImages::generate($path);
+            } catch (\Throwable $exception) {
+                report($exception);
+            }
+        }
         return Storage::disk('public')->url($path);
     }
 }

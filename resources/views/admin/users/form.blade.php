@@ -81,7 +81,6 @@
         }
     </style>
 
-    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css') }}">
 @endpush
 
 @section('content')

@@ -1,9 +1,9 @@
 @extends('frontend.layouts.master')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/nafu/mrfix-home2.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/nafu-home.css') }}?v=20260919-1">
-<link rel="stylesheet" href="{{ asset('assets/css/nafu-404.css') }}?v=20260919-1">
+<link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-home.css') }}?v=20260919-1">
+<link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-404.css') }}?v=20260919-1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap">
 @endpush
 

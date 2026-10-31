@@ -26,13 +26,15 @@ class AuthController extends Controller
         return view('frontend.auth.register');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         $customer = Auth::guard('web')->user();
         log_activity($customer, 'logout', 'Khách đăng xuất', [
             'guard' => 'Web',
         ]);
         Auth::guard('web')->logout();
+        $request->session()->regenerate();
+        $request->session()->regenerateToken();
         return response()->json([
             'message' => 'Đăng xuất thành công',
             'redirect' => route('page.index')
@@ -48,6 +50,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::guard('web')->attempt($request->only('email', 'password'))) {
+            $request->session()->regenerate();
             $customer = Auth::guard('web')->user();
             log_activity($customer, 'login', 'Khách đăng nhập', [
                 'guard' => 'Web',
@@ -73,6 +76,7 @@ class AuthController extends Controller
         ]);
 
         Auth::guard('web')->login($customer);
+        $request->session()->regenerate();
 
         log_activity($customer, 'register', 'Khách đăng ký', [
             'guard' => 'Web',

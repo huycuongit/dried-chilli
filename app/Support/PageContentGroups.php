@@ -30,7 +30,7 @@ class PageContentGroups
 
     public static function sections(): array
     {
-        $sections = json_decode(file_get_contents(config_path('nafu-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
+        $sections = json_decode(file_get_contents(config_path('dried-chilli-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
         $about = json_decode(file_get_contents(config_path('about-layout.json')), true, 512, JSON_THROW_ON_ERROR);
         foreach ($about as &$fields) {
             $fields = array_filter($fields, fn ($field) => empty($field['editor_hidden']));
@@ -103,7 +103,7 @@ class PageContentGroups
     {
         $saved = app(SystemSettings::class)->get(self::customSchemaKey($page));
         if ($saved !== null) return json_decode($saved, true, 512, JSON_THROW_ON_ERROR);
-        $sections = $sections ?? json_decode(file_get_contents(config_path('nafu-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
+        $sections = $sections ?? json_decode(file_get_contents(config_path('dried-chilli-home-content.json')), true, 512, JSON_THROW_ON_ERROR);
         return array_filter($sections, fn ($name) => str_starts_with($name, $page . ' - Section '), ARRAY_FILTER_USE_KEY);
     }
 }

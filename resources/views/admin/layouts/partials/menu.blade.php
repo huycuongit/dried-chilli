@@ -71,14 +71,6 @@
                     </a>
                 </li>
             @endif
-            @if (userHasPermission('admin.ecom_bundles.index'))
-                <li class="menu-item {{ request()->routeIs('admin.ecom_bundles*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.ecom_bundles.index') }}" class="menu-link">
-                        <i class="menu-icon ti ti-packages"></i>
-                        <div>Bundles</div>
-                    </a>
-                </li>
-            @endif
             @if (userHasPermission('admin.ecom_legal.index') || true)
                 <li class="menu-item {{ request()->routeIs('admin.ecom_legal*') ? 'active' : '' }}">
                     <a href="{{ route('admin.ecom_legal.index') }}" class="menu-link">

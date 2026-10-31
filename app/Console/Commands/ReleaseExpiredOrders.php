@@ -44,6 +44,7 @@ class ReleaseExpiredOrders extends Command
         // Find orders pending payment older than 30 minutes
         $expiredOrders = Order::where('status', 'pending')
             ->where('payment_status', 'unpaid')
+            ->where('payment_method', '!=', 'cod')
             ->where('created_at', '<=', now()->subMinutes(30))
             ->get();
 
@@ -55,12 +56,14 @@ class ReleaseExpiredOrders extends Command
         $count = 0;
         foreach ($expiredOrders as $order) {
             DB::transaction(function () use ($order, &$count) {
+                $order = Order::whereKey($order->id)->lockForUpdate()->first();
+                if (!$order || $order->status !== 'pending' || $order->payment_status !== 'unpaid' || $order->payment_method === 'cod') return;
                 // Return stock to inventory
                 foreach ($order->items as $item) {
+                    if (!$item->product_id) continue;
                     $inventory = Inventory::where('product_id', $item->product_id)
-                        ->when($item->variant_id, function($q) use ($item) {
-                            return $q->where('variant_id', $item->variant_id);
-                        })
+                        ->where('variant_id', $item->variant_id)
+                        ->lockForUpdate()
                         ->first();
 
                     if ($inventory) {

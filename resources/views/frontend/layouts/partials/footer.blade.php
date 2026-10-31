@@ -12,7 +12,7 @@
                 <h4>Shop</h4>
                 <ul class="footer-link-list">
                     <li><a href="{{ route('page.shop') }}">Shop All Spices</a></li>
-                    <li><a href="{{ route('page.sale') }}">Hot Deals & Bundles</a></li>
+                    <li><a href="{{ route('page.sale') }}">Hot Deals</a></li>
                 </ul>
             </div>
 

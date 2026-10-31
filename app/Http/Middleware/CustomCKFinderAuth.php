@@ -17,9 +17,8 @@ class CustomCKFinderAuth
     public function handle(Request $request, Closure $next)
     {
         config(['ckfinder.authentication' => function() {
-            return true;
+            return \Illuminate\Support\Facades\Auth::guard('admin')->check();
         }]);
         return $next($request);
-        // return $next($request);
     }
 }

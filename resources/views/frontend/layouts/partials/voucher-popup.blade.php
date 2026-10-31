@@ -41,7 +41,7 @@
                             Copy Promo Code
                         </button>
                     </div>
-                    <p style="font-size: 0.9rem; color: #2E7D32; font-weight: 600; margin-bottom: 1.25rem;">
+                    <p id="voucher-delivery-message" style="font-size: 0.9rem; color: #2E7D32; font-weight: 600; margin-bottom: 1.25rem;">
                         ✔ We've sent your 15% promo code to your email! Enter it in cart or checkout.
                     </p>
                     <a href="{{ route('page.shop') }}" class="newsletter-submit" style="display: block; text-decoration: none; padding: 1rem; text-align: center;">SHOP NOW</a>
@@ -508,6 +508,9 @@
                         newsletterForm.style.display = 'none';
                         successBox.style.display = 'block';
                         generatedCodeEl.textContent = response.data.code;
+                        document.getElementById('voucher-delivery-message').textContent = response.data.mail_sent
+                            ? 'Your promo code was sent to your email. Enter it in your cart or checkout.'
+                            : 'We could not send the email. Please copy your promo code above.';
                         sessionStorage.setItem('newsletter_subscribed', 'true');
                     } else {
                         feedbackMsg.style.display = 'block';

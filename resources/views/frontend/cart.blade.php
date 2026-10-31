@@ -330,8 +330,7 @@
 
                         <div class="summary-row shipping-row">
                             <span class="summary-label">Shipping</span>
-                            <span id="cart-shipping-val" class="summary-value shipping-status">Calculated at
-                                checkout</span>
+                            <span id="cart-shipping-val" class="summary-value shipping-status">Not included in total</span>
                         </div>
 
                         <div class="summary-row tax-row">
@@ -358,7 +357,7 @@
                     <div class="summary-total-row">
                         <div class="total-label-box">
                             <span class="total-label">Estimated Total</span>
-                            <span class="total-note">Taxes & shipping finalized at next step</span>
+                            <span class="total-note">Shipping, if applicable, is confirmed separately and is not included in this total.</span>
                         </div>
                         <div class="total-amount-box">
                             <span id="cart-total" class="total-price">$0.00</span>
@@ -2436,5 +2435,5 @@
     ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!};
 </script>
 @if ($stripePayments)<script src="https://js.stripe.com/v3/"></script>@endif
-<script src="{{ asset("js/checkout-payments.js") }}"></script>
+<script src="{{ asset('js/checkout-payments.js') }}?v={{ filemtime(public_path('js/checkout-payments.js')) }}"></script>
 @endpush

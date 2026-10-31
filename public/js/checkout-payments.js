@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const DETAILS_KEY = 'checkout_payment_details';
 
     const showAlert = (message) => {
+        if (message) window.showToast(message, 'error');
         const alertBox = document.getElementById('checkout-form-alert');
         if (!alertBox) return;
         alertBox.className = 'checkout-alert alert-danger';
@@ -29,17 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const api = async (url, options = {}) => {
         const response = await fetch(url, {
             ...options,
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Session-Id': checkout.sessionId, ...(options.headers || {}) }
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '', 'Session-Id': checkout.sessionId, 'Checkout-Token': checkout.checkoutToken(), ...(options.headers || {}) }
         });
         const body = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(body.error || body.message || (body.errors ? Object.values(body.errors)[0][0] : 'Payment could not be started. Please try again.'));
+        if (!response.ok) throw new Error((body.errors ? Object.values(body.errors)[0]?.[0] : null) || body.message || body.error || 'Payment could not be started. Please try again.');
         return body;
     };
 
     const startPayment = (provider, details, idempotencyKey) => api(`/api/checkout/${provider}`, {
         method: 'POST',
         headers: { 'Idempotency-Key': idempotencyKey },
-        body: JSON.stringify({ shipping_address: details.shippingAddress, coupon_code: details.couponCode })
+        body: JSON.stringify({ shipping_address: details.shippingAddress, coupon_code: details.couponCode, expected_total: checkout.currentTotal() })
     });
 
     const savedDetails = () => { try { return JSON.parse(sessionStorage.getItem(DETAILS_KEY) || 'null'); } catch (e) { return null; } };
@@ -53,11 +54,23 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // Poll until the server reports the paid order (or a failure). PROCESSING keeps waiting.
-    const poll = async (attemptId, details, round = 0) => {
+    const poll = async (attemptId, details, round = 0, refundPending = false) => {
         showStatus('Confirming your payment. Please keep this page open…');
         try {
             const attempt = await api(`/api/checkout/payments/${attemptId}`, { method: 'GET' });
             if (attempt.status === 'PAID' && attempt.orderId) return completed(attempt, details);
+            if (attempt.status === 'REFUNDED') {
+                showStatus('');
+                resetCard();
+                return showAlert(attempt.refundMessage || 'Your payment was refunded. Your cart is still available.');
+            }
+            if (attempt.status === 'REFUND_PENDING') {
+                refundPending = true;
+                showStatus(attempt.refundMessage || 'Your payment is being refunded. Please keep this page open.');
+            }
+            if (attempt.status === 'EXPIRED') {
+                showStatus('Checkout expired. If you submitted a payment, we are still checking its confirmation.');
+            }
             if (attempt.status === 'FAILED') {
                 showStatus('');
                 resetCard();
@@ -68,9 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (round >= 60) {
             showStatus('');
-            return showAlert('We have not received payment confirmation yet. Please check your orders again in a few minutes.');
+            return showAlert(refundPending ? 'Your refund is still pending. Please contact support if it does not complete.' : 'We have not received payment confirmation yet. Please check your orders again in a few minutes.');
         }
-        setTimeout(() => poll(attemptId, details, round + 1), Math.min(2000 + round * 500, 10000));
+        setTimeout(() => poll(attemptId, details, round + 1, refundPending), Math.min(2000 + round * 500, 10000));
     };
 
     // ---- Card (Stripe) ----
@@ -94,7 +107,8 @@ document.addEventListener('DOMContentLoaded', function () {
         showAlert('');
         try {
             const attempt = await startPayment('stripe', details, card.key);
-            if (attempt.status === 'PAID') return poll(attempt.paymentAttemptId, details);
+            if (['PAID', 'REFUND_PENDING', 'REFUNDED'].includes(attempt.status)) return poll(attempt.paymentAttemptId, details);
+            if (attempt.status === 'FAILED') throw new Error(attempt.failureMessage || 'Payment failed. Please start again.');
             card.attempt = attempt;
             card.details = details;
             card.elements = stripe.elements({
@@ -116,6 +130,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     stripePayBtn.addEventListener('click', async () => {
         if (!card || !card.elements || stripePayBtn.disabled) return;
+        if (card.attempt.expiresAt && Date.now() >= Date.parse(card.attempt.expiresAt)) {
+            resetCard();
+            return showAlert('This checkout has expired. Please start again.');
+        }
         stripePayBtn.disabled = true;
         showAlert('');
         saveDetails(card.details);

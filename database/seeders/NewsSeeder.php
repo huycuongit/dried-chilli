@@ -10,7 +10,7 @@ class NewsSeeder extends Seeder
     public function run(): void
     {
         $now = now();
-        foreach (config('nafu-articles', []) as $position => $article) {
+        foreach (config('dried-chilli-articles', []) as $position => $article) {
             if (DB::table('news')->where('slug', $article['slug'])->exists()) {
                 continue;
             }

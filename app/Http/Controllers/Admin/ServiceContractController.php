@@ -121,7 +121,7 @@ class ServiceContractController extends Controller
         try {
             Mail::send('emails.contract-invitation', compact('contract'), function ($message) use ($contract) {
                 $message->to($contract->customer_email, $contract->customer_name)
-                    ->subject("Hợp đồng {$contract->contract_number} từ {$contract->provider_name}");
+                    ->subject("Service agreement {$contract->contract_number} from {$contract->provider_name}");
             });
         } catch (Throwable $exception) {
             report($exception);

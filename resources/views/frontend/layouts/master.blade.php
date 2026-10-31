@@ -3,6 +3,13 @@
 @include('frontend.layouts.partials.head')
 
 <body class="{{ request()->routeIs('home') ? 'home-page' : '' }}">
+<style>
+    .shop-toast-container { position: fixed; top: 1rem; right: 1rem; z-index: 10000; display: grid; gap: .6rem; width: min(24rem, calc(100vw - 2rem)); }
+    .shop-toast { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1rem; color: #fff; background: #742d20; border-radius: .75rem; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+    .shop-toast--success { background: #24543b; }
+    .shop-toast button { border: 0; padding: 0; color: inherit; background: transparent; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+    @media (max-width: 768px) { .shop-toast-container { top: auto; bottom: 5.5rem; } }
+</style>
     <div class="spice-marquee" style="cursor: pointer;"
         onclick="document.getElementById('newsletter-modal').classList.add('active'); document.getElementById('voucher-popup').classList.remove('show');">
         <div class="marquee-track">
@@ -72,7 +79,8 @@
     @include('frontend.layouts.partials.footer')
 
     <!-- Floating Hotline Button -->
-    <a href="tel:+1234567890" class="floating-hotline" aria-label="Hotline">
+    @if($companySetting('hotline'))
+    <a href="tel:{{ preg_replace('/[^+0-9]/', '', $companySetting('hotline')) }}" class="floating-hotline" aria-label="Hotline">
         <div class="hotline-pulse"></div>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -81,6 +89,7 @@
             </path>
         </svg>
     </a>
+    @endif
 
     <!-- Modern Mobile Bottom Navigation Dock (App-like UX) -->
     <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Mobile Navigation">
@@ -306,7 +315,8 @@
         });
     })();
     </script>
-    <script src="{{ asset('js/cart.js') }}"></script>
+    <script src="{{ asset('js/toast.js') }}"></script>
+    <script src="{{ asset('js/cart.js') }}?v={{ filemtime(public_path('js/cart.js')) }}"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Scroll reveal

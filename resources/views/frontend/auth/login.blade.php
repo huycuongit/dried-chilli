@@ -97,14 +97,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.message === 'Đăng nhập thành công') {
                     window.location.href = "{{ route('page.index') }}";
                 } else {
-                    alert(data.message || 'Login failed. Please check your credentials.');
+                    window.showToast(data.message || 'Login failed. Please check your credentials.', 'error');
                     submitBtn.innerText = originalText;
                     submitBtn.disabled = false;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+                window.showToast('An error occurred. Please try again.', 'error');
                 submitBtn.innerText = originalText;
                 submitBtn.disabled = false;
             });

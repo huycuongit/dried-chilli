@@ -25,6 +25,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('orders:release-expired')->everyMinute();
+        $schedule->command('payments:retry-refunds')->everyMinute()->withoutOverlapping();
+        $schedule->command('payments:reconcile-paypal')->everyMinute()->withoutOverlapping();
+        $schedule->command('payments:expire-checkouts')->everyMinute()->withoutOverlapping();
 
         // $schedule->command('command:class-lesson')->everyMinute();
         // $schedule->command('command:practice')->everyMinute();

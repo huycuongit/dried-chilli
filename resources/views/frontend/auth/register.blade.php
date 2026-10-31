@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const confirm = document.getElementById('password_confirmation').value;
 
             if (password !== confirm) {
-                alert('Passwords do not match!');
+                window.showToast('Passwords do not match!', 'error');
                 return;
             }
             
@@ -121,14 +121,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (res.body.errors) {
                         errorMsg = Object.values(res.body.errors).flat().join('\n');
                     }
-                    alert(errorMsg);
+                    window.showToast(errorMsg, 'error');
                     submitBtn.innerText = originalText;
                     submitBtn.disabled = false;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+                window.showToast('An error occurred. Please try again.', 'error');
                 submitBtn.innerText = originalText;
                 submitBtn.disabled = false;
             });

@@ -1,8 +1,8 @@
 @extends('frontend.layouts.master')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/nafu/mrfix-home2.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/nafu-projects.css') }}?v=20260919-2">
+<link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-projects.css') }}?v=20260919-2">
 @endpush
 
 @section('meta')

@@ -30,7 +30,7 @@
                             'company_hotline' => ['Phone number', '0481 818 836'],
                             'company_address' => ['Business address', '265 Exhibition St, Melbourne VIC 3000'],
                             'company_tagline' => ['Header tagline', 'Trusted care for every home'],
-                            'company_logo' => ['Company logo', 'assets/nafu/nafu-logo.png'],
+                            'company_logo' => ['Company logo', 'assets/dried-chilli/nafu-logo.png'],
                             'company_footer_description' => ['Footer description', 'A local Melbourne team for apartment repairs, painting, flooring and maintenance. Professional service, clear prices and care for every detail.'],
                             'company_copyright' => ['Copyright text', '© ' . date('Y') . ' Nafu Home Care. All rights reserved.'],
                             'company_footer_watermark' => ['Footer background text', 'Nafu'],

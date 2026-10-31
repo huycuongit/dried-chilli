@@ -5,8 +5,8 @@
 @endphp
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/nafu/mrfix-home2.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/nafu-project-detail.css') }}?v=20260919-4">
+    <link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-project-detail.css') }}?v=20260919-4">
 @endpush
 
 @section('meta')

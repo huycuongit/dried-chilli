@@ -1,9 +1,9 @@
 @extends('frontend.layouts.master')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/nafu/mrfix-home2.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/nafu-home.css') }}?v=20260918-2">
-<link rel="stylesheet" href="{{ asset('assets/css/nafu-blog.css') }}?v=20260918-1">
-<link rel="stylesheet" href="{{ asset('assets/css/nafu-services.css') }}?v=20260918-2">
+<link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-home.css') }}?v=20260918-2">
+<link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-blog.css') }}?v=20260918-1">
+<link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-services.css') }}?v=20260918-2">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap">
 @endpush
 @section('meta')
@@ -53,8 +53,8 @@
 <div class="cta-content-box"><div class="cta-flex-box">
 <div class="cta-image-block"><img src="{{ asset($homeContent('page_services_image_15')) }}" loading="lazy" alt="Handyman ready to help" class="cta-image"><div class="cta-bg-overlay"></div></div>
 <div class="cta-contact-block">
-<div class="cta-contact-box"><div class="cta-contact-icon"><img src="{{ asset('assets/nafu/683ae87fcb9ea083f2cefef5_email -white.svg') }}" class="cta-contact-icon-image" alt=""></div><a href="mailto:admin@nafuservices.com" class="cta-contact-link">admin@nafuservices.com</a></div>
-<div class="cta-contact-box"><div class="cta-contact-icon"><img src="{{ asset('assets/nafu/683ae87f774ed8e134537a42_phone-call -white.svg') }}" class="cta-contact-icon-image" alt=""></div><a href="tel:+61481818836" class="cta-contact-link">{{ $homeContent('page_services_text_8') }}</a></div>
+<div class="cta-contact-box"><div class="cta-contact-icon"><img src="{{ asset('assets/dried-chilli/683ae87fcb9ea083f2cefef5_email -white.svg') }}" class="cta-contact-icon-image" alt=""></div><a href="mailto:admin@nafuservices.com" class="cta-contact-link">admin@nafuservices.com</a></div>
+<div class="cta-contact-box"><div class="cta-contact-icon"><img src="{{ asset('assets/dried-chilli/683ae87f774ed8e134537a42_phone-call -white.svg') }}" class="cta-contact-icon-image" alt=""></div><a href="tel:+61481818836" class="cta-contact-link">{{ $homeContent('page_services_text_8') }}</a></div>
 </div></div>
 <div class="cta-section-title"><h2 class="cta-section-heading">{{ $homeContent('page_services_text_9') }}</h2></div>
 </div></div></div></section>
@@ -62,5 +62,5 @@
 </main>
 @endsection
 @push('scripts')
-<script src="{{ asset('assets/nafu/nafu-services.js') }}?v=20260918-2" defer></script>
+<script src="{{ asset('assets/dried-chilli/nafu-services.js') }}?v=20260918-2" defer></script>
 @endpush

@@ -7,6 +7,8 @@
     $pageLayoutGroups = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
     $pageLayoutFields = collect($pageLayoutGroups)->collapse()->all();
     $pageLayoutValue = static fn (string $key) => \App\Support\AboutPageContent::value($key, $pageLayoutFields, $systemSettings);
+    $heroSrcset = \App\Support\ResponsivePageImages::srcset($pageLayoutValue('page_layout_home_image_slide_1'));
+    $heroSizes = '(max-width: 768px) 210px, 410px';
     $pageLayoutLink = static function (string $key) use ($pageLayoutValue) {
         $link = trim($pageLayoutValue($key));
         return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
@@ -41,7 +43,7 @@
                     <!-- Right: Image with Burst & Pills -->
                     <div class="hero-stage" aria-hidden="true">
                         <div class="hero-burst"></div>
-                        @if($pageLayoutValue('page_layout_home_image_slide_1') !== '')<img class="hero-can" src="{{ asset($pageLayoutValue('page_layout_home_image_slide_1')) }}" alt="{{ $pageLayoutValue('page_layout_home_image_alt_1') }}" width="409" height="610" fetchpriority="high">@endif
+                        @if($pageLayoutValue('page_layout_home_image_slide_1') !== '')<img class="hero-can" src="{{ asset($pageLayoutValue('page_layout_home_image_slide_1')) }}" alt="{{ $pageLayoutValue('page_layout_home_image_alt_1') }}" width="409" height="610" @if($heroSrcset !== '') srcset="{{ $heroSrcset }}" sizes="{{ $heroSizes }}" @endif fetchpriority="high">@endif
 
                         <!-- Floating Pills -->
                         <span class="hero-sticker sticker-1">{{ $pageLayoutValue('page_layout_home_slide_1_06') }}</span>
@@ -530,14 +532,14 @@
         <div class="container">
             <div class="story-grid">
                 <div class="story-image">
-                    <img src="{{ asset('images/story_spices-optimized.webp') }}" alt="Spices on market" width="1024" height="1024" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/story_spices-optimized.webp') }}" srcset="{{ asset('images/story_spices-560.webp') }} 560w, {{ asset('images/story_spices-optimized.webp') }} 1024w" sizes="(max-width: 768px) 280px, 512px" alt="Spices on market" width="1024" height="1024" loading="lazy" decoding="async">
                 </div>
                 <div class="story-content">
                     <span class="subheading">OUR STORY</span>
                     <h2>Passionate About Flavor</h2>
                     <p>We believe that every dish tells an unforgettable culinary story, and the spices you choose define its authentic voice. Our journey began across the vibrant heritage spice markets of Asia, curating prime sun-dried chillies and slow-roasting hand-ground aromatics to empower passionate home chefs who demand uncompromising heat, crunch, and umami depth.</p>
                     <a href="{{ route('page.about') }}" class="btn-primary" aria-label="Learn More About Our Story">
-                        <span>Learn More</span>
+                        <span>Learn More About Our Story</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14" />
@@ -1203,6 +1205,10 @@
     animation: floatImg 6s ease-in-out infinite alternate;
     filter: drop-shadow(0 20px 30px rgba(43, 29, 20, 0.28)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.12));
     transition: filter 0.3s ease;
+}
+
+.slide:first-child.active .hero-can {
+    animation: none !important;
 }
 
 .hero-can:hover {

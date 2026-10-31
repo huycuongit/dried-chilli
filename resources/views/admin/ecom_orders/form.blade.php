@@ -12,6 +12,10 @@
                         <h6>Customer Info</h6>
                         <p>User ID: {{ $data->user_id }}</p>
                         <p>Total: ${{ number_format($data->total_amount, 2) }}</p>
+                        <p>Payment status: {{ $data->payment_status }}</p>
+                        @if($paymentAttempt && $paymentAttempt->status === \App\Models\PaymentAttempt::REFUND_PENDING)
+                            <p class="text-warning">Refund pending: {{ $paymentAttempt->refund_last_error ?: 'Awaiting provider confirmation.' }}</p>
+                        @endif
                     </div>
                     <div class="col-md-6">
                         <h6>Order Items</h6>

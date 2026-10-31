@@ -31,6 +31,6 @@
 
 @push('js')
 <script src="{{ asset('assets/admin/vendor/libs/quill/quill.js') }}"></script><script src="{{ asset('assets/admin/vendor/libs/dropzone/dropzone.js') }}"></script>
-<script src="{{ asset('assets/admin/js/nafu-dropzone.js') }}?v=20260919-1"></script>
+<script src="{{ asset('assets/admin/js/dried-chilli-dropzone.js') }}?v=20260919-1"></script>
 <script>(()=>{NafuQuill.mount('#editor-content','#content');NafuDropzone.mount(document.querySelector('#dropzone-avatar'),document.querySelector('#avatar'),'Project image')})();</script>
 @endpush

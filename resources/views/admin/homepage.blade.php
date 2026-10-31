@@ -49,7 +49,7 @@
     @endphp
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <form method="POST" action="{{ route('admin.systems.pages.save') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.systems.pages.save') }}" enctype="multipart/form-data" id="page-content-form">
             @csrf
             @method('PUT')
             <input type="hidden" name="selected_page" value="{{ $selectedPage }}">
@@ -232,6 +232,16 @@
                 const id = editorDiv.id.replace('editor-', '');
                 NafuQuill.mount('#' + editorDiv.id, '#input-' + id);
             });
+            const form = document.getElementById('page-content-form');
+            form.addEventListener('submit', event => {
+                if (event.defaultPrevented) return;
+                if (form.dataset.submitting === '1') {
+                    event.preventDefault();
+                    return;
+                }
+                form.dataset.submitting = '1';
+            });
+            window.addEventListener('pageshow', () => { delete form.dataset.submitting; });
         })();
     </script>
 @endpush

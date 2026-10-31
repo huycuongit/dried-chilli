@@ -19,10 +19,10 @@
     <div class="cart-drawer-footer">
         <div class="cart-drawer-coupon" id="drawer-coupon-container">
             <div class="drawer-coupon-row">
-                <input type="text" id="coupon-code-input" placeholder="Promo code" autocomplete="off">
-                <button type="button" id="apply-coupon-btn">Apply</button>
+                <input type="text" id="drawer-coupon-code-input" aria-label="Promo code" placeholder="Promo code" autocomplete="off">
+                <button type="button" id="drawer-apply-coupon-btn">Apply</button>
             </div>
-            <div id="coupon-message" style="font-size: 0.85rem; margin-top: 0.5rem; display: none;"></div>
+            <div id="drawer-coupon-message" style="font-size: 0.85rem; margin-top: 0.5rem; display: none;"></div>
         </div>
 
         <div class="cart-drawer-subtotal">
@@ -296,7 +296,7 @@
         box-sizing: border-box;
     }
     
-    #coupon-code-input {
+    #drawer-coupon-code-input {
         flex: 1;
         min-width: 0;
         box-sizing: border-box;
@@ -311,12 +311,12 @@
         transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     
-    #coupon-code-input:focus {
+    #drawer-coupon-code-input:focus {
         border-color: var(--spice-primary);
         box-shadow: 0 0 0 2px rgba(228, 93, 62, 0.15);
     }
     
-    #apply-coupon-btn {
+    #drawer-apply-coupon-btn {
         flex-shrink: 0;
         background-color: var(--spice-primary);
         color: #FDFBF7;
@@ -334,7 +334,7 @@
         transition: all 0.2s ease;
     }
     
-    #apply-coupon-btn:hover {
+    #drawer-apply-coupon-btn:hover {
         background-color: var(--spice-accent);
         transform: translateY(-1px);
         box-shadow: 0 6px 15px rgba(193, 68, 14, 0.25);

@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Exception;
+use App\Services\CouponException;
+use App\Support\Shop\CartItemPricing;
 use Throwable;
 
 class CouponController extends Controller
@@ -24,10 +25,12 @@ class CouponController extends Controller
 
     private function getCart(Request $request)
     {
-        $userId = Auth::id();
+        $userId = Auth::guard('web')->id();
         $sessionId = $request->header('Session-Id') ?? session()->getId();
 
-        if ($userId) {
+        if ($request->header('Session-Id')) {
+            $cart = Cart::firstOrCreate(['session_id' => $sessionId]);
+        } elseif ($userId) {
             $cart = Cart::firstOrCreate(['user_id' => $userId]);
         } else {
             $cart = Cart::firstOrCreate(['session_id' => $sessionId]);
@@ -38,9 +41,10 @@ class CouponController extends Controller
 
     private function getCartSubtotal(Cart $cart): float
     {
+        $cart->load(['items.product', 'items.variant']);
         $subtotal = 0;
         foreach ($cart->items as $item) {
-            $subtotal += $item->price * $item->quantity;
+            $subtotal += ($item->product_id ? CartItemPricing::price($item) : $item->price) * $item->quantity;
         }
         return (float) $subtotal;
     }
@@ -54,7 +58,7 @@ class CouponController extends Controller
             $result = $this->couponService->applyCoupon(
                 $request->code,
                 $subtotal,
-                Auth::id()
+                Auth::guard('web')->id()
             );
 
             // Store the coupon in session for checkout (since carts table doesn't have coupon_id)
@@ -67,11 +71,11 @@ class CouponController extends Controller
                 'data' => $result
             ]);
 
-        } catch (Exception $e) {
+        } catch (CouponException $e) {
             return response()->json([
                 'success' => false,
                 'message' => $e->getMessage()
-            ], 400);
+            ], 422);
         }
     }
 

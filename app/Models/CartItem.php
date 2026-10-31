@@ -16,6 +16,8 @@ class CartItem extends Model
         'bundle_id',
         'quantity',
         'price',
+        'limited_sale_price',
+        'limited_sale_expires_at',
     ];
 
     public function cart()

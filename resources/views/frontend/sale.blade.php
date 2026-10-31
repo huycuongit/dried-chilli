@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('title', 'Exclusive Sale & Deals | Dried Chili')
-@section('meta_description', 'Discover limited-time promotions, bundle discounts, and special offers on premium dried chillies and shrimp seasonings.')
+@section('meta_description', 'Discover limited-time promotions and special offers on premium dried chillies and shrimp seasonings.')
 @php
     $pageLayoutGroups = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
     $pageLayoutFields = collect($pageLayoutGroups)->collapse()->all();

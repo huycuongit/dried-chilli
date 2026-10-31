@@ -6,10 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const API_URL = '/api/cart';
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
+    const responseMessage = (body, fallback) => (body.errors ? Object.values(body.errors)[0]?.[0] : null) || body.message || body.error || fallback;
     
-    // Fallback Mock State in case API is not seeded
-    let mockCartState = { items: [] };
-    let mockItemIdCounter = 1;
+    let currentCartItems = null;
+    let cartRequestSequence = 0;
+    let priceRefreshTimer = null;
 
     // Drawer toggling functions
     window.openCartDrawer = function() {
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('.cart-btn')) return;
 
         // Ignore clicks on Add To Cart / Bundle buttons that open the drawer
-        if (e.target.closest('.quick-add, .add-to-cart-btn, .add-bundle-btn')) return;
+        if (e.target.closest('.quick-add, .add-to-cart-btn')) return;
 
         closeCartDrawer();
     });
@@ -92,26 +94,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     window.fetchCart = function() {
-        fetch(API_URL, {
-            headers: { 'Session-Id': sessionId, 'Accept': 'application/json' }
+        const requestSequence = ++cartRequestSequence;
+        return fetch(API_URL, {
+            headers: { 'X-CSRF-TOKEN': csrfToken, 'Session-Id': sessionId, 'Accept': 'application/json' }
         })
         .then(async res => {
-            if(!res.ok) throw new Error('API Error');
+            if(!res.ok) { const error = await res.json().catch(() => ({})); throw new Error(responseMessage(error, 'Could not load your cart. Please try again.')); }
             return res.json();
         })
         .then(data => {
             let totalItems = 0;
-            const items = data.cart ? data.cart.items : data.items;
-            if (items) items.forEach(item => totalItems += item.quantity);
+            const items = data.cart?.items;
+            if (!Array.isArray(items)) throw new Error('Invalid cart response');
+            if (requestSequence !== cartRequestSequence) return null;
+            currentCartItems = items;
+            clearTimeout(priceRefreshTimer);
+            const nextPriceChange = items.map(item => Date.parse(item.price_refresh_at)).filter(Number.isFinite).filter(time => time > Date.now());
+            if (nextPriceChange.length) {
+                const delay = Math.min(Math.max(Math.min(...nextPriceChange) - Date.now() + 1000, 1000), 2147483647);
+                priceRefreshTimer = setTimeout(() => fetchCart(), delay);
+            }
+            items.forEach(item => totalItems += Number(item.quantity));
             updateCartCount(totalItems);
             window.dispatchEvent(new CustomEvent('cartUpdated', { detail: data }));
+            return data;
         })
         .catch(err => {
-            // Mock fallback
-            let totalItems = 0;
-            mockCartState.items.forEach(i => totalItems += parseInt(i.quantity));
-            updateCartCount(totalItems);
-            window.dispatchEvent(new CustomEvent('cartUpdated', { detail: mockCartState }));
+            if (requestSequence === cartRequestSequence) {
+                currentCartItems = null;
+                window.showToast(err.message || 'Could not load your cart. Please try again.', 'error');
+            }
+            return null;
         });
     }
 
@@ -121,105 +134,67 @@ document.addEventListener('DOMContentLoaded', function() {
 
         fetch(API_URL + '/add', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Session-Id': sessionId, 'Accept': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken, 'Session-Id': sessionId, 'Accept': 'application/json' },
             body: JSON.stringify(payload)
         })
         .then(async res => {
-            if (!res.ok) throw new Error('Validation error');
+            if (!res.ok) {
+                const error = await res.json().catch(() => ({}));
+                throw new Error(responseMessage(error, 'Could not add this item to your cart.'));
+            }
             return res.json();
         })
         .then(data => {
             fetchCart();
             openCartDrawer();
+            window.showToast('Item added to your cart.', 'success');
         })
         .catch(err => {
-            // Mock fallback
-            let existing = mockCartState.items.find(i => i.product_id == productId);
-            if(existing) {
-                existing.quantity = parseInt(existing.quantity) + parseInt(quantity);
-            } else {
-                mockCartState.items.push({ id: mockItemIdCounter++, product_id: productId, quantity: quantity, price: 25.00, product: { name: 'Extra Garlic Crunch (Mock)' } });
-            }
-            fetchCart();
-            openCartDrawer();
+            window.showToast(err.message || 'Could not add this item to your cart.', 'error');
         });
     };
 
     window.updateCartItem = function(cartItemId, quantity) {
         fetch(API_URL + '/update', {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json', 'Session-Id': sessionId, 'Accept': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken, 'Session-Id': sessionId, 'Accept': 'application/json' },
             body: JSON.stringify({ cart_item_id: cartItemId, quantity: quantity })
-        }).then(() => fetchCart()).catch(err => {
-            let item = mockCartState.items.find(i => i.id == cartItemId);
-            if (item) item.quantity = parseInt(quantity);
-            fetchCart();
+        }).then(async res => {
+            if (!res.ok) { const error = await res.json().catch(() => ({})); throw new Error(responseMessage(error, 'Could not update your cart.')); }
+            return fetchCart();
+        }).catch(err => {
+            window.showToast(err.message || 'Could not update your cart.', 'error');
         });
     }
 
     window.removeCartItem = function(cartItemId) {
         fetch(API_URL + '/remove', {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json', 'Session-Id': sessionId, 'Accept': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken, 'Session-Id': sessionId, 'Accept': 'application/json' },
             body: JSON.stringify({ cart_item_id: cartItemId })
-        }).then(() => fetchCart()).catch(err => {
-            mockCartState.items = mockCartState.items.filter(i => i.id != cartItemId);
-            fetchCart();
+        }).then(async res => {
+            if (!res.ok) { const error = await res.json().catch(() => ({})); throw new Error(responseMessage(error, 'Could not remove this item.')); }
+            return fetchCart();
+        }).catch(err => {
+            window.showToast(err.message || 'Could not remove this item.', 'error');
         });
     }
-
-    window.addBundleToCart = function(bundleId, quantity = 1) {
-        fetch(API_URL + '/add-bundle', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Session-Id': sessionId, 'Accept': 'application/json' },
-            body: JSON.stringify({ bundle_id: bundleId, quantity: quantity })
-        })
-        .then(async res => {
-            if (!res.ok) {
-                const data = await res.json();
-                throw new Error(data.error || 'Failed to add bundle');
-            }
-            return res.json();
-        })
-        .then(data => {
-            fetchCart();
-            openCartDrawer();
-        })
-        .catch(err => {
-            alert(err.message);
-        });
-    };
 
     function attachAddToCartListeners() {
         const buttons = document.querySelectorAll('.quick-add, .add-to-cart-btn');
         buttons.forEach(btn => {
+            if (btn.closest('.detail-right')) return;
             btn.addEventListener('click', function(e) {
                 e.preventDefault(); e.stopPropagation();
                 window._lastClickedBtn = this;
                 const productId = this.getAttribute('data-product-id');
                 if (productId) {
-                    const originalHtml = this.innerHTML;
-                    this.innerHTML = `<span>Added ✓</span>`;
-                    this.style.backgroundColor = 'var(--spice-primary)';
-                    setTimeout(() => {
-                        this.innerHTML = originalHtml;
-                        this.style.backgroundColor = '';
-                    }, 1200);
                     addToCart(productId, 1);
                 }
             });
         });
 
-        const bundleButtons = document.querySelectorAll('.add-bundle-btn');
-        bundleButtons.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault(); e.stopPropagation();
-                const bundleId = this.getAttribute('data-bundle-id');
-                if (bundleId) {
-                    addBundleToCart(bundleId, 1);
-                }
-            });
-        });
+
     }
 
     // Handle Cart Page & Drawer Render
@@ -255,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 items.forEach(item => {
                     const productName = item.product ? item.product.name : (item.bundle ? item.bundle.name : 'Chili Product');
-                    const productPrice = parseFloat(item.price) || 25.00;
+                    const productPrice = Number(item.price);
                     const itemTotal = productPrice * item.quantity;
                     total += itemTotal;
                     
@@ -380,7 +355,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (headerCountEl) headerCountEl.textContent = '(0)';
             if (progressMeter) progressMeter.style.width = '0%';
             if (progressText) progressText.innerHTML = 'Add <strong>$50.00</strong> more to qualify for <strong>FREE NATIONWIDE SHIPPING!</strong>';
-            if (shippingVal) shippingVal.textContent = 'Calculated at checkout';
+            if (shippingVal) shippingVal.textContent = 'Not included in total';
             checkoutBtn.style.opacity = '0.5';
             checkoutBtn.style.pointerEvents = 'none';
             return;
@@ -396,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         items.forEach(item => {
             const productName = item.product ? item.product.name : (item.bundle ? item.bundle.name : 'Dried Chili Artisan Product');
-            const productPrice = parseFloat(item.price) || 25.00;
+            const productPrice = Number(item.price);
             const itemTotal = productPrice * item.quantity;
             total += itemTotal;
             totalQty += parseInt(item.quantity) || 1;
@@ -464,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const pct = Math.min(100, Math.max(0, (actualSubtotal / freeShippingThreshold) * 100));
                 progressMeter.style.width = pct + '%';
                 progressText.innerHTML = `Add <strong>$${diff}</strong> more to qualify for <strong>FREE NATIONWIDE SHIPPING!</strong>`;
-                if (shippingVal) shippingVal.textContent = 'Calculated at checkout';
+                if (shippingVal) shippingVal.textContent = 'Not included in total';
             }
         }
         
@@ -543,13 +518,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkoutSec = document.getElementById('checkout-details-section');
     const pageHeadingText = document.getElementById('title-text');
     const cartShopLink = document.getElementById('cart-shop-link');
+    const checkoutSessionKey = 'shop_checkout_session';
+    let checkoutSession = null;
+    try { checkoutSession = JSON.parse(sessionStorage.getItem(checkoutSessionKey) || 'null'); } catch (_) { checkoutSession = null; }
+    let checkoutStarting = false;
 
-    function switchToCheckoutView() {
-        const subtotalEl = document.getElementById('cart-subtotal');
-        const subtotalVal = parseFloat(subtotalEl?.textContent?.replace('$', '') || 0);
-        if (subtotalVal <= 0) {
-            alert('Your cart is empty. Please add items to checkout.');
+    async function switchToCheckoutView() {
+        if (!currentCartItems || currentCartItems.length === 0) {
+            window.showToast(currentCartItems ? 'Your cart is empty. Please add items to checkout.' : 'Your cart is not available. Please try again.', 'error');
             return;
+        }
+        if (checkoutStarting) return;
+        if (!checkoutSession?.checkoutToken || Date.parse(checkoutSession.expiresAt) <= Date.now()) {
+            checkoutStarting = true;
+            try {
+                const response = await fetch('/api/checkout/session', {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'X-CSRF-TOKEN': csrfToken, 'Session-Id': sessionId }
+                });
+                const body = await response.json().catch(() => ({}));
+                if (!response.ok) throw new Error(responseMessage(body, 'Could not start checkout. Please try again.'));
+                checkoutSession = body;
+                sessionStorage.setItem(checkoutSessionKey, JSON.stringify(body));
+            } catch (error) {
+                window.showToast(error.message || 'Could not start checkout. Please try again.', 'error');
+                return;
+            } finally {
+                checkoutStarting = false;
+            }
         }
 
         if (cartItemsSec && checkoutSec) {
@@ -572,6 +568,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function switchToCartView() {
+        checkoutSession = null;
+        sessionStorage.removeItem(checkoutSessionKey);
         if (cartItemsSec && checkoutSec) {
             checkoutSec.style.display = 'none';
             cartItemsSec.style.display = 'block';
@@ -723,11 +721,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Clear and refresh cart state
-        mockCartState = { items: [] };
         fetchCart();
     };
 
-    window.ShopCheckout = { sessionId, readCheckoutForm, showCheckoutSuccess };
+    window.ShopCheckout = { sessionId, readCheckoutForm, showCheckoutSuccess, checkoutToken: () => checkoutSession?.checkoutToken || '', currentTotal: () => window.currentCartTotal };
 
     // Form Submission
     const confirmCheckoutBtn = document.getElementById('confirm-checkout-btn');
@@ -761,12 +758,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
-                        'Session-Id': sessionId
+                        'Checkout-Token': checkoutSession?.checkoutToken || '',
+                        'X-CSRF-TOKEN': csrfToken, 'Session-Id': sessionId
                     },
                     body: JSON.stringify({
                         shipping_address: details.shippingAddress,
                         payment_method: paymentMethod,
-                        coupon_code: details.couponCode
+                        coupon_code: details.couponCode,
+                        expected_total: window.currentCartTotal
                     })
                 });
 
@@ -777,9 +776,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     confirmCheckoutBtn.disabled = false;
                     confirmCheckoutBtn.innerHTML = originalBtnHtml;
                 } else {
+                    const message = responseMessage(result, 'Checkout failed. Please try again.');
+                    if (response.status === 410) { checkoutSession = null; sessionStorage.removeItem(checkoutSessionKey); }
+                    fetchCart();
+                    window.showToast(message, 'error');
                     if (alertBox) {
                         alertBox.className = 'checkout-alert alert-danger';
-                        alertBox.textContent = result.error || (result.errors ? Object.values(result.errors)[0][0] : 'Checkout failed. Please try again.');
+                        alertBox.textContent = message;
                         alertBox.style.display = 'flex';
                     }
                     confirmCheckoutBtn.disabled = false;
@@ -787,6 +790,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } catch (error) {
                 console.error('Checkout error:', error);
+                window.showToast('Network or server error while placing order. Please try again.', 'error');
                 if (alertBox) {
                     alertBox.className = 'checkout-alert alert-danger';
                     alertBox.textContent = 'Network or server error while placing order. Please try again.';
@@ -798,22 +802,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    fetchCart();
+    const initialCart = fetchCart();
     attachAddToCartListeners();
 
     // Auto-open checkout if navigated with ?step=checkout or #checkout
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('step') === 'checkout' || window.location.hash === '#checkout') {
-        switchToCheckoutView();
+        initialCart.then(data => { if (data) switchToCheckoutView(); });
     }
 
     // Coupon logic
-    const applyCouponBtn = document.getElementById('apply-coupon-btn');
     const removeCouponBtn = document.getElementById('remove-coupon-btn');
-    const couponInput = document.getElementById('coupon-code-input');
-    const couponMsg = document.getElementById('coupon-message');
-
-    if(applyCouponBtn) {
+    function bindCouponForm(buttonId, inputId, messageId) {
+        const applyCouponBtn = document.getElementById(buttonId);
+        const couponInput = document.getElementById(inputId);
+        const couponMsg = document.getElementById(messageId);
+        if (!applyCouponBtn || !couponInput || !couponMsg) return;
         applyCouponBtn.addEventListener('click', function() {
             const code = couponInput.value.trim();
             if(!code) return;
@@ -822,7 +826,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             fetch('/api/coupon/apply', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Session-Id': sessionId, 'Accept': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken, 'Session-Id': sessionId, 'Accept': 'application/json' },
                 body: JSON.stringify({ code: code })
             })
             .then(res => res.json())
@@ -837,22 +841,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     fetchCart(); // Refresh cart to get new totals
                 } else {
                     couponMsg.style.color = '#D32F2F';
-                    couponMsg.textContent = data.message || (data.errors ? Object.values(data.errors)[0][0] : 'Failed');
+                    couponMsg.textContent = responseMessage(data, 'Could not apply this coupon.');
+                    window.showToast(couponMsg.textContent, 'error');
                 }
             }).catch(e => {
                 applyCouponBtn.disabled = false;
                 applyCouponBtn.textContent = 'Apply';
+                window.showToast('Could not apply this coupon. Please try again.', 'error');
             });
         });
     }
+    bindCouponForm('apply-coupon-btn', 'coupon-code-input', 'coupon-message');
+    bindCouponForm('drawer-apply-coupon-btn', 'drawer-coupon-code-input', 'drawer-coupon-message');
 
     if(removeCouponBtn) {
         removeCouponBtn.addEventListener('click', function(e) {
             e.preventDefault();
             fetch('/api/coupon/remove', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Session-Id': sessionId, 'Accept': 'application/json' }
-            }).then(() => fetchCart());
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken, 'Session-Id': sessionId, 'Accept': 'application/json' }
+            }).then(async res => {
+                if (!res.ok) { const error = await res.json().catch(() => ({})); throw new Error(responseMessage(error, 'Could not remove this coupon.')); }
+                return fetchCart();
+            }).catch(error => window.showToast(error.message || 'Could not remove this coupon.', 'error'));
         });
     }
 });

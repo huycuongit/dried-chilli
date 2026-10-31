@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Coupon;
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Support\Str;
 
 class CouponService
@@ -23,23 +22,23 @@ class CouponService
         $coupon = Coupon::where('code', $code)->first();
 
         if (!$coupon) {
-            throw new Exception("Coupon code does not exist.");
+            throw new CouponException("Coupon code does not exist.");
         }
 
         if (!$coupon->is_active) {
-            throw new Exception("This coupon is no longer active.");
+            throw new CouponException("This coupon is no longer active.");
         }
 
         if ($coupon->expires_at && Carbon::now()->gt($coupon->expires_at)) {
-            throw new Exception("This coupon has expired.");
+            throw new CouponException("This coupon has expired.");
         }
 
         if ($coupon->usage_limit !== null && $coupon->used_count >= $coupon->usage_limit) {
-            throw new Exception("This coupon has reached its usage limit.");
+            throw new CouponException("This coupon has reached its usage limit.");
         }
 
         if ($subtotal < $coupon->min_order_amount) {
-            throw new Exception("The minimum order amount for this coupon is $" . number_format($coupon->min_order_amount, 2));
+            throw new CouponException("The minimum order amount for this coupon is $" . number_format($coupon->min_order_amount, 2));
         }
 
         $discountAmount = $this->calculateDiscount($coupon, $subtotal);
