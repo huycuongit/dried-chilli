@@ -24,7 +24,7 @@
             Dropzone.autoDiscover = false;
 
             return new Dropzone(element, {
-                url: '/', autoProcessQueue: false, maxFiles: 1, maxFilesize: 5,
+                url: '/', autoProcessQueue: false, maxFiles: 1, maxFilesize: Number(element.dataset.maxBytes || 5242880) / 1048576,
                 acceptedFiles: 'image/jpeg,image/png,image/webp,image/gif',
                 previewTemplate,
                 init() {
@@ -38,6 +38,7 @@
                     this.on('addedfile', file => {
                         if (this.files.length > 1) this.removeFile(this.files[0]);
                         if (!(file instanceof File)) return;
+                        if (element.closest('#page-content-form')) return;
                         const reader = new FileReader();
                         reader.addEventListener('load', () => hiddenInput.value = reader.result, { once: true });
                         reader.readAsDataURL(file);

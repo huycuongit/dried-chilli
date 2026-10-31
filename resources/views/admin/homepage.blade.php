@@ -233,13 +233,50 @@
                 NafuQuill.mount('#' + editorDiv.id, '#input-' + id);
             });
             const form = document.getElementById('page-content-form');
-            form.addEventListener('submit', event => {
+            form.addEventListener('submit', async event => {
                 if (event.defaultPrevented) return;
                 if (form.dataset.submitting === '1') {
                     event.preventDefault();
                     return;
                 }
+                const zones = [...form.querySelectorAll('.nafu-system-dropzone')];
+                if (zones.some(element => element.dropzone?.files.some(file => file instanceof File && !file.accepted))) {
+                    event.preventDefault();
+                    AdminUI.toast('Please remove or replace invalid images before saving.', 'error');
+                    return;
+                }
+                const uploads = zones.map(element => ({
+                    element,
+                    file: element.dropzone?.files.find(file => file instanceof File && file.accepted),
+                    input: document.getElementById(element.dataset.input)
+                })).filter(item => item.file && item.input);
+                if (!uploads.length) {
+                    form.dataset.submitting = '1';
+                    return;
+                }
+                event.preventDefault();
                 form.dataset.submitting = '1';
+                const submitter = event.submitter;
+                try {
+                    for (const item of uploads) {
+                        const body = new FormData();
+                        body.append('image', item.file);
+                        const response = await fetch(@json(route('admin.pages.images')), {
+                            method: 'POST', body,
+                            headers: { 'Accept': 'application/json', 'X-CSRF-TOKEN': form.querySelector('input[name="_token"]').value }
+                        });
+                        const result = await response.json().catch(() => ({}));
+                        if (!response.ok || !result.url) throw new Error(result.errors?.image?.[0] || result.message || 'Image upload failed. Please try again.');
+                        item.input.value = result.url;
+                        item.element.dropzone.removeFile(item.file);
+                        item.input.value = result.url;
+                    }
+                    delete form.dataset.submitting;
+                    form.requestSubmit(submitter || undefined);
+                } catch (error) {
+                    delete form.dataset.submitting;
+                    AdminUI.toast(error.message, 'error');
+                }
             });
             window.addEventListener('pageshow', () => { delete form.dataset.submitting; });
         })();

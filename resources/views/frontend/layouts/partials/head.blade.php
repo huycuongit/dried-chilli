@@ -31,14 +31,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     @if(request()->routeIs('home'))
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=optional">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=optional" media="print" onload="this.media='all'">
     @else
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap">
     @endif
 
     <!-- Core Layout CSS -->
     @if(request()->routeIs('home'))
-    <link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}">
+    <style>html{-webkit-text-size-adjust:100%;font-family:sans-serif}body{margin:0}*,*::before,*::after{box-sizing:border-box}img{max-width:100%;vertical-align:middle}button,input,select,textarea{font:inherit}button{cursor:pointer}[hidden]{display:none!important}</style>
+    <link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}"></noscript>
     @else
     <link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}">
     @endif

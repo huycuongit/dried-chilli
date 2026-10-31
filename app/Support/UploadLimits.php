@@ -20,6 +20,10 @@ class UploadLimits
     public static function imageBytes(): int
     {
         $phpLimit = self::bytes('upload_max_filesize');
-        return $phpLimit > 0 ? min(5 * 1024 * 1024, $phpLimit) : 5 * 1024 * 1024;
+        $postLimit = self::bytes('post_max_size');
+        $limits = [5 * 1024 * 1024];
+        if ($phpLimit > 0) $limits[] = $phpLimit;
+        if ($postLimit > 0) $limits[] = max(1024, $postLimit - 65536);
+        return min($limits);
     }
 }

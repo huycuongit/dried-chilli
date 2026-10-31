@@ -5,11 +5,11 @@
 @endpush
 @endonce
 
-<div class="dropzone needsclick rounded nafu-system-dropzone" id="dropzone-{{ $uploadId }}" data-input="{{ $uploadId }}">
+<div class="dropzone needsclick rounded nafu-system-dropzone" id="dropzone-{{ $uploadId }}" data-input="{{ $uploadId }}" data-max-bytes="{{ \App\Support\UploadLimits::imageBytes() }}">
     <div class="dz-message needsclick">
         <i class="ti ti-upload fs-1 d-block mb-2"></i>
         Drag an image here or click to select
-        <span class="note needsclick d-block mt-2">PNG, JPG, GIF or WEBP — maximum 5 MB</span>
+        <span class="note needsclick d-block mt-2">PNG, JPG, GIF or WEBP — maximum {{ rtrim(rtrim(number_format(\App\Support\UploadLimits::imageBytes() / 1048576, 2), '0'), '.') }} MB</span>
     </div>
 </div>
 <input type="hidden" id="{{ $uploadId }}" name="{{ $valueName }}" value="{{ $imageValue }}">
@@ -17,7 +17,7 @@
 @once
 @push('js')
 <script src="{{ asset('assets/admin/vendor/libs/dropzone/dropzone.js') }}"></script>
-<script src="{{ asset('assets/admin/js/dried-chilli-dropzone.js') }}?v=20260919-1"></script>
+<script src="{{ asset('assets/admin/js/dried-chilli-dropzone.js') }}?v=20261031-2"></script>
 <script>
 (() => {
     document.querySelectorAll('.nafu-system-dropzone').forEach(element => {

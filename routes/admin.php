@@ -46,6 +46,9 @@ Route::group(['middleware' => 'authadmin'], function () {
     Route::post($project . '/editor/images', [\App\Http\Controllers\Admin\EditorImageController::class, 'store'])
         ->middleware('throttle:30,1')->name('admin.editor.images');
 
+    Route::post($project . '/pages/images', [\App\Http\Controllers\Admin\PageImageController::class, 'store'])
+        ->middleware('throttle:60,1')->name('admin.pages.images');
+
     Route::middleware(['check.permissions'])->group(function () use ($project) {
 
         Route::get($project . '/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');

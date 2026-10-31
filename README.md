@@ -8,6 +8,8 @@ For local development on Windows, start the PHP server with `powershell -File sc
 
 For PHP-FPM/CGI, `public/.user.ini` requests the same limits when per-directory configuration is enabled. Apache mod_php or environments that disable `.user.ini` need the equivalent PHP server configuration. Set the reverse proxy or web server request-body limit to at least 32 MB as well, then reload the relevant service. PHP settings and proxy limits depend on the hosting environment; verify the effective values after deployment.
 
+The admin Pages editor uploads selected images individually before saving the form, preventing multiple images from accumulating in a single base64 POST. Each upload is limited by the smaller of 5 MB, PHP's `upload_max_filesize`, and the available `post_max_size`; proxy limits also apply. Files uploaded before an interrupted or failed save may remain in public storage and require periodic cleanup.
+
 ### Frontend asset caching (Nginx)
 
 For Nginx deployments, the example `deploy/nginx/static-assets.conf` can be included inside the existing HTTPS `server` block to enable static asset caching and gzip. Review it against existing location rules and any CDN policy first, then run `nginx -t` and reload Nginx. The application document root must point to `public/`. Apache installations can use the rules already in `public/.htaccess` when `mod_expires` and `mod_deflate` are enabled. Verify live response headers after deployment; `.htaccess` does not configure Nginx.

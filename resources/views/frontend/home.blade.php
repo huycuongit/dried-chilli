@@ -408,7 +408,7 @@
                         <a href="{{ route('page.product', $product->slug) }}"
                             aria-label="{{ $product->name }}"
                             style="display: block; width: 100%; height: 100%;">
-                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" width="300" height="300" loading="lazy">
+                            <img src="{{ $product->image_url }}" @if(str_ends_with(parse_url($product->image_url, PHP_URL_PATH) ?? '', '/images/product_hero-320.webp')) srcset="{{ asset('images/product_hero-200.webp') }} 200w, {{ asset('images/product_hero-320.webp') }} 320w" sizes="(max-width: 768px) 148px, 300px" @endif alt="{{ $product->name }}" width="300" height="300" loading="lazy">
                         </a>
                         <!-- Desktop Hover Quick Add Button -->
                         <button type="button" class="quick-add desktop-quick-add" data-product-id="{{ $product->id }}" aria-label="Quick Add {{ $product->name }}">
@@ -532,7 +532,7 @@
         <div class="container">
             <div class="story-grid">
                 <div class="story-image">
-                    <img src="{{ asset('images/story_spices-optimized.webp') }}" srcset="{{ asset('images/story_spices-560.webp') }} 560w, {{ asset('images/story_spices-optimized.webp') }} 1024w" sizes="(max-width: 768px) 280px, 512px" alt="Spices on market" width="1024" height="1024" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/story_spices-optimized.webp') }}" srcset="{{ asset('images/story_spices-420.webp') }} 420w, {{ asset('images/story_spices-560-optimized.webp') }} 560w, {{ asset('images/story_spices-optimized.webp') }} 1024w" sizes="(max-width: 768px) 280px, 512px" alt="Spices on market" width="1024" height="1024" loading="lazy" decoding="async">
                 </div>
                 <div class="story-content">
                     <span class="subheading">OUR STORY</span>
@@ -1199,8 +1199,8 @@
 .hero-can {
     position: relative;
     z-index: 5;
-    height: 450px;
-    width: 300px;
+    height: 550px;
+    width: 500px;
     object-fit: contain;
     animation: floatImg 6s ease-in-out infinite alternate;
     filter: drop-shadow(0 20px 30px rgba(43, 29, 20, 0.28)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.12));
