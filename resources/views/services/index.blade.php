@@ -62,5 +62,5 @@
 </main>
 @endsection
 @push('scripts')
-<script src="{{ asset('assets/dried-chilli/nafu-services.js') }}?v=20260918-2" defer></script>
+<script src="{{ asset('assets/dried-chilli/dried-chilli-services.js') }}?v=20260918-2" defer></script>
 @endpush

@@ -17,7 +17,7 @@ class CompanySettingsSeeder extends Seeder
             'company_hotline' => '0481 818 836',
             'company_address' => '265 Exhibition St, Melbourne VIC 3000',
             'company_tagline' => 'Trusted care for every home',
-            'company_logo' => 'assets/dried-chilli/nafu-logo.png',
+            'company_logo' => 'images/logo_dried.png',
             'company_footer_description' => 'A local Melbourne team for apartment repairs, painting, flooring and maintenance. Professional service, clear prices and care for every detail.',
             'company_copyright' => '© ' . date('Y') . ' Nafu Home Care. All rights reserved.',
             'company_footer_watermark' => 'Nafu',

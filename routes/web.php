@@ -10,6 +10,11 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\ServiceContractController;
 
+// Old links may still exist in cached pages or saved content.
+Route::permanentRedirect('/assets/dried-chilli/nafu-home.js', '/assets/dried-chilli/dried-chilli-home.js');
+Route::permanentRedirect('/assets/dried-chilli/nafu-services.js', '/assets/dried-chilli/dried-chilli-services.js');
+Route::permanentRedirect('/assets/dried-chilli/nafu-logo.png', '/images/logo_dried.png');
+
 // Model Contacts
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 

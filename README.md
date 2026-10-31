@@ -25,6 +25,8 @@ The command can be rerun; it preserves originals and reports files it cannot pro
 
 For nginx, include `deploy/nginx/static-assets.conf` in the existing HTTPS server block and check `nginx -t` before reloading. For Apache, enable `mod_expires`, `mod_headers` and `mod_deflate` and allow the directives in `public/.htaccess`. Existing CDN or server cache headers may need adjustment. Re-run both mobile and desktop PageSpeed after deployment; results depend on the live server and network.
 
+The nginx include also redirects three legacy `/assets/dried-chilli/nafu-*` URLs to their current assets. After updating it on an existing server, run `nginx -t` and reload nginx; static-file rules otherwise may return 404 before Laravel can redirect these legacy URLs. Run `php artisan migrate --force` to update matching saved system settings.
+
 ### API access and retired bundles
 
 The unauthenticated `/api/users`, `/api/users/{id}`, and `PUT /api/orders/{id}/status` endpoints are retired. Manage administrators and order statuses through the authenticated admin interface. `GET /api/orders` requires a signed-in customer session. Bundle creation and `/api/cart/add-bundle` are retired; historical bundle records remain available, and existing bundle cart items must be removed before checkout. Shipping under the free-shipping threshold is confirmed separately and is not included in the displayed checkout total.
