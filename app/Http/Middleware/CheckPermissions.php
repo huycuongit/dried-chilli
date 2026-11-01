@@ -63,7 +63,7 @@ class CheckPermissions
             'shareholder-history',
             'shareholder-practice-history',
             'update-session',
-            'send'
+            'send', 'confirm-cod-payment'
         ],
 
         'destroy' => ['destroy', 'delete-image', 'delete_image', 'images'],

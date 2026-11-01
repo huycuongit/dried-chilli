@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $latestProducts = \App\Models\Product::where('is_active', true)->orderByDesc('id')->limit(6)->get();
+        $latestProducts = \App\Models\Product::where('is_active', true)->where('is_trending', true)->orderByDesc('id')->limit(6)->get();
 
         return view('frontend.home', compact('latestProducts'));
     }

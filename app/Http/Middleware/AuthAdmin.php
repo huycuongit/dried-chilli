@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Support\AdminJwt;
 
 class AuthAdmin
 {
@@ -17,7 +18,9 @@ class AuthAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('admin')->guest()) {
+        $jwt = app(AdminJwt::class);
+        $admin = $jwt->authenticate($request);
+        if (!$admin) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'status' => 401,
@@ -27,6 +30,7 @@ class AuthAdmin
             return redirect()->route('admin.login');
         }
     
+        Auth::guard('admin')->setUser($admin);
         return $next($request);
     }
 }

@@ -229,6 +229,52 @@
             "group": "Slide 1"
         }
     },
+    "Home - Our story": {
+        "page_layout_home_story_visible": {
+            "value": "1",
+            "label": "Show this section",
+            "group": "Section settings",
+            "type": "select",
+            "options": { "1": "Show", "0": "Hide" }
+        },
+        "page_layout_home_story_image": {
+            "value": "images/story_spices-optimized.webp",
+            "label": "Story image",
+            "group": "Image",
+            "type": "image"
+        },
+        "page_layout_home_story_image_alt_text": {
+            "value": "Spices on market",
+            "label": "Image alternative text",
+            "group": "Image"
+        },
+        "page_layout_home_story_label": {
+            "value": "OUR STORY",
+            "label": "Small heading",
+            "group": "Story"
+        },
+        "page_layout_home_story_title": {
+            "value": "Passionate About Flavor",
+            "label": "Title",
+            "group": "Story"
+        },
+        "page_layout_home_story_description": {
+            "value": "We believe that every dish tells an unforgettable culinary story, and the spices you choose define its authentic voice. Our journey began across the vibrant heritage spice markets of Asia, curating prime sun-dried chillies and slow-roasting hand-ground aromatics to empower passionate home chefs who demand uncompromising heat, crunch, and umami depth.",
+            "label": "Description",
+            "group": "Story",
+            "type": "textarea"
+        },
+        "page_layout_home_story_button_text": {
+            "value": "Learn More About Our Story",
+            "label": "Button text",
+            "group": "Buttons"
+        },
+        "page_layout_home_story_button_link": {
+            "value": "/about-us",
+            "label": "Button link",
+            "group": "Buttons"
+        }
+    },
     "Our Legacy - Opening banner": {
         "page_layout_legacy_show_hero": {
             "value": "1",

@@ -5,10 +5,11 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": ">=8.3",
         "ckfinder/ckfinder-laravel-package": "^3.0",
         "darkaonline/l5-swagger": "^8.6",
         "doctrine/dbal": "^2.12",
+        "firebase/php-jwt": "^6.11",
         "fruitcake/laravel-cors": "^2.0",
         "google/apiclient": "^2.18",
         "guzzlehttp/guzzle": "^7.8",

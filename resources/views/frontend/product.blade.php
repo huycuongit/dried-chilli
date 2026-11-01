@@ -252,13 +252,14 @@
     border: 1px solid rgba(40, 18, 11, 0.08);
     border-radius: 20px;
     background: #FFFFFF;
-    padding: 2.5rem;
+    padding: 0;
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 500px;
+    height: 500px;
     overflow: hidden;
     isolation: isolate;
     transition: box-shadow 0.3s ease;
@@ -267,9 +268,14 @@
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
 }
 .main-image img {
-    max-width: 100%;
-    max-height: 400px;
-    object-fit: contain;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    object-position: center;
     transition: transform 0.4s ease;
 }
 .main-image:hover img {

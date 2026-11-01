@@ -48,6 +48,41 @@ class HomepageController extends Controller
             }
             $rows[] = ['key' => 'nafu_home_' . $key, 'content' => $value ?? '', 'created_at' => $timestamp, 'updated_at' => $timestamp];
         }
+        if ($page === 'About Us' && $request->input('reviewers_present') === '1') {
+            $reviewers = $request->validate([
+                'reviewers' => ['nullable', 'array', 'max:30'],
+                'reviewers.*.image' => ['required', 'string', 'max:2048'],
+                'reviewers.*.name' => ['nullable', 'string', 'max:150'],
+                'reviewers.*.alt' => ['nullable', 'string', 'max:250'],
+                'reviewers.*.caption' => ['nullable', 'string', 'max:2000'],
+                'reviewers.*.rating' => ['nullable', 'integer', 'min:1', 'max:5'],
+                'reviewers.*.published' => ['required', 'boolean'],
+            ])['reviewers'] ?? [];
+            foreach ($reviewers as $index => $reviewer) {
+                if (!\App\Support\AboutReviewers::isSafeImage($reviewer['image'])) {
+                    throw \Illuminate\Validation\ValidationException::withMessages(["reviewers.{$index}.image" => 'Choose a valid reviewer image.']);
+                }
+            }
+            $reviewers = array_map(fn ($reviewer) => [
+                'image' => trim($reviewer['image']),
+                'name' => $reviewer['name'] ?? '',
+                'alt' => $reviewer['alt'] ?? '',
+                'caption' => $reviewer['caption'] ?? '',
+                'rating' => isset($reviewer['rating']) && $reviewer['rating'] !== '' ? (int) $reviewer['rating'] : null,
+                'published' => (bool) $reviewer['published'],
+            ], array_values($reviewers));
+            $rows[] = ['key' => \App\Support\AboutReviewers::STORAGE_KEY, 'content' => json_encode($reviewers, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), 'created_at' => $timestamp, 'updated_at' => $timestamp];
+        }
+        if ($page === 'About Us' && $request->has('section_order')) {
+            $order = $request->validate([
+                'section_order' => ['required', 'array', 'min:1'],
+                'section_order.*' => ['required', 'string', 'distinct', Rule::in(array_keys($pages[$page]))],
+            ])['section_order'];
+            if (count($order) !== count($pages[$page])) {
+                throw \Illuminate\Validation\ValidationException::withMessages(['section_order' => 'The section list has changed. Reload the page and try again.']);
+            }
+            $rows[] = ['key' => \App\Support\AboutSectionOrder::STORAGE_KEY, 'content' => json_encode(array_values($order), JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), 'created_at' => $timestamp, 'updated_at' => $timestamp];
+        }
         usort($rows, fn ($left, $right) => strcmp($left['key'], $right['key']));
         return $rows;
     }
@@ -249,13 +284,21 @@ class HomepageController extends Controller
 
         $fields = $json[$sectionKey];
         unset($json[$sectionKey]);
-        System::updateOrCreate(['key' => PageContentGroups::customSchemaKey($page)], ['content' => json_encode($json, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR)]);
-
         $dbKeys = array_map(fn($k) => 'nafu_home_' . $k, array_keys($fields));
         foreach (array_keys($fields) as $key) {
             if (str_ends_with($key, '_active')) $dbKeys[] = 'nafu_home_' . substr($key, 0, -7) . '_published';
         }
-        \App\Models\System::whereIn('key', $dbKeys)->delete();
+        \Illuminate\Support\Facades\DB::transaction(function () use ($page, $json, $dbKeys, $sectionKey) {
+            System::updateOrCreate(['key' => PageContentGroups::customSchemaKey($page)], ['content' => json_encode($json, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR)]);
+            System::whereIn('key', $dbKeys)->delete();
+            if ($page === 'About Us') {
+                $row = System::where('key', \App\Support\AboutSectionOrder::STORAGE_KEY)->lockForUpdate()->first();
+                $order = $row ? json_decode($row->content, true) : null;
+                if (is_array($order)) {
+                    $row->update(['content' => json_encode(array_values(array_filter($order, fn ($name) => $name !== $sectionKey)), JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR)]);
+                }
+            }
+        }, 3);
         app(SystemSettings::class)->forget();
 
         return back()->with('success', 'Section deleted successfully.');

@@ -22,6 +22,13 @@
         .about-editor-group h6 { margin: 0 0 1rem; font-weight: 700; }
         .about-editor-group .form-label { font-weight: 600; }
         .about-editor-actions { position: sticky; bottom: 0; z-index: 5; background: rgba(255,255,255,.97); border-top: 1px solid var(--bs-border-color); padding: .9rem 1.2rem; margin: 1rem -1.25rem -1.25rem; }
+        .section-sort-controls { display:flex; align-items:center; gap:.25rem; margin-left:auto; }
+        .section-sort-controls button { border:0; background:transparent; border-radius:8px; color:#a94027; padding:.45rem; line-height:1; }
+        .section-sort-controls button:focus-visible { outline:3px solid var(--bs-primary); }
+        .section-sort-handle { cursor:grab; touch-action:none; }
+        .section-sort-handle:active { cursor:grabbing; }
+        .about-editor-section.is-dragging { opacity:.55; }
+        .about-editor-section summary:has(.section-sort-controls)::after { margin-left:.25rem; }
         
     </style>
 @endpush
@@ -39,11 +46,13 @@
         ))->collapse()->all() : [];
         $previewRoutes = ['Home' => 'home', 'About Us' => 'page.about', 'Our Legacy' => 'page.legacy', 'Sale' => 'page.sale', 'FAQ' => 'page.faq', 'Privacy Policy' => 'page.privacy', 'Terms of Service' => 'page.terms', 'Shipping & Refunds' => 'page.shipping'];
         $aboutHelp = [
+            'Home - Our story' => ['Our story', 'Edit the story image, text and button shown on the home page.'],
             'About Us - Hero' => ['Opening banner', 'The first heading and highlights visitors see.'],
             'About Us - Navigation' => ['Quick links', 'Labels for the links beneath the opening banner.'],
             'About Us - Who We Are' => ['Our story', 'Your introduction, highlights, photo and quote.'],
             'About Us - What We Do' => ['Our craft and products', 'The process steps and the three product cards.'],
             'About Us - Why Trust Us' => ['Why customers trust us', 'Your promises, quality standards and testimonial.'],
+            'About Us - Customer reviews' => ['Customer reviews', 'Manage the review heading, photos, ratings and visibility.'],
             'About Us - Call to Action' => ['Closing call to action', 'The final message and buttons at the bottom of the page.'],
         ];
     @endphp
@@ -76,7 +85,7 @@
             @if ($isEasyPage)
                 <div class="about-editor-intro mb-4">
                     <strong>How to edit this page</strong>
-                    <ol><li>Open the part of the page you want to change.</li><li>Edit its text or images{{ $selectedPage === 'Home' ? '.' : ', and choose whether sections are visible where available.' }}</li><li>Click <strong>Save changes</strong>, then open the page to check your work.</li></ol>
+                    <ol><li>Open the part of the page you want to change.</li><li>Edit its text or images, and choose whether sections are visible where available.</li><li>Click <strong>Save changes</strong>, then open the page to check your work.</li></ol>
                     @if (isset($previewRoutes[$selectedPage]))
                         <a href="{{ route($previewRoutes[$selectedPage]) }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary mt-3">View {{ $selectedPage }} <span aria-hidden="true">↗</span></a>
                         <span class="small text-muted ms-2">The live page shows saved changes only.</span>
@@ -107,17 +116,35 @@
                                         </div>
                                     </details>
                                 @endif
+                                @if($page === 'About Us')
+                                    @php
+                                        $previousOrder = old('section_order');
+                                        $savedOrder = is_array($previousOrder) ? json_encode($previousOrder) : ($values[\App\Support\AboutSectionOrder::STORAGE_KEY] ?? null);
+                                        $pageSections = \App\Support\AboutSectionOrder::arrange($pageSections, $savedOrder);
+                                    @endphp
+                                    <p class="small text-muted">Drag the handle to reorder sections, or use the arrow buttons. Save changes to update the public page.</p>
+                                    <div id="about-section-sortable" aria-label="About Us section order">
+                                    <span class="visually-hidden" aria-live="polite" id="section-order-status"></span>
+                                @endif
                                 @foreach ($pageSections as $section => $fields)
                                     @if ($isEasyPage)
                                     @php
                                         $sectionHelp = $aboutHelp[$section] ?? [str_replace($page . ' - ', '', $section), str_contains($section, ' - Section ') ? 'An optional section you can publish on the page.' : 'Edit the content shown in this part of the page.'];
                                         $fieldGroups = collect($fields)->groupBy(fn ($field) => $field['group'] ?? 'Section settings', true);
                                     @endphp
-                                    <details class="about-editor-section mb-3" {{ $loop->first ? 'open' : '' }}>
+                                    <details class="about-editor-section mb-3" @if($page === 'About Us') data-section-name="{{ $section }}" @endif {{ $loop->first ? 'open' : '' }}>
                                         <summary>
                                             <span class="about-editor-number">{{ $loop->iteration }}</span>
                                             <span><strong class="d-block">{{ $sectionHelp[0] }}</strong><small class="text-muted">{{ $sectionHelp[1] }}</small></span>
+                                            @if($page === 'About Us')
+                                            <span class="section-sort-controls">
+                                                <button type="button" data-move="up" aria-label="Move {{ $sectionHelp[0] }} up" title="Move up">↑</button>
+                                                <button type="button" data-move="down" aria-label="Move {{ $sectionHelp[0] }} down" title="Move down">↓</button>
+                                                <button type="button" class="section-sort-handle" aria-label="Drag to reorder {{ $sectionHelp[0] }}" title="Drag to reorder">⠿</button>
+                                            </span>
+                                            @endif
                                         </summary>
+                                        @if($page === 'About Us')<input type="hidden" name="section_order[]" value="{{ $section }}">@endif
                                         <div class="card-body border-top">
                                             @if(str_contains($section, ' - Section '))
                                                 <div class="d-flex justify-content-end mb-3">
@@ -145,6 +172,21 @@
                                                     </div>
                                                 </div>
                                             @endforeach
+                                            @if($section === 'About Us - Customer reviews')
+                                                @php $reviewerRows = old('reviewers', \App\Support\AboutReviewers::read($values[\App\Support\AboutReviewers::STORAGE_KEY] ?? null)); @endphp
+                                                <div class="about-editor-group">
+                                                    <h6>Customer reviews</h6>
+                                                    <p class="small text-muted">Add a review photo or screenshot. Reviewer name, rating and review text are optional. Only published reviews appear on the website. You can add up to 30 reviews.</p>
+                                                    <input type="hidden" name="reviewers_present" value="1">
+                                                    <div id="reviewer-editor-rows" data-next="{{ count($reviewerRows) }}">
+                                                        @foreach($reviewerRows as $row)
+                                                            @include('admin.layouts.partials.reviewer-editor-row', ['row' => $row, 'rowIndex' => $loop->index])
+                                                        @endforeach
+                                                    </div>
+                                                    <button type="button" class="btn btn-sm btn-outline-primary" id="add-reviewer-row">Add customer review</button>
+                                                    <template id="reviewer-editor-template">@include('admin.layouts.partials.reviewer-editor-row', ['row' => ['published' => true], 'rowIndex' => '__INDEX__'])</template>
+                                                </div>
+                                            @endif
                                         </div>
                                     </details>
                                     @else
@@ -180,6 +222,7 @@
                                     </details>
                                     @endif
                                 @endforeach
+                                @if($page === 'About Us')</div>@endif
                                 @if(in_array($page, \App\Support\PageContentGroups::CUSTOM_PAGES, true))
                                     <div class="card mb-3 bg-light border-dashed">
                                         <div class="card-body text-center py-4">
@@ -208,8 +251,35 @@
 
 @push('js')
     <script src="{{ asset('assets/admin/vendor/libs/quill/quill.js') }}"></script>
+    <script src="{{ asset('js/about-section-order.js') }}?v={{ filemtime(public_path('js/about-section-order.js')) }}" defer></script>
     <script>
         (() => {
+            const reviewerRows = document.getElementById('reviewer-editor-rows');
+            const addReviewer = document.getElementById('add-reviewer-row');
+            if (reviewerRows && addReviewer) {
+                addReviewer.addEventListener('click', () => {
+                    if (reviewerRows.querySelectorAll('.reviewer-editor-row').length >= 30) {
+                        AdminUI.toast('You can add up to 30 customer reviews.', 'error');
+                        return;
+                    }
+                    const index = Number(reviewerRows.dataset.next || 0);
+                    const html = document.getElementById('reviewer-editor-template').innerHTML.replaceAll('__INDEX__', String(index));
+                    reviewerRows.insertAdjacentHTML('beforeend', html);
+                    reviewerRows.dataset.next = String(index + 1);
+                    const row = reviewerRows.lastElementChild;
+                    const zone = row.querySelector('.nafu-system-dropzone');
+                    const input = document.getElementById(zone.dataset.input);
+                    NafuDropzone.mount(zone, input, 'Current image');
+                });
+                reviewerRows.addEventListener('click', event => {
+                    const button = event.target.closest('[data-reviewer-remove], [data-reviewer-move]');
+                    if (!button) return;
+                    const row = button.closest('.reviewer-editor-row');
+                    if (button.hasAttribute('data-reviewer-remove')) row.remove();
+                    else if (button.dataset.reviewerMove === 'up' && row.previousElementSibling) row.previousElementSibling.before(row);
+                    else if (button.dataset.reviewerMove === 'down' && row.nextElementSibling) row.nextElementSibling.after(row);
+                });
+            }
             const faqRows = document.getElementById('faq-editor-rows');
             const addFaq = document.getElementById('add-faq-row');
             if (faqRows && addFaq) addFaq.addEventListener('click', () => {

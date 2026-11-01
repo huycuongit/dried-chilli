@@ -1,0 +1,73 @@
+<?php
+putenv('APP_ENV=testing');
+putenv('CACHE_DRIVER=array');
+$tempDir = sys_get_temp_dir() . '/home-story-test-' . bin2hex(random_bytes(6));
+mkdir($tempDir, 0700, true);
+file_put_contents($tempDir . '/packages.php', '<?php return [];');
+putenv('APP_PACKAGES_CACHE=' . $tempDir . '/packages.php');
+putenv('APP_SERVICES_CACHE=' . $tempDir . '/services.php');
+putenv('VIEW_COMPILED_PATH=' . $tempDir);
+register_shutdown_function(function () use ($tempDir) { foreach (glob($tempDir . '/*') as $file) @unlink($file); @rmdir($tempDir); });
+require __DIR__.'/../../vendor/autoload.php';
+$providers = (require __DIR__.'/../../config/app.php')['providers'];
+file_put_contents($tempDir . '/services.php', '<?php return ' . var_export(['providers'=>$providers, 'eager'=>$providers, 'deferred'=>[], 'when'=>[]], true) . ';');
+$app = require __DIR__.'/../../bootstrap/app.php';
+if (DIRECTORY_SEPARATOR === '\\') $app->addAbsoluteCachePathPrefix(substr($tempDir, 0, 3));
+$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+config(['database.default'=>'sqlite','database.connections.sqlite.database'=>':memory:', 'session.driver'=>'array']);
+Illuminate\Support\Facades\DB::purge();
+$schema=Illuminate\Support\Facades\Schema::getFacadeRoot();
+$schema->create('systems',function($t){$t->id();$t->string('key')->unique();$t->longText('content')->nullable();$t->timestamps();});
+$schema->create('products',function($t){$t->id();$t->boolean('is_active');$t->boolean('is_trending');});
+$check=function($ok,$message){if(!$ok)throw new RuntimeException($message);};
+$sections=App\Support\PageContentGroups::sections();
+$home=App\Support\PageContentGroups::fromSections($sections)['Home'];
+$check(isset($home['Home - Hero banner'],$home['Home - Our story']),'Home editor groups');
+$content=[];foreach($home as $fields)foreach($fields as $key=>$field)if(!preg_match('/\.(css|js)(\?.*)?$/i',$field['value']??''))$content[$key]=$field['value']??'';
+$content['page_layout_home_story_visible']='1';
+$content['page_layout_home_story_title']='A new kitchen story';
+$content['page_layout_home_story_description']='Made with care in our kitchen.';
+$content['page_layout_home_story_image']='storage/page-images/test.webp';
+$content['page_layout_home_story_image_alt_text']='A jar of chili';
+$content['page_layout_home_story_button_text']='Explore our story';
+$content['page_layout_home_story_button_link']='/about-us';
+$save=function($payload)use($app){$request=Illuminate\Http\Request::create('/admin','PUT',['selected_page'=>'Home','content'=>$payload]);$s=new Illuminate\Session\Store('test',new Illuminate\Session\ArraySessionHandler(120));$s->start();$request->setLaravelSession($s);$app->instance('request',$request);return (new App\Http\Controllers\Admin\HomepageController())->update($request);};
+$save($content);
+$settings=app(App\Support\SystemSettings::class)->all();
+$check(($settings['nafu_home_page_layout_home_story_title']??null)==='A new kitchen story','saved story title');
+$check(($settings['nafu_home_page_layout_home_story_image_alt_text']??null)==='A jar of chili','saved image alt');
+$check(($settings['nafu_home_page_layout_home_story_image']??null)==='storage/page-images/test.webp','saved image');
+$fields=collect(json_decode(file_get_contents(config_path('public-page-layout.json')),true,512,JSON_THROW_ON_ERROR))->collapse()->all();
+$check(App\Support\AboutPageContent::value('page_layout_home_story_title',$fields,$settings)==='A new kitchen story','resolved saved title');
+view()->share('errors',new Illuminate\Support\ViewErrorBag());
+class HomeStoryTestAdmin extends App\Models\Admin {
+    public function hasPermission($permission) { return true; }
+    public function hasAnyPermission($permission) { return true; }
+    public function getAllCheckPermissions() { return collect(); }
+}
+$admin=new HomeStoryTestAdmin();$admin->setRawAttributes(['id'=>1,'name'=>'Test','user_name'=>'Admin']);$admin->setRelation('roles',collect());
+auth()->guard('admin')->setUser($admin);
+$editor=view('admin.homepage',['sections'=>$sections,'values'=>$settings,'faqs'=>collect()])->render();
+$check(str_contains($editor,'Home - Our story') || str_contains($editor,'Edit the story image, text and button'), 'story editor section missing');
+$check(str_contains($editor,'page_layout_home_story_image_alt_text') && str_contains($editor,'page_layout_home_story_button_link'), 'story editor fields missing');
+$html=(new App\Http\Controllers\HomeController())->index()->render();
+$check(str_contains($html,'A new kitchen story')&&str_contains($html,'Made with care in our kitchen.')&&str_contains($html,'storage/page-images/test.webp')&&str_contains($html,'A jar of chili')&&str_contains($html,'Explore our story'),'public story rendering');
+$content['page_layout_home_story_visible']='0';$save($content);
+$html=(new App\Http\Controllers\HomeController())->index()->render();
+$check(!str_contains($html,'A new kitchen story'),'hidden story remains visible');
+$content['page_layout_home_story_visible']='1';$content['page_layout_home_story_button_link']='javascript:alert(1)';$save($content);
+$html=(new App\Http\Controllers\HomeController())->index()->render();
+$check(!str_contains($html,'href="javascript:alert(1)"'),'unsafe URL');
+$content['page_layout_home_story_button_link']='/about-us';
+$content['page_layout_home_story_image']=asset('images/story_spices-optimized.webp');$save($content);
+$html=(new App\Http\Controllers\HomeController())->index()->render();
+$check(str_contains($html,'story_spices-420.webp') && str_contains($html,'story_spices-560-optimized.webp'),'default responsive image after saving absolute URL');
+config(['filesystems.disks.public.root'=>$tempDir.'/public']);
+Illuminate\Support\Facades\Storage::forgetDisk('public');
+$image=imagecreatetruecolor(1000,800);ob_start();imagepng($image);$binary=ob_get_clean();imagedestroy($image);
+$imageUrl=App\Support\Base64ImageStore::store('data:image/png;base64,'.base64_encode($binary),'page-images');
+$content['page_layout_home_story_image']=$imageUrl;$save($content);
+$html=(new App\Http\Controllers\HomeController())->index()->render();
+$check(str_contains($html,'-320w.webp') && str_contains($html,'-480w.webp') && str_contains($html,'-800w.webp'),'uploaded story image responsive variants');
+$disk=Illuminate\Support\Facades\Storage::disk('public');$disk->deleteDirectory('page-images');@rmdir($tempDir.'/public');
+echo "PASS: Home editor, save, image/alt/text/button rendering, hide and unsafe link handling\n";

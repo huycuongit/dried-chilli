@@ -4,7 +4,7 @@
 @section('meta_description', 'Discover the 100-year legacy behind Dried Chili: four generations of heirloom farming, ancestral 21-day solar curing, and the sacred valley terroir that gives our chili its legendary flavor.')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/about.css') }}?v={{ time() }}">
+<link rel="stylesheet" href="{{ asset('assets/css/about.css') }}?v={{ filemtime(public_path('assets/css/about.css')) }}">
 @endpush
 
 @php

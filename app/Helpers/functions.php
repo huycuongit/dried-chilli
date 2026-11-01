@@ -13,12 +13,12 @@ function App_Name()
     foreach ($setting as $value) {
         $data[$value->key] = $value->value;
     }
-    $app_name = $data['app_name'];
+    $app_name = $data['app_name'] ?? null;
 
     if (isset($app_name) && $app_name != "") {
         return $app_name;
     } else {
-        return env('APP_NAME');
+        return config('app.name');
     }
 }
 function setting_app_name()

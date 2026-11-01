@@ -77,6 +77,7 @@
 
     <!-- Core JS -->
     @include('admin.layouts.partials.js')
+    <script src="{{ asset('js/admin-token-refresh.js') }}?v={{ filemtime(public_path('js/admin-token-refresh.js')) }}" data-endpoint="{{ route('admin.refresh') }}" data-csrf="{{ csrf_token() }}" data-login="0" defer></script>
     <!-- /. Core JS -->
 </body>
 

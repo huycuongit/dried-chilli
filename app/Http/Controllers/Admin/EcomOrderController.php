@@ -98,4 +98,16 @@ class EcomOrderController extends Controller
         }
         return redirect()->route('admin.ecom_orders.index')->with('success', 'Order status updated successfully.');
     }
+
+    public function confirmCodPayment($id)
+    {
+        DB::transaction(function () use ($id) {
+            $order = Order::lockForUpdate()->findOrFail($id);
+            if ($order->payment_method !== 'cod' || $order->status === 'cancelled' || $order->payment_status !== 'unpaid') {
+                abort(422, 'Only an unpaid, non-cancelled COD order can be marked as collected.');
+            }
+            $order->update(['payment_status' => 'paid']);
+        });
+        return redirect()->route('admin.ecom_orders.edit', $id)->with('success', 'COD payment marked as collected.');
+    }
 }

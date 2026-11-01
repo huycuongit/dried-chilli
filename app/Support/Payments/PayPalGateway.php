@@ -6,6 +6,19 @@ use Illuminate\Support\Facades\Http;
 
 class PayPalGateway
 {
+    private function http()
+    {
+        $request = Http::timeout(20);
+        $bundle = config('services.paypal.ca_bundle');
+        if ($bundle) {
+            if (!is_string($bundle) || !is_file($bundle) || !is_readable($bundle)) {
+                throw new \RuntimeException('Configured PayPal CA bundle is missing or unreadable.');
+            }
+            $request = $request->withOptions(['verify' => $bundle]);
+        }
+        return $request;
+    }
+
     private function baseUrl(): string
     {
         return config('services.paypal.environment') === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';
@@ -37,7 +50,7 @@ class PayPalGateway
 
     public function retrieveOrderCapture(string $orderId): ?array
     {
-        $response = Http::withToken($this->accessToken())->timeout(20)
+        $response = $this->http()->withToken($this->accessToken())
             ->get($this->baseUrl() . '/v2/checkout/orders/' . rawurlencode($orderId));
         if ($response->failed()) throw new \RuntimeException('Could not reconcile PayPal order status.');
         return $this->captureDetails($response->json());
@@ -65,7 +78,7 @@ class PayPalGateway
 
     public function retrieveRefund(string $refundId): array
     {
-        $response = Http::withToken($this->accessToken())->timeout(20)
+        $response = $this->http()->withToken($this->accessToken())
             ->get($this->baseUrl() . '/v2/payments/refunds/' . rawurlencode($refundId));
         if ($response->failed()) throw new \RuntimeException('Could not retrieve PayPal refund status.');
         return $response->json();
@@ -74,7 +87,7 @@ class PayPalGateway
     private function request(string $path, string $requestId, array $body): array
     {
         // PayPal expects a JSON object; an empty PHP array would be sent as "[]".
-        $response = Http::withToken($this->accessToken())->timeout(20)
+        $response = $this->http()->withToken($this->accessToken())
             ->withHeaders(['PayPal-Request-Id' => $requestId])
             ->withBody($body ? json_encode($body) : '{}', 'application/json')
             ->post($this->baseUrl() . $path);
@@ -87,7 +100,7 @@ class PayPalGateway
 
     private function accessToken(): string
     {
-        $response = Http::asForm()->timeout(20)
+        $response = $this->http()->asForm()
             ->withBasicAuth((string) config('services.paypal.client_id'), (string) config('services.paypal.client_secret'))
             ->post($this->baseUrl() . '/v1/oauth2/token', ['grant_type' => 'client_credentials']);
         $token = $response->successful() ? $response->json('access_token') : null;

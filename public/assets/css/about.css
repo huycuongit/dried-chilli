@@ -1812,3 +1812,29 @@
     }
 }
 
+
+/* Customer reviews */
+.reviewer-gallery { margin-top: 0; }
+.reviewer-gallery-heading { text-align: center; max-width: 680px; margin: 0 auto 2rem; }
+.reviewer-gallery-label { color: var(--spice-primary, #db4b2b); font-size: .75rem; font-weight: 800; letter-spacing: .12em; }
+.reviewer-gallery-heading h2 { margin: .6rem 0; color: #2c130d; font-size: clamp(1.65rem, 3vw, 2.35rem); font-weight: 750; line-height: 1.2; }
+.reviewer-gallery-heading p { margin: 0; color: #6b574d; line-height: 1.6; }
+.reviewer-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; }
+.reviewer-photo-card { min-width: 0; overflow: hidden; border: 1px solid rgba(71, 38, 24, .09); border-radius: 18px; background: #fff; box-shadow: 0 8px 24px rgba(63, 33, 18, .05); display: flex; flex-direction: column; }
+.reviewer-photo-image { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #f3e7dc; }
+.reviewer-photo-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.reviewer-photo-view { position: absolute; right: .75rem; bottom: .75rem; padding: .35rem .65rem; border-radius: 30px; color: #fff; background: rgba(45, 22, 15, .76); font-size: .7rem; font-weight: 700; }
+.reviewer-photo-image:focus-visible { outline: 3px solid var(--spice-primary, #db4b2b); outline-offset: -3px; }
+.reviewer-photo-content { display: flex; flex: 1; flex-direction: column; gap: .85rem; padding: 1.3rem 1.4rem 1.4rem; overflow-wrap: anywhere; }
+.reviewer-rating { color: #dd8c22; font-size: 1rem; letter-spacing: .14em; line-height: 1; }
+.reviewer-rating-empty { color: #d7c7b8; }
+.reviewer-photo-content .reviewer-quote { margin: 0; color: #4d3930; font-size: .96rem; line-height: 1.65; white-space: pre-line; }
+.reviewer-author { display: flex; align-items: center; gap: .65rem; margin-top: auto; padding-top: .8rem; border-top: 1px solid #f1e9e2; }
+.reviewer-author-mark { display: grid; flex: none; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #fbede5; color: #b74325; font-size: .8rem; font-weight: 800; }
+.reviewer-author strong { color: #321a11; font-size: .88rem; font-weight: 750; }
+@media (max-width: 575px) {
+    .reviewer-gallery { margin-top: 0; }
+    .reviewer-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+    .reviewer-photo-card { border-radius: 13px; }
+    .reviewer-photo-content { padding: .75rem; font-size: .88rem; }
+}

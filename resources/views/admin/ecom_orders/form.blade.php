@@ -13,6 +13,7 @@
                         <p>User ID: {{ $data->user_id }}</p>
                         <p>Total: ${{ number_format($data->total_amount, 2) }}</p>
                         <p>Payment status: {{ $data->payment_status }}</p>
+                        <p>Payment method: {{ strtoupper($data->payment_method ?? '—') }}</p>
                         @if($paymentAttempt && $paymentAttempt->status === \App\Models\PaymentAttempt::REFUND_PENDING)
                             <p class="text-warning">Refund pending: {{ $paymentAttempt->refund_last_error ?: 'Awaiting provider confirmation.' }}</p>
                         @endif
@@ -46,6 +47,12 @@
                         <a href="{{ route('admin.ecom_orders.index') }}" class="btn btn-label-secondary">Cancel</a>
                     </div>
                 </form>
+                @if($data->payment_method === 'cod' && $data->payment_status === 'unpaid' && $data->status !== 'cancelled' && userHasPermission('admin.ecom_orders.edit'))
+                    <form action="{{ route('admin.ecom_orders.confirm-cod-payment', $data->id) }}" method="POST" class="mt-3" onsubmit="return confirm('Confirm that this COD payment has actually been collected?');">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-success">Confirm COD payment collected</button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

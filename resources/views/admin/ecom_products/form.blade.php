@@ -216,6 +216,10 @@
                             <label class="form-check-label" for="is_active">Active (Visible on site)</label>
                         </div>
                         <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="is_trending" name="is_trending" value="1" {{ old('is_trending', $data->is_trending) ? 'checked' : '' }} />
+                            <label class="form-check-label" for="is_trending">View Trending (Home page; up to 6 active products)</label>
+                        </div>
+                        <div class="form-check form-switch mb-2">
                             <input class="form-check-input" type="checkbox" id="is_best_seller" name="is_best_seller" value="1" {{ old('is_best_seller', $data->is_best_seller) ? 'checked' : '' }} />
                             <label class="form-check-label" for="is_best_seller">Set as Best Seller</label>
                         </div>

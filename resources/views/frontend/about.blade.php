@@ -13,18 +13,20 @@
         $link = trim($aboutValue($key));
         return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
     };
-    $customAboutSections = collect(\App\Support\PageContentGroups::sections())
-        ->filter(fn ($fields, $name) => str_starts_with($name, 'About Us - Section '));
+    $pageGroups = \App\Support\PageContentGroups::fromSections(\App\Support\PageContentGroups::sections());
+    $orderedAboutSections = \App\Support\AboutSectionOrder::arrange($pageGroups['About Us'] ?? [], $systemSettings[\App\Support\AboutSectionOrder::STORAGE_KEY] ?? null);
 @endphp
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/about.css') }}?v={{ time() }}">
+<link rel="stylesheet" href="{{ asset('assets/css/about.css') }}?v={{ filemtime(public_path('assets/css/about.css')) }}">
 @endpush
 
 @section('full-content')
 <main class="page-content about-page">
+    @foreach($orderedAboutSections as $sectionName => $sectionFields)
 
     <!-- HERO SECTION: Minimalist, Refined & Confident -->
+    @if($sectionName === 'About Us - Hero')
     @if($aboutValue('page_about_layout_show_hero') === '1')
     <section class="about-hero-section">
         <div class="container about-hero-container">
@@ -76,8 +78,10 @@
         </div>
     </section>
     @endif
+    @endif
 
     <!-- NAVIGATION ANCHORS (Quick Jump Bar) -->
+    @if($sectionName === 'About Us - Navigation')
     @if($aboutValue('page_about_layout_show_identity') === '1' || $aboutValue('page_about_layout_show_craft') === '1' || $aboutValue('page_about_layout_show_trust') === '1')
     <nav class="about-quick-nav">
         <div class="container quick-nav-flex">
@@ -104,11 +108,12 @@
         </div>
     </nav>
     @endif
+    @endif
 
     <!-- ========================================================================= -->
     <!-- PILLAR 1: WHO WE ARE (OUR IDENTITY) -->
     <!-- ========================================================================= -->
-    @if($aboutValue('page_about_layout_show_identity') === '1')
+    @if($sectionName === 'About Us - Who We Are' && $aboutValue('page_about_layout_show_identity') === '1')
     <section id="who-we-are" class="about-pillar-section bg-cream">
         <div class="container">
             <div class="pillar-grid align-center {{ $aboutValue('page_about_layout_identity_position') === 'left' ? 'about-identity-image-left' : '' }}">
@@ -181,7 +186,7 @@
     <!-- ========================================================================= -->
     <!-- PILLAR 2: WHAT WE DO (OUR CRAFT) -->
     <!-- ========================================================================= -->
-    @if($aboutValue('page_about_layout_show_craft') === '1')
+    @if($sectionName === 'About Us - What We Do' && $aboutValue('page_about_layout_show_craft') === '1')
     <section id="what-we-do" class="about-pillar-section bg-alt">
         <div class="container">
             
@@ -315,7 +320,7 @@
     <!-- ========================================================================= -->
     <!-- PILLAR 3: WHY TRUST US (TRANSPARENCY & PROOF) -->
     <!-- ========================================================================= -->
-    @if($aboutValue('page_about_layout_show_trust') === '1')
+    @if($sectionName === 'About Us - Why Trust Us' && $aboutValue('page_about_layout_show_trust') === '1')
     <section id="why-trust-us" class="about-pillar-section bg-cream">
         <div class="container">
             
@@ -443,10 +448,54 @@
     </section>
     @endif
 
+    @if($sectionName === 'About Us - Customer reviews' && $aboutValue('page_about_layout_review_gallery_visible') === '1')
+            @php
+                $reviewerPhotos = array_values(array_filter(
+                    \App\Support\AboutReviewers::read($systemSettings[\App\Support\AboutReviewers::STORAGE_KEY] ?? null),
+                    fn ($row) => !empty($row['published']) && \App\Support\AboutReviewers::isSafeImage($row['image'] ?? null)
+                ));
+            @endphp
+            @if(count($reviewerPhotos))
+                <section id="customer-reviews" class="about-pillar-section bg-cream">
+                <div class="container">
+                <div class="reviewer-gallery">
+                    <div class="reviewer-gallery-heading">
+                        <span class="reviewer-gallery-label">{{ $aboutValue('page_about_layout_review_gallery_label') }}</span>
+                        <h2>{{ $aboutValue('page_about_layout_review_gallery_title') }}</h2>
+                        <p>{{ $aboutValue('page_about_layout_review_gallery_description') }}</p>
+                    </div>
+                    <div class="reviewer-gallery-grid">
+                        @foreach($reviewerPhotos as $reviewer)
+                            @php
+                                $reviewerImage = trim($reviewer['image']);
+                                $reviewerSrcset = \App\Support\ResponsivePageImages::srcset($reviewerImage);
+                                $reviewRating = filter_var($reviewer['rating'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 5]]) ?: null;
+                            @endphp
+                            <article class="reviewer-photo-card">
+                                <a class="reviewer-photo-image" href="{{ asset($reviewerImage) }}" target="_blank" rel="noopener noreferrer" aria-label="View full review image{{ !empty($reviewer['name']) ? ' from ' . $reviewer['name'] : '' }}">
+                                    <img src="{{ asset($reviewerImage) }}" @if($reviewerSrcset !== '') srcset="{{ $reviewerSrcset }}" sizes="(max-width: 575px) 44vw, (max-width: 991px) 29vw, 360px" @endif alt="{{ !empty($reviewer['alt']) ? $reviewer['alt'] : (!empty($reviewer['name']) ? 'Photo of ' . $reviewer['name'] : 'Community reviewer photo') }}" width="480" height="600" loading="lazy" decoding="async">
+                                    <span class="reviewer-photo-view" aria-hidden="true">View photo ↗</span>
+                                </a>
+                                @if(!empty($reviewer['name']) || !empty($reviewer['caption']) || $reviewRating)
+                                    <div class="reviewer-photo-content">
+                                        @if($reviewRating)<div class="reviewer-rating" role="img" aria-label="{{ $reviewRating }} out of 5 stars"><span aria-hidden="true">{{ str_repeat('★', $reviewRating) }}<span class="reviewer-rating-empty">{{ str_repeat('☆', 5 - $reviewRating) }}</span></span></div>@endif
+                                        @if(!empty($reviewer['caption']))<p class="reviewer-quote">{{ $reviewer['caption'] }}</p>@endif
+                                        @if(!empty($reviewer['name']))<div class="reviewer-author"><span class="reviewer-author-mark" aria-hidden="true">{{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr(trim($reviewer['name']), 0, 1)) }}</span><strong>{{ $reviewer['name'] }}</strong></div>@endif
+                                    </div>
+                                @endif
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
+                </div>
+                </section>
+            @endif
+    @endif
+
     <!-- ========================================================================= -->
     <!-- CALL TO ACTION (TASTE THE CRAFT) -->
     <!-- ========================================================================= -->
-    @foreach($customAboutSections as $sectionFields)
+    @if(str_starts_with($sectionName, 'About Us - Section '))
         @php
             $activeKey = collect(array_keys($sectionFields))->first(fn ($key) => str_ends_with($key, '_published'));
             $prefix = $activeKey ? substr($activeKey, 0, -10) : '';
@@ -481,8 +530,8 @@
                 </div>
             </section>
         @endif
-    @endforeach
-    @if($aboutValue('page_about_layout_show_cta') === '1')
+    @endif
+    @if($sectionName === 'About Us - Call to Action' && $aboutValue('page_about_layout_show_cta') === '1')
     <section class="about-cta-section">
         <div class="container">
             <div class="cta-inner-card">
@@ -511,6 +560,7 @@
         </div>
     </section>
     @endif
+    @endforeach
 
 </main>
 @endsection

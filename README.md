@@ -2,6 +2,27 @@
 
 Hệ thống cài đặt dữ liệu cho lịch học, học viên.
 
+### PHP version
+
+The application requires PHP 8.3 or newer for both CLI and the web server (PHP-FPM or Apache). Individual locked packages may impose additional version limits: the current locked PhpSpreadsheet version requires PHP below 8.5, so use PHP 8.3 or 8.4 with this lock file. Install its required extensions, then use the same PHP version for Composer and Artisan. On Windows, if `php` on PATH points to another version, use the actual PHP executable path:
+
+```powershell
+& 'C:\path\to\php-8.3\php.exe' 'C:\Users\Admin\composer\composer.phar' install --no-dev --optimize-autoloader
+powershell -File scripts/serve-local.ps1 -PhpPath 'C:\path\to\php-8.3\php.exe'
+```
+
+On Linux, verify both `php8.3 -v` and the PHP-FPM version used by the web server before deploying; run Composer and Artisan with a compatible PHP version. Do not bypass Composer's platform checks.
+
+### Admin authentication
+
+Admin routes validate a 15-minute signed access JWT against a revocable database session. An HttpOnly refresh cookie rotates on the CSRF-protected refresh endpoint; its lifetime is eight hours without Remember me and up to 30 days with it. Both tokens are rejected after logout or account/password changes. The browser refreshes periodically and on return to an admin tab; if the access token has expired, the login page attempts a silent refresh. Existing admin sessions must sign in again after deployment. Run `php artisan migrate --force` before serving the new code. Use a stable `APP_KEY`, HTTPS and `SESSION_SECURE_COOKIE=true` in production. All application servers must use the same key, database and shared Laravel session storage for CSRF. JWT validation does not replace role and permission checks.
+
+Run `php tests/Feature/admin-jwt.php` to exercise the login flow against an in-memory SQLite database.
+
+### PayPal TLS certificates
+
+PayPal HTTPS requests verify certificates. Normally PHP's system CA configuration is used. When PHP cannot find a CA bundle (for example, cURL error 60 on Windows), set `PAYPAL_CA_BUNDLE` to the absolute path of a trusted, readable CA bundle and restart the PHP server; do not disable TLS verification. For production use the server's maintained CA store or an explicitly managed trusted bundle. If config caching is enabled, rebuild it after changing the environment. Verify with PayPal Sandbox before enabling live payments.
+
 ### Product image upload limits
 
 For local development on Windows, start the PHP server with `powershell -File scripts/serve-local.ps1`. This sets `upload_max_filesize=5M`, `post_max_size=32M`, and `max_file_uploads=20` for that server process. Restart an existing server after changing these settings.
@@ -20,10 +41,11 @@ After deploying the code, create variants for the existing public page images:
 
 ```sh
 php artisan images:generate-page-variants
+php artisan images:generate-product-variants
 php artisan view:clear
 ```
 
-The command can be rerun; it preserves originals and reports files it cannot process. Ensure the public storage disk is writable and `public/storage` points to `storage/app/public`. New page-image uploads generate variants automatically. Until variants exist, the original image remains in use.
+The commands can be rerun; they preserve originals and report files they cannot process. Ensure the public storage disk is writable and `public/storage` points to `storage/app/public`. New page and product image uploads generate variants automatically. Until variants exist, the original image remains in use. Image processing requires PHP GD or Imagick with WebP support.
 
 For nginx, include `deploy/nginx/static-assets.conf` in the existing HTTPS server block and check `nginx -t` before reloading. For Apache, enable `mod_expires`, `mod_headers` and `mod_deflate` and allow the directives in `public/.htaccess`. Existing CDN or server cache headers may need adjustment. Re-run both mobile and desktop PageSpeed after deployment; results depend on the live server and network.
 

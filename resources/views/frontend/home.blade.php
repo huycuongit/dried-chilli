@@ -398,6 +398,7 @@
 
             <div class="product-carousel">
                 @foreach($latestProducts->take(6) as $product)
+                @php $productSrcset = \App\Support\ResponsiveProductImages::srcset($product->image); @endphp
                 <div class="product-card">
                     @if($product->sale_price)
                     <div class="product-badge sale">Sale</div>
@@ -408,7 +409,7 @@
                         <a href="{{ route('page.product', $product->slug) }}"
                             aria-label="{{ $product->name }}"
                             style="display: block; width: 100%; height: 100%;">
-                            <img src="{{ $product->image_url }}" @if(str_ends_with(parse_url($product->image_url, PHP_URL_PATH) ?? '', '/images/product_hero-320.webp')) srcset="{{ asset('images/product_hero-200.webp') }} 200w, {{ asset('images/product_hero-320.webp') }} 320w" sizes="(max-width: 768px) 148px, 300px" @endif alt="{{ $product->name }}" width="300" height="300" loading="lazy">
+                            <img src="{{ $product->image_url }}" @if($productSrcset !== '') srcset="{{ $productSrcset }}" sizes="(max-width: 768px) 176px, 300px" @elseif(str_ends_with(parse_url($product->image_url, PHP_URL_PATH) ?? '', '/images/product_hero-320.webp')) srcset="{{ asset('images/product_hero-200.webp') }} 200w, {{ asset('images/product_hero-320.webp') }} 320w" sizes="(max-width: 768px) 176px, 300px" @endif alt="{{ $product->name }}" width="300" height="300" loading="lazy" decoding="async">
                         </a>
                         <!-- Desktop Hover Quick Add Button -->
                         <button type="button" class="quick-add desktop-quick-add" data-product-id="{{ $product->id }}" aria-label="Quick Add {{ $product->name }}">
@@ -528,18 +529,29 @@
     </section> -->
 
     <!-- Image with Text -->
+    @if($pageLayoutValue('page_layout_home_story_visible') === '1')
+    @php
+        $storyImage = $pageLayoutValue('page_layout_home_story_image');
+        $storyImagePath = '/' . ltrim((string) parse_url($storyImage, PHP_URL_PATH), '/');
+        $storyImageHost = parse_url($storyImage, PHP_URL_HOST);
+        $defaultStoryImage = $storyImagePath === '/images/story_spices-optimized.webp'
+            && ($storyImageHost === null || strcasecmp($storyImageHost, request()->getHost()) === 0);
+        $storySrcset = $defaultStoryImage
+            ? asset('images/story_spices-420.webp') . ' 420w, ' . asset('images/story_spices-560-optimized.webp') . ' 560w, ' . asset('images/story_spices-optimized.webp') . ' 1024w'
+            : \App\Support\ResponsivePageImages::srcset($storyImage);
+    @endphp
     <section class="spice-story reveal">
         <div class="container">
             <div class="story-grid">
                 <div class="story-image">
-                    <img src="{{ asset('images/story_spices-optimized.webp') }}" srcset="{{ asset('images/story_spices-420.webp') }} 420w, {{ asset('images/story_spices-560-optimized.webp') }} 560w, {{ asset('images/story_spices-optimized.webp') }} 1024w" sizes="(max-width: 768px) 280px, 512px" alt="Spices on market" width="1024" height="1024" loading="lazy" decoding="async">
+                    @if($storyImage !== '')<img src="{{ asset($storyImage) }}" @if($storySrcset !== '') srcset="{{ $storySrcset }}" sizes="(max-width: 768px) 280px, 512px" @endif alt="{{ $pageLayoutValue('page_layout_home_story_image_alt_text') }}" width="1024" height="1024" loading="lazy" decoding="async">@endif
                 </div>
                 <div class="story-content">
-                    <span class="subheading">OUR STORY</span>
-                    <h2>Passionate About Flavor</h2>
-                    <p>We believe that every dish tells an unforgettable culinary story, and the spices you choose define its authentic voice. Our journey began across the vibrant heritage spice markets of Asia, curating prime sun-dried chillies and slow-roasting hand-ground aromatics to empower passionate home chefs who demand uncompromising heat, crunch, and umami depth.</p>
-                    <a href="{{ route('page.about') }}" class="btn-primary" aria-label="Learn More About Our Story">
-                        <span>Learn More About Our Story</span>
+                    <span class="subheading">{{ $pageLayoutValue('page_layout_home_story_label') }}</span>
+                    <h2>{{ $pageLayoutValue('page_layout_home_story_title') }}</h2>
+                    <p>{{ $pageLayoutValue('page_layout_home_story_description') }}</p>
+                    <a href="{{ $pageLayoutLink('page_layout_home_story_button_link') }}" class="btn-primary" aria-label="{{ $pageLayoutValue('page_layout_home_story_button_text') }}">
+                        <span>{{ $pageLayoutValue('page_layout_home_story_button_text') }}</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14" />
@@ -550,6 +562,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     <!-- Compact Testimonials -->
     <section class="spice-compact-testimonials reveal">

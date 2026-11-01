@@ -313,7 +313,8 @@
         var isSubmitting = false;
 
         //-- Func submit
-        function funcLogin() {
+        async function funcLogin() {
+            if (window.adminRefreshReady && await window.adminRefreshReady) return false;
             if (isSubmitting) {
                 return false;
             }
@@ -410,6 +411,7 @@
             initPasswordToggle();
         });
     </script>
+    <script src="{{ asset('js/admin-token-refresh.js') }}?v={{ filemtime(public_path('js/admin-token-refresh.js')) }}" data-endpoint="{{ route('admin.refresh') }}" data-csrf="{{ csrf_token() }}" data-login="1" defer></script>
 </body>
 
 </html>

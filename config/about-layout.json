@@ -560,6 +560,31 @@
             "group": "Customer testimonial"
         }
     },
+    "About Us - Customer reviews": {
+        "page_about_layout_review_gallery_visible": {
+            "value": "1",
+            "label": "Show customer reviews",
+            "type": "select",
+            "options": {"1": "Show", "0": "Hide"},
+            "group": "Section settings"
+        },
+        "page_about_layout_review_gallery_label": {
+            "value": "CUSTOMER REVIEWS",
+            "label": "Reviews small heading",
+            "group": "Customer reviews"
+        },
+        "page_about_layout_review_gallery_title": {
+            "value": "Stories from our customers",
+            "label": "Reviews heading",
+            "group": "Customer reviews"
+        },
+        "page_about_layout_review_gallery_description": {
+            "value": "See the moments and experiences shared by our community.",
+            "label": "Reviews introduction",
+            "type": "textarea",
+            "group": "Customer reviews"
+        }
+    },
     "About Us - Call to Action": {
         "page_about_layout_show_cta": {
             "value": "1",

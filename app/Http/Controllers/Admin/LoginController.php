@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Support\AdminJwt;
 
 use Exception;
 
@@ -13,22 +14,14 @@ class LoginController extends Controller
 {
     protected $redirectTo = 'admin/login';
 
-    public function __construct()
+    public function login(Request $request, AdminJwt $jwt)
     {
         try {
-            $this->middleware('guest', ['except' => 'logout']);
-        } catch (Exception $e) {
-            return response()->json(array('status' => 400, 'errors' => $e->getMessage()));
-        }
-    }
-
-    public function login()
-    {
-        try {
-            if (auth()->guard('admin')->check()) {
+            $admin = $jwt->authenticate($request);
+            if ($admin) {
                 return redirect()->route('admin.dashboard.index');
             }
-            return view('admin.login.login');
+            return response()->view('admin.login.login');
         } catch (Exception $e) {
             return response()->json(
                 array(
@@ -39,12 +32,16 @@ class LoginController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request, AdminJwt $jwt)
     {
         try {
+            $cookies = $jwt->revoke($request);
             auth()->guard('admin')->logout();
-            return redirect()->route('admin.login')
-                ->with('success', __('label.logout_successfully'));
+            $request->session()->regenerate(true);
+            $request->session()->regenerateToken();
+            $response = redirect()->route('admin.login')->with('success', __('label.logout_successfully'));
+            foreach ($cookies as $cookie) $response->headers->setCookie($cookie);
+            return $response;
         } catch (Exception $e) {
             return response()->json(
                 array(
@@ -55,7 +52,19 @@ class LoginController extends Controller
         }
     }
 
-    public function postlogin(Request $request)
+    public function refresh(Request $request, AdminJwt $jwt)
+    {
+        $result = $jwt->rotate($request);
+        if (!$result) return response()->json(['message' => 'Session expired. Please sign in again.'], 401);
+        [$admin, $access, $refresh] = $result;
+        auth()->guard('admin')->login($admin);
+        $response = response()->json(['redirect_url' => route('admin.dashboard.index', [], false)]);
+        $response->headers->setCookie($access);
+        $response->headers->setCookie($refresh);
+        return $response;
+    }
+
+    public function postlogin(Request $request, AdminJwt $jwt)
     {
         try {
             $input = $request->only(
@@ -99,7 +108,7 @@ class LoginController extends Controller
                     'email' => $input['email'],
                     'password' => $input['password']
                 ],
-                $remember
+                false
             )) {
                 $user = auth()->guard('admin')->user();
 
@@ -113,15 +122,19 @@ class LoginController extends Controller
                     );
                 }
 
-                $request->session()->regenerate();
+                $jwt->revoke($request);
+                $request->session()->regenerate(true);
+                $cookies = $jwt->start($request, $user, $remember);
 
-                return response()->json(
+                $response = response()->json(
                     array(
                         'status' => 200,
                         'success' => __('label.success_login'),
                         'redirect_url' => route('admin.dashboard.index', [], false)
                     )
                 );
+                foreach ($cookies as $cookie) $response->headers->setCookie($cookie);
+                return $response;
             } else {
                 return response()->json(
                     array(

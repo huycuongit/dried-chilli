@@ -80,6 +80,7 @@ class EcomProductController extends Controller
             'sale_end_date' => $request->sale_end_date,
             'description' => $request->description,
             'is_best_seller' => $request->has('is_best_seller'),
+            'is_trending' => $request->has('is_trending'),
             'is_active' => $request->has('is_active'),
             'is_sale' => $request->has('is_sale'),
             'is_limited_sale' => $request->has('is_limited_sale'),
@@ -96,6 +97,7 @@ class EcomProductController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $file) {
                 $path = $file->store('products', 'public');
+                try { \App\Support\ResponsiveProductImages::generate($path); } catch (\Throwable $exception) { report($exception); }
                 $imagePath = 'storage/' . $path;
                 $isPrimary = ($index === 0);
 
@@ -145,6 +147,7 @@ class EcomProductController extends Controller
             'sale_end_date' => $request->sale_end_date,
             'description' => $request->description,
             'is_best_seller' => $request->has('is_best_seller'),
+            'is_trending' => $request->has('is_trending'),
             'is_active' => $request->has('is_active'),
             'is_sale' => $request->has('is_sale'),
             'is_limited_sale' => $request->has('is_limited_sale'),
@@ -162,7 +165,9 @@ class EcomProductController extends Controller
             $imagesToDelete = ProductImage::where('product_id', $product->id)->whereIn('id', $deleteIds)->get();
             foreach ($imagesToDelete as $delImg) {
                 if ($delImg->image_path && str_starts_with($delImg->image_path, 'storage/')) {
-                    Storage::disk('public')->delete(str_replace('storage/', '', $delImg->image_path));
+                    $path = substr($delImg->image_path, strlen('storage/'));
+                    \App\Support\ResponsiveProductImages::deleteVariants($path);
+                    Storage::disk('public')->delete($path);
                 }
                 $delImg->delete();
             }
@@ -180,6 +185,7 @@ class EcomProductController extends Controller
             $lastSort = (int) ProductImage::where('product_id', $product->id)->max('sort_order');
             foreach ($request->file('images') as $i => $file) {
                 $path = $file->store('products', 'public');
+                try { \App\Support\ResponsiveProductImages::generate($path); } catch (\Throwable $exception) { report($exception); }
                 $imagePath = 'storage/' . $path;
 
                 ProductImage::create([
@@ -230,7 +236,9 @@ class EcomProductController extends Controller
         // Remove uploaded images from disk
         foreach ($product->images as $img) {
             if ($img->image_path && str_starts_with($img->image_path, 'storage/')) {
-                Storage::disk('public')->delete(str_replace('storage/', '', $img->image_path));
+                $path = substr($img->image_path, strlen('storage/'));
+                \App\Support\ResponsiveProductImages::deleteVariants($path);
+                Storage::disk('public')->delete($path);
             }
         }
 
@@ -242,7 +250,9 @@ class EcomProductController extends Controller
     {
         $image = ProductImage::where('product_id', $productId)->where('id', $imageId)->firstOrFail();
         if ($image->image_path && str_starts_with($image->image_path, 'storage/')) {
-            Storage::disk('public')->delete(str_replace('storage/', '', $image->image_path));
+            $path = substr($image->image_path, strlen('storage/'));
+            \App\Support\ResponsiveProductImages::deleteVariants($path);
+            Storage::disk('public')->delete($path);
         }
         $wasPrimary = $image->is_primary;
         $image->delete();

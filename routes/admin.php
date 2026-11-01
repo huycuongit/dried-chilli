@@ -25,9 +25,14 @@ use App\Http\Controllers\Admin\ServiceContractController;
 |
 */
 // Routers for Auth Admin
-$finalString = 'dried-chili';
+$finalString = 'dried-chilli';
 Route::get('/', fn() => redirect()->route('admin.login'));
-Route::match(['get', 'post'], 'logout', [LoginController::class, 'logout'])->name('admin.logout');
+Route::post('logout', [LoginController::class, 'logout'])->name('admin.logout');
+Route::post('auth/refresh', [LoginController::class, 'refresh'])->middleware('throttle:30,1')->name('admin.refresh');
+Route::get('dried-chili/{path?}', function (\Illuminate\Http\Request $request, $path = null) {
+    $target = '/admin/dried-chilli' . ($path ? '/' . $path : '');
+    return redirect($target . ($request->getQueryString() ? '?' . $request->getQueryString() : ''), 302);
+})->where('path', '.*');
 Route::get($finalString, [LoginController::class, 'login'])->name('admin.login');
 Route::get($finalString . 'login' . $finalString, [LoginController::class, 'login']);
 Route::post($finalString, [LoginController::class, 'postlogin'])->middleware('throttle:10,1')->name('admin.save.login');
@@ -41,7 +46,7 @@ Route::post('admin/login', [LoginController::class, 'postlogin'])->middleware('t
 // Routers for authadmin
 Route::group(['middleware' => 'authadmin'], function () {
 
-    $project = 'dried-chili';
+    $project = 'dried-chilli';
 
     Route::post($project . '/editor/images', [\App\Http\Controllers\Admin\EditorImageController::class, 'store'])
         ->middleware('throttle:30,1')->name('admin.editor.images');
@@ -99,7 +104,7 @@ Route::group(['middleware' => 'authadmin'], function () {
 
             Route::controller(SystemController::class)->prefix('/systems')->as('admin.systems.')->group(function () {
                 Route::get('/generals', 'general')->name('generals');
-                Route::redirect('/homepage', '/admin/dried-chili/systems/pages');
+                Route::redirect('/homepage', '/admin/dried-chilli/systems/pages');
                 Route::get('/pages', [\App\Http\Controllers\Admin\HomepageController::class, 'index'])->name('pages');
                 Route::put('/pages', [\App\Http\Controllers\Admin\HomepageController::class, 'update'])->name('pages.save');
                 Route::match(['post', 'put'], '/pages/add-section', [\App\Http\Controllers\Admin\HomepageController::class, 'addSection'])->name('pages.add_section');
@@ -120,6 +125,7 @@ Route::group(['middleware' => 'authadmin'], function () {
             Route::delete('ecom-products/{product}/images/{image}', [\App\Http\Controllers\Admin\EcomProductController::class, 'deleteImage'])->name('admin.ecom_products.images.destroy');
             Route::post('ecom-products/{product}/images/{image}/primary', [\App\Http\Controllers\Admin\EcomProductController::class, 'setPrimaryImage'])->name('admin.ecom_products.images.primary');
             Route::get('ecom-orders/datatables', [\App\Http\Controllers\Admin\EcomOrderController::class, 'datatables'])->name('admin.ecom_orders.datatables');
+            Route::post('ecom-orders/{order}/confirm-cod-payment', [\App\Http\Controllers\Admin\EcomOrderController::class, 'confirmCodPayment'])->name('admin.ecom_orders.confirm-cod-payment');
             Route::resource('ecom-orders', \App\Http\Controllers\Admin\EcomOrderController::class)->names('admin.ecom_orders');
             
             Route::get('ecom-customers/datatables', [\App\Http\Controllers\Admin\EcomCustomerController::class, 'datatables'])->name('admin.ecom_customers.datatables');

@@ -24,6 +24,7 @@ class Product extends Model
         'image',
         'is_active',
         'is_best_seller',
+        'is_trending',
     ];
 
     /**
