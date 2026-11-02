@@ -235,6 +235,13 @@
                                     </div>
                                 </label>
                                 @endif
+                                <!-- Card form opens right under the Card option; shown by checkout-payments.js -->
+                                <div class="stripe-payment-box" id="stripe-payment-box" style="display: none;">
+                                    <div id="stripe-payment-element"></div>
+                                    <button type="button" id="stripe-pay-btn" class="checkout-btn-final">
+                                        <span>Pay Securely • <strong></strong></span>
+                                    </button>
+                                </div>
 
                                 @if ($paypalPayments)
                                 <!-- PayPal Card -->
@@ -250,19 +257,13 @@
                                     </div>
                                 </label>
                                 @endif
+                                <div id="paypal-button-container" style="display: none;"></div>
 
                             </div>
 
-                            <!-- Online payment (card / PayPal): the order is placed only after payment is confirmed -->
+                            <!-- Online payment status (card / PayPal): the order is placed only after payment is confirmed -->
                             <div class="online-payment-panel" id="online-payment-panel" style="display: none;">
                                 <div class="online-payment-status" id="online-payment-status" role="status" style="display: none;"></div>
-                                <div class="stripe-payment-box" id="stripe-payment-box" style="display: none;">
-                                    <div id="stripe-payment-element"></div>
-                                    <button type="button" id="stripe-pay-btn" class="checkout-btn-final">
-                                        <span>Pay Securely • <strong></strong></span>
-                                    </button>
-                                </div>
-                                <div id="paypal-button-container" style="display: none;"></div>
                             </div>
                         </div>
 
