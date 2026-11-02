@@ -27,7 +27,14 @@ class CartController extends Controller
     public function index(Request $request)
     {
         $cart = $this->getCart($request)->load(['items.product.variants', 'items.variant', 'items.bundle']);
-        
+
+        // cart_items has no foreign key to products, so a deleted product leaves its line behind.
+        $deleted = $cart->items->filter(fn ($item) => $item->product_id && !$item->product);
+        if ($deleted->isNotEmpty()) {
+            \App\Models\CartItem::whereIn('id', $deleted->pluck('id'))->delete();
+            $cart->setRelation('items', $cart->items->diff($deleted)->values());
+        }
+
         $subtotal = 0;
         foreach ($cart->items as $item) {
             if ($item->product_id) {

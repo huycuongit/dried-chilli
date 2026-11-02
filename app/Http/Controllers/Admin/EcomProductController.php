@@ -242,6 +242,7 @@ class EcomProductController extends Controller
             }
         }
 
+        \App\Models\CartItem::where('product_id', $product->id)->delete();
         $product->delete();
         return redirect()->route('admin.ecom_products.index')->with('success', 'Product deleted successfully.');
     }

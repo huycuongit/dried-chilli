@@ -56,18 +56,15 @@ class CartCheckout
             if ($item->bundle_id) {
                 throw new CheckoutException('Bundles are no longer available. Please remove the bundle from your cart.');
             }
-            if ($item->product_id) {
-                $inventory = Inventory::where('product_id', $item->product_id)->where('variant_id', $item->variant_id);
-                $inventory = ($lock ? $inventory->lockForUpdate() : $inventory)->first();
-                if (!$inventory || $inventory->quantity < $item->quantity) {
-                    $productName = $item->product ? $item->product->name : "Product #{$item->product_id}";
-                    throw new CheckoutException("{$productName} is out of stock or exceeds available quantity.");
-                }
-            }
-
             if (!$item->product || !$item->product->is_active) {
                 throw new CheckoutException('A product in your cart is no longer available.');
             }
+            $inventory = Inventory::where('product_id', $item->product_id)->where('variant_id', $item->variant_id);
+            $inventory = ($lock ? $inventory->lockForUpdate() : $inventory)->first();
+            if (!$inventory || $inventory->quantity < $item->quantity) {
+                throw new CheckoutException("{$item->product->name} is out of stock or exceeds available quantity.");
+            }
+
             $price = CartItemPricing::price($item);
             $subtotal += $price * $item->quantity;
 
