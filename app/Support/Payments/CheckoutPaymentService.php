@@ -4,6 +4,7 @@ namespace App\Support\Payments;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Order;
 use App\Models\PaymentAttempt;
 use App\Support\Shop\CartCheckout;
 use Illuminate\Database\QueryException;
@@ -224,6 +225,96 @@ class CheckoutPaymentService
             if (!$this->isUniqueConflict($e) || !DB::table('stripe_webhook_events')->where('id', $event['event_id'])->whereNotNull('processed_at')->exists()) throw $e;
         }
         if ($refundAttemptId) $this->refunds->retry($refundAttemptId);
+    }
+
+    /**
+     * Applies a PayPal webhook event. Handlers are idempotent: an event is marked processed only
+     * after it succeeds, so a failed delivery is simply run again on PayPal's retry.
+     */
+    public function handlePayPalWebhook(string $rawBody, array $signatureHeaders): void
+    {
+        $webhookId = (string) config('services.paypal.webhook_id');
+        abort_if($webhookId === '', 503, 'PayPal webhook is not configured.');
+        abort_if(in_array('', $signatureHeaders, true) || !$this->paypal->verifyWebhook($rawBody, $signatureHeaders, $webhookId), 400, 'Invalid PayPal webhook signature.');
+
+        $event = json_decode($rawBody, true);
+        abort_unless(is_array($event) && !empty($event['id']) && !empty($event['event_type']), 400, 'Invalid PayPal webhook payload.');
+        $events = DB::table('paypal_webhook_events');
+        if ((clone $events)->where('id', $event['id'])->whereNotNull('processed_at')->exists()) return;
+        (clone $events)->insertOrIgnore(['id' => $event['id'], 'type' => mb_substr($event['event_type'], 0, 120), 'created_at' => now()]);
+
+        $resource = $event['resource'] ?? [];
+        if (in_array($event['event_type'], ['PAYMENT.CAPTURE.COMPLETED', 'PAYMENT.CAPTURE.PENDING', 'PAYMENT.CAPTURE.DENIED'], true)) {
+            $this->applyPayPalCaptureEvent($event['event_type'], $resource);
+        } elseif (in_array($event['event_type'], ['PAYMENT.CAPTURE.REFUNDED', 'PAYMENT.CAPTURE.REVERSED'], true)) {
+            $this->applyPayPalRefundEvent($event['event_type'], $resource);
+        }
+
+        (clone $events)->where('id', $event['id'])->update(['processed_at' => now()]);
+    }
+
+    private function applyPayPalCaptureEvent(string $type, array $capture): void
+    {
+        $orderId = $capture['supplementary_data']['related_ids']['order_id'] ?? null;
+        $attempt = $orderId ? PaymentAttempt::where('provider', PaymentAttempt::PAYPAL)->where('provider_payment_id', $orderId)->first() : null;
+        if (!$attempt) {
+            Log::warning('PayPal webhook does not match a payment attempt', ['type' => $type, 'capture_id' => $capture['id'] ?? null]);
+            return;
+        }
+
+        if ($type === 'PAYMENT.CAPTURE.COMPLETED') {
+            if (in_array($attempt->status, [PaymentAttempt::PAID, PaymentAttempt::REFUND_PENDING, PaymentAttempt::REFUNDED], true)) return;
+            $this->finalizePayPalCapture($attempt, [
+                'id' => $orderId,
+                'capture_id' => $capture['id'] ?? null,
+                'captured_at' => $capture['create_time'] ?? null,
+                'status' => $capture['status'] ?? null,
+                'amount_minor' => PaymentMoney::paypalMinor($capture['amount']['value'] ?? 0, $capture['amount']['currency_code'] ?? ''),
+                'currency' => $capture['amount']['currency_code'] ?? '',
+            ]);
+            return;
+        }
+
+        $unsettled = PaymentAttempt::whereKey($attempt->id)->whereIn('status', [PaymentAttempt::PENDING, PaymentAttempt::PROCESSING, PaymentAttempt::EXPIRED]);
+        if ($type === 'PAYMENT.CAPTURE.PENDING') {
+            $unsettled->update(['status' => PaymentAttempt::PROCESSING, 'provider_capture_id' => $capture['id'] ?? null]);
+        } else {
+            $unsettled->update(['status' => PaymentAttempt::FAILED, 'failure_code' => 'paypal_denied', 'failure_message' => 'PayPal denied this payment. Your cart is still here.']);
+        }
+    }
+
+    /** Records a refund or reversal made at PayPal, including ones made outside this site. */
+    private function applyPayPalRefundEvent(string $type, array $refund): void
+    {
+        $captureId = $refund['id'] ?? null;
+        foreach ($refund['links'] ?? [] as $link) {
+            if (($link['rel'] ?? '') === 'up') $captureId = basename((string) parse_url($link['href'] ?? '', PHP_URL_PATH));
+        }
+        $attempt = $captureId ? PaymentAttempt::where('provider', PaymentAttempt::PAYPAL)->where('provider_capture_id', $captureId)->first() : null;
+        if (!$attempt) {
+            Log::warning('PayPal webhook does not match a captured payment', ['type' => $type, 'capture_id' => $captureId]);
+            return;
+        }
+
+        $amount = $refund['seller_payable_breakdown']['total_refunded_amount'] ?? $refund['amount'] ?? null;
+        if (!$amount || PaymentMoney::paypalMinor($amount['value'] ?? 0, $amount['currency_code'] ?? '') < $attempt->amount_minor) {
+            Log::warning('PayPal partial refund needs manual review', ['attempt_id' => $attempt->id, 'type' => $type]);
+            return;
+        }
+
+        DB::transaction(function () use ($attempt, $refund, $type) {
+            $locked = PaymentAttempt::whereKey($attempt->id)->lockForUpdate()->firstOrFail();
+            if ($locked->status === PaymentAttempt::REFUNDED) return;
+            $locked->fill([
+                'status' => PaymentAttempt::REFUNDED,
+                'provider_refund_id' => $locked->provider_refund_id ?? ($refund['id'] ?? null),
+                'refund_status' => 'COMPLETED',
+                'refund_requested_at' => $locked->refund_requested_at ?? now(),
+                'refund_last_error' => null,
+                'failure_code' => $locked->failure_code ?? ($type === 'PAYMENT.CAPTURE.REVERSED' ? 'paypal_reversed' : 'paypal_refunded'),
+            ])->save();
+            if ($locked->order_id) Order::whereKey($locked->order_id)->update(['payment_status' => 'refunded']);
+        });
     }
 
     public function publicStatus(PaymentAttempt $attempt): array

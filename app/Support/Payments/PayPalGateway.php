@@ -84,6 +84,24 @@ class PayPalGateway
         return $response->json();
     }
 
+    /**
+     * Asks PayPal whether a webhook delivery is genuine. The event is embedded as the raw bytes
+     * received, because re-encoding it would make PayPal report the signature as invalid.
+     */
+    public function verifyWebhook(string $rawBody, array $signatureHeaders, string $webhookId): bool
+    {
+        $fields = json_encode($signatureHeaders + ['webhook_id' => $webhookId], JSON_UNESCAPED_SLASHES);
+        $body = substr($fields, 0, -1) . ',"webhook_event":' . $rawBody . '}';
+        $response = $this->http()->withToken($this->accessToken())
+            ->withBody($body, 'application/json')
+            ->post($this->baseUrl() . '/v1/notifications/verify-webhook-signature');
+        if ($response->failed()) {
+            report(new \RuntimeException('PayPal webhook verification failed: ' . $response->status() . ' ' . $response->body()));
+            abort(503, 'PayPal webhook could not be verified.');
+        }
+        return $response->json('verification_status') === 'SUCCESS';
+    }
+
     private function request(string $path, string $requestId, array $body): array
     {
         // PayPal expects a JSON object; an empty PHP array would be sent as "[]".

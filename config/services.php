@@ -46,6 +46,7 @@ return [
         'client_id' => env('PAYPAL_CLIENT_ID'),
         'client_secret' => env('PAYPAL_CLIENT_SECRET'),
         'ca_bundle' => env('PAYPAL_CA_BUNDLE'),
+        'webhook_id' => env('PAYPAL_WEBHOOK_ID'),
     ],
 
 ];

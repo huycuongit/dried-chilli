@@ -153,6 +153,24 @@ class CheckoutController extends Controller
         return response()->json(['received' => true]);
     }
 
+    /**
+     * PayPal webhook: keeps payment status in step with PayPal (captures, denials, refunds).
+     */
+    public function paypalWebhook(Request $request, CheckoutPaymentService $payments)
+    {
+        abort_if($request->getContent() === '', 400, 'PayPal webhook body is required');
+
+        $payments->handlePayPalWebhook($request->getContent(), [
+            'auth_algo' => (string) $request->header('PayPal-Auth-Algo'),
+            'cert_url' => (string) $request->header('PayPal-Cert-Url'),
+            'transmission_id' => (string) $request->header('PayPal-Transmission-Id'),
+            'transmission_sig' => (string) $request->header('PayPal-Transmission-Sig'),
+            'transmission_time' => (string) $request->header('PayPal-Transmission-Time'),
+        ]);
+
+        return response()->json(['received' => true]);
+    }
+
     private function startPayment(Request $request, CheckoutPaymentService $payments, string $provider)
     {
         $data = $request->validate([

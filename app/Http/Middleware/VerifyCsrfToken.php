@@ -22,5 +22,7 @@ class VerifyCsrfToken extends Middleware
         '/contentpagemain/*',
 		'/contentsubmissionmain/*',
         'ckfinder/*',
+        // PayPal calls this directly; each event is verified with PayPal before it is used.
+        'paypal/webhook',
     ];
 }

@@ -52,6 +52,8 @@ Route::post('/contract/{token}/sign', [ServiceContractController::class, 'sign']
     ->middleware('throttle:10,1')
     ->name('contracts.sign');
 
+Route::post('/paypal/webhook', [\App\Http\Controllers\Api\CheckoutController::class, 'paypalWebhook'])->name('paypal.webhook');
+
 // Redirect old language URLs to the English-only public website.
 Route::get('/{language}/{path?}', function ($language, $path = null) {
     return redirect('/' . ltrim($path ?? '', '/') . (request()->getQueryString() ? '?' . request()->getQueryString() : ''), 301);
