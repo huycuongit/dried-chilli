@@ -41,6 +41,9 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+    // Show the Coming Soon page for every public page (admins still see the real site).
+    'coming_soon' => (bool) env('COMING_SOON', true),
+
     /*
     |--------------------------------------------------------------------------
     | Application URL

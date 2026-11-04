@@ -85,6 +85,7 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/shipping-refunds', [\App\Http\Controllers\LegalController::class, 'shipping'])->name('page.shipping');
     Route::get('/privacy-policy', [\App\Http\Controllers\LegalController::class, 'privacy'])->name('page.privacy');
     Route::get('/terms-of-service', [\App\Http\Controllers\LegalController::class, 'terms'])->name('page.terms');
+    Route::view('/coming-soon', 'frontend.coming-soon')->name('page.coming_soon');
     Route::middleware('auth:web')->group(function () {
         Route::get('/account/dashboard', [\App\Http\Controllers\AccountController::class, 'dashboard'])->name('account.dashboard');
         Route::get('/account/addresses', [\App\Http\Controllers\AccountController::class, 'addresses'])->name('account.addresses');
