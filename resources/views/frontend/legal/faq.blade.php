@@ -37,11 +37,6 @@
     @if($pageLayoutValue('page_layout_faq_show_hero') === '1')
     <section class="about-hero-section legal-hero">
         <div class="container about-hero-container">
-            <div class="about-hero-badge">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                <span>{{ $heroBadge }}</span>
-            </div>
-            
             <h1 class="about-hero-title">
                 {{ $heroTitle }}<br>
                 <span class="highlight-gold">{{ $heroSubtitle }}</span>
@@ -50,39 +45,6 @@
             <p class="about-hero-desc">
                 {{ $heroDesc }}
             </p>
-
-            <!-- 3 Brighter Highlight Clusters -->
-            <div class="hero-stats-clusters">
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>{{ $stat1Title }}</strong>
-                        <span>{{ $stat1Desc }}</span>
-                    </div>
-                </div>
-
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>{{ $stat2Title }}</strong>
-                        <span>{{ $stat2Desc }}</span>
-                    </div>
-                </div>
-
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>{{ $stat3Title }}</strong>
-                        <span>{{ $stat3Desc }}</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     @endif

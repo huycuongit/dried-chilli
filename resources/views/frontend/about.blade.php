@@ -30,10 +30,6 @@
     @if($aboutValue('page_about_layout_show_hero') === '1')
     <section class="about-hero-section">
         <div class="container about-hero-container">
-            <div class="about-hero-badge">
-                <span>{{ $aboutValue('page_about_layout_hero_10') }}</span>
-            </div>
-            
             <h1 class="about-hero-title">
                 {{ $aboutValue('page_about_layout_hero_09') }}<br>
                 <span class="highlight-gold">{{ $aboutValue('page_about_layout_hero_08') }}</span>
@@ -42,39 +38,6 @@
             <p class="about-hero-desc">
                 {{ $aboutValue('page_about_layout_hero_07') }}
             </p>
-
-            <!-- 3 Brighter Highlight Clusters -->
-            <div class="hero-stats-clusters">
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>{{ $aboutValue('page_about_layout_hero_06') }}</strong>
-                        <span>{{ $aboutValue('page_about_layout_hero_05') }}</span>
-                    </div>
-                </div>
-
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>{{ $aboutValue('page_about_layout_hero_04') }}</strong>
-                        <span>{{ $aboutValue('page_about_layout_hero_03') }}</span>
-                    </div>
-                </div>
-
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>{{ $aboutValue('page_about_layout_hero_02') }}</strong>
-                        <span>{{ $aboutValue('page_about_layout_hero_01') }}</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     @endif
@@ -169,12 +132,6 @@
                     <div class="visual-card-wrapper">
                         <div class="visual-card-main">
                             @if($aboutValue('page_about_layout_image_founders') !== '')<img src="{{ asset($aboutValue('page_about_layout_image_founders')) }}" alt="Dried Chili Artisans" class="card-img-large">@endif
-                        </div>
-                        <div class="visual-card-quote">
-                            <p class="quote-text">
-                                {{ $aboutValue('page_about_layout_who_we_are_02') }}
-                            </p>
-                            <span class="quote-author">{{ $aboutValue('page_about_layout_who_we_are_01') }}</span>
                         </div>
                     </div>
                 </div>

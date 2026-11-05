@@ -68,11 +68,6 @@
     <!-- Shop Header: Standardized Hero Banner -->
     <header class="about-hero-section shop-header">
         <div class="container about-hero-container">
-            <div class="about-hero-badge">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                <span>ARTISANAL PANTRY · ALL NATURAL CRAFT</span>
-            </div>
-            
             <h1 class="about-hero-title">
                 Every Fiery Flavor<br>
                 <span class="highlight-gold">From Mild Heat To Wild Crunch</span>
@@ -81,39 +76,6 @@
             <p class="about-hero-desc">
                 Explore our handcrafted small-batch pantry — sun-dried chillies, golden crispy garlic, and slow-simmered umami oils created to elevate your home table.
             </p>
-
-            <!-- 3 Brighter Highlight Clusters -->
-            <div class="hero-stats-clusters">
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>Free Shipping</strong>
-                        <span>Orders Over $50</span>
-                    </div>
-                </div>
-
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>Small Batches</strong>
-                        <span>Under 200 Jars</span>
-                    </div>
-                </div>
-
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>100% Artisan</strong>
-                        <span>Freshness Verified</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </header>
 
@@ -827,11 +789,11 @@
 }
 .product-img-wrapper img {
     position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.4s ease;
 }
 .product-card:hover .product-img-wrapper img {

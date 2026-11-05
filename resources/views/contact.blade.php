@@ -9,11 +9,6 @@
     <!-- Hero Section: Standardized Hero Banner -->
     <section class="about-hero-section about-hero">
         <div class="container about-hero-container">
-            <div class="about-hero-badge">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                <span>COMMUNICATION DESK · KITCHEN ADVISORY</span>
-            </div>
-            
             <h1 class="about-hero-title">
                 Get In Touch With<br>
                 <span class="highlight-gold">The Dried Chili Kitchen</span>
@@ -22,39 +17,6 @@
             <p class="about-hero-desc">
                 Have questions about our heat levels, custom culinary orders, or wholesale collaborations? Our advisory team responds within 24 business hours.
             </p>
-
-            <!-- 3 Brighter Highlight Clusters -->
-            <div class="hero-stats-clusters">
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>24h Response</strong>
-                        <span>Direct Advisory</span>
-                    </div>
-                </div>
-
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>Spice Atelier</strong>
-                        <span>Flavor District</span>
-                    </div>
-                </div>
-
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>Wholesale Care</strong>
-                        <span>Chef & Bulk Inquiries</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -94,7 +56,7 @@
                             </div>
                             <div class="details">
                                 <h4>Email Inquiries</h4>
-                                <p><a href="mailto:hello@driedchili.com">hello@driedchili.com</a></p>
+                                <p><a href="mailto:admin@jojolittlemarket.com">admin@jojolittlemarket.com</a></p>
                                 <span class="contact-meta">Response commitment within 24 business hours</span>
                             </div>
                         </div>

@@ -587,26 +587,28 @@
 
 .mini-card-img {
     background: #F3EAE0;
-    padding: 2rem 1.5rem 1rem;
-    text-align: center;
+    padding: 0;
+    width: 100%;
     aspect-ratio: 16 / 11;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    display: block;
 }
 
 .mini-card-img img {
-    max-height: 160px;
-    width: auto;
-    max-width: 85%;
-    object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(40, 18, 11, 0.08);
-    transition: transform 0.3s ease;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
+    transition: transform 0.35s ease;
 }
 
 .product-mini-card:hover .mini-card-img img {
-    transform: scale(1.06);
+    transform: scale(1.05);
 }
 
 .mini-card-content {

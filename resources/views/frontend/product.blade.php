@@ -352,11 +352,14 @@
     transition: all 0.25s ease;
     opacity: 0.7;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
 }
 .thumb-item img {
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 .thumb-item.active, .thumb-item:hover {
     opacity: 1;
@@ -607,11 +610,11 @@ details[open] .accordion-chevron {
 }
 .related-container .product-img-wrapper img {
     position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.4s ease;
 }
 .related-container .product-card:hover .product-img-wrapper img {

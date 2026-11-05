@@ -6,6 +6,12 @@
                     <img src="{{ asset('images/logo_dried-360.webp') }}" alt="Dried Chili Logo" class="footer-logo" width="150" height="61" loading="lazy">
                 </a>
                 <p>Bringing authentic Asian chili craftsmanship directly to your kitchen. Handcrafted in small batches with premium sun-dried peppers, aromatic crispy garlic, and shipped fresh to heat lovers globally.</p>
+                <div class="footer-spice-icons" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 3v3c-1.5 2-6 3-6 8a6 6 0 0 0 12 0c0-5-4.5-6-6-8"/><path d="M12 6c-2 2.5-3 5-3 8a9 9 0 0 0 3 7 9 9 0 0 0 3-7c0-3-1-5.5-3-8z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 4 13c0-5 5-8 14-9-1 9-4 14-9 14"/><path d="M4 21c3-5 6-8 12-11"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M5 12c1-3 3-4 5-5l2-3 2 3c2 1 4 2 5 5"/><path d="M9 10h.01M12 8h.01M15 10h.01"/></svg>
+                </div>
             </div>
             
             <div class="footer-links">
@@ -84,6 +90,24 @@
         -webkit-hyphens: auto;
         hyphens: auto;
         margin: 0;
+    }
+
+    .footer-spice-icons {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        margin-top: 1.25rem;
+        color: var(--spice-primary);
+    }
+
+    .footer-spice-icons svg {
+        width: 36px;
+        height: 36px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
     }
 
     .footer-logo-wrap {

@@ -24,11 +24,6 @@
     @if($pageLayoutValue('page_layout_legacy_show_hero') === '1')
     <section class="about-hero-section legacy-hero">
         <div class="container about-hero-container">
-            <div class="about-hero-badge legacy-hero-badge">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                <span>{{ $pageLayoutValue('page_layout_legacy_opening_banner_01') }}</span>
-            </div>
-            
             <h1 class="about-hero-title">
                 {{ $pageLayoutValue('page_layout_legacy_opening_banner_02') }}<br>
                 <span class="highlight-gold">{{ $pageLayoutValue('page_layout_legacy_opening_banner_03') }}</span>
@@ -37,39 +32,6 @@
             <p class="about-hero-desc">
                 {{ $pageLayoutValue('page_layout_legacy_opening_banner_04') }}
             </p>
-
-            <!-- 3 Brighter Highlight Clusters -->
-            <div class="hero-stats-clusters">
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>{{ $pageLayoutValue('page_layout_legacy_opening_banner_05') }}</strong>
-                        <span>{{ $pageLayoutValue('page_layout_legacy_opening_banner_06') }}</span>
-                    </div>
-                </div>
-
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>{{ $pageLayoutValue('page_layout_legacy_opening_banner_07') }}</strong>
-                        <span>{{ $pageLayoutValue('page_layout_legacy_opening_banner_08') }}</span>
-                    </div>
-                </div>
-
-                <div class="hero-cluster-item">
-                    <div class="cluster-icon-box">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-                    </div>
-                    <div class="cluster-text">
-                        <strong>{{ $pageLayoutValue('page_layout_legacy_opening_banner_09') }}</strong>
-                        <span>{{ $pageLayoutValue('page_layout_legacy_opening_banner_10') }}</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     @endif
@@ -165,12 +127,6 @@
                     <div class="visual-card-wrapper">
                         <div class="visual-card-main">
                             @if($pageLayoutValue('page_layout_legacy_image_farm') !== '')<img src="{{ asset($pageLayoutValue('page_layout_legacy_image_farm')) }}" alt="Our Ancestral Chili Farm" class="card-img-large">@endif
-                        </div>
-                        <div class="visual-card-quote">
-                            <p class="quote-text">
-                                {{ $pageLayoutValue('page_layout_legacy_origin_valley_11') }}
-                            </p>
-                            <span class="quote-author">{{ $pageLayoutValue('page_layout_legacy_origin_valley_12') }}</span>
                         </div>
                     </div>
                 </div>
@@ -406,7 +362,7 @@
                 <div class="trust-card">
                     <div class="trust-card-top-row">
                         <div class="lucide-icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>
+                            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
                         </div>
                         <span class="trust-number-badge">{{ $pageLayoutValue('page_layout_legacy_heritage_values_04') }}</span>
                     </div>
@@ -419,7 +375,7 @@
                 <div class="trust-card">
                     <div class="trust-card-top-row">
                         <div class="lucide-icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/></svg>
+                            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v3c-1.5 2-6 3-6 8a6 6 0 0 0 12 0c0-5-4.5-6-6-8"/><path d="M12 6c-2 2.5-3 5-3 8a9 9 0 0 0 3 7 9 9 0 0 0 3-7c0-3-1-5.5-3-8z"/></svg>
                         </div>
                         <span class="trust-number-badge">{{ $pageLayoutValue('page_layout_legacy_heritage_values_07') }}</span>
                     </div>
@@ -432,7 +388,7 @@
                 <div class="trust-card highlight-card">
                     <div class="trust-card-top-row">
                         <div class="lucide-icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 4 13c0-5 5-8 14-9-1 9-4 14-9 14"/><path d="M4 21c3-5 6-8 12-11"/></svg>
                         </div>
                         <span class="trust-number-badge">{{ $pageLayoutValue('page_layout_legacy_heritage_values_10') }}</span>
                     </div>
@@ -445,7 +401,7 @@
                 <div class="trust-card">
                     <div class="trust-card-top-row">
                         <div class="lucide-icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M5 12c1-3 3-4 5-5l2-3 2 3c2 1 4 2 5 5"/><path d="M9 10h.01M12 8h.01M15 10h.01"/></svg>
                         </div>
                         <span class="trust-number-badge">{{ $pageLayoutValue('page_layout_legacy_heritage_values_13') }}</span>
                     </div>
