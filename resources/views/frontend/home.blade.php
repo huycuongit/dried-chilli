@@ -1782,11 +1782,11 @@
 
 .product-img-wrapper img {
     position: absolute;
-    top: 15%;
-    left: 15%;
-    width: 70%;
-    height: 70%;
-    object-fit: contain;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.5s ease;
 }
 
@@ -2597,11 +2597,11 @@
 
     .product-img-wrapper img {
         position: absolute !important;
-        top: 8% !important;
-        left: 10% !important;
-        width: 80% !important;
-        height: 80% !important;
-        object-fit: contain !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
     }
 
     .desktop-quick-add {
