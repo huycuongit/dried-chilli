@@ -91,10 +91,16 @@ App\Models\Product::create(['name' => 'Unavailable duo', 'slug' => 'starter-duo-
 $html = $render();
 $check(str_contains($html, 'Shrimp jar') && !str_contains($html, 'Unavailable duo') && !str_contains($html, 'Sale jar'), 'featured product selection and inactive filter');
 $check(str_contains($html, 'Meet Our Shrimp Chilli Range'), 'featured range heading');
-$check(str_contains($html, 'images/shrimp_chilli_2.webp'), 'featured jar image missing');
+$check(str_contains($html, 'images/jojo-home-product-01.jpg') && is_file(public_path('images/jojo-home-product-01.jpg')), 'first supplied product image missing');
 App\Models\Product::where('slug', 'crispy-shrimp-chili-oil')->update(['image' => 'storage/products/new-jar.webp']);
 $html = $render();
-$check(str_contains($html, 'storage/products/new-jar.webp') && !str_contains($html, 'images/shrimp_chilli_2.webp'), 'managed catalog image masked by legacy override');
+$check(str_contains($html, 'storage/products/new-jar.webp') && !str_contains($html, 'images/jojo-home-product-01.jpg'), 'managed catalog image masked by legacy override');
+App\Models\Product::where('slug', 'starter-duo-gift-pack')->update(['image' => 'images/product_hero.png', 'is_active' => 1]);
+App\Models\Product::create(['name' => 'Garlic crunch', 'slug' => 'extra-garlic-chili-crunch', 'price' => 24, 'image' => 'images/product_khong_nen.png', 'is_active' => 1, 'is_trending' => 0]);
+$html = $render();
+$check(str_contains($html, 'images/jojo-home-product-02.jpg') && is_file(public_path('images/jojo-home-product-02.jpg')), 'second supplied product image missing');
+$check(str_contains($html, 'images/jojo-home-product-03.jpg') && is_file(public_path('images/jojo-home-product-03.jpg')), 'third supplied product image missing');
+$check(strpos($html, 'jojo-home-product-02.jpg') < strpos($html, 'jojo-home-product-03.jpg'), 'supplied product images rendered in the wrong order');
 $migration = require __DIR__ . '/../../database/migrations/2026_11_15_000001_apply_jojo_home_redesign_content.php';
 $migration->up();
 app(App\Support\SystemSettings::class)->forget();

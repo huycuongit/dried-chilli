@@ -78,8 +78,8 @@
                             $onSale = $saleEligible && $salePrice !== null && (float) $salePrice > 0 && (float) $salePrice < (float) $product->price;
                         @endphp
                         <article class="jojo-product-card">
-                            <a class="jojo-product-image" href="{{ route('page.product', $product->slug) }}" aria-label="View {{ $product->name }}">
-                                <img src="{{ $cardImage ? asset($cardImage) : $product->image_url }}" @if($productSrcset !== '') srcset="{{ $productSrcset }}" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 360px" @endif alt="{{ $product->name }}" width="360" height="300" loading="lazy" decoding="async">
+                            <a class="jojo-product-image{{ $cardImage ? ' jojo-product-image--photo' : '' }}" href="{{ route('page.product', $product->slug) }}" aria-label="View {{ $product->name }}">
+                                <img src="{{ $cardImage ? asset($cardImage) : $product->image_url }}" @if($productSrcset !== '') srcset="{{ $productSrcset }}" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 360px" @endif alt="{{ $product->name }}" width="{{ $cardImage ? 1280 : 360 }}" height="{{ $cardImage ? 1600 : 300 }}" loading="lazy" decoding="async">
                             </a>
                             <div class="jojo-product-info">
                                 <h3><a href="{{ route('page.product', $product->slug) }}">{{ $product->name }}</a></h3>
