@@ -10,6 +10,9 @@
     .shop-toast button { border: 0; padding: 0; color: inherit; background: transparent; font-size: 1.4rem; line-height: 1; cursor: pointer; }
     @media (max-width: 768px) { .shop-toast-container { top: auto; bottom: 5.5rem; } }
 </style>
+    @if(request()->routeIs('home'))
+    <div class="jojo-announcement"><a href="{{ route('page.shipping') }}">Australia-wide delivery &middot; View shipping rates</a><span aria-hidden="true">&#10022;</span><span>Small batch flavour</span><span aria-hidden="true">&#10022;</span><span>Made with care</span></div>
+    @else
     <div class="spice-marquee" style="cursor: pointer;"
         onclick="document.getElementById('newsletter-modal').classList.add('active'); document.getElementById('voucher-popup').classList.remove('show');">
         <div class="marquee-track">
@@ -21,6 +24,7 @@
             <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦</span>
         </div>
     </div>
+    @endif
     <style>
     /* Marquee */
     .spice-marquee {
@@ -76,7 +80,11 @@
     @endif
 
     @include('frontend.layouts.partials.voucher-popup')
-    @include('frontend.layouts.partials.footer')
+    @if(request()->routeIs('home'))
+        @include('frontend.layouts.partials.jojo-home-footer')
+    @else
+        @include('frontend.layouts.partials.footer')
+    @endif
 
     <!-- Floating Hotline Button -->
     @if($companySetting('hotline'))

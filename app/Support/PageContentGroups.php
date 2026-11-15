@@ -67,6 +67,11 @@ class PageContentGroups
             }
         }
         $publicLayout = json_decode(file_get_contents(config_path('public-page-layout.json')), true, 512, JSON_THROW_ON_ERROR);
+        $publicLayout['Home - Hero banner'] = array_filter(
+            $publicLayout['Home - Hero banner'],
+            static fn (string $key) => !preg_match('/^page_layout_home_(?:slide_[234]_|image_slide_[234]$|link_slide_[234]$|image_alt_[234]$|slide_1_0[678]$)/', $key),
+            ARRAY_FILTER_USE_KEY
+        );
         $result = array_merge($result, $publicLayout);
         foreach ($custom as $name => $fields) {
             foreach ($fields as $key => &$field) {

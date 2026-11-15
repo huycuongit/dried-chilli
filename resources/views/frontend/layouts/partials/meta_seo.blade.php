@@ -1,6 +1,13 @@
 {{-- SEO & Metadata Component for Dried Chili --}}
 @php
     $pageTitle = trim(View::yieldContent('title'));
+    $isJojoHome = request()->routeIs('home');
+    $siteName = $isJojoHome ? 'Jojo Little Kitchen' : 'Dried Chili';
+    $siteLogo = $isJojoHome ? asset('images/jojo-logo-pdf.svg') : asset('assets/favicon/apple-touch-icon.png');
+    $siteImage = $isJojoHome ? asset('images/jojo-shrimp-hero-clean.webp') : asset('images/product_hero.png');
+    $siteDescription = $isJojoHome
+        ? 'Signature shrimp chilli made for bold flavour and everyday cooking.'
+        : 'Handcrafted premium dried chillies, shrimp chilli paste, and authentic organic seasonings.';
     if (empty($pageTitle)) {
         $pageTitle = 'Dried Chili — Handcrafted Premium Spices & Organic Seasonings';
     }
@@ -12,7 +19,9 @@
 
     $pageKeywords = trim(View::yieldContent('meta_keywords'));
     if (empty($pageKeywords)) {
-        $pageKeywords = 'dried chili, shrimp chilli paste, premium spices, organic seasonings, hot chili flakes, artisanal spice blend';
+        $pageKeywords = $isJojoHome
+            ? 'Jojo Little Kitchen, shrimp chilli, chilli oil, crispy chilli, Asian chilli sauce'
+            : 'dried chili, shrimp chilli paste, premium spices, organic seasonings, hot chili flakes, artisanal spice blend';
     }
 
     $canonicalUrl = trim(View::yieldContent('canonical_url'));
@@ -22,7 +31,7 @@
 
     $ogImage = trim(View::yieldContent('og_image'));
     if (empty($ogImage)) {
-        $ogImage = asset('images/product_hero.png');
+        $ogImage = $siteImage;
     }
 
     $ogType = trim(View::yieldContent('og_type'));
@@ -38,7 +47,7 @@
 <link rel="canonical" href="{{ $canonicalUrl }}">
 
 <!-- Open Graph / Facebook -->
-<meta property="og:site_name" content="Dried Chili">
+<meta property="og:site_name" content="{{ $siteName }}">
 <meta property="og:type" content="{{ $ogType }}">
 <meta property="og:url" content="{{ $canonicalUrl }}">
 <meta property="og:title" content="{!! e($pageTitle, false) !!}">
@@ -60,22 +69,22 @@
     {
       "@type": "Organization",
       "@id": "{{ url('/') }}#organization",
-      "name": "Dried Chili",
+      "name": "{{ $siteName }}",
       "url": "{{ url('/') }}",
       "logo": {
         "@type": "ImageObject",
         "@id": "{{ url('/') }}#logo",
-        "url": "{{ asset('assets/favicon/apple-touch-icon.png') }}",
-        "caption": "Dried Chili"
+        "url": "{{ $siteLogo }}",
+        "caption": "{{ $siteName }}"
       },
-      "image": "{{ asset('images/product_hero.png') }}",
-      "description": "Handcrafted premium dried chillies, shrimp chilli paste, and authentic organic seasonings."
+      "image": "{{ $siteImage }}",
+      "description": "{{ $siteDescription }}"
     },
     {
       "@type": "WebSite",
       "@id": "{{ url('/') }}#website",
       "url": "{{ url('/') }}",
-      "name": "Dried Chili",
+      "name": "{{ $siteName }}",
       "publisher": {
         "@id": "{{ url('/') }}#organization"
       },

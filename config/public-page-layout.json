@@ -1,22 +1,22 @@
 {
     "Home - Hero banner": {
         "page_layout_home_slide_1_01": {
-            "value": "THE ORIGINAL FLAVOR",
+            "value": "SIGNATURE SHRIMP CHILLI",
             "label": "Top label",
             "group": "Slide 1"
         },
         "page_layout_home_slide_1_02": {
-            "value": "SHRIMPLY",
+            "value": "A LITTLE HEAT, A LOT OF",
             "label": "Title - first line",
             "group": "Slide 1"
         },
         "page_layout_home_slide_1_03": {
-            "value": "EXTRA SPICY",
+            "value": "FLAVOUR.",
             "label": "Title - second line",
             "group": "Slide 1"
         },
         "page_layout_home_slide_1_04": {
-            "value": "The ultimate umami bomb. Handcrafted with authentic shrimp and our\n                            signature spice blend.",
+            "value": "Our signature shrimp chilli oil brings the perfect balance of heat, umami and crunch to your everyday meals.",
             "label": "Description",
             "group": "Slide 1",
             "type": "textarea"
@@ -160,7 +160,7 @@
             "group": "Slide 4"
         },
         "page_layout_home_image_slide_1": {
-            "value": "images/product_hero.webp",
+            "value": "images/jojo-shrimp-hero-clean.webp",
             "label": "Slide 1 image",
             "group": "Slide 1",
             "type": "image"
@@ -219,7 +219,7 @@
             "group": "Slide 2"
         },
         "page_layout_home_image_alt_1": {
-            "value": "Dried Chili Shrimply Extra Spicy",
+            "value": "Jar of Jojo shrimp chilli with fresh chillies on a wooden board",
             "label": "Slide 1 image description",
             "group": "Slide 1"
         },
@@ -238,13 +238,13 @@
             "options": { "1": "Show", "0": "Hide" }
         },
         "page_layout_home_story_image": {
-            "value": "images/story_spices-optimized.webp",
+            "value": "images/jojo-story.webp",
             "label": "Story image",
             "group": "Image",
             "type": "image"
         },
         "page_layout_home_story_image_alt_text": {
-            "value": "Spices on market",
+            "value": "Spoonful of crispy chilli lifted from a glass jar",
             "label": "Image alternative text",
             "group": "Image"
         },
@@ -254,23 +254,23 @@
             "group": "Story"
         },
         "page_layout_home_story_title": {
-            "value": "Passionate About Flavor",
+            "value": "The Story Behind Jojo Little Kitchen",
             "label": "Title",
             "group": "Story"
         },
         "page_layout_home_story_description": {
-            "value": "We believe that every dish tells an unforgettable culinary story, and the spices you choose define its authentic voice. Our journey began across the vibrant heritage spice markets of Asia, curating prime sun-dried chillies and slow-roasting hand-ground aromatics to empower passionate home chefs who demand uncompromising heat, crunch, and umami depth.",
+            "value": "Inspired by the flavours of home cooking, Jojo Little Kitchen brings you a simple yet bold chilli made with real shrimp, quality ingredients and a passion for good food.",
             "label": "Description",
             "group": "Story",
             "type": "textarea"
         },
         "page_layout_home_story_button_text": {
-            "value": "Learn More About Our Story",
+            "value": "Our Legacy",
             "label": "Button text",
             "group": "Buttons"
         },
         "page_layout_home_story_button_link": {
-            "value": "/about-us",
+            "value": "/our-legacy",
             "label": "Button link",
             "group": "Buttons"
         }

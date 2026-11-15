@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Drawer toggling functions
     window.openCartDrawer = function() {
         // On mobile phones (<= 768px), do not open drawer to avoid blocking viewport
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 768 || (document.body.classList.contains('home-page') && window.innerWidth <= 900)) {
             return;
         }
         const drawer = document.getElementById('cart-drawer');
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartBtnHeader = document.querySelector('.cart-btn');
     if (cartBtnHeader) {
         cartBtnHeader.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 768 || (document.body.classList.contains('home-page') && window.innerWidth <= 900)) {
                 // Mobile: Navigate directly to /cart page
                 window.location.href = '/cart';
             } else {

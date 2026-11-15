@@ -8,9 +8,23 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $latestProducts = \App\Models\Product::where('is_active', true)->where('is_trending', true)->orderByDesc('id')->limit(6)->get();
+        $featuredSlugs = config('jojo-home.featured_product_slugs', []);
+        $featuredProducts = \App\Models\Product::where('is_active', true)
+            ->whereIn('slug', $featuredSlugs)->get()->keyBy('slug');
+        $latestProducts = collect($featuredSlugs)
+            ->map(fn (string $slug) => $featuredProducts->get($slug))->filter()->values();
+        $hasFeaturedProducts = $latestProducts->isNotEmpty();
+        if (!$hasFeaturedProducts) {
+            $latestProducts = \App\Models\Product::where('is_active', true)
+                ->orderByDesc('is_trending')->orderByDesc('id')->limit(3)->get();
+        }
+        $settings = app(\App\Support\SystemSettings::class)->all();
+        $homeReviews = collect(\App\Support\AboutReviewers::read($settings[\App\Support\AboutReviewers::STORAGE_KEY] ?? null))
+            ->filter(fn (array $row) => !empty($row['published'])
+                && \App\Support\AboutReviewers::isSafeImage($row['image'] ?? null))
+            ->take(3)->values();
 
-        return view('frontend.home', compact('latestProducts'));
+        return view('frontend.home', compact('latestProducts', 'homeReviews', 'hasFeaturedProducts'));
     }
 
     public function shop(\Illuminate\Http\Request $request): View

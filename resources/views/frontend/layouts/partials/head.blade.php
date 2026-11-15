@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="application-name" content="Dried Chili">
+    <meta name="application-name" content="{{ request()->routeIs('home') ? 'Jojo Little Kitchen' : 'Dried Chili' }}">
     @if (renderData($systemSettings, 'google_site_verification', ''))
     <meta name="google-site-verification" content="{{ renderData($systemSettings, 'google_site_verification', '') }}">
     @endif
@@ -24,7 +24,7 @@
         $heroImage = \App\Support\AboutPageContent::value('page_layout_home_image_slide_1', $heroFields, $systemSettings);
         $heroPreloadSrcset = \App\Support\ResponsivePageImages::srcset($heroImage);
     @endphp
-    @if($heroImage !== '')<link rel="preload" as="image" href="{{ asset($heroImage) }}" @if($heroPreloadSrcset !== '') imagesrcset="{{ $heroPreloadSrcset }}" imagesizes="(max-width: 768px) 210px, 410px" @endif fetchpriority="high">@endif
+    @if($heroImage !== '')<link rel="preload" as="image" href="{{ asset($heroImage) }}" @if($heroPreloadSrcset !== '') imagesrcset="{{ $heroPreloadSrcset }}" imagesizes="100vw" @endif fetchpriority="high">@endif
     @endif
 
     <!-- Web Fonts Optimization -->

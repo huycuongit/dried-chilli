@@ -1,0 +1,188 @@
+:root { --jojo-gold: #f2c455; --jojo-red: #a4000b; --jojo-ink: #401b1b; --jojo-cream: #fff8ee; }
+html { scroll-behavior: smooth; }
+body.home-page { background: var(--jojo-cream); color: var(--jojo-ink); }
+@media (max-width: 768px) { body.home-page { padding-bottom: 0 !important; } }
+body.home-page .mobile-bottom-nav { display: none !important; }
+body.home-page .floating-hotline { bottom: 1.25rem; }
+body.home-page .jojo-home, body.home-page .jojo-site-header, body.home-page .jojo-footer { font-family: Arial, Helvetica, sans-serif; }
+.jojo-container { width: min(100% - 3rem, 1240px); margin-inline: auto; }
+.jojo-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.jojo-announcement { display: flex; align-items: center; justify-content: center; gap: 1.25rem; min-height: 36px; padding: .4rem 1rem; background: #a4000b; color: white; font: 700 .78rem Arial, sans-serif; letter-spacing: .035em; text-align: center; }
+.jojo-announcement a { color: inherit; text-decoration: none; }
+.jojo-announcement a:hover, .jojo-announcement a:focus-visible { text-decoration: underline; }
+.jojo-announcement span[aria-hidden] { color: var(--jojo-gold); }
+.jojo-site-header { position: relative; z-index: 1001; background: var(--jojo-gold); box-shadow: 0 2px 10px #4c130d18; }
+.jojo-header-inner { min-height: 80px; display: grid; grid-template-columns: 130px 1fr auto; align-items: center; gap: 1.5rem; }
+.jojo-brand { display: inline-flex; width: fit-content; align-items: center; }
+.jojo-brand img { display: block; width: 72px; height: 72px; }
+.jojo-desktop-nav { display: flex; align-items: center; justify-content: center; gap: clamp(1rem, 2.5vw, 2.6rem); }
+.jojo-desktop-nav a, .jojo-mobile-nav a { color: #28110d; text-decoration: none; font-size: 1rem; font-weight: 700; }
+.jojo-desktop-nav a:hover, .jojo-desktop-nav a:focus-visible, .jojo-mobile-nav a:hover, .jojo-mobile-nav a:focus-visible { color: var(--jojo-red); text-decoration: underline; text-underline-offset: 5px; }
+.jojo-header-actions { display: flex; align-items: center; gap: 1rem; }
+.jojo-icon-button { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; padding: .5rem; border: 0; background: transparent; color: #28110d; cursor: pointer; }
+.jojo-icon-button svg, .jojo-cart-link svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.jojo-cart-link { display: inline-flex; align-items: center; gap: .4rem; color: #28110d; font-size: .96rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.jojo-cart-link:hover { color: var(--jojo-red); }
+.jojo-cart-link .cart-count { background: none; color: inherit; padding: 0; font: inherit; }
+.jojo-cart-count-mobile { display: none; }
+.jojo-cart-wrap { position: relative; }
+.jojo-menu-toggle, .jojo-mobile-nav { display: none; }
+.jojo-header-search { display: flex; gap: .6rem; align-items: center; padding: 0 0 1rem; }
+.jojo-header-search[hidden], .jojo-mobile-nav[hidden] { display: none !important; }
+.jojo-header-search label { font-weight: 700; }
+.jojo-header-search input { flex: 1; min-width: 0; padding: .7rem .9rem; border: 1px solid #8e5b15; background: #fff9ec; }
+.jojo-header-search button { border: 0; background: var(--jojo-red); color: white; padding: .8rem 1.2rem; font-weight: 700; }
+.jojo-home { overflow: clip; }
+.jojo-hero { position: relative; min-height: clamp(350px, 32vw, 520px); display: flex; align-items: center; isolation: isolate; background: #710007; color: white; }
+.jojo-hero-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.jojo-hero-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #690006b8 0%, #6900066b 43%, transparent 68%); }
+.jojo-hero-inner { display: flex; align-items: center; min-height: inherit; }
+.jojo-hero-copy { width: min(43%, 490px); padding: 3.5rem 0; }
+.jojo-eyebrow { display: block; color: #bd000d; font-size: .81rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.jojo-hero-eyebrow { display: flex; align-items: center; gap: .55rem; color: #fff6d8; font-size: .88rem; }
+.jojo-hero-eyebrow::before, .jojo-hero-eyebrow::after { content: ''; height: 1px; flex: 1; background: #f8dfb2; opacity: .75; }
+.jojo-hero-eyebrow::before { max-width: 32px; }
+.jojo-hero h1, .jojo-section h2, .jojo-story h2 { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; }
+.jojo-hero h1 { margin: .9rem 0 1rem; color: #fff9e9; font-size: clamp(2.5rem, 3.65vw, 4.3rem); line-height: 1.02; letter-spacing: -.03em; text-transform: uppercase; text-wrap: balance; }
+.jojo-hero h1 em { color: #ffdc37; font-style: normal; }
+.jojo-hero-copy p { max-width: 36ch; margin: 0 0 1.35rem; font-size: clamp(1rem, 1.28vw, 1.15rem); line-height: 1.48; }
+.jojo-button { display: inline-flex; align-items: center; justify-content: center; gap: .75rem; min-height: 46px; padding: .65rem 1.45rem; text-decoration: none; font-weight: 800; }
+.jojo-button-gold { background: var(--jojo-gold); color: #230b05; }
+.jojo-button-gold:hover, .jojo-button-gold:focus-visible { background: #ffe07f; color: #230b05; transform: translateY(-1px); }
+.jojo-button span { font-size: 1.35em; line-height: .5; }
+.jojo-benefits { background: var(--jojo-gold); color: #261008; }
+.jojo-benefit-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding-block: 1.1rem; }
+.jojo-benefit { display: flex; align-items: center; justify-content: center; gap: .8rem; padding: .3rem .7rem; }
+.jojo-benefit + .jojo-benefit { border-left: 1px solid #6e3a1880; }
+.jojo-benefit > svg { flex: none; width: 36px; height: 36px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.jojo-benefit strong, .jojo-benefit small { display: block; }
+.jojo-benefit strong { font-size: .92rem; }
+.jojo-benefit small { margin-top: .2rem; font-size: .73rem; line-height: 1.3; }
+.jojo-section { padding-block: clamp(3.25rem, 6vw, 5.5rem); }
+.jojo-products { background: radial-gradient(circle at 50% 10%, white 0%, var(--jojo-cream) 70%); }
+.jojo-section-heading { text-align: center; margin: 0 auto 1.8rem; }
+.jojo-section-heading h2, .jojo-recipes-intro h2 { margin: .25rem 0 .45rem; color: #490e16; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; }
+.jojo-section-heading p { margin: 0; font-size: 1rem; }
+.jojo-product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; max-width: 1100px; margin: 0 auto; }
+.jojo-product-card { overflow: hidden; background: #fffaf2; border: 1px solid #ead8c9; box-shadow: 0 6px 18px #5f1e1415; border-radius: 14px; }
+.jojo-product-image { display: block; height: clamp(220px, 26vw, 300px); background: var(--jojo-gold); overflow: hidden; }
+.jojo-product-image img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform .3s ease; }
+.jojo-product-image:hover img { transform: scale(1.04); }
+.jojo-product-info { padding: 1.15rem 1.25rem 1.25rem; }
+.jojo-product-info h3 { margin: 0 .0rem .35rem; font: 700 1.35rem Georgia, 'Times New Roman', serif; }
+.jojo-product-info h3 a { color: #420d16; text-decoration: none; }
+.jojo-product-info h3 a:hover { text-decoration: underline; }
+.jojo-product-info p { min-height: 2.7em; margin: 0 0 1rem; font-size: .87rem; line-height: 1.4; }
+.jojo-product-bottom { display: flex; align-items: end; justify-content: space-between; gap: .6rem; }
+.jojo-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: .45rem; white-space: nowrap; }
+.jojo-price strong { color: #bd000d; font-size: 1.25rem; }
+.jojo-price s { color: #73615b; font-size: .84rem; }
+.jojo-add { flex: none; min-height: 39px; padding: .55rem .9rem; border: 0; background: var(--jojo-red); color: white; font-size: .85rem; font-weight: 700; cursor: pointer; }
+.jojo-add:hover, .jojo-add:focus-visible { background: #6f0010; }
+.jojo-empty-products { text-align: center; }
+.jojo-text-link { display: table; margin: 1.5rem auto 0; color: #9b0010; font-weight: 800; text-decoration: none; border-bottom: 2px solid currentColor; }
+.jojo-text-link:hover { color: #5a0010; }
+.jojo-story { display: grid; grid-template-columns: 1fr 1fr; min-height: 350px; background: #fff7ee; }
+.jojo-story-image { overflow: hidden; background: var(--jojo-red); }
+.jojo-story-image img { display: block; width: 100%; height: 100%; max-height: 500px; object-fit: cover; }
+.jojo-story-copy { align-self: center; width: min(100% - 3rem, 560px); padding: 3.5rem 0 3.5rem 2rem; }
+.jojo-story h2 { margin: .3rem 0 .9rem; color: #490e16; font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1.1; }
+.jojo-story p { max-width: 52ch; line-height: 1.6; margin: 0 0 1.2rem; }
+.jojo-recipes { background: #fffaf4; }
+.jojo-recipes-layout { display: grid; grid-template-columns: minmax(210px, .7fr) minmax(0, 1.7fr); gap: 2rem; align-items: center; }
+.jojo-recipes-intro p { max-width: 36ch; line-height: 1.5; }
+.jojo-recipe-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
+.jojo-recipe { position: relative; display: block; padding-bottom: .8rem; color: white; text-align: center; text-decoration: none; }
+.jojo-recipe img { width: 100%; height: clamp(115px, 13vw, 170px); object-fit: cover; border-radius: 14px; }
+.jojo-recipe span { position: relative; display: inline-block; min-width: 75%; margin-top: -1rem; padding: .47rem .55rem; border-radius: 20px; background: var(--jojo-red); font-size: .84rem; font-weight: 700; }
+.jojo-review-image { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; margin-bottom: 1rem; border-radius: 8px; }
+.jojo-reviews { background: var(--jojo-red); color: white; }
+.jojo-reviews .jojo-eyebrow, .jojo-reviews h2 { color: white; }
+.jojo-review-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; }
+.jojo-review-card { flex: 1 1 280px; max-width: 380px; min-height: 175px; padding: 1.4rem 1.5rem; border-radius: 12px; background: #fff9ef; color: #301010; }
+.jojo-review-quote { margin: 0 0 .9rem; line-height: 1.45; }
+.jojo-stars { color: #ad0010; letter-spacing: .12em; margin-bottom: .4rem; }
+.jojo-review-card strong { font-size: .88rem; }
+.jojo-footer { background: var(--jojo-gold); color: #301108; padding: 2.5rem 0 1.2rem; }
+.jojo-footer-top { display: grid; grid-template-columns: 1.5fr .6fr .6fr 1.15fr; gap: 2rem; align-items: start; padding-bottom: 2rem; }
+.jojo-footer-brand { display: flex; align-items: center; gap: 1rem; }
+.jojo-footer-brand img { display: block; width: 84px; height: 84px; }
+.jojo-footer-brand p { max-width: 22ch; margin: 0; font-size: .86rem; line-height: 1.4; }
+.jojo-footer nav { display: flex; flex-direction: column; gap: .6rem; }
+.jojo-footer a { width: fit-content; color: inherit; font-size: .86rem; font-weight: 700; text-decoration: none; }
+.jojo-footer a:hover, .jojo-footer a:focus-visible { text-decoration: underline; }
+.jojo-footer-newsletter strong { display: block; margin-bottom: .65rem; }
+.jojo-footer-newsletter .newsletter-form { display: flex; border: 1px solid #6e3a18; background: #fff8e9; padding: .25rem; }
+.jojo-footer-newsletter input { min-width: 0; width: 100%; padding: .5rem; border: 0; background: transparent; }
+.jojo-footer-newsletter button { border: 0; background: var(--jojo-red); color: white; padding: .5rem .75rem; font-size: .8rem; font-weight: 700; }
+.jojo-footer-newsletter p { margin: .5rem 0 0; font-size: .8rem; }
+.jojo-footer-bottom { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid #6e3a1880; padding-top: 1.1rem; font-size: .78rem; }
+.jojo-footer-bottom nav { flex-direction: row; flex-wrap: wrap; gap: 1.1rem; }
+.jojo-footer-bottom a { font-size: .78rem; }
+.jojo-home :focus-visible, .jojo-site-header :focus-visible, .jojo-footer :focus-visible { outline: 3px solid #1b478c; outline-offset: 3px; }
+@media (max-width: 1000px) {
+  .jojo-header-inner { grid-template-columns: 90px 1fr auto; }
+  .jojo-desktop-nav { gap: 1rem; }
+  .jojo-desktop-nav a { font-size: .87rem; }
+  .jojo-benefit-grid { grid-template-columns: repeat(2, 1fr); row-gap: .8rem; }
+  .jojo-benefit:nth-child(3) { border-left: 0; }
+  .jojo-recipes-layout { grid-template-columns: 1fr; }
+  .jojo-recipes-intro { text-align: center; }
+  .jojo-recipes-intro p { margin-inline: auto; }
+  .jojo-footer-top { grid-template-columns: 1.5fr .7fr .7fr; }
+  .jojo-footer-newsletter { grid-column: 1 / -1; max-width: 450px; }
+}
+@media (max-width: 760px) {
+  .jojo-container { width: min(100% - 2rem, 1240px); }
+  .jojo-announcement { gap: .5rem; min-height: 32px; font-size: .67rem; }
+  .jojo-announcement span:not([aria-hidden]) { display: none; }
+  .jojo-announcement span[aria-hidden] { display: none; }
+  .jojo-header-inner { min-height: 64px; display: flex; justify-content: space-between; }
+  .jojo-brand img { width: 58px; height: 58px; }
+  .jojo-desktop-nav { display: none; }
+  .jojo-menu-toggle { display: inline-flex; }
+  .jojo-header-actions { gap: .15rem; }
+  .jojo-cart-link { min-width: 42px; justify-content: center; }
+  .jojo-cart-label { display: none; }
+  .jojo-cart-count-mobile { display: inline-flex; min-width: 18px; height: 18px; align-items: center; justify-content: center; border-radius: 50%; background: var(--jojo-red) !important; color: white !important; font-size: .68rem !important; position: absolute; top: 1px; right: -4px; }
+  .jojo-mobile-nav:not([hidden]) { display: flex; flex-direction: column; gap: 0; padding: .5rem 1rem 1rem; border-top: 1px solid #b78336; }
+  .jojo-mobile-nav a { padding: .8rem .5rem; border-bottom: 1px solid #b7833666; }
+  .jojo-header-search { flex-wrap: wrap; }
+  .jojo-header-search label { width: 100%; }
+  .jojo-hero { min-height: 670px; align-items: end; }
+  .jojo-hero-image { height: 100%; object-position: 58% center; }
+  .jojo-hero-shade { background: linear-gradient(0deg, #760006 0%, #760006 57%, #760006cc 68%, transparent 87%); }
+  .jojo-hero-inner { align-items: end; }
+  .jojo-hero-copy { width: min(100%, 520px); padding: 2rem 0 2.6rem; }
+  .jojo-hero h1 { font-size: clamp(2.5rem, 9.5vw, 4.5rem); }
+  .jojo-benefit-grid { padding-block: .8rem; }
+  .jojo-benefit { justify-content: start; padding: .5rem; }
+  .jojo-benefit:nth-child(2n+1) { border-left: 0; }
+  .jojo-benefit > svg { width: 30px; height: 30px; }
+  .jojo-benefit strong { font-size: .8rem; }
+  .jojo-benefit small { font-size: .68rem; }
+  .jojo-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jojo-product-image { height: 215px; }
+  .jojo-product-bottom { align-items: start; flex-direction: column; }
+  .jojo-story { grid-template-columns: 1fr; }
+  .jojo-story-image { max-height: 340px; }
+  .jojo-story-copy { width: min(100% - 2rem, 620px); padding: 2.5rem 0; margin-inline: auto; }
+  .jojo-recipe-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jojo-recipe img { height: 155px; }
+  .jojo-footer-top { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .jojo-footer-brand, .jojo-footer-newsletter { grid-column: 1 / -1; }
+  .jojo-footer-bottom { flex-direction: column; }
+}
+@media (max-width: 520px) {
+  .jojo-hero { min-height: 600px; }
+  .jojo-hero-image { object-position: 57% center; }
+  .jojo-benefit-grid { gap: .4rem; }
+  .jojo-benefit { flex-direction: column; text-align: center; }
+  .jojo-benefit:nth-child(2n) { border-left: 1px solid #6e3a1880; }
+  .jojo-product-grid { grid-template-columns: 1fr; max-width: 370px; }
+  .jojo-product-image { height: 275px; }
+  .jojo-product-bottom { flex-direction: row; align-items: end; }
+  .jojo-recipe img { height: 130px; }
+  .jojo-footer-brand { flex-direction: column; align-items: start; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .jojo-home *, .jojo-site-header * { transition: none !important; } }

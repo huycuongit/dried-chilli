@@ -1,6 +1,10 @@
 <!-- Dual Header Architecture: Desktop (> 900px) & Mobile (<= 900px) -->
-@include('frontend.layouts.partials.header-desktop')
-@include('frontend.layouts.partials.header-mobile')
+@if(request()->routeIs('home'))
+    @include('frontend.layouts.partials.jojo-home-header')
+@else
+    @include('frontend.layouts.partials.header-desktop')
+    @include('frontend.layouts.partials.header-mobile')
+@endif
 
 <style>
     /* Native View Transitions Animations */

@@ -6,6 +6,7 @@ $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 config(['database.default'=>'sqlite','database.connections.sqlite.database'=>':memory:']);
 Illuminate\Support\Facades\DB::purge();
 $schema=Illuminate\Support\Facades\Schema::getFacadeRoot();
+$schema->create('systems',function($t){$t->id();$t->string('key')->unique();$t->longText('content')->nullable();$t->timestamps();});
 $schema->create('products',function($t){$t->id();$t->string('name');$t->string('slug');$t->decimal('price');$t->decimal('sale_price')->nullable();$t->string('sale_type')->nullable();$t->string('sale_start_date')->nullable();$t->string('sale_end_date')->nullable();$t->text('description')->nullable();$t->boolean('is_active')->default(1);$t->boolean('is_best_seller')->default(0);$t->boolean('is_sale')->default(0);$t->boolean('is_limited_sale')->default(0);$t->string('image')->nullable();$t->timestamps();});
 $schema->create('product_images',function($t){$t->id();$t->integer('product_id');$t->string('image_path');$t->boolean('is_primary');$t->integer('sort_order');$t->timestamps();});
 require __DIR__.'/../../database/migrations/2026_11_01_000001_add_is_trending_to_products_table.php';
@@ -21,7 +22,7 @@ foreach(range(1,8) as $i)App\Models\Product::create(['name'=>'Marked '.$i,'slug'
 App\Models\Product::create(['name'=>'Inactive','slug'=>'inactive','price'=>1,'is_active'=>0,'is_trending'=>1]);
 App\Models\Product::create(['name'=>'Unmarked','slug'=>'unmarked','price'=>1,'is_active'=>1,'is_trending'=>0]);
 $products=(new App\Http\Controllers\HomeController())->index()->getData()['latestProducts'];
-$check($products->count()===6 && $products->first()->name==='Marked 8' && !$products->contains(fn($x)=>!$x->is_active||!$x->is_trending),'home selection');
+$check($products->count()===3 && $products->first()->name==='Marked 8' && !$products->contains(fn($x)=>!$x->is_active||!$x->is_trending),'home selection');
 $root=sys_get_temp_dir().'/product-image-test-'.bin2hex(random_bytes(6));config(['filesystems.disks.public.root'=>$root]);Illuminate\Support\Facades\Storage::forgetDisk('public');$disk=Illuminate\Support\Facades\Storage::disk('public');
 $im=imagecreatetruecolor(500,600);ob_start();imagepng($im);$disk->put('products/test.png',ob_get_clean());imagedestroy($im);
 App\Support\ResponsiveProductImages::generate('products/test.png');
