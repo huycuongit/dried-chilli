@@ -206,6 +206,14 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="col-12 mb-6">
+                                        <label class="form-label" for="link_instagram"><i class="menu-icon tf-icons ti ti-brand-instagram"></i> Link Instagram</label>
+                                        <input type="url" class="form-control" id="link_instagram" name="link_instagram"
+                                            value="{{ showValueSystem($data, 'link_instagram') }}"
+                                            placeholder="https://www.instagram.com/..." aria-label="Link Instagram" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-12 mb-6">
                                         <label class="form-label" for="link_messenger"><i class="menu-icon tf-icons ti ti-brand-messenger"></i> Link Messenger</label>
                                         <input type="text" class="form-control" id="link_messenger" name="link_messenger"
                                             value="{{ showValueSystem($data, 'link_messenger') }}"

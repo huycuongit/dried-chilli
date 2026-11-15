@@ -40,6 +40,7 @@ class System extends Model
         'link_introduce',
 
         'link_facebook',
+        'link_instagram',
         'link_messenger',
 
         'link_zalo',

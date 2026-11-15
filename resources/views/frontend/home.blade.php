@@ -45,10 +45,10 @@
 
     <section class="jojo-benefits" aria-label="Why choose Jojo">
         <div class="jojo-container jojo-benefit-grid">
-            <div class="jojo-benefit"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M18 3c2 6-6 8-6 14a6 6 0 0 0 12 0c0-4-2-7-6-14Z"/><path d="M14 17c-3 2-5 4-5 7a6 6 0 0 0 12 0"/></svg><div><strong>Bold &amp; authentic</strong><small>Rich chilli, aromatic shrimp</small></div></div>
-            <div class="jojo-benefit"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 17h24a12 12 0 0 1-24 0ZM7 27h18M10 5c-4 3 3 4-1 8M17 4c-4 3 3 4-1 8M24 5c-4 3 3 4-1 8"/></svg><div><strong>Versatile &amp; delicious</strong><small>Perfect with rice, noodles and more</small></div></div>
-            <div class="jojo-benefit"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28C7 23 5 18 5 12a6 6 0 0 1 11-3 6 6 0 0 1 11 3c0 6-2 11-11 16Z"/></svg><div><strong>Made with care</strong><small>A little flavour goes a long way</small></div></div>
-            <div class="jojo-benefit"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 8h17v15H3zM20 13h5l4 5v5h-9zM7 26a2 2 0 1 0 4 0 2 2 0 0 0-4 0ZM23 26a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z"/></svg><div><strong>Australia-wide delivery</strong><small>See our shipping policy for rates</small></div></div>
+            <div class="jojo-benefit"><i data-lucide="flame" aria-hidden="true"></i><div><strong>Bold &amp; authentic</strong><small>Rich chilli, aromatic shrimp</small></div></div>
+            <div class="jojo-benefit"><i data-lucide="soup" aria-hidden="true"></i><div><strong>Versatile &amp; delicious</strong><small>Perfect with rice, noodles and more</small></div></div>
+            <div class="jojo-benefit"><i data-lucide="leaf" aria-hidden="true"></i><div><strong>Made with care</strong><small>A little flavour goes a long way</small></div></div>
+            <div class="jojo-benefit"><i data-lucide="truck" aria-hidden="true"></i><div><strong>Australia-wide delivery</strong><small>See our shipping policy for rates</small></div></div>
         </div>
     </section>
 
@@ -98,7 +98,7 @@
             @else
                 <p class="jojo-empty-products">Explore the shop for what is available today.</p>
             @endif
-            <a class="jojo-text-link" href="{{ route('page.shop') }}">Shop all products <span aria-hidden="true">&rarr;</span></a>
+            <a class="jojo-button jojo-button-outline jojo-shop-all" href="{{ route('page.shop') }}">Shop all products <span aria-hidden="true">&rarr;</span></a>
         </div>
     </section>
 
@@ -151,4 +151,12 @@
         </section>
     @endif
 </main>
+@push('scripts')
+<script src="{{ asset('js/lucide.min.js') }}" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    if (window.lucide) window.lucide.createIcons({ root: document.querySelector('.jojo-benefits') });
+});
+</script>
+@endpush
 @endsection

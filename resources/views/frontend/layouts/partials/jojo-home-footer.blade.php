@@ -1,33 +1,50 @@
+@php
+    $instagramUrl = trim((string) app(\App\Support\SystemSettings::class)->get('link_instagram', ''));
+    $facebookUrl = trim((string) app(\App\Support\SystemSettings::class)->get('link_facebook', ''));
+    $instagramUrl = preg_match('~^https://~i', $instagramUrl) ? $instagramUrl : '';
+    $facebookUrl = preg_match('~^https://~i', $facebookUrl) ? $facebookUrl : '';
+@endphp
 <footer class="jojo-footer">
     <div class="jojo-container">
         <div class="jojo-footer-top">
-            <div class="jojo-footer-brand"><a href="{{ route('home') }}" aria-label="Jojo Little Kitchen home"><img src="{{ asset('images/jojo-logo-pdf.svg') }}" alt="Jojo Little Kitchen" width="84" height="84" loading="lazy"></a><p>Bringing bold flavour and a little Jojo joy to everyday cooking.</p></div>
-            <nav aria-label="Footer shop links"><a href="{{ route('page.shop') }}">Shop</a><a href="{{ route('page.sale') }}">Sale</a><a href="{{ route('page.about') }}">About Us</a><a href="{{ route('home') }}#recipes">Recipes</a></nav>
-            <nav aria-label="Footer company links"><a href="{{ route('page.legacy') }}">Our Legacy</a><a href="{{ route('contact.page') }}">Contact</a><a href="{{ route('page.faq') }}">FAQ</a><a href="{{ route('page.cart') }}">Cart</a></nav>
-            <div class="jojo-footer-newsletter"><strong>Claim your 15% voucher</strong><form id="footer-newsletter-form" class="newsletter-form"><label class="jojo-sr-only" for="footer-newsletter-email">Email address for voucher</label><input type="email" id="footer-newsletter-email" placeholder="Email address" required><button type="submit" id="footer-newsletter-btn">Get code</button></form><p id="footer-newsletter-feedback" role="status" hidden></p></div>
+            <div class="jojo-footer-brand">
+                <a class="jojo-footer-logo" href="{{ route('home') }}" aria-label="Jojo Little Kitchen home">
+                    <img src="{{ asset('images/jojo-footer-wordmark.svg') }}" alt="Jojo Little Kitchen" width="142" height="74">
+                </a>
+                <p>Bringing authentic Asian flavours to your table with quality ingredients, bold taste and a homestyle touch.</p>
+            </div>
+            <nav class="jojo-footer-links" aria-label="Footer shop links">
+                <a href="{{ route('page.shop') }}">Shop</a>
+                <a href="{{ route('page.about') }}">About Us</a>
+                <a href="{{ route('home') }}#recipes">Recipes</a>
+            </nav>
+            <nav class="jojo-footer-links" aria-label="Footer company links">
+                <a href="{{ route('page.legacy') }}">Our Legacy</a>
+                <a href="{{ route('contact.page') }}">Contact</a>
+            </nav>
+            <div class="jojo-footer-social">
+                <strong>Follow Us</strong>
+                <div class="jojo-footer-social-icons">
+                    @if($instagramUrl !== '')
+                        <a href="{{ $instagramUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Jojo on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="jojo-instagram-dot" cx="17.5" cy="6.5" r="1"/></svg></a>
+                    @else
+                        <span aria-label="Instagram" role="img"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="jojo-instagram-dot" cx="17.5" cy="6.5" r="1"/></svg></span>
+                    @endif
+                    @if($facebookUrl !== '')
+                        <a href="{{ $facebookUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Jojo on Facebook"><span aria-hidden="true" class="jojo-facebook-mark">f</span></a>
+                    @else
+                        <span aria-label="Facebook" role="img"><span aria-hidden="true" class="jojo-facebook-mark">f</span></span>
+                    @endif
+                </div>
+            </div>
         </div>
-        <div class="jojo-footer-bottom"><span>© {{ date('Y') }} Jojo Little Kitchen. All rights reserved.</span><nav aria-label="Legal links"><a href="{{ route('page.terms') }}">Terms &amp; Conditions</a><a href="{{ route('page.privacy') }}">Privacy Policy</a><a href="{{ route('page.shipping') }}">Shipping &amp; Refunds</a></nav></div>
+        <div class="jojo-footer-bottom">
+            <span>&copy; {{ date('Y') }} Jojo Little Kitchen. All rights reserved.</span>
+            <nav aria-label="Legal links">
+                <a href="{{ route('page.terms') }}">Terms &amp; Conditions</a>
+                <a href="{{ route('page.privacy') }}">Privacy Policy</a>
+                <a href="{{ route('page.shipping') }}">Shipping &amp; Returns</a>
+            </nav>
+        </div>
     </div>
 </footer>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('footer-newsletter-form');
-    if (!form) return;
-    form.addEventListener('submit', async function (event) {
-        event.preventDefault();
-        const email = document.getElementById('footer-newsletter-email');
-        const button = document.getElementById('footer-newsletter-btn');
-        const feedback = document.getElementById('footer-newsletter-feedback');
-        button.disabled = true; feedback.hidden = false; feedback.textContent = 'Claiming voucher…';
-        try {
-            const response = await fetch('/api/coupon/claim-voucher', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '' }, body: JSON.stringify({ email: email.value.trim() }) });
-            const data = await response.json();
-            feedback.textContent = data.success
-                ? 'Your 15% code: ' + data.code + (data.mail_sent ? ' (sent to your email)' : ' (email could not be sent; please copy this code)')
-                : (data.message || 'Unable to claim a voucher. Please try again.');
-            if (data.success) email.value = '';
-        } catch (error) { feedback.textContent = 'Connection error. Please try again.'; }
-        finally { button.disabled = false; }
-    });
-});
-</script>
