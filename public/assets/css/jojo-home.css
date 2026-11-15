@@ -111,7 +111,7 @@ body.home-page .jojo-home, body.home-page .jojo-site-header, body.home-page .joj
 .jojo-footer-top { display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(90px, .65fr) minmax(90px, .7fr) minmax(130px, .7fr); gap: clamp(1rem, 2.8vw, 2.5rem); align-items: center; padding-bottom: 1.25rem; }
 .jojo-footer-brand { display: flex; align-items: center; gap: 1.4rem; min-width: 0; }
 .jojo-footer-logo { flex: none; }
-.jojo-footer-brand img { display: block; width: 142px; height: 74px; }
+.jojo-footer-brand img { display: block; width: 74px; height: 74px; }
 .jojo-footer-brand p { max-width: 28ch; margin: 0; padding-left: 1.4rem; border-left: 1px solid #8b4c18; font-size: .82rem; line-height: 1.35; }
 .jojo-footer nav { display: flex; flex-direction: column; gap: .45rem; }
 .jojo-footer a { width: fit-content; color: inherit; font-size: .82rem; font-weight: 700; text-decoration: none; }
@@ -147,7 +147,7 @@ body.home-page .jojo-home, body.home-page .jojo-site-header, body.home-page .joj
   .jojo-recipes-intro p { margin-inline: auto; }
   .jojo-footer-top { grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, .7fr)); gap: 1rem; }
   .jojo-footer-brand { gap: .6rem; }
-  .jojo-footer-brand img { width: 110px; height: 58px; }
+  .jojo-footer-brand img { width: 58px; height: 58px; }
   .jojo-footer-brand p { padding-left: .7rem; font-size: .72rem; }
 }
 @media (max-width: 760px) {
@@ -202,7 +202,7 @@ body.home-page .jojo-home, body.home-page .jojo-site-header, body.home-page .joj
   .jojo-product-bottom { flex-direction: row; align-items: end; }
   .jojo-recipe img { height: 130px; }
   .jojo-footer-brand { flex-direction: row; align-items: center; }
-  .jojo-footer-brand img { width: 110px; height: 58px; }
+  .jojo-footer-brand img { width: 58px; height: 58px; }
   .jojo-footer-bottom { align-items: flex-start; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .jojo-home *, .jojo-site-header * { transition: none !important; } }

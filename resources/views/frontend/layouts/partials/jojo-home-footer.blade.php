@@ -9,7 +9,7 @@
         <div class="jojo-footer-top">
             <div class="jojo-footer-brand">
                 <a class="jojo-footer-logo" href="{{ route('home') }}" aria-label="Jojo Little Kitchen home">
-                    <img src="{{ asset('images/jojo-footer-wordmark.svg') }}" alt="Jojo Little Kitchen" width="142" height="74">
+                    <img src="{{ asset('images/jojo-logo-pdf.svg') }}" alt="Jojo Little Kitchen" width="74" height="74">
                 </a>
                 <p>Bringing authentic Asian flavours to your table with quality ingredients, bold taste and a homestyle touch.</p>
             </div>

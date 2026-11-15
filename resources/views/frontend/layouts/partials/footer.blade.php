@@ -2,8 +2,8 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-brand">
-                <a href="{{ route('home') }}" class="footer-logo-wrap" aria-label="Dried Chili Home">
-                    <img src="{{ asset('images/logo_dried-360.webp') }}" alt="Dried Chili Logo" class="footer-logo" width="150" height="61" loading="lazy">
+                <a href="{{ route('home') }}" class="footer-logo-wrap" aria-label="Jojo Little Kitchen home">
+                    <img src="{{ asset('images/jojo-logo-pdf.svg') }}" alt="Jojo Little Kitchen" class="footer-logo" width="112" height="112" loading="lazy">
                 </a>
                 <p>Bringing authentic Asian chili craftsmanship directly to your kitchen. Handcrafted in small batches with premium sun-dried peppers, aromatic crispy garlic, and shipped fresh to heat lovers globally.</p>
                 <div class="footer-spice-icons" aria-hidden="true">
@@ -128,7 +128,7 @@
     }
 
     .footer-logo {
-        width: 150px;
+        width: 112px;
         max-width: 100%;
         height: auto;
         object-fit: contain;
@@ -301,7 +301,7 @@
             margin: 0 auto 0.5rem auto;
         }
         .footer-logo {
-            width: 120px;
+            width: 96px;
         }
         .footer-brand p {
             margin: 0 auto;

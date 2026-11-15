@@ -23,8 +23,8 @@
         
         <!-- Center Section: Brand Logo -->
         <div class="header-center brand-logo-wrapper">
-            <a class="brand-logo" href="{{ page_route('home') }}" aria-label="Dried Chili Home">
-                <img src="{{ asset('images/logo_dried-360.webp') }}" alt="Dried Chili Logo" class="logo-img" width="160" height="65">
+            <a class="brand-logo" href="{{ page_route('home') }}" aria-label="Jojo Little Kitchen home">
+                <img src="{{ asset('images/jojo-logo-pdf.svg') }}" alt="Jojo Little Kitchen" class="logo-img" width="65" height="65">
             </a>
         </div>
         

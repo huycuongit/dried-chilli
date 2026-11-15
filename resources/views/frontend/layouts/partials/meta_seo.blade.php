@@ -3,7 +3,7 @@
     $pageTitle = trim(View::yieldContent('title'));
     $isJojoHome = request()->routeIs('home');
     $siteName = $isJojoHome ? 'Jojo Little Kitchen' : 'Dried Chili';
-    $siteLogo = $isJojoHome ? asset('images/jojo-logo-pdf.svg') : asset('assets/favicon/apple-touch-icon.png');
+    $siteLogo = asset('images/jojo-logo-pdf.svg');
     $siteImage = $isJojoHome ? asset('images/jojo-shrimp-hero-clean.webp') : asset('images/product_hero.png');
     $siteDescription = $isJojoHome
         ? 'Signature shrimp chilli made for bold flavour and everyday cooking.'

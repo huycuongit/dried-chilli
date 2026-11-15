@@ -12,11 +12,11 @@
     <style>
         @view-transition { navigation: auto; }
     </style>
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png?v=20261015-chili">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png?v=20261015-chili">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png?v=20261015-chili">
-    <link rel="manifest" href="/assets/favicon/site.webmanifest?v=20261015-chili">
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon/favicon.ico?v=20261015-chili">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/jojo-apple-touch-icon.png?v=20261115-jojo">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/jojo-favicon-32x32.png?v=20261115-jojo">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/jojo-favicon-16x16.png?v=20261115-jojo">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest?v=20261115-jojo">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon/jojo-favicon.ico?v=20261115-jojo">
     <!-- Critical Assets Preload for LCP & CLS Optimization -->
     @if(request()->is('/') || request()->routeIs('home'))
     @php
