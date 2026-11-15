@@ -36,8 +36,8 @@ body.home-page .jojo-home, body.home-page .jojo-site-header, body.home-page .joj
 .jojo-hero { position: relative; min-height: clamp(380px, 32vw, 620px); display: flex; align-items: center; isolation: isolate; background: #710007; color: white; }
 .jojo-hero-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .jojo-hero-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #690006b8 0%, #6900066b 43%, transparent 68%); }
-.jojo-hero-inner { display: flex; align-items: center; width: calc(100% - clamp(2rem, 4vw, 5rem)); min-height: inherit; }
-.jojo-hero-copy { width: min(44%, 660px); padding: 3.5rem 0; }
+.jojo-hero-inner { display: flex; align-items: center; width: 100%; min-height: inherit; padding-inline: 20%; }
+.jojo-hero-copy { width: 55%; padding-block: 3.5rem; }
 .jojo-eyebrow { display: block; color: #bd000d; font-size: .81rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
 .jojo-hero-eyebrow { display: flex; align-items: center; gap: .55rem; color: #fff6d8; font-size: .88rem; }
 .jojo-hero-eyebrow::before, .jojo-hero-eyebrow::after { content: ''; height: 1px; flex: 1; background: #f8dfb2; opacity: .75; }
@@ -127,6 +127,8 @@ body.home-page .jojo-home, body.home-page .jojo-site-header, body.home-page .joj
 .jojo-footer-bottom a { font-size: .76rem; font-weight: 400; }
 .jojo-home :focus-visible, .jojo-site-header :focus-visible, .jojo-footer :focus-visible { outline: 3px solid #1b478c; outline-offset: 3px; }
 @media (max-width: 1000px) {
+  .jojo-hero-inner { padding-inline: 10%; }
+  .jojo-hero-copy { width: 50%; }
   .jojo-header-inner { grid-template-columns: 90px 1fr auto; }
   .jojo-desktop-nav { gap: 1rem; }
   .jojo-desktop-nav a { font-size: .87rem; }
@@ -160,8 +162,8 @@ body.home-page .jojo-home, body.home-page .jojo-site-header, body.home-page .joj
   .jojo-hero { min-height: 670px; align-items: end; }
   .jojo-hero-image { height: 100%; object-position: 58% center; }
   .jojo-hero-shade { background: linear-gradient(0deg, #760006 0%, #760006 57%, #760006cc 68%, transparent 87%); }
-  .jojo-hero-inner { align-items: end; }
-  .jojo-hero-copy { width: min(100%, 520px); padding: 2rem 0 2.6rem; }
+  .jojo-hero-inner { align-items: end; padding-inline: 4%; }
+  .jojo-hero-copy { width: 100%; padding-block: 2rem 2.6rem; }
   .jojo-hero h1 { font-size: clamp(2.5rem, 9.5vw, 4.5rem); }
   .jojo-benefit-grid { padding-block: .8rem; }
   .jojo-benefit { justify-content: start; padding: .5rem; }
