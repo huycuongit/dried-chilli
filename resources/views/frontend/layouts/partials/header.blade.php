@@ -1,10 +1,5 @@
-<!-- Dual Header Architecture: Desktop (> 900px) & Mobile (<= 900px) -->
-@if(request()->routeIs('home'))
-    @include('frontend.layouts.partials.jojo-home-header')
-@else
-    @include('frontend.layouts.partials.header-desktop')
-    @include('frontend.layouts.partials.header-mobile')
-@endif
+<!-- Global Storefront Header: Jojo Little Kitchen -->
+@include('frontend.layouts.partials.jojo-home-header')
 
 <style>
     /* Native View Transitions Animations */
@@ -36,39 +31,40 @@
     @keyframes fallbackFadeOut { to { opacity: 0; } }
 
     :root {
-        /* --- QUY TẮC 60-30-10 (FIERY SPICY THEME) --- */
+        /* --- JOJO LITTLE KITCHEN COLOR SYSTEM --- */
         
-        /* 60%: MÀU NỀN & CHỮ (Base & Text) */
-        --spice-bg: #FDF9F1; /* Trắng ngà ánh vàng (Warm Cream) */
-        --spice-bg-alt: #F0E6DD; /* Be đậm ấm cúng (Chai Latte Beige) cho trang phụ */
-        --spice-bg-dark: #2A0800; /* Nâu Đỏ Rực Sâu (Hero/Header) */
-        --spice-bg-bundle: #3A1B14; /* Nâu Ca-cao Đậm (Dark Cocoa) - Hợp tone ấm thay vì xanh */
-        --spice-text: #28120B; /* Nâu than ấm cho text */
+        /* MÀU NỀN & CHỮ (Base & Text) */
+        --spice-bg: #fff8ee; /* Jojo Warm Cream */
+        --spice-bg-alt: #fffaf2; /* Jojo Soft Card Cream */
+        --spice-bg-dark: #401b1b; /* Jojo Deep Ink / Dark Brown */
+        --spice-bg-bundle: #401b1b;
+        --spice-text: #401b1b; /* Jojo Dark Brown Text */
         
-        /* 30%: MÀU PHỤ (Secondary) */
-        --spice-text-light: #F4DFD4; /* Cam sữa nhạt cho chữ trên nền tối */
-        --spice-secondary: #FFB300; /* Vàng Cà-ri (Curry Gold) - Thêm độ nóng */
+        /* MÀU PHỤ (Secondary) */
+        --spice-text-light: #fff8ee;
+        --spice-secondary: #f2c455; /* Jojo Brand Gold */
         
-        /* 10%: MÀU NHẤN CHÍNH (CTA / Accent) */
-        --spice-primary: #E45D3E; /* Cam San Hô rực rỡ (Coral Red) */
-        --spice-accent: #C73B1B; /* Đỏ Ớt Đậm (Hover state) */
+        /* MÀU NHẤN CHÍNH (CTA / Accent) */
+        --spice-primary: #a4000b; /* Jojo Chili Red */
+        --spice-accent: #710007; /* Jojo Dark Red Hover */
         
-        /* BỘ MÀU HỖ TRỢ MỞ RỘNG */
-        --spice-fire: #C4141E;       /* Đỏ ớt tươi studio */
-        --spice-tangerine: #FF7A1A;  /* Cam vỏ ớt bão hòa */
-        --spice-honey: #E59528;      /* Vàng mật ong hổ phách */
-        --spice-herb: #4E7837;       /* Xanh thảo mộc */
-        --spice-mint: #7FD2BD;       /* Xanh mint tương phản */
-        --spice-steel: #B5BAC2;      /* Bạc kim loại bếp ăn */
+        /* BỘ MÀU HỖ TRỢ */
+        --spice-fire: #a4000b;
+        --spice-tangerine: #f2c455;
+        --spice-honey: #f2c455;
+        --spice-herb: #4E7837;
+        --spice-mint: #7FD2BD;
+        --spice-steel: #ead8c9;
         
-        /* CHUẨN HÓA BORDER-RADIUS TOÀN BỘ WEBSITE = 20PX */
+        /* CHUẨN HÓA BORDER-RADIUS CARD & FORM ĐỒNG BỘ 20PX */
         --spice-radius: 20px;
+        --jojo-card-radius: 20px;
         
-        --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --font-heading: Georgia, 'Times New Roman', serif;
+        --font-body: Arial, Helvetica, sans-serif;
     }
 
-    /* GLOBAL RULE: TẤT CẢ PHẦN TỬ CÓ BORDER-RADIUS ĐỀU ĐỒNG BỘ 20PX */
+    /* GLOBAL RULE: TẤT CẢ KHUNG CARD, FORM VÀ INPUT ĐỀU ĐỒNG BỘ BORDER-RADIUS 20PX */
     button:not(.btn-circle):not(.pin-marker):not(.cart-btn):not([class*="carousel"]):not(.slick-arrow):not(.swiper-button):not(.mobile-menu-toggle),
     .btn:not(.btn-circle),
     .btn-primary,
@@ -76,6 +72,8 @@
     .btn-ghost,
     .btn-open-map,
     .submit-btn,
+    .add-to-cart-btn,
+    .yum-btn,
     input:not([type="checkbox"]):not([type="radio"]):not([type="color"]),
     select,
     textarea,
@@ -84,6 +82,7 @@
     .spice-form textarea,
     .card:not(.card-circle),
     .product-card,
+    .yum-card,
     .feed-card,
     .contact-item,
     .contact-form-wrapper,
@@ -96,9 +95,12 @@
     .price-btn,
     .cart-item,
     .cart-summary,
+    .cart-summary-card,
+    .checkout-card-form,
+    .checkout-block,
     .faq-card,
     .alert {
-        border-radius: var(--spice-radius, 20px) !important;
+        border-radius: 20px !important;
     }
 
     body {
@@ -219,13 +221,13 @@
     .container,
     .header-container,
     .spice-container {
-        max-width: 1430px !important;
+        max-width: 1460px !important;
         width: 100% !important;
         margin-left: auto !important;
         margin-right: auto !important;
     }
 
-    @media (max-width: 1440px) {
+    @media (max-width: 1460px) {
         .container,
         .header-container,
         .spice-container {

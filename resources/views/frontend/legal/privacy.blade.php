@@ -190,7 +190,8 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
 
 /* Hero */
 .legal-hero {
-    background: #1F0701;
+    background: linear-gradient(90deg, #710007 0%, #530005 55%, #210609 100%) !important;
+    border-bottom: 3px solid var(--spice-secondary, #f2c455) !important;
 }
 
 /* Document */
@@ -204,7 +205,7 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
 }
 
 .document-wrapper {
-    background: #FFFFFF;
+    background: #fffaf2;
     border-radius: 20px;
     padding: 3.5rem 4rem;
     max-width: 950px;
@@ -213,8 +214,8 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
     margin-top: -3.5rem;
     position: relative;
     z-index: 10;
-    border: 1px solid rgba(40, 18, 11, 0.08);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.06);
+    border: 1px solid #ead8c9;
+    box-shadow: 0 15px 45px rgba(64, 27, 27, 0.05);
     opacity: 1 !important;
     display: block !important;
     visibility: visible !important;
@@ -227,12 +228,12 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
     gap: 1.5rem;
     margin-bottom: 3.5rem;
     padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(40, 18, 11, 0.08);
+    border-bottom: 1px solid #ead8c9;
 }
 
 .highlight-item {
-    background: rgba(240, 230, 221, 0.35);
-    border: 1px solid rgba(40, 18, 11, 0.06);
+    background: #fff8ee;
+    border: 1px solid #ead8c9;
     border-radius: 20px;
     padding: 1.75rem 1.5rem;
     display: flex;
@@ -245,26 +246,26 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
 
 .highlight-item:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    border-color: rgba(228, 93, 62, 0.25);
+    box-shadow: 0 10px 25px rgba(64, 27, 27, 0.08);
+    border-color: #a4000b;
 }
 
 .highlight-icon {
     width: 52px;
     height: 52px;
     border-radius: 20px;
-    background: rgba(228, 93, 62, 0.1);
-    color: var(--spice-primary);
+    background: rgba(164, 0, 11, 0.1);
+    color: #a4000b;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .highlight-text h4 {
-    font-family: var(--font-heading);
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--spice-bg-dark);
+    font-weight: 700;
+    color: #401b1b;
     margin: 0 0 0.35rem 0;
 }
 
@@ -278,10 +279,10 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
 
 /* Typography in Document */
 .document-wrapper h2 {
-    font-family: var(--font-heading);
-    color: var(--spice-bg-dark);
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #401b1b;
     font-size: clamp(26px, 2.5vw, 34px);
-    font-weight: 800;
+    font-weight: 700;
     margin-top: 3.5rem;
     margin-bottom: 1.25rem;
     letter-spacing: -0.3px;
@@ -292,7 +293,7 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
 }
 
 .document-wrapper p {
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     color: #4A3B32;
     margin-bottom: 1.5rem;
@@ -306,7 +307,7 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
 
 .document-wrapper ul,
 .document-wrapper ol {
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     color: #4A3B32;
     margin-bottom: 1.5rem;
@@ -335,8 +336,8 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
 /* Help Box */
 .privacy-help-box {
     margin-top: 4rem;
-    background: rgba(240, 230, 221, 0.5);
-    border: 1px solid rgba(40, 18, 11, 0.08);
+    background: #fff8ee;
+    border: 1px solid #ead8c9;
     border-radius: 20px;
     padding: 2.25rem 2.5rem;
     display: flex;
@@ -346,15 +347,15 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
 }
 
 .help-box-content h3 {
-    font-family: var(--font-heading);
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--spice-bg-dark);
+    font-weight: 700;
+    color: #401b1b;
     margin: 0 0 0.5rem 0;
 }
 
 .help-box-content p {
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 0.95rem;
     color: #5C4B41;
     margin: 0;
@@ -373,7 +374,7 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
     gap: 0.5rem;
     padding: 0.8rem 1.4rem;
     border-radius: 20px;
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 0.9rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -383,26 +384,26 @@ $customContent = $sys->get('nafu_home_page_privacy_content');
 }
 
 .help-btn.primary {
-    background: var(--spice-primary);
+    background: #a4000b;
     color: #FFFFFF;
-    box-shadow: 0 6px 18px rgba(228, 93, 62, 0.3);
+    box-shadow: 0 6px 18px rgba(164, 0, 11, 0.25);
 }
 
 .help-btn.primary:hover {
-    background: var(--spice-accent);
+    background: #710007;
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(199, 59, 27, 0.35);
+    box-shadow: 0 10px 24px rgba(113, 0, 7, 0.35);
 }
 
 .help-btn.outline {
     background: #FFFFFF;
-    color: var(--spice-bg-dark);
-    border: 1px solid rgba(40, 18, 11, 0.15);
+    color: #401b1b;
+    border: 1px solid #ead8c9;
 }
 
 .help-btn.outline:hover {
-    border-color: var(--spice-primary);
-    color: var(--spice-primary);
+    border-color: #a4000b;
+    color: #a4000b;
     transform: translateY(-2px);
 }
 

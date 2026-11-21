@@ -43,21 +43,21 @@
 
 <style>
 .faq-bg {
-    background: #EFE4D3;
+    background: #fff8ee;
     min-height: 100vh;
     padding-bottom: 4rem;
 }
 
 .faq-header {
-    background: var(--spice-accent);
-    color: white;
+    background: linear-gradient(90deg, #710007 0%, #530005 55%, #210609 100%);
+    color: #fff9e9;
     padding: 4rem 1rem;
     text-align: center;
-    border-bottom: 4px solid var(--spice-text);
+    border-bottom: 3px solid var(--jojo-gold, #f2c455);
 }
 
 .faq-header h1 {
-    font-family: var(--font-heading);
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: clamp(2.5rem, 6vw, 4rem);
     margin: 0;
     text-transform: uppercase;
@@ -65,9 +65,10 @@
 
 .faq-header p {
     font-size: 1.25rem;
-    font-weight: bold;
+    font-weight: 500;
     max-width: 600px;
     margin: 1rem auto;
+    color: rgba(255, 249, 233, 0.88);
 }
 
 .faq-grid {
@@ -79,32 +80,33 @@
 
 .faq-img {
     width: 100%;
-    border: 4px solid var(--spice-text);
-    box-shadow: 8px 8px 0px var(--spice-text);
+    border: 1px solid #ead8c9;
+    box-shadow: 0 10px 25px rgba(64, 27, 27, 0.08);
     border-radius: 20px;
     position: sticky;
     top: 2rem;
 }
 
 .faq-card {
-    background: white;
-    border: 2px solid var(--spice-text);
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
     border-radius: 20px;
-    margin-bottom: 1rem;
-    box-shadow: 4px 4px 0px var(--spice-text);
-    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 4px 15px rgba(64, 27, 27, 0.03);
+    padding: 1.75rem;
 }
 
 .faq-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    margin: 0 0 1rem 0;
-    color: var(--spice-primary);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.35rem;
+    margin: 0 0 0.75rem 0;
+    color: #401b1b;
 }
 
 .faq-card p {
     margin: 0;
     line-height: 1.6;
+    color: #5C4B41;
     text-align: justify;
     text-justify: inter-word;
     text-align-last: left;

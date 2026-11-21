@@ -33,9 +33,8 @@
             <img class="jojo-hero-image" src="{{ asset($heroImage) }}" @if($heroSrcset !== '') srcset="{{ $heroSrcset }}" sizes="100vw" @endif alt="{{ $pageLayoutValue('page_layout_home_image_alt_1') }}" width="2048" height="683" fetchpriority="high">
         @endif
         <div class="jojo-hero-shade" aria-hidden="true"></div>
-        <div class="jojo-container jojo-hero-inner">
+        <div class="jojo-hero-inner">
             <div class="jojo-hero-copy">
-                <span class="jojo-eyebrow jojo-hero-eyebrow">{{ $pageLayoutValue('page_layout_home_slide_1_01') }}</span>
                 <h1 id="jojo-hero-title">{{ $pageLayoutValue('page_layout_home_slide_1_02') }}<br><em>{{ $pageLayoutValue('page_layout_home_slide_1_03') }}</em></h1>
                 <p>{{ $pageLayoutValue('page_layout_home_slide_1_04') }}</p>
                 <a class="jojo-button jojo-button-gold" href="{{ $pageLayoutLink('page_layout_home_link_slide_1') }}">{{ $pageLayoutValue('page_layout_home_slide_1_05') }} <span aria-hidden="true">&rarr;</span></a>
@@ -51,6 +50,8 @@
             <div class="jojo-benefit"><i data-lucide="truck" aria-hidden="true"></i><div><strong>Australia-wide delivery</strong><small>See our shipping policy for rates</small></div></div>
         </div>
     </section>
+
+    <div class="jojo-announcement"><a href="{{ route('page.shipping') }}">Australia-wide delivery &middot; View shipping rates</a><span aria-hidden="true">&#10022;</span><span>Small batch flavour</span><span aria-hidden="true">&#10022;</span><span>Made with care</span></div>
 
     <section class="jojo-products jojo-section" id="products" aria-labelledby="jojo-products-title">
         <div class="jojo-container">

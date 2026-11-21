@@ -2,71 +2,22 @@
 <html lang="{{ app()->getLocale() }}">
 @include('frontend.layouts.partials.head')
 
-<body class="{{ request()->routeIs('home') ? 'home-page' : '' }}">
+<body class="jojo-theme {{ request()->routeIs('home') ? 'home-page' : '' }}">
 <style>
     .shop-toast-container { position: fixed; top: 1rem; right: 1rem; z-index: 10000; display: grid; gap: .6rem; width: min(24rem, calc(100vw - 2rem)); }
     .shop-toast { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1rem; color: #fff; background: #742d20; border-radius: .75rem; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
     .shop-toast--success { background: #24543b; }
     .shop-toast button { border: 0; padding: 0; color: inherit; background: transparent; font-size: 1.4rem; line-height: 1; cursor: pointer; }
     @media (max-width: 768px) { .shop-toast-container { top: auto; bottom: 5.5rem; } }
-</style>
     @if(request()->routeIs('home'))
-    <div class="jojo-announcement"><a href="{{ route('page.shipping') }}">Australia-wide delivery &middot; View shipping rates</a><span aria-hidden="true">&#10022;</span><span>Small batch flavour</span><span aria-hidden="true">&#10022;</span><span>Made with care</span></div>
-    @else
-    <div class="spice-marquee" style="cursor: pointer;"
-        onclick="document.getElementById('newsletter-modal').classList.add('active'); document.getElementById('voucher-popup').classList.remove('show');">
-        <div class="marquee-track">
-            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦</span>
-            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦</span>
-            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦</span>
-            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦</span>
-            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦</span>
-            <span>🔥 SALE: BUY 2 GET 1 FREE ON ALL SHRIMP CHILLI JARS ✦ FREE SHIPPING OVER $50 ✦</span>
-        </div>
-    </div>
+    body, body.home-page, body.jojo-theme { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+    .mobile-bottom-nav { display: none !important; }
+    .jojo-footer { margin-bottom: 0 !important; }
     @endif
-    <style>
-    /* Marquee */
-    .spice-marquee {
-        background-color: var(--spice-primary);
-        color: white;
-        padding: 3px 0;
-        font-size: 0.75rem;
-        overflow: hidden;
-        white-space: nowrap;
-        font-family: var(--font-heading, 'Manrope', sans-serif);
-        font-weight: 800;
-        letter-spacing: 1px;
-        position: relative;
-        z-index: 1000;
-        transition: background-color 0.3s;
-        display: flex;
-        align-items: center;
-    }
-
-    .spice-marquee:hover {
-        background-color: var(--spice-accent);
-    }
-
-    .marquee-track {
-        display: inline-block;
-        animation: scrollMarquee 25s linear infinite;
-    }
-
-    .marquee-track span {
-        margin-right: 3rem;
-    }
-
-    @keyframes scrollMarquee {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-50%);
-        }
-    }
-    </style>
+</style>
+    @if(!request()->routeIs('home'))
+    <div class="jojo-announcement"><a href="{{ route('page.shipping') }}">Australia-wide delivery &middot; View shipping rates</a><span aria-hidden="true">&#10022;</span><span>Small batch flavour</span><span aria-hidden="true">&#10022;</span><span>Made with care</span></div>
+    @endif
     @include('frontend.layouts.partials.header')
 
 
@@ -80,11 +31,7 @@
     @endif
 
     @include('frontend.layouts.partials.voucher-popup')
-    @if(request()->routeIs('home'))
-        @include('frontend.layouts.partials.jojo-home-footer')
-    @else
-        @include('frontend.layouts.partials.footer')
-    @endif
+    @include('frontend.layouts.partials.jojo-home-footer')
 
     <!-- Floating Hotline Button -->
     @if($companySetting('hotline'))
@@ -177,7 +124,7 @@
     }
 
     @media (max-width: 768px) {
-        body {
+        body:not(.home-page) {
             padding-bottom: 84px;
         }
 

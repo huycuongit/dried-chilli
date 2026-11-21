@@ -2,11 +2,11 @@
     <div class="jojo-header-inner jojo-container">
         <a class="jojo-brand" href="{{ route('home') }}" aria-label="Jojo Little Kitchen home"><img src="{{ asset('images/jojo-logo-pdf.svg') }}" alt="Jojo Little Kitchen" width="72" height="72"></a>
         <nav class="jojo-desktop-nav" aria-label="Main navigation">
-            <a href="{{ route('page.shop') }}">Shop</a>
-            <a href="{{ route('page.about') }}">About Us</a>
+            <a href="{{ route('page.shop') }}" class="{{ request()->routeIs('page.shop*') || request()->routeIs('page.product*') ? 'active' : '' }}">Shop</a>
+            <a href="{{ route('page.about') }}" class="{{ request()->routeIs('page.about*') ? 'active' : '' }}">About Us</a>
             <a href="{{ route('home') }}#recipes">Recipes</a>
-            <a href="{{ route('page.legacy') }}">Our Legacy</a>
-            <a href="{{ route('contact.page') }}">Contact</a>
+            <a href="{{ route('page.legacy') }}" class="{{ request()->routeIs('page.legacy*') ? 'active' : '' }}">Our Legacy</a>
+            <a href="{{ route('contact.page') }}" class="{{ request()->routeIs('contact*') ? 'active' : '' }}">Contact</a>
         </nav>
         <div class="jojo-header-actions">
             <button class="jojo-icon-button jojo-search-toggle" type="button" aria-label="Search products" aria-controls="jojo-search" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg></button>
@@ -21,7 +21,13 @@
         <label for="jojo-search-input">Search products</label><input id="jojo-search-input" name="search" type="search" placeholder="Search Jojo products"><button type="submit">Search</button>
     </form>
     <nav class="jojo-mobile-nav" id="jojo-mobile-nav" aria-label="Mobile navigation" hidden>
-        <a href="{{ route('page.shop') }}">Shop</a><a href="{{ route('page.about') }}">About Us</a><a href="{{ route('home') }}#recipes">Recipes</a><a href="{{ route('page.legacy') }}">Our Legacy</a><a href="{{ route('contact.page') }}">Contact</a><a href="{{ route('page.cart') }}">Cart</a><a href="{{ route('auth.login') }}">Login / Account</a>
+        <a href="{{ route('page.shop') }}" class="{{ request()->routeIs('page.shop*') || request()->routeIs('page.product*') ? 'active' : '' }}">Shop</a>
+        <a href="{{ route('page.about') }}" class="{{ request()->routeIs('page.about*') ? 'active' : '' }}">About Us</a>
+        <a href="{{ route('home') }}#recipes">Recipes</a>
+        <a href="{{ route('page.legacy') }}" class="{{ request()->routeIs('page.legacy*') ? 'active' : '' }}">Our Legacy</a>
+        <a href="{{ route('contact.page') }}" class="{{ request()->routeIs('contact*') ? 'active' : '' }}">Contact</a>
+        <a href="{{ route('page.cart') }}" class="{{ request()->routeIs('page.cart*') ? 'active' : '' }}">Cart</a>
+        <a href="{{ route('auth.login') }}" class="{{ request()->routeIs('auth.*') || request()->routeIs('account.*') ? 'active' : '' }}">Login / Account</a>
     </nav>
 </header>
 <script>

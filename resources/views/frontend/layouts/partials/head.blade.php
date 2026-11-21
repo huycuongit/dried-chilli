@@ -44,7 +44,8 @@
     @else
     <link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}">
     @endif
-    <link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-layout.css') }}?v=20260918-3">
+    <link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-layout.css') }}?v={{ filemtime(public_path('assets/css/dried-chilli-layout.css')) }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jojo-home.css') }}?v={{ filemtime(public_path('assets/css/jojo-home.css')) }}">
     <link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-richtext.css') }}?v=20260919-1" media="print" onload="this.media='all'">
 
     @stack('styles')

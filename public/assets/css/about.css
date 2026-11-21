@@ -4,8 +4,8 @@
    ========================================================================= */
 
 .about-page {
-    --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-heading: Georgia, 'Times New Roman', serif;
+    --font-body: Arial, Helvetica, sans-serif;
     background-color: var(--spice-bg);
     color: var(--spice-text);
     font-family: var(--font-body);
@@ -19,7 +19,7 @@
     background-color: var(--spice-bg);
 }
 .bg-alt {
-    background-color: #F7EFE6;
+    background-color: #fffaf2;
 }
 
 /* Identity layout can be selected in the page editor. */
@@ -59,34 +59,33 @@
 /* --- 1. MINIMALIST HERO SECTION --- */
 .about-hero-section {
     position: relative;
-    background: #1F0701;
-    color: var(--spice-bg);
+    background: linear-gradient(90deg, #710007 0%, #530005 55%, #210609 100%) !important;
+    color: #fff9e9 !important;
     box-sizing: border-box !important;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 179, 0, 0.12);
+    border-bottom: 3px solid var(--spice-secondary, #f2c455) !important;
     overflow: hidden;
 }
 
 @media (min-width: 769px) {
     .about-hero-section {
-        height: 650px !important;
-        min-height: 650px !important;
-        max-height: 650px !important;
-        padding: 0 1.5rem;
+        min-height: 480px !important;
+        padding: 4.5rem 1.5rem !important;
     }
 }
 
 .about-hero-section.legacy-hero {
-    background: linear-gradient(180deg, rgba(31, 7, 1, 0.88) 0%, rgba(31, 7, 1, 0.94) 100%), url('https://images.unsplash.com/photo-1506456121405-b0404c05711b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    background: linear-gradient(90deg, rgba(113, 0, 7, 0.92) 0%, rgba(83, 0, 5, 0.88) 55%, rgba(33, 6, 9, 0.95) 100%), url('https://images.unsplash.com/photo-1506456121405-b0404c05711b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat !important;
+    border-bottom: 3px solid var(--spice-secondary, #f2c455) !important;
 }
 
 .about-hero-container {
     position: relative;
     z-index: 2;
-    max-width: 1200px !important;
+    max-width: 1460px !important;
     width: 100%;
     margin: 0 auto;
 }
@@ -114,16 +113,16 @@
 .about-hero-title {
     font-family: var(--font-heading);
     font-size: clamp(2.2rem, 4vw, 3.4rem);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.16;
-    color: #FFFFFF;
+    color: #fff9e9;
     margin-bottom: 1.25rem;
     letter-spacing: -0.6px;
 }
 
 .about-hero-title .highlight-gold {
-    color: var(--spice-secondary);
-    font-weight: 800;
+    color: var(--spice-secondary, #f2c455);
+    font-weight: 700;
 }
 
 .about-hero-desc {
@@ -200,12 +199,12 @@
 
 /* --- QUICK ANCHOR NAVIGATION --- */
 .about-quick-nav {
-    background: #FFFFFF;
-    border-bottom: 1px solid rgba(40, 18, 11, 0.07);
+    background: #fffaf2;
+    border-bottom: 1px solid #ead8c9;
     position: sticky;
     top: 0;
     z-index: 99;
-    box-shadow: 0 4px 20px rgba(40, 18, 11, 0.03);
+    box-shadow: 0 4px 15px rgba(64, 27, 27, 0.04);
 }
 
 .quick-nav-flex {
@@ -222,30 +221,30 @@
     align-items: center;
     gap: 0.6rem;
     text-decoration: none;
-    color: var(--spice-text);
+    color: var(--spice-text, #401b1b);
     font-weight: 700;
     font-size: 0.95rem;
     font-family: var(--font-heading);
     transition: color 0.2s ease;
     padding: 0.3rem 0.6rem;
-    border-radius: 8px;
+    border-radius: 999px;
 }
 
 .quick-nav-item:hover {
-    color: var(--spice-primary);
+    color: var(--spice-primary, #a4000b);
 }
 
 .nav-step {
     font-family: var(--font-heading);
     font-weight: 800;
-    color: var(--spice-primary);
+    color: var(--spice-primary, #a4000b);
     font-size: 1.1rem;
 }
 
 .quick-nav-divider {
     width: 1px;
     height: 24px;
-    background: rgba(40, 18, 11, 0.12);
+    background: #ead8c9;
 }
 
 /* --- PILLAR SECTION COMMON STYLES --- */
@@ -345,8 +344,8 @@
 }
 
 .identity-feat-item {
-    background: #FFFFFF;
-    border: 1px solid rgba(40, 18, 11, 0.08);
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
     border-radius: 20px;
     padding: 1.5rem;
     box-shadow: 0 8px 24px rgba(40, 18, 11, 0.04);
@@ -438,9 +437,10 @@
 
 .visual-card-quote {
     margin-top: 1.5rem;
-    background: #FFFFFF;
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
     border-left: 4px solid var(--spice-primary);
-    border-radius: 0 16px 16px 0;
+    border-radius: 0 20px 20px 0;
     padding: 1.25rem 1.5rem;
     box-shadow: 0 6px 20px rgba(40, 18, 11, 0.04);
 }
@@ -477,8 +477,8 @@
 }
 
 .process-step-card {
-    background: #FFFFFF;
-    border: 1px solid rgba(40, 18, 11, 0.08);
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
     border-radius: 20px;
     padding: 1.75rem 1.5rem;
     box-shadow: 0 10px 30px rgba(40, 18, 11, 0.04);
@@ -536,9 +536,9 @@
 
 /* Showcase Banner */
 .showcase-banner {
-    background: #FFFFFF;
-    border: 1px solid rgba(40, 18, 11, 0.08);
-    border-radius: 24px;
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
+    border-radius: 20px;
     padding: 3.5rem 3rem;
     box-shadow: 0 16px 40px rgba(40, 18, 11, 0.05);
 }
@@ -674,8 +674,8 @@
 }
 
 .trust-card {
-    background: #FFFFFF;
-    border: 1px solid rgba(40, 18, 11, 0.08);
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
     border-radius: 20px;
     padding: 2.25rem;
     box-shadow: 0 10px 30px rgba(40, 18, 11, 0.04);
@@ -690,8 +690,8 @@
 }
 
 .trust-card.highlight-card {
-    background: #FFFDF9;
-    border: 1.5px solid rgba(228, 93, 62, 0.25);
+    background: #fff8ee;
+    border: 1.5px solid var(--spice-secondary, #f2c455);
 }
 
 .trust-card-top-row {
@@ -776,9 +776,9 @@
 
 /* Testimonial Spotlight */
 .testimonial-spotlight-box {
-    background: #FFFFFF;
-    border: 1px solid rgba(40, 18, 11, 0.08);
-    border-radius: 24px;
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
+    border-radius: 20px;
     padding: 2.75rem 3rem;
     box-shadow: 0 12px 35px rgba(40, 18, 11, 0.05);
     display: flex;
@@ -849,13 +849,13 @@
 }
 
 .cta-inner-card {
-    background: linear-gradient(145deg, #1A0501 0%, #2A0800 60%, #3B1107 100%);
-    border: 1px solid rgba(255, 179, 0, 0.2);
-    border-radius: 24px;
+    background: linear-gradient(90deg, #710007 0%, #530005 55%, #210609 100%);
+    border: 3px solid var(--spice-secondary, #f2c455);
+    border-radius: 20px;
     padding: 4rem 3rem;
     text-align: center;
     color: #FFFFFF;
-    box-shadow: 0 25px 60px rgba(42, 8, 0, 0.25);
+    box-shadow: 0 25px 60px rgba(64, 27, 27, 0.25);
     position: relative;
     overflow: hidden;
 }
@@ -931,37 +931,37 @@
 }
 
 .btn-cta-primary {
-    background: var(--spice-primary);
+    background: var(--spice-primary, #a4000b);
     color: #FFFFFF;
     font-weight: 700;
     font-family: var(--font-heading);
     font-size: 1rem;
-    padding: 1rem 2rem;
-    border-radius: 20px;
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    box-shadow: 0 10px 25px rgba(228, 93, 62, 0.4);
+    box-shadow: 0 10px 25px rgba(164, 0, 11, 0.3);
     transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-cta-primary:hover {
-    background: var(--spice-accent);
+    background: #710007;
     transform: translateY(-2px);
-    box-shadow: 0 14px 30px rgba(199, 59, 27, 0.5);
+    box-shadow: 0 14px 30px rgba(113, 0, 7, 0.45);
     color: #FFFFFF;
 }
 
 .btn-cta-secondary {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
     color: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-weight: 700;
     font-family: var(--font-heading);
     font-size: 1rem;
-    padding: 1rem 1.85rem;
-    border-radius: 20px;
+    padding: 1rem 2rem;
+    border-radius: 999px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -969,7 +969,7 @@
 }
 
 .btn-cta-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
     border-color: #FFFFFF;
     color: #FFFFFF;
 }
@@ -1566,8 +1566,8 @@
 
 .timeline-content-card {
     width: 44%;
-    background: #FFFFFF;
-    border: 1px solid rgba(43, 29, 20, 0.08);
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
     border-radius: 20px;
     padding: 2rem 2.2rem;
     box-shadow: 0 10px 30px rgba(43, 29, 20, 0.04);
@@ -1622,16 +1622,16 @@
 }
 
 .contrast-card {
-    border-radius: 24px;
+    border-radius: 20px;
     padding: 2.8rem 2.4rem;
     position: relative;
     box-sizing: border-box;
 }
 
 .contrast-card.craft-card {
-    background: #FFFFFF;
-    border: 2px solid var(--spice-secondary);
-    box-shadow: 0 16px 40px rgba(228, 93, 62, 0.08), 0 0 25px rgba(255, 179, 0, 0.08);
+    background: #fffaf2;
+    border: 2px solid var(--spice-secondary, #f2c455);
+    box-shadow: 0 16px 40px rgba(164, 0, 11, 0.08), 0 0 25px rgba(242, 196, 85, 0.15);
 }
 
 .contrast-card.factory-card {
@@ -1710,9 +1710,9 @@
 
 /* 4. The Founder's Manifesto / Archival Seal */
 .founder-manifesto-box {
-    background: linear-gradient(135deg, #FFFDF9 0%, #FBF4E9 100%);
-    border: 1px solid rgba(255, 179, 0, 0.35);
-    border-radius: 24px;
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
+    border-radius: 20px;
     padding: 3.5rem 3rem;
     max-width: 950px;
     margin: 3.5rem auto 0;
@@ -1822,7 +1822,7 @@
 .reviewer-gallery-heading h2 { margin: .6rem 0; color: #2c130d; font-size: clamp(1.65rem, 3vw, 2.35rem); font-weight: 750; line-height: 1.2; }
 .reviewer-gallery-heading p { margin: 0; color: #6b574d; line-height: 1.6; }
 .reviewer-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; }
-.reviewer-photo-card { min-width: 0; overflow: hidden; border: 1px solid rgba(71, 38, 24, .09); border-radius: 18px; background: #fff; box-shadow: 0 8px 24px rgba(63, 33, 18, .05); display: flex; flex-direction: column; }
+.reviewer-photo-card { min-width: 0; overflow: hidden; border: 1px solid #ead8c9; border-radius: 20px; background: #fffaf2; box-shadow: 0 8px 24px rgba(63, 33, 18, .05); display: flex; flex-direction: column; }
 .reviewer-photo-image { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #f3e7dc; }
 .reviewer-photo-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .reviewer-photo-view { position: absolute; right: .75rem; bottom: .75rem; padding: .35rem .65rem; border-radius: 30px; color: #fff; background: rgba(45, 22, 15, .76); font-size: .7rem; font-weight: 700; }

@@ -189,7 +189,8 @@
 
 /* Hero */
 .about-hero {
-    background: #1F0701;
+    background: linear-gradient(90deg, #710007 0%, #530005 55%, #210609 100%) !important;
+    border-bottom: 3px solid var(--spice-secondary, #f2c455) !important;
 }
 
 /* Sections */
@@ -203,22 +204,22 @@
     align-items: flex-start;
 }
 .about-text h2 {
-    font-family: var(--font-heading);
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: clamp(2.3rem, 4vw, 3.2rem);
-    font-weight: 800;
+    font-weight: 700;
     margin-bottom: 1.25rem;
     line-height: 1.15;
-    color: var(--spice-bg-dark);
+    color: #401b1b;
     letter-spacing: -0.5px;
 }
 .contact-eyebrow {
     display: inline-block;
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--spice-primary);
+    color: #a4000b;
     margin-bottom: 0.75rem;
 }
 .about-text p {
@@ -238,16 +239,16 @@
     align-items: flex-start;
     gap: 1.25rem;
     padding: 1.25rem 1.5rem;
-    background: #FFFFFF;
-    border: 1px solid rgba(42, 8, 0, 0.08);
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
     border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 15px rgba(64, 27, 27, 0.03);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .contact-item:hover {
     transform: translateY(-2px);
-    border-color: rgba(228, 93, 62, 0.35);
-    box-shadow: 0 10px 25px rgba(42, 8, 0, 0.06);
+    border-color: #a4000b;
+    box-shadow: 0 10px 25px rgba(64, 27, 27, 0.08);
 }
 .contact-item .icon {
     display: flex;
@@ -256,24 +257,24 @@
     width: 48px;
     height: 48px;
     border-radius: 20px;
-    background: var(--spice-bg-dark);
+    background: #401b1b;
     color: white;
-    border: 1px solid rgba(255, 179, 0, 0.25);
+    border: 1px solid rgba(242, 196, 85, 0.4);
     flex-shrink: 0;
     transition: all 0.3s ease;
 }
 .contact-item:hover .icon {
-    background: var(--spice-primary);
-    border-color: var(--spice-primary);
+    background: #a4000b;
+    border-color: #a4000b;
     color: #FFFFFF;
-    box-shadow: 0 4px 12px rgba(228, 93, 62, 0.3);
+    box-shadow: 0 4px 12px rgba(164, 0, 11, 0.3);
 }
 .contact-item .details h4 {
-    font-family: var(--font-heading);
+    font-family: Georgia, 'Times New Roman', serif;
     font-weight: 700;
     font-size: 1.12rem;
     margin: 0 0 0.3rem 0;
-    color: var(--spice-bg-dark);
+    color: #401b1b;
     letter-spacing: 0.2px;
 }
 .contact-item .details p, .contact-item .details a {
@@ -286,7 +287,7 @@
     transition: color 0.2s ease;
 }
 .contact-item .details a:hover {
-    color: var(--spice-primary);
+    color: #a4000b;
 }
 .contact-meta {
     display: block;
@@ -298,10 +299,11 @@
 
 /* Form Wrapper */
 .contact-form-wrapper {
-    background: #fff;
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
     padding: 3rem;
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 25px rgba(64, 27, 27, 0.05);
 }
 
 /* Form Elements */
@@ -320,24 +322,34 @@
 .spice-form label {
     font-weight: 700;
     margin-bottom: 0.5rem;
-    color: var(--spice-text);
+    color: #401b1b;
     font-size: 0.95rem;
 }
-.spice-form input, .spice-form select, .spice-form textarea {
-    padding: 1rem 1.2rem;
+.spice-form input, .spice-form select {
+    padding: 0.85rem 1.2rem;
     border-radius: 20px;
-    border: 2px solid #EAE5D9;
-    background-color: #FCFAf5;
-    font-family: var(--font-body);
+    border: 1px solid #ead8c9;
+    background-color: #fff8ee;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     transition: all 0.3s ease;
-    color: var(--spice-text);
+    color: #401b1b;
+}
+.spice-form textarea {
+    padding: 1rem 1.2rem;
+    border-radius: 20px;
+    border: 1px solid #ead8c9;
+    background-color: #fff8ee;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: #401b1b;
 }
 .spice-form input:focus, .spice-form select:focus, .spice-form textarea:focus {
     outline: none;
-    border-color: var(--spice-primary);
+    border-color: #a4000b;
     background-color: #fff;
-    box-shadow: 0 0 0 4px rgba(228, 93, 62, 0.1);
+    box-shadow: 0 0 0 3px rgba(164, 0, 11, 0.15);
 }
 .spice-form .phone-input {
     display: flex;
@@ -351,24 +363,25 @@
     flex-grow: 1;
 }
 .spice-form .submit-btn {
-    background-color: var(--spice-primary);
+    background-color: #a4000b;
     color: #fff;
     border: none;
-    padding: 1.2rem;
+    padding: 1.1rem;
     border-radius: 20px;
-    font-weight: 800;
-    font-family: var(--font-heading);
-    letter-spacing: 1px;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.5px;
     width: 100%;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 1rem;
+    font-size: 1.05rem;
     margin-top: 1rem;
+    box-shadow: 0 4px 12px rgba(164, 0, 11, 0.2);
 }
 .spice-form .submit-btn:hover {
-    background-color: var(--spice-accent);
+    background-color: #710007;
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(199, 59, 27, 0.2);
+    box-shadow: 0 8px 18px rgba(113, 0, 7, 0.3);
 }
 .text-danger {
     color: #dc3545;

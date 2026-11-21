@@ -64,7 +64,7 @@
         }
 
         .desktop-header .header-container {
-            max-width: 1430px;
+            max-width: 1460px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;

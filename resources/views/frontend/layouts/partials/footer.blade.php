@@ -58,7 +58,8 @@
 
 <style>
     .spice-footer {
-        background-color: var(--spice-bg);
+        background-color: #ffffff;
+        border-top: 1px solid #ebd9c8;
         padding: 5rem 0 2rem 0;
         color: var(--spice-text);
         font-family: var(--font-body);

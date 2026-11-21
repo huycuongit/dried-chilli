@@ -32,9 +32,9 @@ body .nafu-footer .footer-bottom-text{white-space:nowrap;font-family:Sora,Arial,
 @media(max-width:900px){body .site-header.nafu-header{height:88px;padding-inline:24px}body .site-header.nafu-header .nafu-mark{width:40px;height:40px}body .site-header.nafu-header .nafu-wordmark{font-size:29px}body .site-header.nafu-header nav>a:not(.talk-button){display:none}body .site-header.nafu-header .talk-button{padding:14px 22px}}
 @media(max-width:480px){body .site-header.nafu-header{padding-inline:18px;gap:12px}body .site-header.nafu-header .talk-button{padding:14px 18px;font-size:11px}body .site-header.nafu-header .brand .nafu-logo-image{width:120px}}
 
-/* Global container override to 1430px for consistency */
+/* Global container override to 1460px for consistency */
 .container {
-    max-width: 1430px !important;
+    max-width: 1460px !important;
 }
 .text-center { text-align: center !important; }
 .text-start { text-align: left !important; }

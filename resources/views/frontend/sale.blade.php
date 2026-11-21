@@ -107,23 +107,23 @@
 </main>
 
 <style>
-.shop-bg { background: var(--spice-bg-alt); min-height: 100vh; padding-bottom: 6rem; padding-top: 2rem; }
+.shop-bg { background: var(--jojo-cream, #fff8ee); min-height: 100vh; padding-bottom: 6rem; padding-top: 2rem; }
 
 /* Sale Container */
-.sale-container { max-width: 1300px; margin: 0 auto; padding: 0 1.5rem; }
+.sale-container { max-width: 1460px; margin: 0 auto; padding: 0 1.5rem; }
 .sale-tier { margin-bottom: 5rem; }
 .tier-title {
-    font-family: var(--font-heading);
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: clamp(30px, 3.2vw, 40px);
     margin-bottom: 3rem;
-    color: var(--spice-bg-dark);
+    color: var(--jojo-ink, #401b1b);
     text-align: center;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 .tier-title span { 
-    color: var(--spice-primary); 
-    font-style: italic;
+    color: var(--jojo-red, #a4000b); 
+    font-style: normal;
 }
 
 /* Grid Layout */
@@ -137,33 +137,34 @@
 .yum-card {
     border-radius: 20px;
     overflow: hidden;
-    background: #FFFFFF;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    background: #fffaf2;
+    box-shadow: 0 6px 18px rgba(95, 30, 20, 0.08);
     display: flex;
     flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ead8c9;
 }
 .yum-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(95, 30, 20, 0.12);
 }
 .yum-card-top {
     position: relative;
-    padding: 3rem 2rem;
+    padding: 2.5rem 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 280px;
-    background: radial-gradient(circle at center, rgba(0,0,0,0.02) 0%, transparent 70%);
+    min-height: 260px;
+    background: var(--jojo-gold, #f2c455);
+    border-radius: 20px 20px 0 0;
 }
 .yum-card-top img {
     max-height: 200px;
     object-fit: contain;
-    transition: transform 0.5s ease;
+    transition: transform 0.4s ease;
 }
 .yum-card:hover .yum-card-top img {
-    transform: scale(1.08) rotate(2deg);
+    transform: scale(1.05);
 }
 .yum-badge {
     position: absolute;
@@ -182,58 +183,58 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 .badge-red { 
-    background: var(--spice-primary); 
-    box-shadow: 0 6px 15px rgba(228, 93, 62, 0.3);
+    background: var(--jojo-red, #a4000b); 
+    box-shadow: 0 4px 12px rgba(164, 0, 11, 0.3);
 }
 .badge-black { 
-    background: var(--spice-bg-dark); 
-    color: var(--spice-secondary);
-    box-shadow: 0 6px 15px rgba(42, 8, 0, 0.2);
+    background: #401b1b; 
+    color: var(--jojo-gold, #f2c455);
+    box-shadow: 0 4px 12px rgba(40, 18, 11, 0.2);
 }
 .discount-badge {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: var(--spice-secondary);
-    color: var(--spice-bg-dark);
+    top: 1.25rem;
+    right: 1.25rem;
+    background: var(--jojo-gold, #f2c455);
+    color: #401b1b;
     font-weight: 800;
     font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.35rem 0.8rem;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(255, 179, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(242, 196, 85, 0.35);
     z-index: 2;
 }
 
 .yum-card-bottom {
-    padding: 2rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     flex: 1;
-    background: white;
+    background: #fffaf2;
 }
 .yum-meta {
     font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--spice-secondary);
+    font-weight: 700;
+    color: #8a5a40;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
 }
 .yum-title {
-    font-family: var(--font-body);
-    font-size: 18px;
-    margin: 0 0 1rem 0;
-    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.25rem;
+    margin: 0 0 0.75rem 0;
+    font-weight: 700;
     line-height: 1.35;
-    color: var(--spice-text);
+    color: #420d16;
 }
 .yum-desc {
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
-    margin: 0 0 2rem 0;
-    color: #6C5D53;
+    margin: 0 0 1.5rem 0;
+    color: #5a2e1d;
     flex: 1;
-    line-height: 1.62;
+    line-height: 1.6;
     text-align: left;
 }
 .yum-action {
@@ -241,45 +242,46 @@
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
-    border-top: 1px solid rgba(0,0,0,0.06);
-    padding-top: 1.5rem;
+    border-top: 1px solid #ead8c9;
+    padding-top: 1.25rem;
 }
 .price-wrapper {
     display: flex;
     flex-direction: column;
 }
 .price-original {
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    color: #9C8F85;
+    color: #73615b;
     text-decoration: line-through;
     font-weight: 500;
     margin-bottom: -0.2rem;
 }
 .yum-price {
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 22px;
     font-weight: 700;
-    color: var(--spice-bg-dark);
+    color: var(--jojo-red, #a4000b);
 }
 .yum-btn {
-    background: var(--spice-primary);
+    background: var(--jojo-red, #a4000b);
     color: #FDFBF7;
     border: none;
-    padding: 0.8rem 1.5rem;
+    padding: 0.65rem 1.25rem;
     border-radius: 20px;
-    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(228, 93, 62, 0.3);
-    transition: all 0.3s;
-    font-size: 0.85rem;
+    box-shadow: 0 6px 18px rgba(164, 0, 11, 0.25);
+    transition: all 0.25s ease;
 }
 .yum-btn:hover {
-    background: var(--spice-accent);
+    background: #710007;
     transform: translateY(-2px);
-    box-shadow: 0 12px 25px rgba(228, 93, 62, 0.4);
+    box-shadow: 0 8px 24px rgba(164, 0, 11, 0.35);
 }
 .yum-btn:active {
     transform: translateY(0);
@@ -330,7 +332,7 @@
     .sale-banner-wrapper {
         height: clamp(220px, 50vw, 320px) !important;
         margin-bottom: 2rem !important;
-        border-radius: 14px !important;
+        border-radius: 20px !important;
     }
     .tier-title {
         font-size: 24px !important;
@@ -341,7 +343,7 @@
         gap: 10px !important;
     }
     .yum-card {
-        border-radius: 16px !important;
+        border-radius: 20px !important;
     }
     .yum-card-bottom {
         padding: 0.75rem 0.6rem !important;
@@ -366,7 +368,7 @@
         width: 100% !important;
         padding: 0.5rem 0 !important;
         font-size: 0.75rem !important;
-        border-radius: 12px !important;
+        border-radius: 20px !important;
     }
     .countdown-timer {
         font-size: 0.68rem !important;

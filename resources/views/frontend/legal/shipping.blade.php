@@ -206,7 +206,8 @@
 
 /* Hero */
 .legal-hero {
-    background: #1F0701;
+    background: linear-gradient(90deg, #710007 0%, #530005 55%, #210609 100%) !important;
+    border-bottom: 3px solid var(--spice-secondary, #f2c455) !important;
 }
 
 /* Document */
@@ -220,7 +221,7 @@
 }
 
 .document-wrapper {
-    background: #FFFFFF;
+    background: #fffaf2;
     border-radius: 20px;
     padding: 3.5rem 4rem;
     max-width: 950px;
@@ -229,8 +230,8 @@
     margin-top: -3.5rem;
     position: relative;
     z-index: 10;
-    border: 1px solid rgba(40, 18, 11, 0.08);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.06);
+    border: 1px solid #ead8c9;
+    box-shadow: 0 15px 45px rgba(64, 27, 27, 0.05);
 }
 
 /* Shipping Highlights */
@@ -240,12 +241,12 @@
     gap: 1.5rem;
     margin-bottom: 2.5rem;
     padding-bottom: 2.5rem;
-    border-bottom: 1px solid rgba(40, 18, 11, 0.08);
+    border-bottom: 1px solid #ead8c9;
 }
 
 .highlight-item {
-    background: rgba(240, 230, 221, 0.35);
-    border: 1px solid rgba(40, 18, 11, 0.06);
+    background: #fff8ee;
+    border: 1px solid #ead8c9;
     border-radius: 20px;
     padding: 1.75rem 1.5rem;
     display: flex;
@@ -258,31 +259,31 @@
 
 .highlight-item:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    border-color: rgba(228, 93, 62, 0.25);
+    box-shadow: 0 10px 25px rgba(64, 27, 27, 0.08);
+    border-color: #a4000b;
 }
 
 .highlight-icon {
     width: 52px;
     height: 52px;
     border-radius: 20px;
-    background: rgba(228, 93, 62, 0.1);
-    color: var(--spice-primary);
+    background: rgba(164, 0, 11, 0.1);
+    color: #a4000b;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .highlight-text h4 {
-    font-family: var(--font-heading);
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--spice-bg-dark);
+    font-weight: 700;
+    color: #401b1b;
     margin: 0 0 0.35rem 0;
 }
 
 .highlight-text p {
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 0.88rem;
     color: #6C5A4E;
     margin: 0;
@@ -291,9 +292,9 @@
 
 /* Statutory Notice Box */
 .statutory-notice-box {
-    background: #FFF7ED;
-    border: 2px solid #F97316;
-    border-radius: 16px;
+    background: #fff8ee;
+    border: 2px solid var(--spice-secondary, #f2c455);
+    border-radius: 20px;
     padding: 1.5rem 1.75rem;
     margin-bottom: 3rem;
     display: flex;
@@ -302,16 +303,16 @@
 }
 
 .statutory-notice-icon {
-    color: #EA580C;
+    color: #a4000b;
     flex-shrink: 0;
     margin-top: 0.25rem;
 }
 
 .statutory-notice-body h4 {
-    font-family: var(--font-heading);
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.1rem;
-    font-weight: 800;
-    color: #9A3412;
+    font-weight: 700;
+    color: #a4000b;
     margin: 0 0 0.5rem 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -327,10 +328,10 @@
 
 /* Typography in Document */
 .document-wrapper h2 {
-    font-family: var(--font-heading);
-    color: var(--spice-bg-dark);
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #401b1b;
     font-size: clamp(26px, 2.5vw, 34px);
-    font-weight: 800;
+    font-weight: 700;
     margin-top: 3.5rem;
     margin-bottom: 1.25rem;
     letter-spacing: -0.3px;
@@ -341,7 +342,7 @@
 }
 
 .document-wrapper p {
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     color: #4A3B32;
     margin-bottom: 1.5rem;
@@ -355,7 +356,7 @@
 
 .document-wrapper ul,
 .document-wrapper ol {
-    font-family: var(--font-body);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     color: #4A3B32;
     margin-bottom: 1.5rem;
@@ -390,16 +391,16 @@
 .shipping-table {
     width: 100%;
     border-collapse: collapse;
-    background: #FFFFFF;
-    border: 1px solid rgba(40, 18, 11, 0.1);
+    background: #fffaf2;
+    border: 1px solid #ead8c9;
     border-radius: 12px;
     overflow: hidden;
 }
 
 .shipping-table th {
-    background: #2D140D;
-    color: #FFFFFF;
-    font-family: var(--font-heading);
+    background: #401b1b;
+    color: #fff9e9;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 0.95rem;
     font-weight: 700;
     padding: 1rem 1.25rem;
@@ -408,8 +409,8 @@
 
 .shipping-table td {
     padding: 1rem 1.25rem;
-    border-bottom: 1px solid rgba(40, 18, 11, 0.08);
-    font-family: var(--font-body);
+    border-bottom: 1px solid #ead8c9;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 0.95rem;
     color: #4A3B32;
 }
@@ -425,7 +426,7 @@
     font-weight: 800;
     font-size: 0.75rem;
     padding: 0.25rem 0.6rem;
-    border-radius: 6px;
+    border-radius: 999px;
     letter-spacing: 0.5px;
 }
 

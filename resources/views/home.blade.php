@@ -168,7 +168,7 @@
     }
 
     .container {
-        max-width: 1400px;
+        max-width: 1460px;
         margin: 0 auto;
         padding: 0 2rem;
     }
@@ -228,7 +228,7 @@
     }
 
     .hero-container {
-        max-width: 1400px;
+        max-width: 1460px;
         margin: 0 auto;
         display: grid;
         grid-template-columns: 1fr 1fr;
