@@ -11,7 +11,6 @@
         return preg_match('~^(?:/(?!/)|https?://|#)~i', $link) ? $link : '#';
     };
     $heroImage = $pageLayoutValue('page_layout_home_image_slide_1');
-    $heroSrcset = \App\Support\ResponsivePageImages::srcset($heroImage);
     $storyImage = $pageLayoutValue('page_layout_home_story_image');
     $storyImagePath = '/' . ltrim((string) parse_url($storyImage, PHP_URL_PATH), '/');
     $storyImageHost = parse_url($storyImage, PHP_URL_HOST);
@@ -22,15 +21,11 @@
         : \App\Support\ResponsivePageImages::srcset($storyImage);
 @endphp
 
-@push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/jojo-home.css') }}?v={{ filemtime(public_path('assets/css/jojo-home.css')) }}">
-@endpush
-
 @section('full-content')
 <main class="jojo-home" id="main-content">
     <section class="jojo-hero" aria-labelledby="jojo-hero-title">
         @if($heroImage !== '')
-            <img class="jojo-hero-image" src="{{ asset($heroImage) }}" @if($heroSrcset !== '') srcset="{{ $heroSrcset }}" sizes="100vw" @endif alt="{{ $pageLayoutValue('page_layout_home_image_alt_1') }}" width="2048" height="683" fetchpriority="high">
+            <img class="jojo-hero-image" src="{{ asset($heroImage) }}" alt="{{ $pageLayoutValue('page_layout_home_image_alt_1') }}" width="2048" height="683" fetchpriority="high">
         @endif
         <div class="jojo-hero-shade" aria-hidden="true"></div>
         <div class="jojo-hero-inner">
@@ -44,10 +39,10 @@
 
     <section class="jojo-benefits" aria-label="Why choose Jojo">
         <div class="jojo-container jojo-benefit-grid">
-            <div class="jojo-benefit"><i data-lucide="flame" aria-hidden="true"></i><div><strong>Bold &amp; authentic</strong><small>Rich chilli, aromatic shrimp</small></div></div>
-            <div class="jojo-benefit"><i data-lucide="soup" aria-hidden="true"></i><div><strong>Versatile &amp; delicious</strong><small>Perfect with rice, noodles and more</small></div></div>
-            <div class="jojo-benefit"><i data-lucide="leaf" aria-hidden="true"></i><div><strong>Made with care</strong><small>A little flavour goes a long way</small></div></div>
-            <div class="jojo-benefit"><i data-lucide="truck" aria-hidden="true"></i><div><strong>Australia-wide delivery</strong><small>See our shipping policy for rates</small></div></div>
+            <div class="jojo-benefit"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><div><strong>Bold &amp; authentic</strong><small>Rich chilli, aromatic shrimp</small></div></div>
+            <div class="jojo-benefit"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 21h10"/><path d="M19.5 12 22 6"/><path d="M16.25 3c.27.1.8.53.75 1.36-.06 1.06-.75 1.5-1 2.64-.17.78 0 1.5-.5 2"/><path d="M12 3c.27.1.8.53.75 1.36-.06 1.06-.75 1.5-1 2.64-.17.78 0 1.5-.5 2"/><path d="M7.75 3c.27.1.8.53.75 1.36-.06 1.06-.75 1.5-1 2.64-.17.78 0 1.5-.5 2"/></svg><div><strong>Versatile &amp; delicious</strong><small>Perfect with rice, noodles and more</small></div></div>
+            <div class="jojo-benefit"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg><div><strong>Made with care</strong><small>A little flavour goes a long way</small></div></div>
+            <div class="jojo-benefit"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18.5" r="2.5"/><circle cx="7" cy="18.5" r="2.5"/></svg><div><strong>Australia-wide delivery</strong><small>See our shipping policy for rates</small></div></div>
         </div>
     </section>
 
@@ -152,12 +147,4 @@
         </section>
     @endif
 </main>
-@push('scripts')
-<script src="{{ asset('js/lucide.min.js') }}" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    if (window.lucide) window.lucide.createIcons({ root: document.querySelector('.jojo-benefits') });
-});
-</script>
-@endpush
 @endsection

@@ -1,22 +1,24 @@
 :root { --jojo-gold: #f2c455; --jojo-red: #a4000b; --jojo-ink: #401b1b; --jojo-cream: #fff8ee; }
-html { scroll-behavior: smooth; height: 100%; }
-body, body.home-page, body.jojo-theme { min-height: 100%; display: flex; flex-direction: column; margin: 0; padding: 0 !important; background: var(--jojo-cream); color: var(--jojo-ink); font-family: Arial, Helvetica, sans-serif; }
+html { scroll-behavior: smooth; height: 100%; overflow-x: hidden; }
+*, *::before, *::after { box-sizing: border-box; }
+body, body.home-page, body.jojo-theme { min-height: 100%; display: flex; flex-direction: column; margin: 0; padding: 0 !important; background: var(--jojo-cream); color: var(--jojo-ink); font-family: Arial, Helvetica, sans-serif; overflow-x: hidden; }
 @media (max-width: 768px) { body, body.home-page, body.jojo-theme { padding-bottom: 0 !important; } }
 .mobile-bottom-nav { display: none !important; }
 .floating-hotline { bottom: 1.25rem; }
 .jojo-home, main.jojo-home, main#main-content { flex: 1 0 auto; }
 .jojo-home, .jojo-site-header, .jojo-footer, .jojo-announcement { font-family: Arial, Helvetica, sans-serif; }
 .jojo-container,
+.container,
 .jojo-theme .container,
 .jojo-theme .container-fluid,
 .jojo-theme .container-xl,
-.jojo-theme .container-xxl { width: min(100% - 3rem, 1460px) !important; max-width: 1460px !important; margin-inline: auto; }
+.jojo-theme .container-xxl { width: min(100% - 3rem, 1460px) !important; max-width: 1460px !important; margin-inline: auto !important; box-sizing: border-box !important; }
 .jojo-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .jojo-announcement { display: flex; align-items: center; justify-content: center; gap: 1.25rem; min-height: 36px; padding: .4rem 1rem; background: #a4000b; color: white; font: 700 .78rem Arial, sans-serif; letter-spacing: .035em; text-align: center; }
 .jojo-announcement a { color: inherit; text-decoration: none; }
 .jojo-announcement a:hover, .jojo-announcement a:focus-visible { text-decoration: underline; }
 .jojo-announcement span[aria-hidden] { color: var(--jojo-gold); }
-.jojo-site-header { position: relative; z-index: 1001; background: #ffffff; color: #401b1b; border-bottom: 1px solid #ebd9c8; box-shadow: 0 2px 10px rgba(64, 27, 27, 0.05); }
+.jojo-site-header { position: sticky; top: 0; z-index: 1001; background: #ffffff; color: #401b1b; border-bottom: 1px solid #ebd9c8; box-shadow: 0 2px 10px rgba(64, 27, 27, 0.05); }
 .jojo-header-inner { min-height: 80px; display: grid; grid-template-columns: 130px 1fr auto; align-items: center; gap: 1.5rem; }
 .jojo-brand { display: inline-flex; width: fit-content; align-items: center; }
 .jojo-brand img { display: block; width: 72px; height: 72px; }
@@ -39,16 +41,16 @@ body, body.home-page, body.jojo-theme { min-height: 100%; display: flex; flex-di
 .jojo-header-search input { flex: 1; min-width: 0; padding: .7rem .9rem; border: 1px solid #ebd9c8; background: #fffaf2; color: #401b1b; border-radius: 20px; }
 .jojo-header-search button { border: 0; border-radius: 20px; background: var(--jojo-red); color: white; padding: .8rem 1.2rem; font-weight: 700; }
 .jojo-home { overflow: clip; }
-.jojo-hero { position: relative; height: clamp(380px, 32vw, 620px); display: flex; align-items: center; isolation: isolate; background: linear-gradient(90deg, #710007 0%, #530005 55%, #210609 100%); color: white; }
-.jojo-hero-image { position: absolute; top: 4%; right: 0; z-index: -2; width: 92%; height: 92%; object-fit: contain; object-position: right center; -webkit-mask-image: radial-gradient(ellipse 95% 65% at 70% 50%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 95% 65% at 70% 50%, #000 55%, transparent 100%); }
-.jojo-hero-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #690006b8 0%, #6900066b 43%, transparent 68%); }
+.jojo-hero { position: relative; min-height: clamp(340px, 24vw, 460px); display: flex; align-items: center; isolation: isolate; background: linear-gradient(90deg, #710007 0%, #650006 58%, #210609 100%); color: white; overflow: hidden; }
+.jojo-hero-image { position: absolute; inset: 0 0 0 auto; z-index: 0; display: block; width: auto; height: 100%; max-width: none; max-height: none; object-fit: contain; object-position: right center; -webkit-mask-image: linear-gradient(90deg, transparent, #000 32%); mask-image: linear-gradient(90deg, transparent, #000 32%); }
+.jojo-hero-shade { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(75, 0, 4, .22), rgba(75, 0, 4, .08) 38%, transparent 65%); }
 .jojo-hero-inner,
-.jojo-hero .jojo-hero-inner { display: flex; align-items: center; width: 100% !important; max-width: 100% !important; height: 100%; padding-inline: 15% !important; box-sizing: border-box; }
-.jojo-hero-copy { width: 47%; padding-block: 3.5rem; }
+.jojo-hero .jojo-hero-inner { display: flex; align-items: center; width: 100% !important; max-width: none !important; height: 100%; padding-inline: 15% !important; margin-inline: auto; box-sizing: border-box; position: relative; z-index: 2; }
+.jojo-hero-copy { width: min(48%, 520px); padding-block: clamp(2.5rem, 4vw, 4rem); }
 .jojo-eyebrow { display: block; color: #bd000d; font-size: .81rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
 .jojo-hero-eyebrow { display: none !important; }
 .jojo-hero h1, .jojo-section h2, .jojo-story h2 { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; }
-.jojo-hero h1 { margin: .9rem 0 1rem; color: #fff9e9; font-size: clamp(2.5rem, 3.65vw, 4.3rem); line-height: 1.02; letter-spacing: -.03em; text-transform: uppercase; text-wrap: balance; }
+.jojo-hero h1 { margin: .9rem 0 1rem; color: #fff9e9; font-size: clamp(2.5rem, 3vw, 3.4rem); line-height: 1.02; letter-spacing: -.03em; text-transform: uppercase; text-wrap: balance; }
 .jojo-hero h1 em { color: #ffdc37; font-style: normal; }
 .jojo-hero-copy p { max-width: 36ch; margin: 0 0 1.35rem; font-size: clamp(1rem, 1.28vw, 1.15rem); line-height: 1.48; }
 .jojo-home a.jojo-button { display: inline-flex; align-items: center; justify-content: center; gap: .75rem; width: fit-content; min-height: 46px; padding: .65rem 1.55rem; border: 2px solid transparent; border-radius: 999px; text-decoration: none; font-weight: 800; line-height: 1.2; box-shadow: 0 3px 8px #3d120b1a; transition: background-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease; }
@@ -134,19 +136,68 @@ body, body.home-page, body.jojo-theme { min-height: 100%; display: flex; flex-di
 .jojo-footer-bottom a { font-size: .76rem; font-weight: 400; color: #6e4c3e; }
 .jojo-footer-bottom a:hover { color: #8e000a; }
 .jojo-home :focus-visible, .jojo-site-header :focus-visible, .jojo-footer :focus-visible { outline: 3px solid #1b478c; outline-offset: 3px; }
-@media (max-width: 1200px) {
-  .jojo-container { width: 90%; }
+@media (max-width: 1536px) {
+  .jojo-container,
+  .container,
+  .jojo-theme .container,
+  .jojo-theme .container-fluid,
+  .jojo-theme .container-xl,
+  .jojo-theme .container-xxl { width: min(100% - 2.5rem, 1460px) !important; }
+  .jojo-hero { min-height: clamp(340px, 24vw, 390px); }
   .jojo-hero-inner,
   .jojo-hero .jojo-hero-inner { padding-inline: 15% !important; }
-  .jojo-hero-copy { width: 50%; }
+  .jojo-hero-copy { width: min(48%, 490px); padding-block: 2.2rem; }
+  .jojo-hero h1 { font-size: clamp(2.2rem, 3.1vw, 3.2rem); margin: .7rem 0 .8rem; }
+  .jojo-hero-copy p { font-size: .96rem; margin-bottom: 1.15rem; max-width: 38ch; }
+  .jojo-header-inner { min-height: 74px; gap: 1.25rem; }
+  .jojo-desktop-nav { gap: clamp(0.8rem, 1.8vw, 1.8rem); }
+  .jojo-desktop-nav a { font-size: .95rem; }
+  .jojo-benefit { padding: .3rem .5rem; gap: .65rem; }
+  .jojo-benefit strong { font-size: .88rem; }
+  .jojo-benefit small { font-size: .72rem; }
+}
+@media (max-width: 1366px) {
+  .jojo-container,
+  .container,
+  .jojo-theme .container,
+  .jojo-theme .container-fluid,
+  .jojo-theme .container-xl,
+  .jojo-theme .container-xxl { width: min(100% - 2rem, 1460px) !important; }
+  .jojo-hero { min-height: 340px; }
+  .jojo-hero-inner,
+  .jojo-hero .jojo-hero-inner { padding-inline: 15% !important; }
+  .jojo-hero-copy { width: 48%; padding-block: 1.8rem; }
+  .jojo-hero h1 { font-size: clamp(1.9rem, 2.7vw, 2.6rem); margin: .5rem 0 .7rem; }
+  .jojo-hero-copy p { font-size: .92rem; margin-bottom: 1rem; line-height: 1.42; }
+  .jojo-header-inner { min-height: 70px; }
+  .jojo-brand img { width: 64px; height: 64px; }
+  .jojo-desktop-nav { gap: clamp(0.7rem, 1.4vw, 1.2rem); }
+  .jojo-desktop-nav a { font-size: .9rem; }
+  .jojo-story-copy { padding: 2.2rem 1.5rem 2.2rem clamp(1.5rem, 2.5vw, 2.5rem); }
+  .jojo-story h2 { font-size: clamp(1.75rem, 2.2vw, 2.2rem); }
+  .jojo-story p { font-size: .92rem; line-height: 1.52; }
+  .jojo-footer { padding: 1.8rem 0 1rem; }
+  .jojo-footer-top { gap: clamp(1rem, 2vw, 1.8rem); padding-bottom: 1rem; }
+}
+@media (max-width: 1180px) {
+  .jojo-hero { min-height: 350px; }
+  .jojo-hero-inner,
+  .jojo-hero .jojo-hero-inner { padding-inline: 10% !important; }
+  .jojo-hero-copy { width: 52%; padding-block: 1.5rem; }
+  .jojo-hero h1 { font-size: clamp(1.8rem, 2.6vw, 2.3rem); }
+  .jojo-header-inner { grid-template-columns: 74px 1fr auto; gap: .8rem; }
+  .jojo-desktop-nav { gap: clamp(0.5rem, 1vw, 0.9rem); }
+  .jojo-desktop-nav a { font-size: .85rem; }
 }
 @media (max-width: 1000px) {
-  .jojo-hero { height: clamp(300px, 36vw, 380px); }
-  .jojo-hero-copy { padding-block: 1rem; }
+  .jojo-hero { min-height: 380px; height: auto; }
+  .jojo-hero-inner,
+  .jojo-hero .jojo-hero-inner { padding-inline: 7% !important; }
+  .jojo-hero-copy { padding-block: 2rem; width: 58%; }
   .jojo-hero h1 { font-size: clamp(2rem, 3.5vw, 2.5rem); }
-  .jojo-header-inner { grid-template-columns: 90px 1fr auto; }
-  .jojo-desktop-nav { gap: 1rem; }
-  .jojo-desktop-nav a { font-size: .87rem; }
+  .jojo-header-inner { grid-template-columns: 80px 1fr auto; gap: 1rem; }
+  .jojo-desktop-nav { gap: clamp(0.5rem, 1.2vw, 1.1rem); }
+  .jojo-desktop-nav a { font-size: .86rem; }
   .jojo-benefit-grid { grid-template-columns: repeat(2, 1fr); row-gap: .8rem; }
   .jojo-benefit:nth-child(3) { border-left: 0; }
   .jojo-recipes-layout { grid-template-columns: 1fr; }
@@ -157,29 +208,69 @@ body, body.home-page, body.jojo-theme { min-height: 100%; display: flex; flex-di
   .jojo-footer-brand img { width: 58px; height: 58px; }
   .jojo-footer-brand p { padding-left: .7rem; font-size: .72rem; }
 }
-@media (max-width: 760px) {
-  .jojo-container { width: 92%; }
-  .jojo-announcement { gap: .5rem; min-height: 32px; font-size: .67rem; }
-  .jojo-announcement span:not([aria-hidden]) { display: none; }
-  .jojo-announcement span[aria-hidden] { display: none; }
-  .jojo-header-inner { min-height: 64px; display: flex; justify-content: space-between; }
-  .jojo-brand img { width: 58px; height: 58px; }
+@media (max-width: 860px) {
   .jojo-desktop-nav { display: none; }
   .jojo-menu-toggle { display: inline-flex; }
+  .jojo-header-inner { min-height: 64px; display: flex; justify-content: space-between; }
+  .jojo-brand img { width: 58px; height: 58px; }
   .jojo-header-actions { gap: .15rem; }
   .jojo-cart-link { min-width: 42px; justify-content: center; }
   .jojo-cart-label { display: none; }
   .jojo-cart-count-mobile { display: inline-flex; min-width: 18px; height: 18px; align-items: center; justify-content: center; border-radius: 50%; background: var(--jojo-red) !important; color: white !important; font-size: .68rem !important; position: absolute; top: 1px; right: -4px; }
   .jojo-mobile-nav:not([hidden]) { display: flex; flex-direction: column; gap: 0; padding: .5rem 1rem 1rem; border-top: 1px solid #ebd9c8; background: #ffffff; }
   .jojo-mobile-nav a { padding: .8rem .5rem; border-bottom: 1px solid #ebd9c8; }
+}
+@media (max-width: 760px) {
+  .jojo-container,
+  .container,
+  .jojo-theme .container,
+  .jojo-theme .container-fluid,
+  .jojo-theme .container-xl,
+  .jojo-theme .container-xxl { width: min(100% - 1.25rem, 1460px) !important; }
+  .jojo-announcement { gap: .5rem; min-height: 32px; font-size: .67rem; }
+  .jojo-announcement span:not([aria-hidden]) { display: none; }
+  .jojo-announcement span[aria-hidden] { display: none; }
   .jojo-header-search { flex-wrap: wrap; }
   .jojo-header-search label { width: 100%; }
-  .jojo-hero { height: 670px; align-items: end; }
-  .jojo-hero-image { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 58% center; -webkit-mask-image: none; mask-image: none; }
-  .jojo-hero-shade { background: linear-gradient(0deg, #760006 0%, #760006 57%, #760006cc 68%, transparent 87%); }
-  .jojo-hero-inner { align-items: end; padding-inline: 4%; }
-  .jojo-hero-copy { width: 100%; padding-block: 2rem 2.6rem; }
-  .jojo-hero h1 { font-size: clamp(2.5rem, 9.5vw, 4.5rem); }
+  .jojo-hero {
+      min-height: 600px;
+      padding: 2rem 1rem;
+      display: flex;
+      align-items: end;
+      text-align: left;
+  }
+  .jojo-hero-image {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 67% center;
+      -webkit-mask-image: none;
+      mask-image: none;
+  }
+  .jojo-hero-shade { background: linear-gradient(0deg, rgba(76, 0, 5, .98), rgba(76, 0, 5, .92) 32%, rgba(76, 0, 5, .55) 56%, transparent 82%); }
+  .jojo-hero-inner,
+  .jojo-hero .jojo-hero-inner {
+      width: 100% !important;
+      padding-inline: .5rem !important;
+      display: flex;
+      align-items: end;
+  }
+  .jojo-hero-copy {
+      width: 100%;
+      padding-block: 0;
+      margin: 0;
+      text-align: left;
+  }
+  .jojo-hero h1 {
+      font-size: clamp(2rem, 8.5vw, 2.75rem);
+      margin: 0 0 0.85rem;
+  }
+  .jojo-hero-copy p {
+      max-width: 40ch;
+      margin: 0 0 1.25rem;
+      font-size: 0.95rem;
+  }
   .jojo-benefit-grid { padding-block: .8rem; }
   .jojo-benefit { justify-content: start; padding: .5rem; }
   .jojo-benefit:nth-child(2n+1) { border-left: 0; }
@@ -199,8 +290,8 @@ body, body.home-page, body.jojo-theme { min-height: 100%; display: flex; flex-di
   .jojo-footer-bottom { flex-direction: column; }
 }
 @media (max-width: 520px) {
-  .jojo-hero { height: 600px; }
-  .jojo-hero-image { object-position: 57% center; }
+  .jojo-hero { min-height: 570px; padding: 1.75rem 0.75rem 2rem; }
+  .jojo-hero-image { object-position: 67% center; }
   .jojo-benefit-grid { gap: .4rem; }
   .jojo-benefit { flex-direction: column; text-align: center; }
   .jojo-benefit:nth-child(2n) { border-left: 1px solid #ebd9c8; }

@@ -270,8 +270,8 @@
         });
     })();
     </script>
-    <script src="{{ asset('js/toast.js') }}"></script>
-    <script src="{{ asset('js/cart.js') }}?v={{ filemtime(public_path('js/cart.js')) }}"></script>
+    <script src="{{ asset('js/toast.js') }}" defer></script>
+    <script src="{{ asset('js/cart.js') }}?v={{ filemtime(public_path('js/cart.js')) }}" defer></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Scroll reveal

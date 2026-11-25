@@ -24,29 +24,23 @@
         $heroImage = \App\Support\AboutPageContent::value('page_layout_home_image_slide_1', $heroFields, $systemSettings);
         $heroPreloadSrcset = \App\Support\ResponsivePageImages::srcset($heroImage);
     @endphp
-    @if($heroImage !== '')<link rel="preload" as="image" href="{{ asset($heroImage) }}" @if($heroPreloadSrcset !== '') imagesrcset="{{ $heroPreloadSrcset }}" imagesizes="100vw" @endif fetchpriority="high">@endif
+    @if($heroImage !== '')<link rel="preload" as="image" href="{{ asset($heroImage) }}" @if($heroPreloadSrcset !== '') imagesrcset="{{ $heroPreloadSrcset }}" imagesizes="(max-width: 760px) 280px, (max-width: 1200px) 44vw, 560px" @endif fetchpriority="high">@endif
     @endif
 
     <!-- Web Fonts Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    @if(request()->routeIs('home'))
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=optional" media="print" onload="this.media='all'">
-    @else
+    @if(!request()->routeIs('home'))
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap">
     @endif
 
     <!-- Core Layout CSS -->
-    @if(request()->routeIs('home'))
-    <style>html{-webkit-text-size-adjust:100%;font-family:sans-serif}body{margin:0}*,*::before,*::after{box-sizing:border-box}img{max-width:100%;vertical-align:middle}button,input,select,textarea{font:inherit}button{cursor:pointer}[hidden]{display:none!important}</style>
-    <link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}"></noscript>
-    @else
+    @if(!request()->routeIs('home'))
     <link rel="stylesheet" href="{{ asset('assets/dried-chilli/mrfix-home2.css') }}">
-    @endif
     <link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-layout.css') }}?v={{ filemtime(public_path('assets/css/dried-chilli-layout.css')) }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/jojo-home.css') }}?v={{ filemtime(public_path('assets/css/jojo-home.css')) }}">
     <link rel="stylesheet" href="{{ asset('assets/css/dried-chilli-richtext.css') }}?v=20260919-1" media="print" onload="this.media='all'">
+    @endif
+    <link rel="stylesheet" href="{{ asset('assets/css/jojo-home.css') }}?v={{ filemtime(public_path('assets/css/jojo-home.css')) }}">
 
     @stack('styles')
 </head>

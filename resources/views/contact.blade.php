@@ -387,17 +387,25 @@
     color: #dc3545;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 4rem;
+        gap: 3.5rem;
     }
     .spice-form .form-row {
         flex-direction: column;
         gap: 0;
     }
     .contact-form-wrapper {
-        padding: 2rem;
+        padding: 2.2rem;
+    }
+}
+@media (max-width: 600px) {
+    .contact-form-wrapper {
+        padding: 1.5rem 1rem;
+    }
+    .about-section {
+        padding: 3.5rem 0;
     }
 }
 

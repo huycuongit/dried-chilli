@@ -78,10 +78,19 @@ body .nafu-footer .footer-bottom-text{white-space:nowrap;font-family:Sora,Arial,
     .shop-header,
     .legal-hero,
     .about-hero {
-        height: 650px !important;
-        min-height: 650px !important;
-        max-height: 650px !important;
-        padding: 0 1.5rem;
+        min-height: clamp(320px, 36vh, 440px) !important;
+        height: auto !important;
+        max-height: none !important;
+        padding: clamp(2rem, 4.5vh, 3.5rem) 1.5rem !important;
+    }
+}
+@media (min-width: 1537px) {
+    .about-hero-section,
+    .shop-header,
+    .legal-hero,
+    .about-hero {
+        min-height: 480px !important;
+        padding: 4.5rem 1.5rem !important;
     }
 }
 
